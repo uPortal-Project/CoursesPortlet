@@ -40,7 +40,7 @@
         p:courseDaos-ref="courseDaos"/>
         
     <util:list id="courseDaos">
-        <bean class="org.jasig.portlet.courses.dao.sakai.SakaiCoursesDaoImpl"/>
+        <!--bean class="org.jasig.portlet.courses.dao.sakai.SakaiCoursesDaoImpl"/-->
         <ref bean="mockDao"/>
     </util:list>
 

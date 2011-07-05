@@ -35,6 +35,7 @@ import org.jasig.portlet.courses.model.sakai.xml.Refs;
 import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 import org.jasig.portlet.courses.model.xml.Course;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -47,6 +48,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/testContext.xml")
+@Ignore
 public class SakaiCoursesDaoImplTest {
 
     SakaiCoursesDaoImpl dao;
