@@ -38,6 +38,6 @@
     <group>Everyone</group>
     <parameter>
         <name>iconUrl</name>
-        <value>/CoursesPortlet/notepad.png</value>
+        <value>${request.contextPath}/temp/notepad.png</value>
     </parameter>
 </portlet-definition>

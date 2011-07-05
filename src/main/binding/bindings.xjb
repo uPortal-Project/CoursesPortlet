@@ -13,7 +13,7 @@
         </jaxb:globalBindings>
     </jaxb:bindings>
       
-    <jaxb:bindings schemaLocation="../resources/xsd/course-summary.xsd">
+    <jaxb:bindings schemaLocation="../resources/xsd/generic/course-summary.xsd">
         <jaxb:bindings node="//xs:element[@name='course']">
             <jaxb:property name="courses"/>
         </jaxb:bindings>
@@ -25,6 +25,12 @@
         </jaxb:bindings>
         <jaxb:schemaBindings>
             <jaxb:package name="org.jasig.portlet.courses.model.xml" />
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="../resources/xsd/sakai/sakai-data.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.jasig.portlet.courses.model.sakai.xml" />
         </jaxb:schemaBindings>
     </jaxb:bindings>
 

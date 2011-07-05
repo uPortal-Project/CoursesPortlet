@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<refs type='map' size='2'>
+    <ref0 type='bean' size='6'>
+        <entityURL>/direct/site.xml</entityURL>
+        <reference>/direct/site.xml</reference>
+        <status type='number'>200</status>
+        <content />
+        <data>
+            <site_collection entityPrefix="site">
+                <site type='bean' size='35'>
+                    <createdDate type='date' date='2011-06-15T09:55:45-07:00'>1308156945962
+                    </createdDate>
+                    <createdTime type='bean' size='2'>
+                        <display>Jun 15, 2011 9:55 am</display>
+                        <time type='number'>1308156945962</time>
+                    </createdTime>
+                    <description>Hello!</description>
+                    <iconFullUrl />
+                    <iconUrl />
+                    <iconUrlFull />
+                    <id>4d341b74-1753-482d-8b0b-671ee52fba76</id>
+                    <infoUrl />
+                    <infoUrlFull />
+                    <joinerRole />
+                    <lastModified type='number'>1308156946247</lastModified>
+                    <maintainRole>maintain</maintainRole>
+                    <modifiedDate type='date' date='2011-06-15T09:55:46-07:00'>1308156946247
+                    </modifiedDate>
+                    <modifiedTime type='bean' size='2'>
+                        <display>Jun 15, 2011 9:55 am</display>
+                        <time type='number'>1308156946247</time>
+                    </modifiedTime>
+                    <owner>admin</owner>
+                    <props type='map' size='1'>
+                        <contact-name>Sakai Administrator</contact-name>
+                    </props>
+                    <providerGroupId />
+                    <reference>/site/4d341b74-1753-482d-8b0b-671ee52fba76
+                    </reference>
+                    <shortDescription />
+                    <siteGroups />
+                    <siteOwner type='bean' size='3'>
+                        <userDisplayName>Sakai Administrator</userDisplayName>
+                        <userEntityURL>/direct/user/admin</userEntityURL>
+                        <userId>admin</userId>
+                    </siteOwner>
+                    <skin />
+                    <title>Test Class</title>
+                    <type>project</type>
+                    <userRoles type='array' length='2'>
+                        <string>maintain</string>
+                        <string>access</string>
+                    </userRoles>
+                    <activeEdit type='boolean'>false</activeEdit>
+                    <customPageOrdered type='boolean'>false
+                    </customPageOrdered>
+                    <empty type='boolean'>false</empty>
+                    <joinable type='boolean'>false</joinable>
+                    <pubView type='boolean'>true</pubView>
+                    <published type='boolean'>true</published>
+                    <entityReference>/site/4d341b74-1753-482d-8b0b-671ee52fba76
+                    </entityReference>
+                    <entityURL>http://localhost:8080/direct/site/4d341b74-1753-482d-8b0b-671ee52fba76
+                    </entityURL>
+                    <entityId>4d341b74-1753-482d-8b0b-671ee52fba76</entityId>
+                    <entityTitle>Test Class</entityTitle>
+                </site>
+            </site_collection>
+        </data>
+        <headers type='map' size='11'>
+            <Cache-Control type='array' length='3'>
+                <string>public</string>
+                <string>max-age=600</string>
+                <string>s-maxage=600</string>
+            </Cache-Control>
+            <Date type='array' length='1'>
+                <string>1308157761975</string>
+            </Date>
+            <ETag type='array' length='1'>
+                <string>1308156946247</string>
+            </ETag>
+            <Expires type='array' length='1'>
+                <string>1308158361975</string>
+            </Expires>
+            <Last-Modified type='array' length='1'>
+                <string>1308156946247</string>
+            </Last-Modified>
+            <x-entity-format type='array' length='1'>
+                <string>xml</string>
+            </x-entity-format>
+            <x-entity-prefix type='array' length='1'>
+                <string>site</string>
+            </x-entity-prefix>
+            <x-entity-reference type='array' length='1'>
+                <string>/site</string>
+            </x-entity-reference>
+            <x-entity-url type='array' length='1'>
+                <string>/site.xml</string>
+            </x-entity-url>
+            <x-sdata-handler type='array' length='1'>
+                <string>org.sakaiproject.entitybroker.providers.SiteEntityProvider
+                </string>
+            </x-sdata-handler>
+            <x-sdata-url type='array' length='1'>
+                <string>/site.xml</string>
+            </x-sdata-url>
+        </headers>
+    </ref0>
+    <ref1 type='bean' size='6'>
+        <entityURL>/direct/announcement/user.xml</entityURL>
+        <reference>/direct/announcement/user.xml</reference>
+        <status type='number'>200</status>
+        <content />
+        <data>
+            <announcement_collection entityPrefix="announcement">
+                <announcement type='bean' size='12'>
+                    <attachments type='collection' size='0'>
+                    </attachments>
+                    <body>Hello, I'm a new announcement!</body>
+                    <createdByDisplayName>Sakai Administrator
+                    </createdByDisplayName>
+                    <createdOn type='date' date='2011-06-15T09:58:36-07:00'>1308157116039
+                    </createdOn>
+                    <id>960bfd1b-52ef-4ecb-bf6f-cb7f6d19f6ba</id>
+                    <siteId>~44e58f3a-d3fa-42ca-be0f-313dabe72e8a</siteId>
+                    <siteTitle>My Workspace</siteTitle>
+                    <title>New Announcement</title>
+                    <entityReference>/announcement/960bfd1b-52ef-4ecb-bf6f-cb7f6d19f6ba
+                    </entityReference>
+                    <entityURL>http://localhost:8080/direct/announcement/960bfd1b-52ef-4ecb-bf6f-cb7f6d19f6ba
+                    </entityURL>
+                    <entityId>960bfd1b-52ef-4ecb-bf6f-cb7f6d19f6ba</entityId>
+                    <entityTitle>New Announcement</entityTitle>
+                </announcement>
+            </announcement_collection>
+        </data>
+        <headers type='map' size='11'>
+            <Cache-Control type='array' length='3'>
+                <string>public</string>
+                <string>max-age=600</string>
+                <string>s-maxage=600</string>
+            </Cache-Control>
+            <Date type='array' length='1'>
+                <string>1308157761984</string>
+            </Date>
+            <ETag type='array' length='1'>
+                <string>1308157761991</string>
+            </ETag>
+            <Expires type='array' length='1'>
+                <string>1308158361984</string>
+            </Expires>
+            <Last-Modified type='array' length='1'>
+                <string>1308157761991</string>
+            </Last-Modified>
+            <x-entity-format type='array' length='1'>
+                <string>xml</string>
+            </x-entity-format>
+            <x-entity-prefix type='array' length='1'>
+                <string>announcement</string>
+            </x-entity-prefix>
+            <x-entity-reference type='array' length='1'>
+                <string>/announcement</string>
+            </x-entity-reference>
+            <x-entity-url type='array' length='1'>
+                <string>/announcement.xml</string>
+            </x-entity-url>
+            <x-sdata-handler type='array' length='1'>
+                <string>org.sakaiproject.announcement.entityprovider.AnnouncementEntityProviderImpl
+                </string>
+            </x-sdata-handler>
+            <x-sdata-url type='array' length='1'>
+                <string>/announcement/user.xml</string>
+            </x-sdata-url>
+        </headers>
+    </ref1>
+</refs>

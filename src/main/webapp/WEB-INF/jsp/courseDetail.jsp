@@ -33,13 +33,19 @@
 		    <div class="titlebar">
 		        <h2 class="title">${ course.title }</h2>
 		        <h3 class="subtitle">${ course.school }</h3>
-		        <div class="grade"><span>${ course.grade }</span></div>
+		        <c:if test="${ not empty course.grade }">
+                    <div class="grade"><span>${ course.grade }</span></div>
+                </c:if>
 		    </div>
 		    <div>
 		        <div class="class-details">
 		            <a data-role="button" class="instructor" title="instructor" href="javascript:;">${ course.instructors[0].fullName }</a>
-		            <a data-role="button" class="schedule" title="schedule" href="javascript:;">${ course.meetingTimes }</a>
-		            <a data-role="button" class="location" title="location" href="javascript:;">${ course.location.displayName }</a>
+		            <c:if test="${ not empty course.meetingTimes }">
+                        <a data-role="button" class="schedule" title="schedule" href="javascript:;">${ course.meetingTimes }</a>
+                    </c:if>
+                    <c:if test="${ not empty course.location }">
+    		            <a data-role="button" class="location" title="location" href="javascript:;">${ course.location.displayName }</a>
+                    </c:if>
 		        </div>
 		        <div class="class-announcements" style="margin-top: 30px;">
 		            <div>

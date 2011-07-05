@@ -1,0 +1,18 @@
+{"entityPrefix": "session", "session_collection": [
+{
+  "attributeNames": {
+  },
+  "attributes": null,
+  "creationTime": 1308231938196,
+  "currentTime": 1308234944083,
+  "id": "15555d02-9299-48db-bc97-e7c7495816ff",
+  "lastAccessedTime": 1308234944080,
+  "maxInactiveInterval": 3600,
+  "userEid": "student",
+  "userId": "44e58f3a-d3fa-42ca-be0f-313dabe72e8a",
+  "active": true,
+  "entityReference": "\/session\/15555d02-9299-48db-bc97-e7c7495816ff",
+  "entityURL": "http:\/\/localhost:8180\/direct\/session\/15555d02-9299-48db-bc97-e7c7495816ff",
+  "entityId": "15555d02-9299-48db-bc97-e7c7495816ff"
+}
+]}

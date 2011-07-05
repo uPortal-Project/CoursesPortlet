@@ -50,7 +50,7 @@
 		    </c:otherwise>
 		</c:choose>
 		
-		<div class="ui-grid-a utilities">
+		<div class="ui-grid-a utilities" style="margin-top: 20px">
 		    <div class="ui-block-a"><a data-role="button" class="schedule" title="schedule" href="/uPortal/p/calendar-portlet/max/render.uP">Schedule</a></div>
 		    <div class="ui-block-b"><a data-role="button" class="grades" title="grades" href="course_grades.html">Grades</a></div>
 		</div>

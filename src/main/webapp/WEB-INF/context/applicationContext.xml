@@ -27,8 +27,24 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-    <bean class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl"
-        p:mockData="classpath:/mock-data/mock-course-summary.xml"/>
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <util:list>
+                <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            </util:list>
+        </property>
+    </bean>
+    
+    <bean class="org.jasig.portlet.courses.dao.MergingCoursesDaoImpl"
+        p:courseDaos-ref="courseDaos"/>
+
+    <util:list id="courseDaos">
+        <!--bean class="org.jasig.portlet.courses.dao.sakai.SakaiCoursesDaoImpl"
+            p:restTemplate-ref="restTemplate"/-->
+        <bean class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl"
+            p:mockData="classpath:/mock-data/mock-course-summary.xml"/>
+    </util:list>
 
     <bean id="jspViewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver"

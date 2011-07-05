@@ -42,5 +42,12 @@
             <title>Courses</title>
         </portlet-info>
     </portlet>
+    
+    <user-attribute>
+        <name>password</name>
+    </user-attribute>
+    <user-attribute>
+        <name>user.login.id</name>
+    </user-attribute>
 
 </portlet-app>

@@ -23,7 +23,6 @@ import static org.junit.Assert.assertEquals;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.dao.ICoursesDao;
 import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 import org.jasig.portlet.courses.model.xml.Course;
 import org.junit.Before;
@@ -39,7 +38,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = "/testContext.xml")
 public class XMLCoursesDaoImplTest {
 
-    @Autowired ICoursesDao dao;
+    @Autowired MockCoursesDaoImpl dao;
     
     @Mock PortletRequest request;
     

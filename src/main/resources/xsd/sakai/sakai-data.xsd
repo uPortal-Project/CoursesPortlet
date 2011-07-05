@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+    <xs:element name="refs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ref0" />
+                <xs:element ref="ref1" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ref0">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="entityURL" />
+                <xs:element ref="reference" />
+                <xs:element ref="status" />
+                <xs:element ref="content" />
+                <xs:element ref="data" />
+                <xs:element ref="headers" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ref1">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="entityURL" />
+                <xs:element ref="reference" />
+                <xs:element ref="status" />
+                <xs:element ref="content" />
+                <xs:element ref="data" />
+                <xs:element ref="headers" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="entityURL" type="xs:anyURI" />
+    <xs:element name="reference" type="xs:string" />
+    <xs:element name="status">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="content">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="data">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="announcement_collection" />
+                <xs:element ref="site_collection" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="announcement_collection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="announcement" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="entityPrefix" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="announcement">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="attachments" />
+                <xs:element ref="body" />
+                <xs:element ref="createdByDisplayName" />
+                <xs:element ref="createdOn" />
+                <xs:element ref="id" />
+                <xs:element ref="siteId" />
+                <xs:element ref="siteTitle" />
+                <xs:element ref="title" />
+                <xs:element ref="entityReference" />
+                <xs:element ref="entityURL" />
+                <xs:element ref="entityId" />
+                <xs:element ref="entityTitle" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="attachments">
+        <xs:complexType>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="body" type="xs:string" />
+    <xs:element name="createdByDisplayName" type="xs:string" />
+    <xs:element name="createdOn">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="date" use="required" type="xs:NMTOKEN" />
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="siteId" type="xs:string" />
+    <xs:element name="siteTitle" type="xs:string" />
+    <xs:element name="site_collection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="site" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="entityPrefix" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="site">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="createdDate" />
+                <xs:element ref="createdTime" />
+                <xs:element ref="description" />
+                <xs:element ref="iconFullUrl" />
+                <xs:element ref="iconUrl" />
+                <xs:element ref="iconUrlFull" />
+                <xs:element ref="id" />
+                <xs:element ref="infoUrl" />
+                <xs:element ref="infoUrlFull" />
+                <xs:element ref="joinerRole" />
+                <!--xs:element ref="lastModified" /-->
+                <xs:element ref="maintainRole" />
+                <xs:element ref="modifiedDate" />
+                <xs:element ref="modifiedTime" />
+                <xs:element ref="owner" />
+                <xs:element ref="props" />
+                <xs:element ref="providerGroupId" />
+                <xs:element ref="reference" />
+                <xs:element ref="shortDescription" />
+                <xs:element ref="siteGroups" />
+                <xs:element ref="siteOwner" />
+                <xs:element ref="skin" />
+                <xs:element ref="title" />
+                <!--xs:element ref="type" /-->
+                <xs:element ref="userRoles" />
+                <xs:element ref="activeEdit" />
+                <xs:element ref="customPageOrdered" />
+                <xs:element ref="empty" />
+                <xs:element ref="joinable" />
+                <xs:element ref="pubView" />
+                <xs:element ref="published" />
+                <xs:element ref="entityReference" />
+                <xs:element ref="entityURL" />
+                <xs:element ref="entityId" />
+                <xs:element ref="entityTitle" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createdDate">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="date" use="required" type="xs:NMTOKEN" />
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createdTime">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="display" />
+                <xs:element ref="time" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="description" type="xs:string" />
+    <xs:element name="iconFullUrl">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="iconUrl">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="iconUrlFull">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="infoUrl">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="infoUrlFull">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="joinerRole">
+        <xs:complexType />
+    </xs:element>
+    <!--xs:element name="lastModified">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element-->
+    <xs:element name="maintainRole" type="xs:NCName" />
+    <xs:element name="modifiedDate">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="date" use="required" type="xs:NMTOKEN" />
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="modifiedTime">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="display" />
+                <xs:element ref="time" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="owner" type="xs:NCName" />
+    <xs:element name="props">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="contact-name" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="contact-name" type="xs:string" />
+    <xs:element name="providerGroupId">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="shortDescription">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="siteGroups">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="siteOwner">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="userDisplayName" />
+                <xs:element ref="userEntityURL" />
+                <xs:element ref="userId" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="userDisplayName" type="xs:string" />
+    <xs:element name="userEntityURL" type="xs:string" />
+    <xs:element name="userId" type="xs:NCName" />
+    <xs:element name="skin">
+        <xs:complexType />
+    </xs:element>
+    <xs:element name="type" type="xs:NCName" />
+    <xs:element name="userRoles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="activeEdit">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="customPageOrdered">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="empty">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="joinable">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pubView">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="published">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="headers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Cache-Control" />
+                <xs:element ref="Date" />
+                <xs:element ref="ETag" />
+                <xs:element ref="Expires" />
+                <xs:element ref="Last-Modified" />
+                <xs:element ref="x-entity-format" />
+                <xs:element ref="x-entity-prefix" />
+                <xs:element ref="x-entity-reference" />
+                <xs:element ref="x-entity-url" />
+                <xs:element ref="x-sdata-handler" />
+                <xs:element ref="x-sdata-url" />
+            </xs:sequence>
+            <xs:attribute name="size" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Cache-Control">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Date">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ETag">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Expires">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Last-Modified">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="x-entity-format">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="x-entity-prefix">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="x-entity-reference">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="x-entity-url">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="x-sdata-handler">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="x-sdata-url">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="string" />
+            </xs:sequence>
+            <xs:attribute name="length" use="required" type="xs:integer" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="display" type="xs:string" />
+    <xs:element name="time">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="id" type="xs:string" />
+    <xs:element name="title" type="xs:string" />
+    <xs:element name="string" type="xs:string" />
+    <xs:element name="entityReference" type="xs:string" />
+    <xs:element name="entityId" type="xs:string" />
+    <xs:element name="entityTitle" type="xs:string" />
+</xs:schema>
