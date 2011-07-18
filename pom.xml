@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jasig.parent</groupId>
         <artifactId>jasig-parent</artifactId>
-        <version>30</version>
+        <version>31</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -13,6 +13,11 @@
     <version>1.0.0-M1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>CoursePortlet</name>
+
+    <scm>
+        <connection>scm:svn:https://source.jasig.org/sandbox/CoursesPortlet/trunk</connection>
+        <developerConnection>scm:svn:https://source.jasig.org/sandbox/CoursesPortlet/trunk</developerConnection>
+    </scm>
 
     <repositories>
         <repository>
