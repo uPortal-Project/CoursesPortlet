@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jasig.portlet.courses</groupId>
     <artifactId>CoursesPortlet</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-M1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>CoursePortlet</name>
 
@@ -271,12 +271,23 @@
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
                 <configuration>
+                    <aggregate>true</aggregate>
                     <excludes>
                         <exclude>target/**</exclude>
-                        <exclude>src/main/webapp/rs/**</exclude>
+                        <exclude>pom.xml.*</exclude>
+                        <exclude>release.properties</exclude>
+                        <exclude>LICENSE</exclude>
+                        <exclude>NOTICE</exclude>
+                        <exclude>NOTICE.template</exclude>
+                        <exclude>**/src/main/webapp/rs/**</exclude>
+                        <exclude>bin/**</exclude>
+                        <exclude>src/test/resources/sakai-session.json</exclude>
                     </excludes>
                     <mapping>
-                        <crn>XML_STYLE</crn>
+                        <channel>XML_STYLE</channel>
+                        <portlet>XML_STYLE</portlet>
+                        <tag>DYNASCRIPT_STYLE</tag>
+                        <xjb>XML_STYLE</xjb>
                     </mapping>
                 </configuration>
             </plugin>
