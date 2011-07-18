@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>org.jasig.parent</groupId>
@@ -10,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jasig.portlet.courses</groupId>
     <artifactId>CoursesPortlet</artifactId>
-    <version>1.0.0-M1-SNAPSHOT</version>
+    <version>1.0.0-M1</version>
     <packaging>war</packaging>
     <name>CoursePortlet</name>
 
@@ -310,4 +309,10 @@
         </plugins>
     </build>
 
+
+  <scm>
+    <connection>scm:svn:https://source.jasig.org/jasig-parent/tags/CoursesPortlet-1.0.0-M1</connection>
+    <developerConnection>scm:svn:https://source.jasig.org/jasig-parent/tags/CoursesPortlet-1.0.0-M1</developerConnection>
+    <url>https://developer.jasig.org/source/browse/jasigsvn/jasig-parent/tags/CoursesPortlet-1.0.0-M1</url>
+  </scm>
 </project>
