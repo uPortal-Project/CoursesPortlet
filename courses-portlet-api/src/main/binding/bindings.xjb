@@ -49,10 +49,4 @@
         </jaxb:schemaBindings>
     </jaxb:bindings>
 
-    <jaxb:bindings schemaLocation="../resources/xsd/sakai/sakai-data.xsd">
-        <jaxb:schemaBindings>
-            <jaxb:package name="org.jasig.portlet.courses.model.sakai.xml" />
-        </jaxb:schemaBindings>
-    </jaxb:bindings>
-
 </jaxb:bindings>
