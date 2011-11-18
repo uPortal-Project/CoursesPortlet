@@ -40,13 +40,13 @@
             <identifier>jcross</identifier>
         </instructor>
         <grade>A</grade>
-        <announcement newAnnouncement="true">
+        <update newUpdate="true" type="announcement">
             <title>Guest Lecture Thursday</title>
             <description>
                 Don't miss Thursday's guest lecture by Alan Cooper
             </description>
             <url>http://courses.university.edu/dsc101/s11/announcements/1.html</url>
-        </announcement>
+        </update>
     </course>
 
     <course>
@@ -65,13 +65,13 @@
             <identifier>jcross</identifier>
         </instructor>
         <grade>A</grade>
-        <announcement newAnnouncement="false">
+        <update newUpdate="false" type="announcement">
             <title>Guest Lecture Thursday</title>
             <description>
                 Don't miss Thursday's guest lecture by Alan Cooper
             </description>
             <url>http://courses.university.edu/dsc101/s11/announcements/1.html</url>
-        </announcement>
+        </update>
     </course>
 
     <course>

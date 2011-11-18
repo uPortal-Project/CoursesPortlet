@@ -38,8 +38,8 @@
         <jaxb:bindings node="//xs:element[@name='course']">
             <jaxb:property name="courses"/>
         </jaxb:bindings>
-        <jaxb:bindings node="//xs:element[@name='announcement']">
-            <jaxb:property name="announcements"/>
+        <jaxb:bindings node="//xs:element[@name='course-update']">
+            <jaxb:property name="courseUpdates"/>
         </jaxb:bindings>
         <jaxb:bindings node="//xs:element[@name='instructor']">
             <jaxb:property name="instructors"/>

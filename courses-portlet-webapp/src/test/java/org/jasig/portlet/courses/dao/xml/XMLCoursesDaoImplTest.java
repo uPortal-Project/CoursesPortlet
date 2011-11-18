@@ -50,7 +50,7 @@ public class XMLCoursesDaoImplTest {
     @Test
     public void test() {
         CourseSummaryWrapper summary = dao.getSummary(request);
-        assertEquals(1, summary.getNewAnnouncementCount());
+        assertEquals(1, summary.getNewUpdateCount());
         assertEquals(5, summary.getCourses().size());
         assertEquals(3.25, summary.getGpa().doubleValue(), .01);
         

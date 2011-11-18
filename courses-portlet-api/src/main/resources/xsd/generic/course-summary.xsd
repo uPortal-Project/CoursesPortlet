@@ -38,13 +38,13 @@
             <xs:sequence>
                 <xs:element name="title" type="xs:string"/>
                 <xs:element name="code" type="xs:string"/>
-                <xs:element name="school" type="xs:string"/>
-                <xs:element ref="location"/>
-                <xs:element name="meetingTimes" type="xs:string"/>
+                <xs:element name="school" type="xs:string" minOccurs="0"/>
+                <xs:element ref="location" minOccurs="0"/>
+                <xs:element name="meetingTimes" type="xs:string" minOccurs="0"/>
                 <xs:element name="url" type="xs:string"/>
                 <xs:element ref="instructor" minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="grade" type="xs:string" minOccurs="0"/>
-                <xs:element ref="announcement" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="course-update" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -68,14 +68,15 @@
         </xs:complexType>
     </xs:element>
     
-    <xs:element name="announcement">
+    <xs:element name="course-update">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="title" type="xs:string"/>
                 <xs:element name="description" type="xs:string"/>
                 <xs:element name="url" type="xs:string"/>
             </xs:sequence>
-            <xs:attribute name="newAnnouncement" type="xs:boolean"/>
+            <xs:attribute name="newUpdate" type="xs:boolean"/>
+            <xs:attribute name="type" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     

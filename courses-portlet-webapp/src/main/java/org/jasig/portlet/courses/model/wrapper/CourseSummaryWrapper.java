@@ -24,11 +24,11 @@ import org.jasig.portlet.courses.model.xml.CourseSummary;
 
 public class CourseSummaryWrapper extends CourseSummary {
 
-    public int getNewAnnouncementCount() {
+    public int getNewUpdateCount() {
         int newCount = 0;
         for (Course course : this.getCourses()) {
             CourseWrapper wrappedCourse = (CourseWrapper) course;
-            newCount += wrappedCourse.getNewAnnouncementCount();
+            newCount += wrappedCourse.getNewUpdateCount();
         }
         return newCount;
     }

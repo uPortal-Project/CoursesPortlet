@@ -34,9 +34,4 @@ public class ObjectFactoryWrapper extends org.jasig.portlet.courses.model.xml.Ob
         return new CourseWrapper();
     }
     
-    @Override
-    public AnnouncementWrapper createAnnouncement() {
-        return new AnnouncementWrapper();
-    }
-    
 }

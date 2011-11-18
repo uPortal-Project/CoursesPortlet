@@ -38,7 +38,7 @@ public class MinimizedStateHandlerInterceptor extends HandlerInterceptorAdapter 
         if (WindowState.MINIMIZED.equals(request.getWindowState())) {
             
             CourseSummaryWrapper summary = coursesDao.getSummary(request);
-            int newCount = summary.getNewAnnouncementCount();
+            int newCount = summary.getNewUpdateCount();
             response.setProperty("newItemCount", String.valueOf(newCount));
             
             return false;

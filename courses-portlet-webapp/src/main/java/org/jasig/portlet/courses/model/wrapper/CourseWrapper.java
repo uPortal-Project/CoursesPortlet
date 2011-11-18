@@ -19,15 +19,15 @@
 
 package org.jasig.portlet.courses.model.wrapper;
 
-import org.jasig.portlet.courses.model.xml.Announcement;
+import org.jasig.portlet.courses.model.xml.CourseUpdate;
 import org.jasig.portlet.courses.model.xml.Course;
 
 public class CourseWrapper extends Course {
 
-    public int getNewAnnouncementCount() {
+    public int getNewUpdateCount() {
         int newCount = 0;
-        for (Announcement announcement : this.getAnnouncements()) {
-            if (announcement.isNewAnnouncement()) {
+        for (CourseUpdate update : this.getCourseUpdates()) {
+            if (update.isNewUpdate()) {
                 newCount++;
             }
         }
