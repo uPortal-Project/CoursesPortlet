@@ -27,7 +27,7 @@ public class CourseWrapper extends Course {
     public int getNewUpdateCount() {
         int newCount = 0;
         for (CourseUpdate update : this.getCourseUpdates()) {
-            if (update.isNewUpdate()) {
+            if (update.isNewUpdate() != null && update.isNewUpdate().booleanValue()) {
                 newCount++;
             }
         }

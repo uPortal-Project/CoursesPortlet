@@ -31,7 +31,7 @@
 		
 		<div class="course-details">
 		    <div class="titlebar">
-		        <h2 class="title">${ course.title }</h2>
+		        <h2 class="title"><a href="${course.url}">${ course.title }</a></h2>
 		        <h3 class="subtitle">${ course.school }</h3>
 		        <c:if test="${ not empty course.grade }">
                     <div class="grade"><span>${ course.grade }</span></div>
@@ -50,17 +50,17 @@
 		        <div class="class-announcements" style="margin-top: 30px;">
 		            <div>
 		                <c:choose>
-		                    <c:when test="${ fn:length(course.announcements) == 0 }">
-		                        <p class="no-data">No announcements</p>
+		                    <c:when test="${ fn:length(course.courseUpdates) == 0 }">
+		                        <p class="no-data">No updates</p>
 		                    </c:when>
 		                    <c:otherwise>
 		                        <ul data-role="listview" data-inset="true">
-		                            <li data-role="list-divider">Announcements</li>
-		                            <c:forEach items="${ course.announcements }" var="announcement">
+		                            <li data-role="list-divider">Updates</li>
+		                            <c:forEach items="${ course.courseUpdates }" var="update">
 		                                <li>
-		                                	<a href="${ announcement.url }">
-			                                    <h4 class="title">${ announcement.title }</h4>
-			                                    <p class="body">${ announcement.description }</p>
+		                                	<a href="${ update.url }">
+			                                    <h4 class="title">${ update.title }</h4>
+			                                    <p class="body">${ update.description }</p>
 		                                    </a>
 		                                </li>
 		                            </c:forEach>

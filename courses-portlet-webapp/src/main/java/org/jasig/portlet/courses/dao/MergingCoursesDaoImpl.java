@@ -24,9 +24,13 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.portlet.PortletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 
 public class MergingCoursesDaoImpl implements ICoursesDao {
+
+    protected final Log log = LogFactory.getLog(getClass());
     
     private List<ICoursesDao> courseDaos;
     
@@ -43,6 +47,7 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
             try {
                 wrapper.getCourses().addAll(dao.getSummary(request).getCourses());
             } catch (Exception e) {
+                log.error("Exception reading course dao", e);
             }
         }
 

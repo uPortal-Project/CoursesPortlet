@@ -39,7 +39,7 @@
 		                            <span class="catalog">${ course.code }</span><span class="separator">, </span>
 		                            <span class="instructor">${ course.instructors[0].abbreviation }</span>
 		                        </p>
-		                        <c:set var="newCount" value="${ course.newAnnouncementCount }"/>
+		                        <c:set var="newCount" value="${ course.newUpdateCount }"/>
 		                        <c:if test="${ newCount > 0 }">
 		                            <span class="ui-li-count badge">${ newCount }</span>
 		                        </c:if>
