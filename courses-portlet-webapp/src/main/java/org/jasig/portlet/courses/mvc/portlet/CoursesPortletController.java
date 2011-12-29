@@ -27,6 +27,9 @@ import javax.portlet.PortletRequest;
 import org.jasig.portlet.courses.dao.ICoursesDao;
 import org.jasig.portlet.courses.model.xml.Course;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.Instructor;
+import org.jasig.portlet.courses.model.xml.Location;
+import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +45,13 @@ public class CoursesPortletController {
     @Autowired(required = true)
     public void setCoursesDao(ICoursesDao coursesDao) {
         this.coursesDao = coursesDao;
+    }
+    
+    private IURLService urlService;
+    
+    @Autowired(required = true) 
+    public void setUrlService(IURLService urlService) {
+        this.urlService = urlService;
     }
     
     @RequestMapping
@@ -66,6 +76,18 @@ public class CoursesPortletController {
                 break;
             }
         }
+        
+        Map<String, String> instructorUrls = new HashMap<String, String>();
+        for (Instructor instructor : selectedCourse.getInstructors()) {
+            instructorUrls.put(instructor.getIdentifier(), urlService.getInstructorUrl(instructor, request));
+        }
+        model.put("instructorUrls", instructorUrls);
+        
+        Location location = selectedCourse.getLocation();
+        if (location != null) {
+            model.put("locationUrl", urlService.getLocationUrl(location, request));
+        }
+        
         model.put("course", selectedCourse);
         
         return new ModelAndView("courseDetail", model);

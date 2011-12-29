@@ -36,9 +36,11 @@
         </property>
     </bean>
     
+    <bean class="org.jasig.portlet.courses.service.UPortalURLServiceImpl"/>
+
     <bean class="org.jasig.portlet.courses.dao.MergingCoursesDaoImpl"
         p:courseDaos-ref="courseDaos"/>
-
+        
     <util:list id="courseDaos">
         <!--bean class="org.jasig.portlet.courses.dao.xml.HttpClientCoursesDaoImpl"
             p:restTemplate-ref="restTemplate"/-->

@@ -30,14 +30,14 @@
         <school>School of Design</school>
         <location>
             <displayName>Design North Building, room 162</displayName>
-            <identifier></identifier>
+            <identifier>SSS</identifier>
         </location>
         <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
             <abbreviation>Cross</abbreviation>
-            <fullName>Jeffrey Cross, Phd</fullName>
-            <identifier>jcross</identifier>
+            <fullName>Joe Faculty, Phd</fullName>
+            <identifier>faculty</identifier>
         </instructor>
         <grade>A</grade>
         <course-update newUpdate="true" type="announcement">
@@ -61,8 +61,8 @@
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
             <abbreviation>Cross</abbreviation>
-            <fullName>Jeffrey Cross, Phd</fullName>
-            <identifier>jcross</identifier>
+            <fullName>Joe Faculty, Phd</fullName>
+            <identifier>faculty</identifier>
         </instructor>
         <grade>A</grade>
         <course-update newUpdate="false" type="announcement">
@@ -86,8 +86,8 @@
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
             <abbreviation>Cross</abbreviation>
-            <fullName>Jeffrey Cross, Phd</fullName>
-            <identifier>jcross</identifier>
+            <fullName>Joe Faculty, Phd</fullName>
+            <identifier>faculty</identifier>
         </instructor>
         <grade>A</grade>
     </course>
@@ -104,8 +104,8 @@
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
             <abbreviation>Cross</abbreviation>
-            <fullName>Jeffrey Cross, Phd</fullName>
-            <identifier>jcross</identifier>
+            <fullName>Joe Faculty, Phd</fullName>
+            <identifier>faculty</identifier>
         </instructor>
         <grade>C</grade>
     </course>
@@ -122,8 +122,8 @@
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
             <abbreviation>Cross</abbreviation>
-            <fullName>Jeffrey Cross, Phd</fullName>
-            <identifier>jcross</identifier>
+            <fullName>Joe Faculty, Phd</fullName>
+            <identifier>faculty</identifier>
         </instructor>
         <grade>A</grade>
     </course>
