@@ -29,6 +29,7 @@ import org.jasig.portlet.courses.model.xml.Course;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Instructor;
 import org.jasig.portlet.courses.model.xml.Location;
+import org.jasig.portlet.courses.mvc.IViewSelector;
 import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,13 +55,23 @@ public class CoursesPortletController {
         this.urlService = urlService;
     }
     
+    private IViewSelector viewSelector;
+    
+    @Autowired(required = true)
+    public void setViewSelector(IViewSelector viewSelector) {
+        this.viewSelector = viewSelector;
+    }
+    
     @RequestMapping
     public ModelAndView getCourseList(PortletRequest request) {
         
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("courseList", coursesDao.getSummary(request));
         
-        return new ModelAndView("courseList", model);
+        final boolean isMobile = viewSelector.isMobile(request);
+        final String viewName = isMobile ? "courseList-jQM" : "courseList";
+        
+        return new ModelAndView(viewName, model);
     }
     
     @RequestMapping(params = "action=showCourse")
@@ -90,7 +101,10 @@ public class CoursesPortletController {
         
         model.put("course", selectedCourse);
         
-        return new ModelAndView("courseDetail", model);
+        final boolean isMobile = viewSelector.isMobile(request);
+        final String viewName = isMobile ? "courseDetail-jQM" : "courseDetail";
+        
+        return new ModelAndView(viewName, model);
     }
 
 }

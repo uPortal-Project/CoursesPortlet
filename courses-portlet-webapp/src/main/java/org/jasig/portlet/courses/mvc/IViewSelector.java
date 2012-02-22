@@ -16,17 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.jasig.portlet.courses.service;
+
+package org.jasig.portlet.courses.mvc;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.model.xml.Instructor;
-import org.jasig.portlet.courses.model.xml.Location;
+public interface IViewSelector {
 
-public interface IURLService {
-
-    public String getLocationUrl(Location location, PortletRequest request);
-
-    public String getInstructorUrl(Instructor instructor, PortletRequest request);
+    public boolean isMobile(PortletRequest request);
 
 }

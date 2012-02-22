@@ -29,13 +29,13 @@
         <code>DSC 101</code>
         <school>School of Design</school>
         <location>
-            <displayName>Design North Building, room 162</displayName>
+            <displayName>SSS 114</displayName>
             <identifier>SSS</identifier>
         </location>
         <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
-            <abbreviation>Cross</abbreviation>
+            <abbreviation>Faculty</abbreviation>
             <fullName>Joe Faculty, Phd</fullName>
             <identifier>faculty</identifier>
         </instructor>
@@ -54,15 +54,15 @@
         <code>IND 120</code>
         <school>School of Design</school>
         <location>
-            <displayName>Design North Building, room 162</displayName>
-            <identifier></identifier>
+            <displayName>LC 101</displayName>
+            <identifier>LC</identifier>
         </location>
         <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
-            <abbreviation>Cross</abbreviation>
-            <fullName>Joe Faculty, Phd</fullName>
-            <identifier>faculty</identifier>
+            <abbreviation>Staff</abbreviation>
+            <fullName>Sam Staff</fullName>
+            <identifier>staff</identifier>
         </instructor>
         <grade>A</grade>
         <course-update newUpdate="false" type="announcement">
@@ -79,13 +79,13 @@
         <code>ENG 101</code>
         <school>School of Design</school>
         <location>
-            <displayName>Design North Building, room 162</displayName>
-            <identifier></identifier>
+            <displayName>SCL 115</displayName>
+            <identifier>SCL</identifier>
         </location>
         <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
-            <abbreviation>Cross</abbreviation>
+            <abbreviation>Faculty</abbreviation>
             <fullName>Joe Faculty, Phd</fullName>
             <identifier>faculty</identifier>
         </instructor>
@@ -97,13 +97,13 @@
         <code>MAT 170</code>
         <school>School of Design</school>
         <location>
-            <displayName>Design North Building, room 162</displayName>
-            <identifier></identifier>
+            <displayName>Becton 101</displayName>
+            <identifier>BCT</identifier>
         </location>
         <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
-            <abbreviation>Cross</abbreviation>
+            <abbreviation>Faculty</abbreviation>
             <fullName>Joe Faculty, Phd</fullName>
             <identifier>faculty</identifier>
         </instructor>
@@ -115,13 +115,13 @@
         <code>GRA 111</code>
         <school>School of Design</school>
         <location>
-            <displayName>Design North Building, room 162</displayName>
-            <identifier></identifier>
+            <displayName>WLH 205</displayName>
+            <identifier>WLH</identifier>
         </location>
         <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
         <url>http://courses.university.edu/dsc101/s11</url>
         <instructor>
-            <abbreviation>Cross</abbreviation>
+            <abbreviation>Faculty</abbreviation>
             <fullName>Joe Faculty, Phd</fullName>
             <identifier>faculty</identifier>
         </instructor>
