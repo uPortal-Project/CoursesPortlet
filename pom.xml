@@ -9,14 +9,15 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jasig.portlet.courses</groupId>
     <artifactId>courses-portlet-parent</artifactId>
-    <version>1.0.0-M2</version>
+    <version>1.0.0-M3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>CoursePortlet</name>
 
     <scm>
-        <connection>scm:svn:https://source.jasig.org/sandbox/CoursesPortlet/tags/courses-portlet-parent-1.0.0-M2</connection>
-        <developerConnection>scm:svn:https://source.jasig.org/sandbox/CoursesPortlet/tags/courses-portlet-parent-1.0.0-M2</developerConnection>
-    </scm>
+        <connection>scm:svn:https://source.jasig.org/sandbox/CoursesPortlet/trunk</connection>
+        <developerConnection>scm:svn:https://source.jasig.org/sandbox/CoursesPortlet/trunk</developerConnection>
+      <url>https://developer.jasig.org/source/browse/jasigsvn/jasig-parent/tags/jasig-parent-31/courses-portlet-parent</url>
+  </scm>
 
     <properties>
         <mockito.version>1.8.4</mockito.version>
