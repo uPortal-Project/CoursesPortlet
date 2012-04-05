@@ -38,6 +38,9 @@
         <jaxb:bindings node="//xs:element[@name='course']">
             <jaxb:property name="courses"/>
         </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='term']">
+            <jaxb:property name="terms"/>
+        </jaxb:bindings>
         <jaxb:bindings node="//xs:element[@name='course-update']">
             <jaxb:property name="courseUpdates"/>
         </jaxb:bindings>

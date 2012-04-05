@@ -20,11 +20,13 @@
 package org.jasig.portlet.courses.dao.xml;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 import org.jasig.portlet.courses.model.xml.Course;
+import org.jasig.portlet.courses.model.xml.Term;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,12 +52,20 @@ public class XMLCoursesDaoImplTest {
     @Test
     public void test() {
         CourseSummaryWrapper summary = dao.getSummary(request);
+        assertEquals(3.25, summary.getGpa(), 0.01);
+        assertEquals(40, summary.getCredits(), 0.01);        
         assertEquals(1, summary.getNewUpdateCount());
-        assertEquals(5, summary.getCourses().size());
-        assertEquals(3.25, summary.getGpa().doubleValue(), .01);
+        assertEquals(2, summary.getTerms().size());
         
-        Course course1 = summary.getCourses().get(0);
+        Term term = summary.getTerm("2012s");
+        assertTrue(term.isCurrent());
+        assertEquals(5, term.getCourses().size());
+        assertEquals(3.25, summary.getGpa().doubleValue(), .01);
+
+        Course course1 = summary.getCourse("2012s", "DSC 101");
         assertEquals("Design Awareness", course1.getTitle());
+        assertEquals("A", course1.getGrade());
+        assertEquals(4, course1.getCredits(), 0.01);
     }
 
 }

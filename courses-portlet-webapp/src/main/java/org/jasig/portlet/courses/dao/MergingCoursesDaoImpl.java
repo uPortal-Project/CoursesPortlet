@@ -45,7 +45,14 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         
         for (ICoursesDao dao : courseDaos) {
             try {
-                wrapper.getCourses().addAll(dao.getSummary(request).getCourses());
+                CourseSummaryWrapper daoSummary = dao.getSummary(request);
+                wrapper.getTerms().addAll(daoSummary.getTerms());
+                if (daoSummary.getCredits() != null) {
+                    wrapper.setCredits(daoSummary.getCredits());
+                }
+                if (daoSummary.getGpa() != null) {
+                    wrapper.setGpa(daoSummary.getGpa());
+                }
             } catch (Exception e) {
                 log.error("Exception reading course dao", e);
             }

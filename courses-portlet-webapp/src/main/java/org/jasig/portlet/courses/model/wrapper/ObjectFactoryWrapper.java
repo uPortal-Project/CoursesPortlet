@@ -28,7 +28,7 @@ public class ObjectFactoryWrapper extends org.jasig.portlet.courses.model.xml.Ob
     public CourseSummaryWrapper createCourseSummary() {
         return new CourseSummaryWrapper();
     }
-
+    
     @Override
     public CourseWrapper createCourse() {
         return new CourseWrapper();

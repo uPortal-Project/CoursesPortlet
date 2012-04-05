@@ -22,7 +22,6 @@ package org.jasig.portlet.courses.dao;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,8 +61,9 @@ public class MergingCoursesDaoImplTest {
     @Test
     public void test() {
         CourseSummaryWrapper summary = dao.getSummary(request);
-//        assertEquals(6, summary.getCourses().size());        
-        assertEquals(5, summary.getCourses().size());        
+        assertEquals(2, summary.getTerms().size());
+        assertEquals(5, summary.getTerm("2012s").getCourses().size());
+        assertEquals("Drawing for Industry", summary.getCourse("2012s", "IND 120").getTitle());
     }
 
 }

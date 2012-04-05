@@ -21,17 +21,58 @@ package org.jasig.portlet.courses.model.wrapper;
 
 import org.jasig.portlet.courses.model.xml.Course;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.Term;
 
 public class CourseSummaryWrapper extends CourseSummary {
 
     public int getNewUpdateCount() {
         int newCount = 0;
-        for (Course course : this.getCourses()) {
-            CourseWrapper wrappedCourse = (CourseWrapper) course;
-            newCount += wrappedCourse.getNewUpdateCount();
+        for (Term term : this.getTerms()) {
+            for (Course course : term.getCourses()) {
+                CourseWrapper wrappedCourse = (CourseWrapper) course;
+                newCount += wrappedCourse.getNewUpdateCount();
+            }
         }
         return newCount;
     }
+    
+    public Term getTerm(String termCode) {
+        
+        for (Term term : getTerms()) {
+            if (termCode.equals(term.getCode())) {
+                return term;
+            }
+        }
+
+        return null;
+    }
+
+    public Term getCurrentTerm() {
+        
+        for (Term term : getTerms()) {
+            if (term.isCurrent()) {
+                return term;
+            }
+        }
+
+        return null;
+    }
+
+    public Course getCourse(String termCode, String courseCode) {
+        
+        Term term = getTerm(termCode);
+        
+        if (term != null) {
+            for (Course course : term.getCourses()) {
+                if (courseCode.equals(course.getCode())) {
+                    return course;
+                }
+            }
+        }
+
+        return null;
+    }
+
 
     
 }

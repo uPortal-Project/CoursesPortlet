@@ -55,10 +55,8 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
             unmarshaller.setProperty("com.sun.xml.bind.ObjectFactory", new ObjectFactoryWrapper());
             this.summary = (CourseSummaryWrapper) unmarshaller.unmarshal(mockData.getInputStream());
         } catch (IOException e) {
-            System.out.println(e);
             log.error("Failed to read mock data", e);
         } catch (JAXBException e) {
-            System.out.println(e);
             log.error("Failed to unmarshall mock data", e);
         }
     }

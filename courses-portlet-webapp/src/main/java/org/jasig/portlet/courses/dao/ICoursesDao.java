@@ -26,5 +26,5 @@ import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 public interface ICoursesDao {
     
     public CourseSummaryWrapper getSummary(PortletRequest request);
-
+    
 }

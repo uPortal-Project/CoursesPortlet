@@ -33,7 +33,8 @@
           <li><a class="button" href="#">
             <spring:message code="schedule"/>
           </a></li>
-          <li><a class="button" href="#">
+            <portlet:renderURL var="gradesUrl"><portlet:param name="action" value="grades"/></portlet:renderURL>
+          <li><a class="button" href="${ gradesUrl }">
             <spring:message code="grades"/>
           </a></li>
         </ul>
@@ -44,12 +45,16 @@
   <div class="fl-widget-content content portlet-content" role="main">
         
         <c:choose>
-            <c:when test="${ fn:length(courseList.courses) == 0 }">
+            <c:when test="${ fn:length(term.courses) == 0 }">
                 <p><spring:message code="no.courses.message"/></p>
             </c:when>
             <c:otherwise>
-                <c:forEach items="${ courseList.courses }" var="course">
-                    <portlet:renderURL var="courseUrl"><portlet:param name="action" value="showCourse"/><portlet:param name="courseCode" value="${ course.code }"/></portlet:renderURL>
+                <c:forEach items="${ term.courses }" var="course">
+                    <portlet:renderURL var="courseUrl">
+                        <portlet:param name="action" value="showCourse"/>
+                        <portlet:param name="termCode" value="${ term.code }"/>
+                        <portlet:param name="courseCode" value="${ course.code }"/>
+                    </portlet:renderURL>
                     <h3>
                         <a href="${ courseUrl }">
                             ${ course.title }

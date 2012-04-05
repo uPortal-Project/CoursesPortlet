@@ -24,6 +24,10 @@
         <spring.version>3.0.5.RELEASE</spring.version>
         <jackson.version>1.8.0</jackson.version>
         <jaxb2basics.version>0.6.0</jaxb2basics.version>
+        
+        <project.build.sourceVersion>1.6</project.build.sourceVersion>
+        <project.build.targetVersion>1.6</project.build.targetVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <modules>

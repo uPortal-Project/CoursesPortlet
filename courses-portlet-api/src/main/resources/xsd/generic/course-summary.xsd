@@ -27,9 +27,25 @@
     <xs:element name="course-summary">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="course" minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="gpa" type="xs:double" minOccurs="0"/>
+                <xs:element name="credits" type="xs:double" minOccurs="0"/>
+                <xs:element ref="term" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="term">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="displayName" type="xs:string"/>
+                <xs:element name="code" type="xs:string" minOccurs="0"/>
+                <xs:element name="year" type="xs:integer" minOccurs="0"/>
+                <xs:element name="termType" type="xs:string" minOccurs="0"/>
+                <xs:element name="gpa" type="xs:double" minOccurs="0"/>
+                <xs:element name="credits" type="xs:string" minOccurs="0"/>
+                <xs:element ref="course" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="current" type="xs:boolean" default="false"/>
         </xs:complexType>
     </xs:element>
 
@@ -44,11 +60,12 @@
                 <xs:element name="url" type="xs:string"/>
                 <xs:element ref="instructor" minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="grade" type="xs:string" minOccurs="0"/>
+                <xs:element name="credits" type="xs:double" minOccurs="0"/>
                 <xs:element ref="course-update" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    
+
     <xs:element name="instructor">
         <xs:complexType>
             <xs:sequence>
