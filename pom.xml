@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.jasig.parent</groupId>
         <artifactId>jasig-parent</artifactId>
-        <version>31</version>
+        <version>33</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -14,10 +14,10 @@
     <name>CoursePortlet</name>
 
     <scm>
-        <connection>scm:svn:https://source.jasig.org/sandbox/CoursesPortlet/trunk</connection>
-        <developerConnection>scm:svn:https://source.jasig.org/sandbox/CoursesPortlet/trunk</developerConnection>
-      <url>https://developer.jasig.org/source/browse/jasigsvn/jasig-parent/tags/jasig-parent-31/courses-portlet-parent</url>
-  </scm>
+        <connection>scm:git:git://github.com/Jasig/CoursesPortlet.git</connection>
+        <developerConnection>scm:git:git@github.com:Jasig/CoursesPortlet.git</developerConnection>
+        <url>https://github.com/Jasig/CoursesPortlet</url>
+    </scm>
 
     <properties>
         <mockito.version>1.8.4</mockito.version>
