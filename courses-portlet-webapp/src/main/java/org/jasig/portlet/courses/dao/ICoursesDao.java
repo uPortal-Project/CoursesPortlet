@@ -23,8 +23,21 @@ import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 
+/**
+ * ICoursesDao represents a data access interface for retrieving course and
+ * grade data for a particular user.
+ * 
+ * @author Jen Bourey, jennifer.bourey@gmail.com
+ * @version $Revision$
+ */
 public interface ICoursesDao {
-    
+
+    /**
+     * Get a course summary for the current user.
+     * 
+     * @param request
+     * @return
+     */
     public CourseSummaryWrapper getSummary(PortletRequest request);
     
 }
