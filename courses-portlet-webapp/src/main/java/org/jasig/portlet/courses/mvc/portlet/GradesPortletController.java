@@ -25,7 +25,7 @@ import java.util.Map;
 import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.mvc.IViewSelector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +55,7 @@ public class GradesPortletController {
     public ModelAndView getGrades(PortletRequest request, @RequestParam(required=false) String termCode) {
         
         // get the course summary for the current user        
-        CourseSummaryWrapper summary = coursesDao.getSummary(request);
+        CourseSummary summary = coursesDao.getSummary(request);
         
         // add the user's overall GPA, credit count, and a list of terms to the
         // model

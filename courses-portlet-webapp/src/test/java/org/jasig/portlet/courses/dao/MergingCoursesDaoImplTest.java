@@ -30,8 +30,8 @@ import java.util.Map;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 import org.jasig.portlet.courses.model.xml.Course;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.junit.Before;
 import org.junit.Test;
@@ -150,7 +150,7 @@ public class MergingCoursesDaoImplTest {
 
     @Test
     public void testMergeSummaryData() {
-        CourseSummaryWrapper summary1 = new CourseSummaryWrapper();
+        CourseSummary summary1 = new CourseSummary();
         summary1.setGpa((double) 3.3);
         summary1.setCredits((double) 40);
         summary1.getTerms().add(term1);
@@ -159,7 +159,7 @@ public class MergingCoursesDaoImplTest {
         when(courseDao1.getSummary(request)).thenReturn(summary1);
         courseDaos.add(courseDao1);
         
-        CourseSummaryWrapper summary2 = new CourseSummaryWrapper();
+        CourseSummary summary2 = new CourseSummary();
         summary2.setGpa((double) 3.5);
         summary2.setCredits((double) 30);
         summary2.getTerms().add(term2);

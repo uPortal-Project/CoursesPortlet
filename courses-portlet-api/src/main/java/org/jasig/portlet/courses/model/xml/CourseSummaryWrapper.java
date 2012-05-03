@@ -16,21 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.jasig.portlet.courses.model.xml;
 
-package org.jasig.portlet.courses.model.wrapper;
+import java.util.List;
 
-import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CourseSummary;
-import org.jasig.portlet.courses.model.xml.Term;
 
-public class CourseSummaryWrapper extends CourseSummary {
-
+/**
+ * Adds base functionality to the {@link CourseSummary} object
+ * 
+ * @author Eric Dalquist
+ */
+public abstract class CourseSummaryWrapper {
+    
     public int getNewUpdateCount() {
         int newCount = 0;
         for (Term term : this.getTerms()) {
             for (Course course : term.getCourses()) {
-                CourseWrapper wrappedCourse = (CourseWrapper) course;
-                newCount += wrappedCourse.getNewUpdateCount();
+                newCount += course.getNewUpdateCount();
             }
         }
         return newCount;
@@ -72,7 +74,6 @@ public class CourseSummaryWrapper extends CourseSummary {
 
         return null;
     }
-
-
     
+    public abstract List<Term> getTerms();
 }

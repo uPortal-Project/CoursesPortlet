@@ -26,8 +26,8 @@ import javax.portlet.PortletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 import org.jasig.portlet.courses.model.xml.Course;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Term;
 
 /**
@@ -60,14 +60,14 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
     }
 
     @Override
-    public CourseSummaryWrapper getSummary(PortletRequest request) {
-        CourseSummaryWrapper summary = null;
+    public CourseSummary getSummary(PortletRequest request) {
+        CourseSummary summary = null;
         
         // iterate over the list of course DAOs
         for (ICoursesDao dao : courseDaos) {
             try {
                 
-                CourseSummaryWrapper daoSummary = dao.getSummary(request);
+                CourseSummary daoSummary = dao.getSummary(request);
                 
                 if (summary == null) {
                     summary = daoSummary;
@@ -84,7 +84,7 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         return summary;
     }
 
-    protected void mergeSummaries(CourseSummaryWrapper original, CourseSummaryWrapper additional) {
+    protected void mergeSummaries(CourseSummary original, CourseSummary additional) {
         
         // overall credit total
         if (additional.getCredits() != null) {

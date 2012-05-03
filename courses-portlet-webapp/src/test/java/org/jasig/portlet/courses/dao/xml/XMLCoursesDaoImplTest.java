@@ -24,8 +24,8 @@ import static org.junit.Assert.assertTrue;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 import org.jasig.portlet.courses.model.xml.Course;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +51,7 @@ public class XMLCoursesDaoImplTest {
     
     @Test
     public void test() {
-        CourseSummaryWrapper summary = dao.getSummary(request);
+        CourseSummary summary = dao.getSummary(request);
         assertEquals(3.25, summary.getGpa(), 0.01);
         assertEquals(40, summary.getCredits(), 0.01);        
         assertEquals(1, summary.getNewUpdateCount());

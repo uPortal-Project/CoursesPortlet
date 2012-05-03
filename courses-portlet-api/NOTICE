@@ -17,9 +17,5 @@ under the License.
 
 This project includes:
   Courses Portlet API under Apache License Version 2.0
-  JavaBeans Activation Framework (JAF) under Common Development and Distribution License (CDDL) v1.0
-  JAXB API bundle for GlassFish V3 under CDDL 1.1 or GPL2 w/ CPE
-  JAXB RI under CDDL 1.1 or GPL2 w/ CPE
   JAXB2 Basics - Runtime under BSD-Style License
-  Streaming API for XML under GNU General Public Library or COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
 
