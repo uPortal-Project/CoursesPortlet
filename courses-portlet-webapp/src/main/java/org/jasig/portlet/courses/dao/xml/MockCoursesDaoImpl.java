@@ -29,8 +29,6 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
-import org.jasig.portlet.courses.model.wrapper.ObjectFactoryWrapper;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
@@ -39,10 +37,10 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
 
     protected final Log log = LogFactory.getLog(getClass());
     
-    private CourseSummaryWrapper summary;
+    private CourseSummary summary;
     
     private Resource mockData;
-
+    
     public void setMockData(Resource mockData) {
         this.mockData = mockData;
     }
@@ -52,8 +50,7 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(CourseSummary.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            unmarshaller.setProperty("com.sun.xml.bind.ObjectFactory", new ObjectFactoryWrapper());
-            this.summary = (CourseSummaryWrapper) unmarshaller.unmarshal(mockData.getInputStream());
+            this.summary = (CourseSummary) unmarshaller.unmarshal(mockData.getInputStream());
         } catch (IOException e) {
             log.error("Failed to read mock data", e);
         } catch (JAXBException e) {
@@ -61,7 +58,7 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
         }
     }
 
-    public CourseSummaryWrapper getSummary(PortletRequest request) {
+    public CourseSummary getSummary(PortletRequest request) {
         return this.summary;
     }
 

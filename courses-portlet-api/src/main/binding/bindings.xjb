@@ -25,18 +25,29 @@
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
     xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
     xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+    xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
     jaxb:version="2.1"
+    jaxb:extensionBindingPrefixes="inheritance"
 >
 
     <jaxb:bindings>
-        <jaxb:globalBindings>
+        <jaxb:globalBindings fixedAttributeAsConstantProperty="true" enableFailFastCheck="true"  >
+            <xjc:simple />
             <jaxb:serializable/>
+            <jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime" parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime" printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />
+            <jaxb:javaType name="java.util.Calendar" xmlType="xs:date" parseMethod="javax.xml.bind.DatatypeConverter.parseDate" printMethod="javax.xml.bind.DatatypeConverter.printDate" />
         </jaxb:globalBindings>
     </jaxb:bindings>
       
     <jaxb:bindings schemaLocation="../resources/xsd/generic/course-summary.xsd">
         <jaxb:bindings node="//xs:element[@name='course']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseWrapper</inheritance:extends>
             <jaxb:property name="courses"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='course-summary']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseSummaryWrapper</inheritance:extends>
         </jaxb:bindings>
         <jaxb:bindings node="//xs:element[@name='term']">
             <jaxb:property name="terms"/>

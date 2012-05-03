@@ -25,8 +25,8 @@ import java.util.Map;
 import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 import org.jasig.portlet.courses.model.xml.Course;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Instructor;
 import org.jasig.portlet.courses.model.xml.Location;
 import org.jasig.portlet.courses.mvc.IViewSelector;
@@ -78,7 +78,7 @@ public class CoursesPortletController {
     public ModelAndView getGrades(PortletRequest request, @RequestParam(required=false) String termCode) {
         
         // get the course summary for the current user        
-        CourseSummaryWrapper summary = coursesDao.getSummary(request);
+        CourseSummary summary = coursesDao.getSummary(request);
         
         // add the user's overall GPA, credit count, and a list of terms to the
         // model
@@ -105,7 +105,7 @@ public class CoursesPortletController {
         Map<String, Object> model = new HashMap<String, Object>();
         
         // TODO: write a better implementation for locating an individual course
-        CourseSummaryWrapper summary = coursesDao.getSummary(request);
+        CourseSummary summary = coursesDao.getSummary(request);
         Course selectedCourse = summary.getCourse(termCode, courseCode);
         
         Map<String, String> instructorUrls = new HashMap<String, String>();

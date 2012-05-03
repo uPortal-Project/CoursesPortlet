@@ -21,7 +21,7 @@ package org.jasig.portlet.courses.dao;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
 
 /**
  * ICoursesDao represents a data access interface for retrieving course and
@@ -38,6 +38,6 @@ public interface ICoursesDao {
      * @param request
      * @return
      */
-    public CourseSummaryWrapper getSummary(PortletRequest request);
+    public CourseSummary getSummary(PortletRequest request);
     
 }
