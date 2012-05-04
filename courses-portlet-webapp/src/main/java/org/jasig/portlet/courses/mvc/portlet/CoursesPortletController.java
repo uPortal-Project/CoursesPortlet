@@ -29,6 +29,8 @@ import org.jasig.portlet.courses.model.xml.Course;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Instructor;
 import org.jasig.portlet.courses.model.xml.Location;
+import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.xml.TermSummary;
 import org.jasig.portlet.courses.mvc.IViewSelector;
 import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,9 +66,16 @@ public class CoursesPortletController {
     
     @RequestMapping
     public ModelAndView getCourseList(PortletRequest request) {
-        
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("term", coursesDao.getSummary(request).getCurrentTerm());
+        
+        final TermSummary termSummary = coursesDao.getTermSummary(request);
+        model.put("termSummary", termSummary);
+        
+        final Term currentTerm = termSummary.getCurrentTerm();
+        if (currentTerm != null) {
+            final CourseSummary courseSummary = coursesDao.getCourseSummary(request, currentTerm.getCode());
+            model.put("courseSummary", courseSummary);
+        }
         
         final boolean isMobile = viewSelector.isMobile(request);
         final String viewName = isMobile ? "courseList-jQM" : "courseList";
@@ -78,7 +87,7 @@ public class CoursesPortletController {
     public ModelAndView getGrades(PortletRequest request, @RequestParam(required=false) String termCode) {
         
         // get the course summary for the current user        
-        CourseSummary summary = coursesDao.getSummary(request);
+        CourseSummary summary = coursesDao.getCourseSummary(request);
         
         // add the user's overall GPA, credit count, and a list of terms to the
         // model
@@ -105,7 +114,7 @@ public class CoursesPortletController {
         Map<String, Object> model = new HashMap<String, Object>();
         
         // TODO: write a better implementation for locating an individual course
-        CourseSummary summary = coursesDao.getSummary(request);
+        CourseSummary summary = coursesDao.getCourseSummary(request);
         Course selectedCourse = summary.getCourse(termCode, courseCode);
         
         Map<String, String> instructorUrls = new HashMap<String, String>();

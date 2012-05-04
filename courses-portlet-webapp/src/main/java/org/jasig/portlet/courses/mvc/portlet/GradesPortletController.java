@@ -55,7 +55,7 @@ public class GradesPortletController {
     public ModelAndView getGrades(PortletRequest request, @RequestParam(required=false) String termCode) {
         
         // get the course summary for the current user        
-        CourseSummary summary = coursesDao.getSummary(request);
+        CourseSummary summary = coursesDao.getCourseSummary(request);
         
         // add the user's overall GPA, credit count, and a list of terms to the
         // model

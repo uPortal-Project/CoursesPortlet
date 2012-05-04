@@ -29,6 +29,7 @@ import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.model.xml.Course;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.xml.TermSummary;
 
 /**
  * MergingCoursesDaoImpl merges together information from multiple data sources.
@@ -58,21 +59,23 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
     public void setCourseDaos(List<ICoursesDao> courseDaos) {
         this.courseDaos = courseDaos;
     }
+    
+    
 
     @Override
-    public CourseSummary getSummary(PortletRequest request) {
-        CourseSummary summary = null;
+    public TermSummary getTermSummary(PortletRequest request) {
+        TermSummary summary = null;
         
         // iterate over the list of course DAOs
         for (ICoursesDao dao : courseDaos) {
             try {
                 
-                CourseSummary daoSummary = dao.getSummary(request);
+                TermSummary daoSummary = dao.getTermSummary(request);
                 
                 if (summary == null) {
                     summary = daoSummary;
                 } else {
-                    mergeSummaries(summary, daoSummary);
+                    mergeTermSummaries(summary, daoSummary);
                 }
                 
                 
@@ -84,7 +87,51 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         return summary;
     }
 
-    protected void mergeSummaries(CourseSummary original, CourseSummary additional) {
+    @Override
+    public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
+        CourseSummary summary = null;
+        
+        // iterate over the list of course DAOs
+        for (ICoursesDao dao : courseDaos) {
+            try {
+                
+                CourseSummary daoSummary = dao.getCourseSummary(request, termCode);
+                
+                if (summary == null) {
+                    summary = daoSummary;
+                } else {
+                    mergeCourseSummaries(summary, daoSummary);
+                }
+                
+                
+            } catch (Exception e) {
+                log.error("Exception reading course dao", e);
+            }
+        }
+
+        return summary;
+    }
+
+    protected void mergeTermSummaries(TermSummary original, TermSummary additional) {
+        final List<Term> originalTerms = original.getTerms();
+        
+        for (Term t : additional.getTerms()) {
+            // if this term already exists in the summary, merge 
+            // information from this DAO into the existing entry
+            final Term originalTerm = original.getTerm(t.getCode());
+            if (original.getTerm(t.getCode()) != null) {
+                //TODO nothing to merge as of yet
+            }
+            
+            // if we haven't seen this term before, just add it to the
+            // list
+            else {
+                originalTerms.add(t);
+            }
+        }
+    }
+
+    protected void mergeCourseSummaries(CourseSummary original, CourseSummary additional) {
         
         // overall credit total
         if (additional.getCredits() != null) {
@@ -96,40 +143,17 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
             original.setGpa(additional.getGpa());
         }
 
-        for (Term t : additional.getTerms()) {
-
-            // if this term already exists in the summary, merge 
-            // information from this DAO into the existing entry
-            if (original.getTerm(t.getCode()) != null) {
-                Term term = original.getTerm(t.getCode());
-                
-                if (t.getCredits() != null) {
-                    term.setCredits(t.getCredits());
-                }
-                
-                if (t.getGpa() != null) {
-                    term.setGpa(t.getGpa());
-                }
-
-                // merge the course lists for the existing entry
-                // and new DAO
-                for (Course c : t.getCourses()) {
-                    Course course = original.getCourse(t.getCode(), c.getCode());
-                    
-                    if (course != null) {
-                        mergeCourse(course, c);
-                    }
-                    
-                    else {
-                        term.getCourses().add(c);
-                    }
-                }
+        // merge the course lists for the existing entry
+        // and new DAO
+        for (Course c : additional.getCourses()) {
+            Course course = original.getCourse(c.getCode());
+            
+            if (course != null) {
+                mergeCourse(course, c);
             }
             
-            // if we haven't seen this term before, just add it to the
-            // list
             else {
-                original.getTerms().add(t);
+                original.getCourses().add(c);
             }
         }
 

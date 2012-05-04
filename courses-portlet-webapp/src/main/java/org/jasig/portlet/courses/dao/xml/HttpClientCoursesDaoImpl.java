@@ -25,6 +25,7 @@ import javax.portlet.PortletRequest;
 import org.apache.commons.codec.binary.Base64;
 import org.jasig.portlet.courses.dao.ICoursesDao;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.TermSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -40,10 +41,15 @@ import org.springframework.web.client.RestTemplate;
  */
 public class HttpClientCoursesDaoImpl implements ICoursesDao {
 
-    private String urlFormat = "http://localhost:8180/jasig-courses-integration/course-summary";
+    private String termUrlFormat = "http://localhost:8180/jasig-courses-integration/term-summary";
+    private String courseUrlFormat = "http://localhost:8180/jasig-courses-integration/course-summary/{term-code}";
     
-    public void setUrlFormat(String urlFormat) {
-        this.urlFormat = urlFormat;
+    public void setTermUrlFormat(String termUrlFormat) {
+        this.termUrlFormat = termUrlFormat;
+    }
+
+    public void setCourseUrlFormat(String courseUrlFormat) {
+        this.courseUrlFormat = courseUrlFormat;
     }
     
     private String usernameKey = "user.login.id";
@@ -66,13 +72,23 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
     }
 
     @Override
-    public CourseSummary getSummary(PortletRequest request) {
+    public TermSummary getTermSummary(PortletRequest request) {
+        HttpEntity<?> requestEntity = getRequestEntity(request);
+
+        HttpEntity<TermSummary> response = restTemplate.exchange(
+                termUrlFormat, HttpMethod.GET, requestEntity,
+                TermSummary.class);
         
+        return response.getBody();
+    }
+
+    @Override
+    public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
         HttpEntity<?> requestEntity = getRequestEntity(request);
 
         HttpEntity<CourseSummary> response = restTemplate.exchange(
-                urlFormat, HttpMethod.GET, requestEntity,
-                CourseSummary.class, new Object[]{});
+                courseUrlFormat, HttpMethod.GET, requestEntity,
+                CourseSummary.class, termCode);
         
         return response.getBody();
     }

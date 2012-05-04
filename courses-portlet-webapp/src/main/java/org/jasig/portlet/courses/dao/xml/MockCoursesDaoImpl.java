@@ -30,6 +30,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.dao.ICoursesDao;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.CourseTermSummary;
+import org.jasig.portlet.courses.model.xml.TermSummary;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 
@@ -37,7 +39,7 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
 
     protected final Log log = LogFactory.getLog(getClass());
     
-    private CourseSummary summary;
+    private CourseTermSummary summary;
     
     private Resource mockData;
     
@@ -48,9 +50,9 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(CourseSummary.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(CourseTermSummary.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            this.summary = (CourseSummary) unmarshaller.unmarshal(mockData.getInputStream());
+            this.summary = (CourseTermSummary) unmarshaller.unmarshal(mockData.getInputStream());
         } catch (IOException e) {
             log.error("Failed to read mock data", e);
         } catch (JAXBException e) {
@@ -58,8 +60,13 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
         }
     }
 
-    public CourseSummary getSummary(PortletRequest request) {
-        return this.summary;
+    @Override
+    public TermSummary getTermSummary(PortletRequest request) {
+        return this.summary.getTermSummary();
     }
 
+    @Override
+    public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
+        return this.summary.getCourseSummary();
+    }
 }

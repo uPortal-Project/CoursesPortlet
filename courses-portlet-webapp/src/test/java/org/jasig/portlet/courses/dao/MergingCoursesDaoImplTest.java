@@ -156,7 +156,7 @@ public class MergingCoursesDaoImplTest {
         summary1.getTerms().add(term1);
         
         ICoursesDao courseDao1 = mock(ICoursesDao.class); 
-        when(courseDao1.getSummary(request)).thenReturn(summary1);
+        when(courseDao1.getCourseSummary(request)).thenReturn(summary1);
         courseDaos.add(courseDao1);
         
         CourseSummary summary2 = new CourseSummary();
@@ -165,10 +165,10 @@ public class MergingCoursesDaoImplTest {
         summary2.getTerms().add(term2);
 
         ICoursesDao courseDao2 = mock(ICoursesDao.class);
-        when(courseDao2.getSummary(request)).thenReturn(summary2);
+        when(courseDao2.getCourseSummary(request)).thenReturn(summary2);
         courseDaos.add(courseDao2);
 
-        dao.getSummary(request);
+        dao.getCourseSummary(request);
         assertEquals(3.5, summary1.getGpa(), 0.1);
         assertEquals(30, summary2.getCredits(), 0.1);
         assertEquals(2, summary1.getTerms().size());

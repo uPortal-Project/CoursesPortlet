@@ -13,7 +13,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>edu.wisc.portlet.courses</groupId>
+            <groupId>edu.wisc.dem.finalgrades</groupId>
+            <artifactId>edu.wisc.dem.finalgrades</artifactId>
+        </dependency>
+            
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>courses-portlet-api</artifactId>
 			<version>${project.version}</version>
         </dependency>
