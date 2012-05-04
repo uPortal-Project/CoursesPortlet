@@ -37,7 +37,7 @@
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
         <property name="messageConverters">
             <util:list>
-                <bean class="org.jasig.portlet.courses.dao.xml.Jaxb2CourseSummaryHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
                 <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
             </util:list>
         </property>
