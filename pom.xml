@@ -1,22 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>org.jasig.parent</groupId>
-        <artifactId>jasig-parent</artifactId>
-        <version>33</version>
+        <groupId>edu.wisc.doit.code</groupId>
+        <artifactId>shared-tools-uw-parent</artifactId>
+        <version>3</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.jasig.portlet.courses</groupId>
+    <groupId>edu.wisc.portlet.courses</groupId>
     <artifactId>courses-portlet-parent</artifactId>
     <version>1.0.0-M3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>CoursePortlet</name>
 
+    <repositories>
+        <repository>
+            <id>code.doit-uw-releases</id>
+            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-releases/</url>
+        </repository>
+    </repositories>
+
     <scm>
-        <connection>scm:git:git://github.com/Jasig/CoursesPortlet.git</connection>
-        <developerConnection>scm:git:git@github.com:Jasig/CoursesPortlet.git</developerConnection>
-        <url>https://github.com/Jasig/CoursesPortlet</url>
+        <connection>scm:git:git://github.com/UW-Madison-DoIT/CoursesPortlet.git</connection>
+        <developerConnection>scm:git:git@github.com:UW-Madison-DoIT/CoursesPortlet.git</developerConnection>
+        <url>https://github.com/UW-Madison-DoIT/CoursesPortlet</url>
     </scm>
 
     <properties>
@@ -148,12 +155,27 @@
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            
+            <dependency>
+                <groupId>edu.wisc.dem.finalgrades</groupId>
+                <artifactId>edu.wisc.dem.finalgrades</artifactId>
+                <version>1.0.5-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <source>${project.build.sourceVersion}</source>
+                        <target>${project.build.targetVersion}</target>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.jvnet.jaxb2.maven2</groupId>
                     <artifactId>maven-jaxb2-plugin</artifactId>
@@ -200,8 +222,19 @@
         </pluginManagement>
         <plugins>
             <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <localCheckout>true</localCheckout>
+                    <tagNameFormat>UWCoursesPortlet-@{project.version}</tagNameFormat>
+                    <pushChanges>false</pushChanges>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
+                <version>1.9.0</version>
                 <configuration>
                     <aggregate>true</aggregate>
                     <excludes>
