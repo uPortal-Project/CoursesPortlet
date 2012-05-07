@@ -88,13 +88,11 @@ public class MergingCoursesDaoImplTest {
         term1 = new Term();
         term1.setCode("term1");
         term1.setDisplayName("Term1");
-        term1.setGpa(3.75);
         term1.setCurrent(false);
         
         term2 = new Term();
         term2.setCode("term2");
         term2.setDisplayName("Term2");
-        term2.setGpa(3.35);
         term2.setCurrent(false);
         
         emptyTerm = new Term();
@@ -153,25 +151,22 @@ public class MergingCoursesDaoImplTest {
         CourseSummary summary1 = new CourseSummary();
         summary1.setGpa((double) 3.3);
         summary1.setCredits((double) 40);
-        summary1.getTerms().add(term1);
         
         ICoursesDao courseDao1 = mock(ICoursesDao.class); 
-        when(courseDao1.getSummary(request)).thenReturn(summary1);
+        when(courseDao1.getCourseSummary(request, "1234")).thenReturn(summary1);
         courseDaos.add(courseDao1);
         
         CourseSummary summary2 = new CourseSummary();
         summary2.setGpa((double) 3.5);
         summary2.setCredits((double) 30);
-        summary2.getTerms().add(term2);
 
         ICoursesDao courseDao2 = mock(ICoursesDao.class);
-        when(courseDao2.getSummary(request)).thenReturn(summary2);
+        when(courseDao2.getCourseSummary(request, "1234")).thenReturn(summary2);
         courseDaos.add(courseDao2);
 
-        dao.getSummary(request);
+        dao.getCourseSummary(request, "1234");
         assertEquals(3.5, summary1.getGpa(), 0.1);
         assertEquals(30, summary2.getCredits(), 0.1);
-        assertEquals(2, summary1.getTerms().size());
     }
 
 }

@@ -40,23 +40,21 @@
     </jaxb:bindings>
       
     <jaxb:bindings schemaLocation="../resources/xsd/generic/course-summary.xsd">
-        <jaxb:bindings node="//xs:element[@name='course']">
+        <jaxb:bindings node="//xs:complexType[@name='course']"> 
             <jaxb:class/>
             <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseWrapper</inheritance:extends>
-            <jaxb:property name="courses"/>
         </jaxb:bindings>
-        <jaxb:bindings node="//xs:element[@name='course-summary']">
+        <jaxb:bindings node="//xs:complexType[@name='course-summary']">
             <jaxb:class/>
             <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseSummaryWrapper</inheritance:extends>
         </jaxb:bindings>
-        <jaxb:bindings node="//xs:element[@name='term']">
-            <jaxb:property name="terms"/>
+        <jaxb:bindings node="//xs:complexType[@name='term-summary']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.TermSummaryWrapper</inheritance:extends>
         </jaxb:bindings>
-        <jaxb:bindings node="//xs:element[@name='course-update']">
-            <jaxb:property name="courseUpdates"/>
-        </jaxb:bindings>
-        <jaxb:bindings node="//xs:element[@name='instructor']">
-            <jaxb:property name="instructors"/>
+        <jaxb:bindings node="//xs:element[@name='course-term-summary']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseTermSummaryWrapper</inheritance:extends>
         </jaxb:bindings>
         <jaxb:schemaBindings>
             <jaxb:package name="org.jasig.portlet.courses.model.xml" />

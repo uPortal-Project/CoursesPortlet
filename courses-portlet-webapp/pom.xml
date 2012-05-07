@@ -7,13 +7,14 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jasig.portlet.courses</groupId>
     <artifactId>courses-portlet-webapp</artifactId>
     <packaging>war</packaging>
     <name>CoursePortlet</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.jasig.portlet.courses</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>courses-portlet-api</artifactId>
 			<version>${project.version}</version>
         </dependency>
@@ -115,15 +116,6 @@
 
     <build>
         <finalName>CoursesPortlet</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <attachClasses>true</attachClasses>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
 </project>

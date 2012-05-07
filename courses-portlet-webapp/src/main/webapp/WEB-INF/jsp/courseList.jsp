@@ -22,7 +22,6 @@
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
 
 <div class="fl-widget portlet" role="section">
-
   <!-- Portlet Titlebar -->
   <div class="fl-widget-titlebar titlebar portlet-titlebar" role="sectionhead">
     <h2 class="title" role="heading">
@@ -33,10 +32,28 @@
           <li><a class="button" href="#">
             <spring:message code="schedule"/>
           </a></li>
-            <portlet:renderURL var="gradesUrl"><portlet:param name="action" value="grades"/></portlet:renderURL>
+          <portlet:renderURL var="gradesUrl">
+            <portlet:param name="action" value="grades"/>
+            <c:if test="${not empty currentTerm.code}">
+              <portlet:param name="termCode" value="${currentTerm.code}"/>
+            </c:if>
+          </portlet:renderURL>
           <li><a class="button" href="${ gradesUrl }">
             <spring:message code="grades"/>
           </a></li>
+          <portlet:actionURL var="selectTermUrl"/>
+          <li><form action="${selectTermUrl}" method="post">
+            <label for="${n}_termPicker"><spring:message code="term"/>:</label>
+            <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
+              <c:forEach var="term" items="${termSummary.terms}">
+                <c:set var="selected" value="" />
+                <c:if test="${term.code == currentTerm.code}">
+                    <c:set var="selected" value="selected=\"selected\"" />
+                </c:if>
+                <option value="${term.code}" ${selected}>${term.displayName}</option>
+              </c:forEach>
+            </select>
+          </form></li>
         </ul>
     </div>
   </div> <!-- end: portlet-titlebar -->
@@ -45,14 +62,14 @@
   <div class="fl-widget-content content portlet-content" role="main">
         
         <c:choose>
-            <c:when test="${ fn:length(term.courses) == 0 }">
+            <c:when test="${ fn:length(courseSummary.courses) == 0 }">
                 <p><spring:message code="no.courses.message"/></p>
             </c:when>
             <c:otherwise>
-                <c:forEach items="${ term.courses }" var="course">
+                <c:forEach items="${ courseSummary.courses }" var="course">
                     <portlet:renderURL var="courseUrl">
                         <portlet:param name="action" value="showCourse"/>
-                        <portlet:param name="termCode" value="${ term.code }"/>
+                        <portlet:param name="termCode" value="${ courseSummary.termCode }"/>
                         <portlet:param name="courseCode" value="${ course.code }"/>
                     </portlet:renderURL>
                     <h3>

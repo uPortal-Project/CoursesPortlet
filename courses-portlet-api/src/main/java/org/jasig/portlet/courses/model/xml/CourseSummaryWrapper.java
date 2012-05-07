@@ -30,50 +30,21 @@ public abstract class CourseSummaryWrapper {
     
     public int getNewUpdateCount() {
         int newCount = 0;
-        for (Term term : this.getTerms()) {
-            for (Course course : term.getCourses()) {
-                newCount += course.getNewUpdateCount();
-            }
+        for (Course course : this.getCourses()) {
+            newCount += course.getNewUpdateCount();
         }
         return newCount;
     }
-    
-    public Term getTerm(String termCode) {
-        
-        for (Term term : getTerms()) {
-            if (termCode.equals(term.getCode())) {
-                return term;
-            }
-        }
 
-        return null;
-    }
-
-    public Term getCurrentTerm() {
-        
-        for (Term term : getTerms()) {
-            if (term.isCurrent()) {
-                return term;
-            }
-        }
-
-        return null;
-    }
-
-    public Course getCourse(String termCode, String courseCode) {
-        
-        Term term = getTerm(termCode);
-        
-        if (term != null) {
-            for (Course course : term.getCourses()) {
-                if (courseCode.equals(course.getCode())) {
-                    return course;
-                }
+    public Course getCourse(String courseCode) {
+        for (Course course : this.getCourses()) {
+            if (courseCode.equals(course.getCode())) {
+                return course;
             }
         }
 
         return null;
     }
     
-    public abstract List<Term> getTerms();
+    public abstract List<Course> getCourses();
 }

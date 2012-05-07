@@ -37,7 +37,7 @@
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
         <property name="messageConverters">
             <util:list>
-                <bean class="org.jasig.portlet.courses.dao.xml.Jaxb2CourseSummaryHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
                 <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
             </util:list>
         </property>
@@ -50,7 +50,8 @@
         
     <util:list id="courseDaos">
         <!--bean class="org.jasig.portlet.courses.dao.xml.HttpClientCoursesDaoImpl"
-            p:restTemplate-ref="restTemplate"/-->
+            p:restTemplate-ref="restTemplate"/
+            -->
         <bean class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl"
             p:mockData="classpath:/mock-data/mock-course-summary.xml"/>
     </util:list>
@@ -62,5 +63,4 @@
         p:order="10" p:cache="true"
         p:viewClass="org.springframework.web.servlet.view.JstlView"
         p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
-
 </beans>

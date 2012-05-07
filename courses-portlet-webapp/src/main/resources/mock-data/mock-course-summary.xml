@@ -18,26 +18,27 @@
     under the License.
 
 -->
-<course-summary
+<course-term-summary
     xmlns="https://source.jasig.org/schemas/portlet/courses/course-summary"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-summary ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-summary.xsd">
-
-    <gpa>3.25</gpa>
-    <credits>40</credits>
-
-    <term>
-        <displayName>Winter 2012</displayName>
-        <code>2012w</code>
-        <gpa>3.0</gpa>
-        <credits>20</credits>
-    </term>
-
-    <term current="true">
-        <displayName>Spring 2012</displayName>
-        <code>2012s</code>
-        <gpa>3.5</gpa>
-        <credits>20</credits>
+    
+    <term-summary>
+        <term>
+            <displayName>Winter 2012</displayName>
+            <code>2012w</code>
+        </term>
+    
+        <term current="true">
+            <displayName>Spring 2012</displayName>
+            <code>2012s</code>
+        </term>    
+    </term-summary>
+    
+    <course-summary>
+        <term_code>2012s</term_code>
+        <gpa>3.25</gpa>
+        <credits>40</credits>
     
         <course>
             <title>Design Awareness</title>
@@ -148,6 +149,6 @@
             <credits>4</credits>
         </course>
 
-    </term>
+    </course-summary>
 
-</course-summary>
+</course-term-summary>
