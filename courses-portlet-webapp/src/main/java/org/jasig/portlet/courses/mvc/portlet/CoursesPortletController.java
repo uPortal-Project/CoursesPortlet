@@ -22,6 +22,8 @@ package org.jasig.portlet.courses.mvc.portlet;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.dao.ICoursesDao;
@@ -65,16 +67,26 @@ public class CoursesPortletController {
     }
     
     @RequestMapping
-    public ModelAndView getCourseList(PortletRequest request) {
-        Map<String, Object> model = new HashMap<String, Object>();
+    public ModelAndView getCourseList(PortletRequest request, @RequestParam(required=false) String termCode) {
+        final Map<String, Object> model = new HashMap<String, Object>();
         
         final TermSummary termSummary = coursesDao.getTermSummary(request);
         model.put("termSummary", termSummary);
+
+        //Determine the current term
+        final Term currentTerm;
+        if (termCode == null) {
+            currentTerm = termSummary.getCurrentTerm();
+        }
+        else {
+            currentTerm = termSummary.getTerm(termCode);
+        }
         
-        final Term currentTerm = termSummary.getCurrentTerm();
+        //Grab the courseSummary information if a currentTerm is set
         if (currentTerm != null) {
             final CourseSummary courseSummary = coursesDao.getCourseSummary(request, currentTerm.getCode());
             model.put("courseSummary", courseSummary);
+            model.put("currentTerm", currentTerm);
         }
         
         final boolean isMobile = viewSelector.isMobile(request);
@@ -85,22 +97,25 @@ public class CoursesPortletController {
 
     @RequestMapping(params = "action=grades")
     public ModelAndView getGrades(PortletRequest request, @RequestParam(required=false) String termCode) {
+        final Map<String, Object> model = new HashMap<String, Object>();
         
-        // get the course summary for the current user        
-        CourseSummary summary = coursesDao.getCourseSummary(request);
-        
-        // add the user's overall GPA, credit count, and a list of terms to the
-        // model
-        Map<String, Object> model = new HashMap<String, Object>();
-        model.put("gpa", summary.getGpa());
-        model.put("credits", summary.getCredits());
-        model.put("terms", summary.getTerms());
+        final TermSummary termSummary = coursesDao.getTermSummary(request);
+        model.put("termSummary", termSummary);
 
-        // add the selected or current term to the model
-        if (termCode == null){
-            model.put("selectedTerm", summary.getCurrentTerm());
-        } else {
-            model.put("selectedTerm", summary.getTerm(termCode));
+        //Determine the current term
+        final Term currentTerm;
+        if (termCode == null) {
+            currentTerm = termSummary.getCurrentTerm();
+        }
+        else {
+            currentTerm = termSummary.getTerm(termCode);
+        }
+        
+        //Grab the courseSummary information if a currentTerm is set
+        if (currentTerm != null) {
+            final CourseSummary courseSummary = coursesDao.getCourseSummary(request, currentTerm.getCode());
+            model.put("courseSummary", courseSummary);
+            model.put("currentTerm", currentTerm);
         }
         
         final boolean isMobile = viewSelector.isMobile(request);
@@ -114,8 +129,8 @@ public class CoursesPortletController {
         Map<String, Object> model = new HashMap<String, Object>();
         
         // TODO: write a better implementation for locating an individual course
-        CourseSummary summary = coursesDao.getCourseSummary(request);
-        Course selectedCourse = summary.getCourse(termCode, courseCode);
+        CourseSummary summary = coursesDao.getCourseSummary(request, termCode);
+        Course selectedCourse = summary.getCourse(courseCode);
         
         Map<String, String> instructorUrls = new HashMap<String, String>();
         for (Instructor instructor : selectedCourse.getInstructors()) {
@@ -135,5 +150,9 @@ public class CoursesPortletController {
         
         return new ModelAndView(viewName, model);
     }
-
+    
+    @RequestMapping
+    public void copyActionParameters(ActionRequest actionRequest, ActionResponse actionResponse) {
+        actionResponse.setRenderParameters(actionRequest.getParameterMap());
+    }
 }

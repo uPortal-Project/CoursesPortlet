@@ -20,6 +20,7 @@
 package org.jasig.portlet.courses.dao.xml;
 
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -28,6 +29,7 @@ import java.util.List;
 
 import javax.portlet.PortletRequest;
 
+import org.jasig.portlet.courses.model.xml.Course;
 import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.jasig.portlet.courses.model.xml.TermSummary;
@@ -68,12 +70,7 @@ public class XMLCoursesDaoImplTest {
         assertNull(term.getYear());
         
         CourseSummary courseSummary = dao.getCourseSummary(request, term.getCode());
-
-//      assertEquals(3.25, summary.getGpa(), 0.01);
-//      assertEquals(40, summary.getCredits(), 0.01);        
-//      assertEquals(1, summary.getNewUpdateCount());
-//      assertEquals(2, summary.getTerms().size());
-        
+        assertNull(courseSummary);
 
         term = terms.get(1);
         assertTrue(term.isCurrent());
@@ -84,25 +81,22 @@ public class XMLCoursesDaoImplTest {
         assertNull(term.getYear());
         
         
-        
-        
         courseSummary = dao.getCourseSummary(request, terms.get(1).getCode());
+        assertNotNull(courseSummary);
+
+        assertEquals(40, courseSummary.getCredits(), 0.01);
+        assertEquals(3.25, courseSummary.getGpa(), 0.01);
+        assertEquals(1, courseSummary.getNewUpdateCount());
+        assertEquals("2012s", courseSummary.getTermCode());
         
-//        CourseSummary summary = dao.getCourseSummary(request);
-//        assertEquals(3.25, summary.getGpa(), 0.01);
-//        assertEquals(40, summary.getCredits(), 0.01);        
-//        assertEquals(1, summary.getNewUpdateCount());
-//        assertEquals(2, summary.getTerms().size());
-//        
-//        Term term = summary.getTerm("2012s");
-//        assertTrue(term.isCurrent());
-//        assertEquals(5, term.getCourses().size());
-//        assertEquals(3.25, summary.getGpa().doubleValue(), .01);
-//
-//        Course course1 = summary.getCourse("2012s", "DSC 101");
-//        assertEquals("Design Awareness", course1.getTitle());
-//        assertEquals("A", course1.getGrade());
-//        assertEquals(4, course1.getCredits(), 0.01);
+        final List<Course> courses = courseSummary.getCourses();
+        assertEquals(5, courses.size());
+        
+        Course course = courses.get(0); 
+        assertEquals("Design Awareness", course.getTitle());
+        assertEquals("A", course.getGrade());
+        assertEquals(4, course.getCredits(), 0.01);
+        assertEquals(course, courseSummary.getCourse(course.getCode()));
     }
 
 }

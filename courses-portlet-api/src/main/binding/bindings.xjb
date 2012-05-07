@@ -52,6 +52,11 @@
             <jaxb:class/>
             <inheritance:extends>org.jasig.portlet.courses.model.xml.TermSummaryWrapper</inheritance:extends>
         </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='course-term-summary']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseTermSummaryWrapper</inheritance:extends>
+        </jaxb:bindings>
+        
         <!-- 
         <jaxb:bindings node="//xs:element[@name='term']">
             <jaxb:property name="terms"/>

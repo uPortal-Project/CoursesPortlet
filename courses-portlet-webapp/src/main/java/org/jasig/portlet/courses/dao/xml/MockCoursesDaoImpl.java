@@ -67,6 +67,6 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
 
     @Override
     public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
-        return this.summary.getCourseSummary();
+        return this.summary.getCourseSummary(termCode);
     }
 }
