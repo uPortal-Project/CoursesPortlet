@@ -130,6 +130,8 @@ public class CoursesPortletController {
         
         // TODO: write a better implementation for locating an individual course
         CourseSummary summary = coursesDao.getCourseSummary(request, termCode);
+        model.put("courseSummary", summary);
+        
         Course selectedCourse = summary.getCourse(courseCode);
         
         Map<String, String> instructorUrls = new HashMap<String, String>();

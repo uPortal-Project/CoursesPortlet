@@ -20,7 +20,9 @@
 --%>
 
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
-<portlet:renderURL var="courseListUrl"/>
+<portlet:renderURL var="courseListUrl">
+    <portlet:param name="termCode" value="${courseSummary.termCode}"/>
+</portlet:renderURL>
 
 <div data-role="header" class="titlebar portlet-titlebar courses-back-div">
     <a data-role="button" data-icon="back" data-inline="true" class="courses-back-link" href="${ courseListUrl }"><spring:message code="back"/></a>

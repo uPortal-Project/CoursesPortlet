@@ -25,15 +25,15 @@
     <div class="portlet-content" data-role="content">
         
         <c:choose>
-            <c:when test="${ fn:length(term.courses) == 0 }">
+            <c:when test="${ fn:length(courseSummary.courses) == 0 }">
                 <p><spring:message code="no.courses.message"/></p>
             </c:when>
             <c:otherwise>
                 <ul data-role="listview" class="course-list">
-                    <c:forEach items="${ term.courses }" var="course">
+                    <c:forEach items="${ courseSummary.courses }" var="course">
                         <portlet:renderURL var="courseUrl">
                             <portlet:param name="action" value="showCourse"/>
-                            <portlet:param name="termCode" value="${ term.code }"/>
+                            <portlet:param name="termCode" value="${ courseSummary.termCode }"/>
                             <portlet:param name="courseCode" value="${ course.code }"/>
                         </portlet:renderURL>
                         <li>
@@ -57,8 +57,27 @@
         <div class="ui-grid-a utilities" style="margin-top: 20px">
             <div class="ui-block-a"><a data-role="button" class="schedule" title="schedule" href="#"><spring:message code="schedule"/></a></div>
             
-            <portlet:renderURL var="gradesUrl"><portlet:param name="action" value="grades"/></portlet:renderURL>
+            <portlet:renderURL var="gradesUrl">
+                <portlet:param name="action" value="grades"/>
+                <c:if test="${not empty currentTerm.code}">
+                  <portlet:param name="termCode" value="${currentTerm.code}"/>
+                </c:if>
+            </portlet:renderURL>
             <div class="ui-block-b"><a data-role="button" class="grades" title="grades" href="${ gradesUrl }"><spring:message code="grades"/></a></div>
+            
+            <portlet:actionURL var="selectTermUrl"/>
+            <div class="ui-block-c"><form action="${selectTermUrl}" method="post">
+              <label for="${n}_termPicker"><spring:message code="term"/>:</label>
+              <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
+                <c:forEach var="term" items="${termSummary.terms}">
+                  <c:set var="selected" value="" />
+                  <c:if test="${term.code == currentTerm.code}">
+                      <c:set var="selected" value="selected=\"selected\"" />
+                  </c:if>
+                  <option value="${term.code}" ${selected}>${term.displayName}</option>
+                </c:forEach>
+              </select>
+            </form></div>
         </div>
     
     </div>

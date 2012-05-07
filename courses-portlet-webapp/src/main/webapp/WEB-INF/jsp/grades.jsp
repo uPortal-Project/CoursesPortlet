@@ -41,9 +41,10 @@
           <li><a class="button" href="#">
             <spring:message code="grades"/>
           </a></li>
-          <portlet:actionURL var="selectTermUrl"/>
+          <portlet:actionURL var="selectTermUrl">
+            <portlet:param name="action" value="grades" />
+          </portlet:actionURL>
           <li><form action="${selectTermUrl}" method="post">
-            <input name="action" value="grades" type="hidden" />
             <label for="${n}_termPicker"><spring:message code="term"/>:</label>
             <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
               <c:forEach var="term" items="${termSummary.terms}">

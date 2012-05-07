@@ -21,57 +21,60 @@
 
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
 <c:set var="n"><portlet:namespace/></c:set>
-<portlet:renderURL var="formUrl">
-    <portlet:param name="action" value="grades"/>
-</portlet:renderURL>
-
-<div id="${n}">
-    <div data-role="header" class="titlebar portlet-titlebar">
-        <h2>Grades</h2>
-        <form action="${ formUrl }" method="POST">
-            <select name="termCode">
-                <c:forEach items="${ terms }" var="term">
-                    <option value="${ term.code }" ${ term.code == selectedTerm.code ? 'selected' : '' }>${ term.displayName }</option>
-                </c:forEach>
-            </select>
-        </form>
-    </div>
-    <div class="portlet ptl-courses view-courses">
-        <div class="portlet-content" data-role="content">
-            
-            <ul data-role="listview" class="course-list">
-                <c:if test="${ fn:length(selectedTerm.courses) == 0 }">
-                    <li><spring:message code="no.courses.message"/></li>
-                </c:if>
-                <c:forEach items="${ selectedTerm.courses }" var="course">
-                    <portlet:renderURL var="courseUrl"><portlet:param name="action" value="showCourse"/><portlet:param name="courseCode" value="${ course.code }"/></portlet:renderURL>
-                    <li>
-                        <h3 class="title">${ course.title }</h3>
-                        <p>
-                            <span class="catalog">${ course.code }</span>
-                        </p>
-                        <p>${ course.credits } cr</p>
-                        <p>${ course.grade }</p>
-                    </li>
-                </c:forEach>
+<div class="portlet ptl-courses view-courses">
+    <div class="portlet-content" data-role="content">
+        
+        <ul data-role="listview" class="course-list">
+            <c:if test="${ fn:length(courseSummary.courses) == 0 }">
+                <li><spring:message code="no.courses.message"/></li>
+            </c:if>
+            <c:forEach items="${ courseSummary.courses }" var="course">
+                <portlet:renderURL var="courseUrl"><portlet:param name="action" value="showCourse"/><portlet:param name="courseCode" value="${ course.code }"/></portlet:renderURL>
                 <li>
-                    <p>Term credits ${ selectedTerm.credits } credits</p>
-                    <p>Term GPA ${ selectedTerm.gpa }</p>
-                     
-                    <p>Cum. credits ${ credits } credits</p>
-                    <p>Cum. GPA ${ gpa }</p>
+                    <h3 class="title">${ course.title }</h3>
+                    <p>
+                        <span class="catalog">${ course.code }</span>
+                    </p>
+                    <p>${ course.credits } cr</p>
+                    <p>${ course.grade }</p>
                 </li>
-            </ul>            
-            
-        </div>
+            </c:forEach>
+            <li>
+                <p>Term credits ${ courseSummary.credits } credits</p>
+                <p>Term GPA ${ courseSummary.gpa }</p>
+                 
+                <p>Cum. credits ${ credits } credits</p>
+                <p>Cum. GPA ${ gpa }</p>
+            </li>
+        </ul>            
+        
     </div>
-</div>
+    
+    <div class="ui-grid-a utilities" style="margin-top: 20px">
+        <portlet:renderURL var="scheduleUrl">
+            <c:if test="${not empty currentTerm.code}">
+              <portlet:param name="termCode" value="${currentTerm.code}"/>
+            </c:if>
+        </portlet:renderURL>
+        <div class="ui-block-a"><a data-role="button" class="schedule" title="schedule" href="${scheduleUrl }"><spring:message code="schedule"/></a></div>
+        
+        <div class="ui-block-b"><a data-role="button" class="grades" title="grades" href="#"><spring:message code="grades"/></a></div>
+        
+        <portlet:actionURL var="selectTermUrl">
+          <portlet:param name="action" value="grades" />
+        </portlet:actionURL>
+        <div class="ui-block-c"><form action="${selectTermUrl}" method="post">
+          <label for="${n}_termPicker"><spring:message code="term"/>:</label>
+          <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
+            <c:forEach var="term" items="${termSummary.terms}">
+              <c:set var="selected" value="" />
+              <c:if test="${term.code == currentTerm.code}">
+                  <c:set var="selected" value="selected=\"selected\"" />
+              </c:if>
+              <option value="${term.code}" ${selected}>${term.displayName}</option>
+            </c:forEach>
+          </select>
+        </form></div>
+    </div>
 
-<script type="text/javascript">
-    up.jQuery(document).ready(function () {
-        var $ = up.jQuery;
-        $("#${n} select").change(function () {
-            $("#${n} form").submit();
-        });
-    });
-</script>
+</div>
