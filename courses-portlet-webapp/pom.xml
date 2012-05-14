@@ -86,6 +86,10 @@
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
         </dependency>
+        <dependency>
+                <groupId>com.googlecode.ehcache-spring-annotations</groupId>
+                <artifactId>ehcache-spring-annotations</artifactId>
+        </dependency>
         
         
         <dependency>
@@ -117,5 +121,7 @@
     <build>
         <finalName>CoursesPortlet</finalName>
     </build>
-
+    <properties>
+        <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
+    </properties>
 </project>

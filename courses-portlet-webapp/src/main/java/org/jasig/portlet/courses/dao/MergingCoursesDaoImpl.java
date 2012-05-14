@@ -19,6 +19,9 @@
 
 package org.jasig.portlet.courses.dao;
 
+import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.KeyGenerator;
+import com.googlecode.ehcache.annotations.Property;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -63,6 +66,10 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
     
 
     @Override
+    @Cacheable(cacheName="TermSummaryCache",
+                keyGenerator = @KeyGenerator(
+                name = "org.jasig.portlet.courses.cachekeygenerators.PortletRequestCacheKeyGenerator")
+               )
     public TermSummary getTermSummary(PortletRequest request) {
         TermSummary summary = null;
         
@@ -88,6 +95,11 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
     }
 
     @Override
+    @Cacheable(cacheName="CourseSummaryCache",
+                keyGenerator = @KeyGenerator(
+                name = "org.jasig.portlet.courses.cachekeygenerators.PortletRequestCacheKeyGenerator"
+                  )
+               )
     public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
         CourseSummary summary = null;
         
