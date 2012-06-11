@@ -24,7 +24,9 @@ import javax.portlet.RenderResponse;
 import javax.portlet.WindowState;
 
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.xml.TermSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.portlet.handler.HandlerInterceptorAdapter;
 
@@ -37,7 +39,10 @@ public class MinimizedStateHandlerInterceptor extends HandlerInterceptorAdapter 
     public boolean preHandleRender(RenderRequest request, RenderResponse response, Object handler) throws Exception {
         if (WindowState.MINIMIZED.equals(request.getWindowState())) {
             
-            CourseSummaryWrapper summary = coursesDao.getSummary(request);
+            final TermSummary termSummary = coursesDao.getTermSummary(request);
+            final Term currentTerm = termSummary.getCurrentTerm();
+            final String code = currentTerm.getCode();
+            CourseSummary summary = coursesDao.getCourseSummary(request, code);
             int newCount = summary.getNewUpdateCount();
             response.setProperty("newItemCount", String.valueOf(newCount));
             

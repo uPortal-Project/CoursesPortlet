@@ -22,13 +22,17 @@ package org.jasig.portlet.courses.mvc.portlet;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
 import org.jasig.portlet.courses.model.xml.Course;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
 import org.jasig.portlet.courses.model.xml.Instructor;
 import org.jasig.portlet.courses.model.xml.Location;
+import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.xml.TermSummary;
 import org.jasig.portlet.courses.mvc.IViewSelector;
 import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,10 +67,27 @@ public class CoursesPortletController {
     }
     
     @RequestMapping
-    public ModelAndView getCourseList(PortletRequest request) {
+    public ModelAndView getCourseList(PortletRequest request, @RequestParam(required=false) String termCode) {
+        final Map<String, Object> model = new HashMap<String, Object>();
         
-        Map<String, Object> model = new HashMap<String, Object>();
-        model.put("term", coursesDao.getSummary(request).getCurrentTerm());
+        final TermSummary termSummary = coursesDao.getTermSummary(request);
+        model.put("termSummary", termSummary);
+
+        //Determine the current term
+        final Term currentTerm;
+        if (termCode == null) {
+            currentTerm = termSummary.getCurrentTerm();
+        }
+        else {
+            currentTerm = termSummary.getTerm(termCode);
+        }
+        
+        //Grab the courseSummary information if a currentTerm is set
+        if (currentTerm != null) {
+            final CourseSummary courseSummary = coursesDao.getCourseSummary(request, currentTerm.getCode());
+            model.put("courseSummary", courseSummary);
+            model.put("currentTerm", currentTerm);
+        }
         
         final boolean isMobile = viewSelector.isMobile(request);
         final String viewName = isMobile ? "courseList-jQM" : "courseList";
@@ -76,22 +97,25 @@ public class CoursesPortletController {
 
     @RequestMapping(params = "action=grades")
     public ModelAndView getGrades(PortletRequest request, @RequestParam(required=false) String termCode) {
+        final Map<String, Object> model = new HashMap<String, Object>();
         
-        // get the course summary for the current user        
-        CourseSummaryWrapper summary = coursesDao.getSummary(request);
-        
-        // add the user's overall GPA, credit count, and a list of terms to the
-        // model
-        Map<String, Object> model = new HashMap<String, Object>();
-        model.put("gpa", summary.getGpa());
-        model.put("credits", summary.getCredits());
-        model.put("terms", summary.getTerms());
+        final TermSummary termSummary = coursesDao.getTermSummary(request);
+        model.put("termSummary", termSummary);
 
-        // add the selected or current term to the model
-        if (termCode == null){
-            model.put("selectedTerm", summary.getCurrentTerm());
-        } else {
-            model.put("selectedTerm", summary.getTerm(termCode));
+        //Determine the current term
+        final Term currentTerm;
+        if (termCode == null) {
+            currentTerm = termSummary.getCurrentTerm();
+        }
+        else {
+            currentTerm = termSummary.getTerm(termCode);
+        }
+        
+        //Grab the courseSummary information if a currentTerm is set
+        if (currentTerm != null) {
+            final CourseSummary courseSummary = coursesDao.getCourseSummary(request, currentTerm.getCode());
+            model.put("courseSummary", courseSummary);
+            model.put("currentTerm", currentTerm);
         }
         
         final boolean isMobile = viewSelector.isMobile(request);
@@ -105,8 +129,10 @@ public class CoursesPortletController {
         Map<String, Object> model = new HashMap<String, Object>();
         
         // TODO: write a better implementation for locating an individual course
-        CourseSummaryWrapper summary = coursesDao.getSummary(request);
-        Course selectedCourse = summary.getCourse(termCode, courseCode);
+        CourseSummary summary = coursesDao.getCourseSummary(request, termCode);
+        model.put("courseSummary", summary);
+        
+        Course selectedCourse = summary.getCourse(courseCode);
         
         Map<String, String> instructorUrls = new HashMap<String, String>();
         for (Instructor instructor : selectedCourse.getInstructors()) {
@@ -126,5 +152,9 @@ public class CoursesPortletController {
         
         return new ModelAndView(viewName, model);
     }
-
+    
+    @RequestMapping
+    public void copyActionParameters(ActionRequest actionRequest, ActionResponse actionResponse) {
+        actionResponse.setRenderParameters(actionRequest.getParameterMap());
+    }
 }

@@ -16,14 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.jasig.portlet.courses.model.xml;
 
-package org.jasig.portlet.courses.model.wrapper;
+import java.util.List;
 
-import org.jasig.portlet.courses.model.xml.CourseUpdate;
-import org.jasig.portlet.courses.model.xml.Course;
-
-public class CourseWrapper extends Course {
-
+/**
+ * Adds base functionality to the {@link Course} object
+ * 
+ * @author Eric Dalquist
+ */
+public abstract class CourseWrapper {
     public int getNewUpdateCount() {
         int newCount = 0;
         for (CourseUpdate update : this.getCourseUpdates()) {
@@ -34,4 +36,5 @@ public class CourseWrapper extends Course {
         return newCount;
     }
     
+    public abstract List<CourseUpdate> getCourseUpdates();
 }

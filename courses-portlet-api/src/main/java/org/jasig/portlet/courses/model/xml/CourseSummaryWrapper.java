@@ -16,22 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.jasig.portlet.courses.model.xml;
 
-package org.jasig.portlet.courses.model.wrapper;
+import java.util.List;
 
-import javax.xml.bind.annotation.XmlRegistry;
 
-@XmlRegistry
-public class ObjectFactoryWrapper extends org.jasig.portlet.courses.model.xml.ObjectFactory {
+/**
+ * Adds base functionality to the {@link CourseSummary} object
+ * 
+ * @author Eric Dalquist
+ */
+public abstract class CourseSummaryWrapper {
+    
+    public int getNewUpdateCount() {
+        int newCount = 0;
+        for (Course course : this.getCourses()) {
+            newCount += course.getNewUpdateCount();
+        }
+        return newCount;
+    }
 
-    @Override
-    public CourseSummaryWrapper createCourseSummary() {
-        return new CourseSummaryWrapper();
+    public Course getCourse(String courseCode) {
+        for (Course course : this.getCourses()) {
+            if (courseCode.equals(course.getCode())) {
+                return course;
+            }
+        }
+
+        return null;
     }
     
-    @Override
-    public CourseWrapper createCourse() {
-        return new CourseWrapper();
-    }
-    
+    public abstract List<Course> getCourses();
 }

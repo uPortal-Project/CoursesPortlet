@@ -20,7 +20,9 @@
 --%>
 
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
-<portlet:renderURL var="courseListUrl"/>
+<portlet:renderURL var="courseListUrl">
+    <portlet:param name="termCode" value="${courseSummary.termCode}"/>
+</portlet:renderURL>
 
 <div class="fl-widget portlet" role="section">
 

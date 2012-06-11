@@ -16,25 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.jasig.portlet.courses.model.xml;
 
-package org.jasig.portlet.courses.model.wrapper;
+import java.math.BigInteger;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
-import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CourseSummary;
-import org.jasig.portlet.courses.model.xml.Term;
 
-public class CourseSummaryWrapper extends CourseSummary {
-
-    public int getNewUpdateCount() {
-        int newCount = 0;
-        for (Term term : this.getTerms()) {
-            for (Course course : term.getCourses()) {
-                CourseWrapper wrappedCourse = (CourseWrapper) course;
-                newCount += wrappedCourse.getNewUpdateCount();
-            }
-        }
-        return newCount;
-    }
+/**
+ * Adds base functionality to the {@link TermSummary} object
+ * 
+ * @author Eric Dalquist
+ */
+public abstract class TermSummaryWrapper {
     
     public Term getTerm(String termCode) {
         
@@ -48,31 +43,33 @@ public class CourseSummaryWrapper extends CourseSummary {
     }
 
     public Term getCurrentTerm() {
+        Term bestDateMatch = null;
+        int bestDist = Integer.MAX_VALUE;
+        final int currentYear = new GregorianCalendar().get(Calendar.YEAR);
         
         for (Term term : getTerms()) {
             if (term.isCurrent()) {
                 return term;
             }
-        }
-
-        return null;
-    }
-
-    public Course getCourse(String termCode, String courseCode) {
-        
-        Term term = getTerm(termCode);
-        
-        if (term != null) {
-            for (Course course : term.getCourses()) {
-                if (courseCode.equals(course.getCode())) {
-                    return course;
+            
+            //If terms have years set determine a fall-back term based on the current year and term years
+            final BigInteger termYear = term.getYear();
+            if (termYear != null) {
+                if (bestDateMatch == null) {
+                    bestDateMatch = term;
+                    bestDist = Math.abs(termYear.intValue() - currentYear);
+                }
+                else {
+                    final int dist = Math.abs(termYear.intValue() - currentYear);
+                    if (dist < bestDist) {
+                        bestDateMatch = term;
+                    }
                 }
             }
         }
 
-        return null;
+        return bestDateMatch;
     }
-
-
     
+    public abstract List<Term> getTerms();
 }

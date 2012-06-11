@@ -24,7 +24,8 @@ import javax.portlet.PortletRequest;
 
 import org.apache.commons.codec.binary.Base64;
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.wrapper.CourseSummaryWrapper;
+import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.TermSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -40,10 +41,15 @@ import org.springframework.web.client.RestTemplate;
  */
 public class HttpClientCoursesDaoImpl implements ICoursesDao {
 
-    private String urlFormat = "http://localhost:8180/jasig-courses-integration/course-summary";
+    private String termUrlFormat = "http://localhost:8180/jasig-courses-integration/term-summary";
+    private String courseUrlFormat = "http://localhost:8180/jasig-courses-integration/course-summary/{term-code}";
     
-    public void setUrlFormat(String urlFormat) {
-        this.urlFormat = urlFormat;
+    public void setTermUrlFormat(String termUrlFormat) {
+        this.termUrlFormat = termUrlFormat;
+    }
+
+    public void setCourseUrlFormat(String courseUrlFormat) {
+        this.courseUrlFormat = courseUrlFormat;
     }
     
     private String usernameKey = "user.login.id";
@@ -66,16 +72,25 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
     }
 
     @Override
-    public CourseSummaryWrapper getSummary(PortletRequest request) {
-        
+    public TermSummary getTermSummary(PortletRequest request) {
         HttpEntity<?> requestEntity = getRequestEntity(request);
 
-        HttpEntity<CourseSummaryWrapper> response = restTemplate.exchange(
-                urlFormat, HttpMethod.GET, requestEntity,
-                CourseSummaryWrapper.class, new Object[]{});
+        HttpEntity<TermSummary> response = restTemplate.exchange(
+                termUrlFormat, HttpMethod.GET, requestEntity,
+                TermSummary.class);
         
-        CourseSummaryWrapper summary = response.getBody();
-        return summary;
+        return response.getBody();
+    }
+
+    @Override
+    public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
+        HttpEntity<?> requestEntity = getRequestEntity(request);
+
+        HttpEntity<CourseSummary> response = restTemplate.exchange(
+                courseUrlFormat, HttpMethod.GET, requestEntity,
+                CourseSummary.class, termCode);
+        
+        return response.getBody();
     }
     
     /**
@@ -84,7 +99,7 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
      * @param request
      * @return
      */
-    protected HttpEntity getRequestEntity(PortletRequest request) {
+    protected HttpEntity<?> getRequestEntity(PortletRequest request) {
         Map<String,String> userInfo = (Map<String,String>) request.getAttribute(PortletRequest.USER_INFO);
         String username = userInfo.get(this.usernameKey);
         String password = userInfo.get(this.passwordKey);
@@ -93,7 +108,7 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
         String authString = username.concat(":").concat(password);
         String encodedAuthString = new Base64().encodeToString(authString.getBytes());
         requestHeaders.set("Authorization", "Basic ".concat(encodedAuthString));
-        HttpEntity<?> requestEntity = new HttpEntity(requestHeaders);
+        HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
         return requestEntity;
     }
 
