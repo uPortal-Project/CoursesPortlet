@@ -95,12 +95,12 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         for (ICoursesDao dao : courseDaos) {
             try {
                 
-                CourseSummary daoSummary = dao.getCourseSummary(request, termCode);
+                final CourseSummary daoSummary = dao.getCourseSummary(request, termCode);
                 
                 if (summary == null) {
                     summary = daoSummary;
-                } else {
-                    mergeCourseSummaries(summary, daoSummary);
+                } else if (daoSummary != null) {
+                    summary = mergeCourseSummaries(summary, daoSummary);
                 }
                 
                 
@@ -119,7 +119,10 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
             // if this term already exists in the summary, merge 
             // information from this DAO into the existing entry
             final Term originalTerm = original.getTerm(t.getCode());
-            if (original.getTerm(t.getCode()) != null) {
+            if (originalTerm != null) {
+                if (t.isCurrent()) {
+                    original.getTerm(t.getCode()).setCurrent(true);
+                }
                 //TODO nothing to merge as of yet
             }
             
@@ -131,7 +134,11 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         }
     }
 
-    protected void mergeCourseSummaries(CourseSummary original, CourseSummary additional) {
+    protected CourseSummary mergeCourseSummaries(CourseSummary original, CourseSummary additional) {
+        final CourseSummary newSummary = new CourseSummary();
+        newSummary.setCredits(original.getCredits());
+        newSummary.setGpa(original.getGpa());
+        newSummary.setTermCode(original.getTermCode());
         
         // overall credit total
         if (additional.getCredits() != null) {
@@ -146,16 +153,25 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         // merge the course lists for the existing entry
         // and new DAO
         for (Course c : additional.getCourses()) {
-            Course course = original.getCourse(c.getCode());
+            final Course course = original.getCourse(c.getCode());
             
             if (course != null) {
-                mergeCourse(course, c);
+                final Course newCourse = mergeCourse(course, c);
+                newSummary.getCourses().add(newCourse);
             }
             
             else {
-                original.getCourses().add(c);
+                newSummary.getCourses().add(c);
             }
         }
+        
+        for (Course c : original.getCourses()) {
+            if (additional.getCourse(c.getCode()) == null) {
+                newSummary.getCourses().add(c);
+            }
+        }
+        
+        return newSummary;
 
     }
     
@@ -166,42 +182,55 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
      * @param original
      * @param additional
      */
-    protected void mergeCourse(Course original, Course additional) {
+    protected Course mergeCourse(Course original, Course additional) {
+        
+        final Course newCourse = new Course();
+        newCourse.setCode(original.getCode());
+        newCourse.setCredits(original.getCredits());
+        newCourse.setGrade(original.getGrade());
+        newCourse.setLocation(original.getLocation());
+        newCourse.setMeetingTimes(original.getMeetingTimes());
+        newCourse.setSchool(original.getSchool());
+        newCourse.setTitle(original.getTitle());
+        newCourse.setUrl(original.getUrl());
+        
         if (additional.getCredits() != null) {
             original.setCredits(additional.getCredits());
         }
         
         if (additional.getGrade() != null) {
-            original.setGrade(additional.getGrade());
+            newCourse.setGrade(additional.getGrade());
         }
         
         if (additional.getLocation() != null) {
-            original.setLocation(additional.getLocation());
+            newCourse.setLocation(additional.getLocation());
         }
         
-        if (additional.getCourseUpdates() != null) {
-            original.getCourseUpdates().addAll(additional.getCourseUpdates());
+        if (additional.getCourseUpdates().size() > 0) {
+            newCourse.getCourseUpdates().addAll(additional.getCourseUpdates());
         }
         
         if (additional.getInstructors() != null) {
-            original.getInstructors().addAll(additional.getInstructors());
+            newCourse.getInstructors().addAll(additional.getInstructors());
         }
         
         if (additional.getSchool() != null) {
-            original.setSchool(additional.getSchool());
+            newCourse.setSchool(additional.getSchool());
         }
         
         if (additional.getMeetingTimes() != null) {
-            original.setMeetingTimes(additional.getMeetingTimes());
+            newCourse.setMeetingTimes(additional.getMeetingTimes());
         }
         
         if (additional.getTitle() != null) {
-            original.setTitle(additional.getTitle());
+            newCourse.setTitle(additional.getTitle());
         }
         
         if (additional.getUrl() != null) {
-            original.setUrl(additional.getUrl());
+            newCourse.setUrl(additional.getUrl());
         }
+        
+        return newCourse;        
     }
     
 }
