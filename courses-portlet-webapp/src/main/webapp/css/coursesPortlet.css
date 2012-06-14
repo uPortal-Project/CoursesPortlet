@@ -1,0 +1,238 @@
+.CoursesPortlet .portlet.plt-courses.view-courses .title {
+	color: red;
+}
+/* ---------------------------------------------------- */
+.CoursesPortlet .top_box {
+	font-weight:bold;
+	padding-bottom: 40px;
+	min-width: 0px;
+	max-width: 600px;
+	height: auto;
+	background-color: inherit;
+	/*background-color: orange;*/
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: #e8e4d8;
+	margin-bottom: 20px;
+	display: block;
+}
+/* ---------------------------------------------------- */
+.CoursesPortlet .header_style {
+	/*height: 60px;*/
+	height: auto;
+	width: 200px;
+	background-color: inherit;
+	/*background-color: green;*/
+}
+/* ---------------------------------------------------- */
+.term_selection {
+	width: 180px;
+	/*height: 60px;*/
+	height: auto;
+	/*padding-top: 15px;*/
+	/*padding-top: 18px;*/
+	/*padding-left: 200px;*/
+	/*float: right;*/
+	/*background-color: red;*/
+}
+/* ---------------------------------------------------- */
+.CoursesPortlet .fg_outer_width { /*width: 300px;*/
+	/*min-width: 100px;
+	max-width: 800px;
+	height: auto;
+	background-color: transparent;*/
+	background-color: #00FFFF;
+	/*background-color: orange;*/
+	width: 100%;
+}
+
+.CoursesPortlet .school_outer_width {
+	font-weight:bold;
+	width: 170px;
+	position: absolute;
+	background-color: transparent;
+	/*background-color: cyan;*/
+}
+
+.CoursesPortlet .fg_school {
+	width: auto;
+	background-color: transparent;
+	/*background-color: pink;*/
+	clear: left;
+	float: left;
+}
+
+.CoursesPortlet .fg_course_code {
+	width: 50px;
+	padding-left: 1.25em;
+	background-color: transparent;
+	/*background-color: blue;*/
+	float: left;
+}
+
+.CoursesPortlet .fg_credits {
+	width: 70px;
+	position: relative;
+	left: 170px;
+	background-color: transparent;
+	/*background-color: yellow;*/
+	float: left;
+	left: 170px;
+}
+
+.CoursesPortlet .fg_grade {
+	position: relative;
+	left: 170px;
+	width: 40px;
+	background-color: transparent;
+	/*background-color: green;*/
+	float: left;
+}
+
+.CoursesPortlet .fg_course_title {
+	width: 300px;
+	background-color: transparent;
+	/*background-color: gray;*/
+	clear: left;;
+}
+
+.CoursesPortlet .footer_top_padding { /*padding-top: 15px;*/
+	margin-top: 2%;
+	padding-top: 3%;
+}
+
+.CoursesPortlet .footer_bottom_padding { /*padding-bottom: 35px;*/
+	padding-bottom: 5%;
+}
+
+.CoursesPortlet .display_outer_box {
+	display: box;
+}
+
+.CoursesPortlet .box_space {
+	min-width: 180px;
+	max-width: 400px;
+	height: auto;
+}
+
+.CoursesPortlet .box_inner {
+	min-width: 175px;
+	max-width: 175px;
+	height: auto;
+}
+
+.CoursesPortlet .display_block {
+	display: block;
+}
+/* ---------------------------------------------------- */
+.CoursesPortlet .box_credits_gpa {
+	padding-top: 1%;
+	min-width: 0px;
+	max-width: 600px;
+	background-color: inherit;
+	/*background-color: orange;*/
+	border-top-style: solid;
+	border-top-width: thin;
+	border-top-color: #e8e4d8;
+	display: block;
+}
+/* ---------------------------------------------------- */
+.CoursesPortlet .box_credits {
+	width: 200px;
+	height: auto;
+	/*background-color: pink;*/
+	margin-bottom: 4%;
+}
+
+.CoursesPortlet .box_credits_text {
+	width: 120px;
+	height: auto;
+	/*background-color: #0099FF;*/
+}
+
+.CoursesPortlet .box_credits_numbers {
+	width: 60px;
+	height: auto;
+	/*background-color: #0066FF;*/
+}
+/* ---------------------------------------------------- */
+.CoursesPortlet .box_gpa {
+	width: 180px;
+	height: auto;
+	/*background-color: red;*/
+	margin-bottom: 4%;
+}
+
+.CoursesPortlet .box_gpa_text {
+	width: 120px;
+	height: auto;
+	/*background-color: #00CC99;*/
+}
+
+.CoursesPortlet .box_gpa_numbers {
+	width: 60px;
+	height: auto;
+	/*background-color: #009999;*/
+}
+/* ---------------------------------------------------- */
+.CoursesPortlet .padding {
+	padding: 8px;
+}
+
+.CoursesPortlet .padding_left {
+	padding-left: 16px;
+}
+
+.CoursesPortlet .padding_right {
+	padding-right: 8px;
+}
+
+.CoursesPortlet .padding_right_cumulative {
+	padding-right: 8px;
+}
+
+.CoursesPortlet .padding_right_term {
+	padding-right: 16px;
+}
+
+.CoursesPortlet .clear_left {
+	clear: left;
+}
+
+.CoursesPortlet .clear_right {
+	clear: right;
+}
+
+.CoursesPortlet .left {
+	background-color: inherit;
+	float: left;
+}
+
+.CoursesPortlet .right {
+	background-color: inherit;
+	float: right;
+}
+
+.CoursesPortlet .background_color_term_gpa {
+	background-color: #F7F5E8;
+}
+
+.CoursesPortlet .border_term_gpa_box {
+	border-style: none;
+}
+
+.CoursesPortlet .background_color_term_credits {
+	background: inherit;
+}
+
+.CoursesPortlet .background_color_cum_credits {
+	background-color: inherit;
+}
+
+.CoursesPortlet .background_color_credits_gpa {
+	background: inherit;
+}
+
+.CoursesPortlet .background_color_cum_gpa {
+	background-color: inherit;
+}

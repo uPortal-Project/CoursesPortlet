@@ -25,44 +25,18 @@
     
     <term-summary>
         <term>
-            <displayName>Spring 2012</displayName>
-            <code>Spring 2012</code>
+            <displayName>Winter 2012</displayName>
+            <code>2012w</code>
         </term>
     
         <term current="true">
-            <displayName>Summer 2012</displayName>
-            <code>Summer 2012</code>
+            <displayName>Spring 2012</displayName>
+            <code>2012s</code>
         </term>    
     </term-summary>
-
-    <course-summary>
-        <term_code>Spring 2012</term_code>
-        <gpa>3.7</gpa>
-        <credits>20</credits>
-    
-        <course>
-            <title>Graphic Design History</title>
-            <code>GRA 111</code>
-            <school>School of Design</school>
-            <location>
-                <displayName>WLH 205</displayName>
-                <identifier>WLH</identifier>
-            </location>
-            <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
-            <url>http://courses.university.edu/dsc101/s11</url>
-            <instructor>
-                <abbreviation>Faculty</abbreviation>
-                <fullName>Joe Faculty, Phd</fullName>
-                <identifier>faculty</identifier>
-            </instructor>
-            <grade>A</grade>
-            <credits>4</credits>
-        </course>
-
-    </course-summary>
     
     <course-summary>
-        <term_code>Summer 2012</term_code>
+        <term_code>2012s</term_code>
         <gpa>3.25</gpa>
         <credits>40</credits>
     

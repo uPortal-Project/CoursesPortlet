@@ -10,7 +10,7 @@
     <groupId>org.jasig.portlet.courses</groupId>
     <artifactId>courses-portlet-webapp</artifactId>
     <packaging>war</packaging>
-    <name>CoursePortlet</name>
+    <name>CoursePortlet - Webapp</name>
 
     <dependencies>
         <dependency>
@@ -86,6 +86,15 @@
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jasig.resourceserver</groupId>
+            <artifactId>resource-server-utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.resourceserver</groupId>
+            <artifactId>resource-server-content</artifactId>
+            <type>war</type>
+        </dependency>
         
         
         <dependency>
@@ -96,6 +105,12 @@
         <dependency>
             <groupId>javax.portlet</groupId>
             <artifactId>portlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.portals.pluto</groupId>
+            <artifactId>pluto-taglib</artifactId>
+            <version>2.1.0-M2</version>
             <scope>provided</scope>
         </dependency>
         
@@ -116,6 +131,56 @@
 
     <build>
         <finalName>CoursesPortlet</finalName>
+        <plugins>
+          <plugin>
+              <groupId>org.jasig.resourceserver</groupId>
+              <artifactId>resource-server-plugin</artifactId>
+              <version>${resource-server.version}</version>
+              <configuration>
+              </configuration>
+              <executions>
+                  <execution>
+                      <id>aggregate-resources</id>
+                      <phase>prepare-package</phase>
+                      <goals>
+                          <goal>batch-aggregate</goal>
+                      </goals>
+                      <inherited>false</inherited>
+                      <configuration>
+                          <displayJsWarnings>false</displayJsWarnings>
+                          <includes>
+                              <include>resources.xml</include>
+                          </includes>
+                          <sharedJavaScriptDirectory>js/</sharedJavaScriptDirectory>
+                          <useGeneratedSources>true</useGeneratedSources>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+              <attachClasses>true</attachClasses>
+              <archive>
+                <index>true</index>
+                <manifest>
+                  <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                </manifest>
+              </archive>
+              <overlays>
+                  <overlay>
+                      <groupId>org.jasig.resourceserver</groupId>
+                      <artifactId>resource-server-content</artifactId>
+                      <includes>
+                          <include>rs/jquery/1.6.1/</include>
+                          <include>rs/jqueryui/1.8.13/</include>
+                      </includes>
+                  </overlay>
+              </overlays>
+            </configuration>
+          </plugin>
+        </plugins>
     </build>
 
 </project>

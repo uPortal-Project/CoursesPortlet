@@ -19,7 +19,7 @@
 
 --%>
 
-<jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
+<jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
 <portlet:renderURL var="courseListUrl">
     <portlet:param name="termCode" value="${courseSummary.termCode}"/>
 </portlet:renderURL>

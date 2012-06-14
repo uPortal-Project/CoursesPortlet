@@ -35,6 +35,11 @@
         p:basenames="messages" p:useCodeAsDefaultMessage="true"/>
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="requestFactory">
+            <bean class="org.springframework.http.client.CommonsClientHttpRequestFactory">
+                <property name="httpClient" ref="httpClient" />
+            </bean>
+        </property>
         <property name="messageConverters">
             <util:list>
                 <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
@@ -63,4 +68,36 @@
         p:order="10" p:cache="true"
         p:viewClass="org.springframework.web.servlet.view.JstlView"
         p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+        
+  
+    <!-- 
+     | XML view resolver for JSON view
+     +-->
+    <bean id="xmlViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="order" value="1"/>
+        <property name="location" value="/WEB-INF/context/views/mvcViews.xml"/>
+    </bean>
+        
+    <bean id="defaultPortletExceptionHandlerTemplate" class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">
+        <property name="warnLogCategory" value="org.jasig.portlet.courses.UnhandledException" />
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.security.AccessDeniedException">noEmplId</prop>
+            </props>
+        </property>
+        <property name="defaultErrorView" value="gradesUnavailable"/>
+    </bean>
+
+    <bean id="httpConnectionManager" class="edu.wisc.ws.util.CleanShutdownMultiThreadedHttpConnectionManager" destroy-method="shutdown">
+        <property name="params">
+            <bean class="org.apache.commons.httpclient.params.HttpConnectionManagerParams">
+                <property name="defaultMaxConnectionsPerHost" value="200" />
+                <property name="maxTotalConnections" value="1000"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="httpClient" class="org.apache.commons.httpclient.HttpClient">
+        <constructor-arg ref="httpConnectionManager" />
+    </bean>
 </beans>

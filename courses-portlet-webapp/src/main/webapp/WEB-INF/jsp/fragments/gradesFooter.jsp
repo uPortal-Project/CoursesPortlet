@@ -1,3 +1,4 @@
+
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -19,18 +20,22 @@
 
 --%>
 
-<%@ page contentType="text/html" isELIgnored="false" %>
+<%@ include file="/WEB-INF/jsp/include.jsp"%>
+<div class="box_credits_gpa">
+	<div class="left box_credits">
+		<div class="left box_credits_text">Term Credits</div>
+		<div class="left box_credits_numbers">${ courseSummary.credits }</div>
 
-<%@ taglib prefix="c"       uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt"     uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn"      uri="http://java.sun.com/jsp/jstl/functions" %>
+		<div class="clear_left left box_credits_text">Cum. Credits</div>
+		<div class="left box_credits_numbers">${
+			courseSummary.overallCredits }</div>
+	</div>
 
-<%@ taglib prefix="portlet" uri="http://java.sun.com/portlet_2_0" %>
-<%@ taglib prefix="spring"  uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form"    uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="rs"      uri="http://www.jasig.org/resource-server" %>
+	<div class="left box_gpa">
+		<div class="left box_gpa_text ">Term GPA</div>
+		<div class="left box_gpa_numbers">${ courseSummary.gpa }</div>
 
-<portlet:defineObjects/>
-<spring:htmlEscape defaultHtmlEscape="true" />
-
-<c:set var="n" scope="request"><portlet:namespace/></c:set>
+		<div class="clear_left left box_gpa_text">Cum. GPA</div>
+		<div class="left box_gpa_numbers">${ courseSummary.overallGpa }</div>
+	</div>
+</div>

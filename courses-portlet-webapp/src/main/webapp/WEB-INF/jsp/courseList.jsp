@@ -19,7 +19,7 @@
 
 --%>
 
-<jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
+<jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
 
 <div class="fl-widget portlet" role="section">
   <!-- Portlet Titlebar -->
@@ -34,8 +34,8 @@
           </a></li>
           <portlet:renderURL var="gradesUrl">
             <portlet:param name="action" value="grades"/>
-            <c:if test="${not empty currentTerm.code}">
-              <portlet:param name="termCode" value="${currentTerm.code}"/>
+            <c:if test="${not empty selectedTerm.code}">
+              <portlet:param name="termCode" value="${selectedTerm.code}"/>
             </c:if>
           </portlet:renderURL>
           <li><a class="button" href="${ gradesUrl }">
@@ -47,7 +47,7 @@
             <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
               <c:forEach var="term" items="${termSummary.terms}">
                 <c:set var="selected" value="" />
-                <c:if test="${term.code == currentTerm.code}">
+                <c:if test="${term.code == selectedTerm.code}">
                     <c:set var="selected" value="selected=\"selected\"" />
                 </c:if>
                 <option value="${term.code}" ${selected}>${term.displayName}</option>

@@ -1,3 +1,4 @@
+
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -19,71 +20,72 @@
 
 --%>
 
-<jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
-<c:set var="n"><portlet:namespace/></c:set>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
 
-<div class="fl-widget portlet" role="section">
-  <!-- Portlet Titlebar -->
-  <div class="fl-widget-titlebar titlebar portlet-titlebar" role="sectionhead">
-    <h2 class="title" role="heading">
-        <spring:message code="grades"/>
-    </h2>
-    <div class="toolbar">
-        <ul>
-          <portlet:renderURL var="scheduleUrl">
-            <c:if test="${not empty currentTerm.code}">
-              <portlet:param name="termCode" value="${currentTerm.code}"/>
-            </c:if>
-          </portlet:renderURL>
-          <li><a class="button" href="${scheduleUrl}">
-            <spring:message code="schedule"/>
-          </a></li>
-          <li><a class="button" href="#">
-            <spring:message code="grades"/>
-          </a></li>
-          <portlet:actionURL var="selectTermUrl">
-            <portlet:param name="action" value="grades" />
-          </portlet:actionURL>
-          <li><form action="${selectTermUrl}" method="post">
-            <label for="${n}_termPicker"><spring:message code="term"/>:</label>
-            <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
-              <c:forEach var="term" items="${termSummary.terms}">
-                <c:set var="selected" value="" />
-                <c:if test="${term.code == currentTerm.code}">
-                    <c:set var="selected" value="selected=\"selected\"" />
-                </c:if>
-                <option value="${term.code}" ${selected}>${term.displayName}</option>
-              </c:forEach>
-            </select>
-          </form></li>
-        </ul>
-    </div>
-  </div> <!-- end: portlet-titlebar -->
-  
-  <!-- Portlet Content -->
-  <div class="fl-widget-content content portlet-content" role="main">
-        <ul data-role="listview" class="course-list">
-            <c:if test="${ fn:length(courseSummary.courses) == 0 }">
-                <li><spring:message code="no.courses.message"/></li>
-            </c:if>
-            <c:forEach items="${ courseSummary.courses }" var="course">
-                <portlet:renderURL var="courseUrl"><portlet:param name="action" value="showCourse"/><portlet:param name="courseCode" value="${ course.code }"/></portlet:renderURL>
-                <li>
-                    <h3 class="title">${ course.title }</h3>
-                    <p>
-                        <span class="catalog">${ course.code }</span>
-                    </p>
-                    <p>${ course.credits } cr</p>
-                    <p>${ course.grade }</p>
-                </li>
-            </c:forEach>
-            <li>
-                <p>Term credits ${ courseSummary.credits } credits</p>
-                <p>Term GPA ${ courseSummary.gpa }</p>
-                 
-                <p>Cum. credits ${ credits } credits</p>
-                <p>Cum. GPA ${ gpa }</p>
-            </li>
-        </ul>            
-    </div>
+<div id="${n}" class="CoursesPortlet GradesDesktop">
+	<%-- header --%>
+	<div data-role="header" class="titlebar portlet-titlebar top_box">
+		<div class="left header_style">
+			<spring:message code="grades" />
+		</div>
+
+		<div class="left term_selection">
+			<form method="post">
+				<div>
+					<span id="${n}_loading" style="display: none"><img
+						src="${renderRequest.contextPath}/img/ajax-loader.gif"
+						alt="Loading..." /></span> <select id="${n}_termPicker" name="termCode">
+						<c:forEach var="term" items="${termSummary.terms}">
+							<c:set var="selected" value="" />
+							<c:if test="${term.code == selectedTerm.code}">
+								<c:set var="selected" value="selected=\"selected\"" />
+							</c:if>
+							<option value="${term.code}" ${selected}>${term.displayName}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div id="${n}_error" style="display: none">
+					<span><img src="${renderRequest.contextPath}/img/error.png"
+						alt="Error" /></span> <span class="error_message"></span>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<%-- grades --%>
+	<div class="portlet ptl-courses view-courses">
+		<div class="portlet-content" data-role="content">
+			<div id="${n}_grades-course-list" data-role="listview"
+				class="course-list">
+				<%@ include file="/WEB-INF/jsp/fragments/gradesCourseList.jsp"%>
+			</div>
+		</div>
+	</div>
+
+	<%-- footer --%>
+	<div data-theme="a" data-role="footer" data-position="fixed">
+		<div id="${n}_grades-footer">
+			<%@ include file="/WEB-INF/jsp/fragments/gradesFooter.jsp"%>
+		</div>
+	</div>
 </div>
+
+<portlet:resourceURL var="gradesCourseListUrl" id="gradesUpdate" />
+<spring:message var="errorMessage" code="grades.unavailable"
+	htmlEscape="false" javaScriptEscape="false" />
+<script type="text/javascript" language="javascript">
+	<rs:compressJs>(function($) {
+		$(function() {
+			coursesPortlet.updateGradesTermHandler({
+				termSelector : '#${n}_termPicker',
+				coursesContentSelector : '#${n}_grades-course-list',
+				footerContentSelector : '#${n}_grades-footer',
+				loadingSelector : '#${n}_loading',
+				errorSelector : '#${n}_error',
+				errorMessage : '${errorMessage}',
+				dataUrl : '${gradesCourseListUrl}'
+			});
+		});
+	})(coursesPortlet.jQuery);
+	</rs:compressJs>
+</script>

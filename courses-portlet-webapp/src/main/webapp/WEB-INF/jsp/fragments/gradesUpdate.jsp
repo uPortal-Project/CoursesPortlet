@@ -1,3 +1,4 @@
+
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -19,18 +20,16 @@
 
 --%>
 
-<%@ page contentType="text/html" isELIgnored="false" %>
+<%@ include file="/WEB-INF/jsp/include.jsp" %>
 
-<%@ taglib prefix="c"       uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt"     uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn"      uri="http://java.sun.com/jsp/jstl/functions" %>
+<div>
+	<%-- grades --%>
+    <div id="grades-course-list" data-role="listview" class="course-list">
+        <%@ include file="/WEB-INF/jsp/fragments/gradesCourseList.jsp" %>
+    </div>
 
-<%@ taglib prefix="portlet" uri="http://java.sun.com/portlet_2_0" %>
-<%@ taglib prefix="spring"  uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form"    uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="rs"      uri="http://www.jasig.org/resource-server" %>
-
-<portlet:defineObjects/>
-<spring:htmlEscape defaultHtmlEscape="true" />
-
-<c:set var="n" scope="request"><portlet:namespace/></c:set>
+	<%-- footer --%>
+	<div id="grades-footer" class="footer_top_padding footer_bottom_padding">
+        <%@ include file="/WEB-INF/jsp/fragments/gradesFooter.jsp" %>
+	</div>
+</div>

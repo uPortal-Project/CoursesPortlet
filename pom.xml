@@ -24,6 +24,7 @@
         <spring.version>3.1.1.RELEASE</spring.version>
         <jackson.version>1.9.7</jackson.version>
         <jaxb2basics.version>0.6.3</jaxb2basics.version>
+        <resource-server.version>1.0.25</resource-server.version>
         
         <project.build.sourceVersion>1.6</project.build.sourceVersion>
         <project.build.targetVersion>1.6</project.build.targetVersion>
@@ -147,6 +148,17 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jasig.resourceserver</groupId>
+                <artifactId>resource-server-utils</artifactId>
+                <version>${resource-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jasig.resourceserver</groupId>
+                <artifactId>resource-server-content</artifactId>
+                <version>${resource-server.version}</version>
+                <type>war</type>
             </dependency>
         </dependencies>
     </dependencyManagement>

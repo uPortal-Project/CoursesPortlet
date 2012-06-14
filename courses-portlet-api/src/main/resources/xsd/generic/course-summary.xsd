@@ -55,6 +55,8 @@
             <xs:element name="term_code" type="xs:string"/>
             <xs:element name="gpa" type="xs:double" minOccurs="0"/>
             <xs:element name="credits" type="xs:double" minOccurs="0"/>
+            <xs:element name="overallGpa" type="xs:double" minOccurs="0"/>
+            <xs:element name="overallCredits" type="xs:double" minOccurs="0"/>
             <xs:element name="course" type="course" minOccurs="0" maxOccurs="unbounded">
                 <!-- Enforce course-summary/course having unique code within the term -->
                 <xs:unique name="unique_course-summary_course_by_term-code">
@@ -70,9 +72,12 @@
             <xs:element name="displayName" type="xs:string"/>
             <xs:element name="code" type="xs:string" minOccurs="0"/>
             <xs:element name="year" type="xs:integer" minOccurs="0"/>
+            <xs:element name="start" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="end" type="xs:dateTime" minOccurs="0"/>
             <xs:element name="termType" type="xs:string" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="current" type="xs:boolean" default="false"/>
+        <xs:attribute name="registered" type="xs:boolean" default="true"/>
     </xs:complexType>
 
     <xs:complexType name="course">
@@ -80,6 +85,7 @@
             <xs:element name="title" type="xs:string"/>
             <xs:element name="code" type="xs:string"/>
             <xs:element name="school" type="xs:string" minOccurs="0"/>
+            <xs:element name="subject" type="xs:string" minOccurs="0"/>
             <xs:element name="location" type="location" minOccurs="0"/>
             <xs:element name="meetingTimes" type="xs:string" minOccurs="0"/>
             <xs:element name="url" type="xs:string"/>
