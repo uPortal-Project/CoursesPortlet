@@ -88,7 +88,7 @@
         <property name="defaultErrorView" value="gradesUnavailable"/>
     </bean>
 
-    <bean id="httpConnectionManager" class="edu.wisc.ws.util.CleanShutdownMultiThreadedHttpConnectionManager" destroy-method="shutdown">
+    <bean id="httpConnectionManager" class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager" destroy-method="shutdown">
         <property name="params">
             <bean class="org.apache.commons.httpclient.params.HttpConnectionManagerParams">
                 <property name="defaultMaxConnectionsPerHost" value="200" />
