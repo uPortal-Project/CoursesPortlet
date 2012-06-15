@@ -29,9 +29,9 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.xml.CourseSummary;
-import org.jasig.portlet.courses.model.xml.CourseTermSummary;
-import org.jasig.portlet.courses.model.xml.TermSummary;
+import org.jasig.portlet.courses.model.xml.CoursesByTerm;
+import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.TermsAndCourses;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 
@@ -39,7 +39,7 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
 
     protected final Log log = LogFactory.getLog(getClass());
     
-    private CourseTermSummary summary;
+    private TermsAndCourses summary;
     
     private Resource mockData;
     
@@ -50,23 +50,23 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(CourseTermSummary.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(TermsAndCourses.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            this.summary = (CourseTermSummary) unmarshaller.unmarshal(mockData.getInputStream());
+            this.summary = (TermsAndCourses) unmarshaller.unmarshal(mockData.getInputStream());
         } catch (IOException e) {
             log.error("Failed to read mock data", e);
         } catch (JAXBException e) {
             log.error("Failed to unmarshall mock data", e);
         }
     }
-
+    
     @Override
-    public TermSummary getTermSummary(PortletRequest request) {
-        return this.summary.getTermSummary();
+    public TermList getTermList(PortletRequest request) {
+        return this.summary.getTermList();
     }
 
     @Override
-    public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
-        return this.summary.getCourseSummary(termCode);
+    public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode) {
+        return this.summary.getCoursesByTerm(termCode);
     }
 }

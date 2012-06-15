@@ -27,9 +27,9 @@ import javax.portlet.PortletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.Term;
-import org.jasig.portlet.courses.model.xml.TermSummary;
+import org.jasig.portlet.courses.model.xml.TermList;
 
 /**
  * MergingCoursesDaoImpl merges together information from multiple data sources.
@@ -63,14 +63,14 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
     
 
     @Override
-    public TermSummary getTermSummary(PortletRequest request) {
-        TermSummary summary = null;
+    public TermList getTermList(PortletRequest request) {
+        TermList summary = null;
         
         // iterate over the list of course DAOs
         for (ICoursesDao dao : courseDaos) {
             try {
                 
-                TermSummary daoSummary = dao.getTermSummary(request);
+                TermList daoSummary = dao.getTermList(request);
                 
                 if (summary == null) {
                     summary = daoSummary;
@@ -88,14 +88,14 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
     }
 
     @Override
-    public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
-        CourseSummary summary = null;
+    public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode) {
+        CoursesByTerm summary = null;
         
         // iterate over the list of course DAOs
         for (ICoursesDao dao : courseDaos) {
             try {
                 
-                CourseSummary daoSummary = dao.getCourseSummary(request, termCode);
+                CoursesByTerm daoSummary = dao.getCoursesByTerm(request, termCode);
                 
                 if (summary == null) {
                     summary = daoSummary;
@@ -112,7 +112,7 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         return summary;
     }
 
-    protected void mergeTermSummaries(TermSummary original, TermSummary additional) {
+    protected void mergeTermSummaries(TermList original, TermList additional) {
         final List<Term> originalTerms = original.getTerms();
         
         for (Term t : additional.getTerms()) {
@@ -131,7 +131,7 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         }
     }
 
-    protected void mergeCourseSummaries(CourseSummary original, CourseSummary additional) {
+    protected void mergeCourseSummaries(CoursesByTerm original, CoursesByTerm additional) {
         
         // overall credit total
         if (additional.getCredits() != null) {

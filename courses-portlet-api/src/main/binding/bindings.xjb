@@ -44,17 +44,17 @@
             <jaxb:class/>
             <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseWrapper</inheritance:extends>
         </jaxb:bindings>
-        <jaxb:bindings node="//xs:complexType[@name='course-summary']">
+        <jaxb:bindings node="//xs:complexType[@name='courses-by-term']">
             <jaxb:class/>
-            <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseSummaryWrapper</inheritance:extends>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.CoursesByTermWrapper</inheritance:extends>
         </jaxb:bindings>
-        <jaxb:bindings node="//xs:complexType[@name='term-summary']">
+        <jaxb:bindings node="//xs:complexType[@name='term-list']">
             <jaxb:class/>
-            <inheritance:extends>org.jasig.portlet.courses.model.xml.TermSummaryWrapper</inheritance:extends>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.TermListWrapper</inheritance:extends>
         </jaxb:bindings>
-        <jaxb:bindings node="//xs:element[@name='course-term-summary']">
+        <jaxb:bindings node="//xs:element[@name='terms-and-courses']">
             <jaxb:class/>
-            <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseTermSummaryWrapper</inheritance:extends>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.TermsAndCoursesWrapper</inheritance:extends>
         </jaxb:bindings>
         <jaxb:schemaBindings>
             <jaxb:package name="org.jasig.portlet.courses.model.xml" />

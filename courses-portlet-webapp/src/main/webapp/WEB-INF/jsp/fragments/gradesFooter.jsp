@@ -21,21 +21,27 @@
 --%>
 
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
+<%--
+    Model Attributes:
+        termList        - TermList
+        coursesByTerm   - CoursesByTerm
+        selectedTerm    - Term
+ --%>
 <div class="box_credits_gpa">
 	<div class="left box_credits">
 		<div class="left box_credits_text">Term Credits</div>
-		<div class="left box_credits_numbers">${ courseSummary.credits }</div>
+		<div class="left box_credits_numbers">${ coursesByTerm.credits }</div>
 
 		<div class="clear_left left box_credits_text">Cum. Credits</div>
 		<div class="left box_credits_numbers">${
-			courseSummary.overallCredits }</div>
+			coursesByTerm.overallCredits }</div>
 	</div>
 
 	<div class="left box_gpa">
 		<div class="left box_gpa_text ">Term GPA</div>
-		<div class="left box_gpa_numbers">${ courseSummary.gpa }</div>
+		<div class="left box_gpa_numbers">${ coursesByTerm.gpa }</div>
 
 		<div class="clear_left left box_gpa_text">Cum. GPA</div>
-		<div class="left box_gpa_numbers">${ courseSummary.overallGpa }</div>
+		<div class="left box_gpa_numbers">${ coursesByTerm.overallGpa }</div>
 	</div>
 </div>

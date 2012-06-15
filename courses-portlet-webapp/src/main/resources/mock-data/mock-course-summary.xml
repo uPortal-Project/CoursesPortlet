@@ -18,12 +18,12 @@
     under the License.
 
 -->
-<course-term-summary
-    xmlns="https://source.jasig.org/schemas/portlet/courses/course-summary"
+<terms-and-courses
+    xmlns="https://source.jasig.org/schemas/portlet/courses/courses-by-term"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-summary ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-summary.xsd">
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/courses-by-term ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-summary.xsd">
     
-    <term-summary>
+    <term-list>
         <term>
             <displayName>Winter 2012</displayName>
             <code>2012w</code>
@@ -33,9 +33,9 @@
             <displayName>Spring 2012</displayName>
             <code>2012s</code>
         </term>    
-    </term-summary>
+    </term-list>
     
-    <course-summary>
+    <courses-by-term>
         <term_code>2012s</term_code>
         <gpa>3.25</gpa>
         <credits>40</credits>
@@ -149,6 +149,6 @@
             <credits>4</credits>
         </course>
 
-    </course-summary>
+    </courses-by-term>
 
-</course-term-summary>
+</terms-and-courses>

@@ -1,3 +1,4 @@
+
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -19,9 +20,14 @@
 
 --%>
 
-<jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
-
-<div class="fl-widget portlet" role="section">
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
+<%--
+    Model Attributes:
+        termList        - TermList
+        coursesByTerm   - CoursesByTerm
+        selectedTerm    - Term
+ --%>
+<div class="fl-widget portlet CoursesPortlet" role="section">
   <!-- Portlet Titlebar -->
   <div class="fl-widget-titlebar titlebar portlet-titlebar" role="sectionhead">
     <h2 class="title" role="heading">
@@ -45,7 +51,7 @@
           <li><form action="${selectTermUrl}" method="post">
             <label for="${n}_termPicker"><spring:message code="term"/>:</label>
             <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
-              <c:forEach var="term" items="${termSummary.terms}">
+              <c:forEach var="term" items="${termList.terms}">
                 <c:set var="selected" value="" />
                 <c:if test="${term.code == selectedTerm.code}">
                     <c:set var="selected" value="selected=\"selected\"" />
@@ -62,14 +68,14 @@
   <div class="fl-widget-content content portlet-content" role="main">
         
         <c:choose>
-            <c:when test="${ fn:length(courseSummary.courses) == 0 }">
+            <c:when test="${ fn:length(coursesByTerm.courses) == 0 }">
                 <p><spring:message code="no.courses.message"/></p>
             </c:when>
             <c:otherwise>
-                <c:forEach items="${ courseSummary.courses }" var="course">
+                <c:forEach items="${ coursesByTerm.courses }" var="course">
                     <portlet:renderURL var="courseUrl">
                         <portlet:param name="action" value="showCourse"/>
-                        <portlet:param name="termCode" value="${ courseSummary.termCode }"/>
+                        <portlet:param name="termCode" value="${ coursesByTerm.termCode }"/>
                         <portlet:param name="courseCode" value="${ course.code }"/>
                     </portlet:renderURL>
                     <h3>

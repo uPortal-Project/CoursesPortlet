@@ -19,38 +19,38 @@
 
 -->
 
-<xs:schema xmlns="https://source.jasig.org/schemas/portlet/courses/course-summary"
-    targetNamespace="https://source.jasig.org/schemas/portlet/courses/course-summary"
+<xs:schema xmlns="https://source.jasig.org/schemas/portlet/courses/courses-by-term"
+    targetNamespace="https://source.jasig.org/schemas/portlet/courses/courses-by-term"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     
-    <xs:element name="course-term-summary">
+    <xs:element name="terms-and-courses">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="term-summary" type="term-summary">
+                <xs:element name="term-list" type="term-list">
                     <!-- Enforce terms having unique codes -->
                     <xs:unique name="unique_term_by_code">
                         <xs:selector xpath="term"/>
                         <xs:field xpath="code"/>
                     </xs:unique>
                 </xs:element>
-                <xs:element name="course-summary" type="course-summary" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="courses-by-term" type="courses-by-term" minOccurs="0" maxOccurs="unbounded" />
             </xs:sequence>
         </xs:complexType>
-        <!-- Enforce course-summary having unique term_codes -->
-        <xs:unique name="unique_course-summary_by_term-code">
-            <xs:selector xpath="*/course-summary"/>
+        <!-- Enforce courses-by-term having unique term_codes -->
+        <xs:unique name="unique_courses-by-term_by_term-code">
+            <xs:selector xpath="*/courses-by-term"/>
             <xs:field xpath="term_code"/>
         </xs:unique>
     </xs:element>
     
-    <xs:complexType name="term-summary">
+    <xs:complexType name="term-list">
         <xs:sequence>
             <xs:element name="term" type="term" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     
-    <xs:complexType name="course-summary">
+    <xs:complexType name="courses-by-term">
         <xs:sequence>
             <xs:element name="term_code" type="xs:string"/>
             <xs:element name="gpa" type="xs:double" minOccurs="0"/>
@@ -58,8 +58,8 @@
             <xs:element name="overallGpa" type="xs:double" minOccurs="0"/>
             <xs:element name="overallCredits" type="xs:double" minOccurs="0"/>
             <xs:element name="course" type="course" minOccurs="0" maxOccurs="unbounded">
-                <!-- Enforce course-summary/course having unique code within the term -->
-                <xs:unique name="unique_course-summary_course_by_term-code">
+                <!-- Enforce courses-by-term/course having unique code within the term -->
+                <xs:unique name="unique_courses-by-term_course_by_term-code">
                     <xs:selector xpath="."/>
                     <xs:field xpath="code"/>
                 </xs:unique>

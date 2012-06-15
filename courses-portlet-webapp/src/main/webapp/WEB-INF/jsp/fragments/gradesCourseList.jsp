@@ -20,11 +20,17 @@
 
 --%>
 
-<%@ include file="/WEB-INF/jsp/include.jsp" %>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
+<%--
+    Model Attributes:
+        termList        - TermList
+        coursesByTerm   - CoursesByTerm
+        selectedTerm    - Term
+ --%>
 <c:choose>
 	<c:when
-		test="${(selectedTerm.registered==true) and  (fn:length(courseSummary.courses) > 0)}">
-		<c:forEach items="${ courseSummary.courses }" var="course">
+		test="${(selectedTerm.registered==true) and  (fn:length(coursesByTerm.courses) > 0)}">
+		<c:forEach items="${ coursesByTerm.courses }" var="course">
 			<portlet:renderURL var="courseUrl">
 				<portlet:param name="action" value="showCourse" />
 				<portlet:param name="courseCode" value="${ course.code }" />

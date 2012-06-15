@@ -21,36 +21,47 @@
 --%>
 
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
-
-<div id="${n}" class="CoursesPortlet GradesDesktop">
-	<%-- header --%>
-	<div data-role="header" class="titlebar portlet-titlebar top_box">
-		<div class="left header_style">
-			<spring:message code="grades" />
-		</div>
-
-		<div class="left term_selection">
-			<form method="post">
-				<div>
-					<span id="${n}_loading" style="display: none"><img
-						src="${renderRequest.contextPath}/img/ajax-loader.gif"
-						alt="Loading..." /></span> <select id="${n}_termPicker" name="termCode">
-						<c:forEach var="term" items="${termSummary.terms}">
-							<c:set var="selected" value="" />
-							<c:if test="${term.code == selectedTerm.code}">
-								<c:set var="selected" value="selected=\"selected\"" />
-							</c:if>
-							<option value="${term.code}" ${selected}>${term.displayName}</option>
-						</c:forEach>
-					</select>
-				</div>
-				<div id="${n}_error" style="display: none">
-					<span><img src="${renderRequest.contextPath}/img/error.png"
-						alt="Error" /></span> <span class="error_message"></span>
-				</div>
-			</form>
-		</div>
-	</div>
+<%--
+    Model Attributes:
+        termList        - TermList
+        coursesByTerm   - CoursesByTerm
+        selectedTerm    - Term
+ --%>
+<div id="${n}" class="fl-widget portlet CoursesPortlet" role="section">
+  <!-- Portlet Titlebar -->
+  <div class="fl-widget-titlebar titlebar portlet-titlebar" role="sectionhead">
+    <h2 class="title" role="heading">
+	    <spring:message code="grades" />
+    </h2>
+    <div class="toolbar">
+        <ul>
+          <portlet:renderURL var="scheduleUrl">
+            <c:if test="${not empty selectedTerm.code}">
+              <portlet:param name="termCode" value="${selectedTerm.code}"/>
+            </c:if>
+          </portlet:renderURL>
+          <li><a class="button" href="${ scheduleUrl }">
+            <spring:message code="schedule"/>
+          </a></li>
+          <li><a class="button" href="#">
+            <spring:message code="grades"/>
+          </a></li>
+          <portlet:actionURL var="selectTermUrl"/>
+          <li><form action="${selectTermUrl}" method="post">
+            <label for="${n}_termPicker"><spring:message code="term"/>:</label>
+            <select id="${n}_termPicker" name="termCode">
+              <c:forEach var="term" items="${termList.terms}">
+                <c:set var="selected" value="" />
+                <c:if test="${term.code == selectedTerm.code}">
+                    <c:set var="selected" value="selected=\"selected\"" />
+                </c:if>
+                <option value="${term.code}" ${selected}>${term.displayName}</option>
+              </c:forEach>
+            </select>
+          </form></li>
+        </ul>
+    </div>
+  </div> <!-- end: portlet-titlebar -->
 
 	<%-- grades --%>
 	<div class="portlet ptl-courses view-courses">

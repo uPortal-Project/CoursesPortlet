@@ -21,8 +21,8 @@ package org.jasig.portlet.courses.dao;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.model.xml.CourseSummary;
-import org.jasig.portlet.courses.model.xml.TermSummary;
+import org.jasig.portlet.courses.model.xml.CoursesByTerm;
+import org.jasig.portlet.courses.model.xml.TermList;
 
 /**
  * ICoursesDao represents a data access interface for retrieving course and
@@ -34,19 +34,19 @@ import org.jasig.portlet.courses.model.xml.TermSummary;
 public interface ICoursesDao {
 
     /**
-     * Get a course summary for the current user.
+     * Get a term list for the current user
      * 
      * @param request
      * @return
      */
-    public TermSummary getTermSummary(PortletRequest request);
+    public TermList getTermList(PortletRequest request);
 
     /**
-     * Get a course summary for the current user.
+     * Get courses for a term for the current user
      * 
      * @param request
      * @return
      */
-    public CourseSummary getCourseSummary(PortletRequest request, String termCode);
+    public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode);
     
 }

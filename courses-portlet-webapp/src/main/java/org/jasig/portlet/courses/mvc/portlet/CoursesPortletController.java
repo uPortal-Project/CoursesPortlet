@@ -24,109 +24,123 @@ import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletSession;
 import javax.portlet.ResourceRequest;
 
 import org.jasig.portlet.courses.dao.ICoursesDao;
 import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.Instructor;
 import org.jasig.portlet.courses.model.xml.Location;
 import org.jasig.portlet.courses.model.xml.Term;
-import org.jasig.portlet.courses.model.xml.TermSummary;
+import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.mvc.IViewSelector;
 import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
-import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 @Controller
 @RequestMapping("VIEW")
 public class CoursesPortletController {
-
-    private static final String TERMCODE = "termCode";
+    public static final String DEFAULT_VIEW_PREFERENCE = "defaultView";
+    public static final String COURSE_LIST_VIEW = "courseList";
+    public static final String GRADES_LIST_VIEW = "grades";
+    public static final String TERMCODE = "termCode";
+    public static final String COURSECODE = "courseCode";
+    
     private ICoursesDao coursesDao;
 
-    @Autowired(required = true)
+    @Autowired
     public void setCoursesDao(ICoursesDao coursesDao) {
         this.coursesDao = coursesDao;
     }
     
     private IURLService urlService;
     
-    @Autowired(required = true) 
+    @Autowired 
     public void setUrlService(IURLService urlService) {
         this.urlService = urlService;
     }
     
     private IViewSelector viewSelector;
     
-    @Autowired(required = true)
+    @Autowired
     public void setViewSelector(IViewSelector viewSelector) {
         this.viewSelector = viewSelector;
     }
     
     @RequestMapping
-    public ModelAndView getCourseList(PortletRequest request, @RequestParam(required=false) String termCode) {
-        final Map<String, Object> model = new HashMap<String, Object>();
+    public String defaultView(PortletRequest request, ModelMap model) {
+        final PortletPreferences preferences = request.getPreferences();
+        final String defaultView = preferences.getValue(DEFAULT_VIEW_PREFERENCE, COURSE_LIST_VIEW);
+        if (GRADES_LIST_VIEW.equals(defaultView)) {
+            return viewGrades(request, model, null);
+        }
+        else {
+            return viewCourseList(request, model, null);
+        }
+    }
+    
+    @RequestMapping(params = "action=" + COURSE_LIST_VIEW)
+    public String viewCourseList(PortletRequest request, ModelMap model, 
+            @RequestParam(value = TERMCODE, required = false) String termCode) {
         
-        final TermSummary termSummary = coursesDao.getTermSummary(request);
-        model.put("termSummary", termSummary);
+        final TermList termList = coursesDao.getTermList(request);
+        model.put("termList", termList);
         
         //Determine the current term code and term
         termCode = this.getSelectedTermCode(request, termCode);
-        final Term selectedTerm = this.getSelectedTerm(termCode, termSummary);
+        final Term selectedTerm = this.getSelectedTerm(termCode, termList);
         
-        //Grab the courseSummary information if a selectedTerm is set
+        //Grab the coursesByTerm information if a selectedTerm is set
         if (selectedTerm != null) {
-            final CourseSummary courseSummary = coursesDao.getCourseSummary(request, selectedTerm.getCode());
-            model.put("courseSummary", courseSummary);
+            final CoursesByTerm coursesByTerm = coursesDao.getCoursesByTerm(request, selectedTerm.getCode());
+            model.put("coursesByTerm", coursesByTerm);
             model.put("selectedTerm", selectedTerm);
         }
         
         final boolean isMobile = viewSelector.isMobile(request);
         final String viewName = isMobile ? "courseList-jQM" : "courseList";
-        
-        return new ModelAndView(viewName, model);
+        return viewName;
     }
 
-    @RequestMapping(params = "action=grades")
-    public ModelAndView getGrades(PortletRequest request, @RequestParam(required=false) String termCode) {
-        final Map<String, Object> model = new HashMap<String, Object>();
+    @RequestMapping(params = "action=" + GRADES_LIST_VIEW)
+    public String viewGrades(PortletRequest request, ModelMap model, 
+            @RequestParam(value = TERMCODE, required = false) String termCode) {
         
-        final TermSummary termSummary = coursesDao.getTermSummary(request);
-        model.put("termSummary", termSummary);
+        final TermList termList = coursesDao.getTermList(request);
+        model.put("termList", termList);
         
         //Determine the current term code and term
         termCode = this.getSelectedTermCode(request, termCode);
-        final Term selectedTerm = this.getSelectedTerm(termCode, termSummary);
+        final Term selectedTerm = this.getSelectedTerm(termCode, termList);
         
-        //Grab the courseSummary information if a selectedTerm is set
+        //Grab the coursesByTerm information if a selectedTerm is set
         if (selectedTerm != null) {
-            final CourseSummary courseSummary = coursesDao.getCourseSummary(request, selectedTerm.getCode());
-            model.put("courseSummary", courseSummary);
+            final CoursesByTerm coursesByTerm = coursesDao.getCoursesByTerm(request, selectedTerm.getCode());
+            model.put("coursesByTerm", coursesByTerm);
             model.put("selectedTerm", selectedTerm);
         }
         
         final boolean isMobile = viewSelector.isMobile(request);
         final String viewName = isMobile ? "grades-jQM" : "grades";
-        
-        return new ModelAndView(viewName, model);
+        return viewName;
     }
 
     @RequestMapping(params = "action=showCourse")
-    public ModelAndView getCourseView(@RequestParam String termCode, @RequestParam String courseCode, PortletRequest request) {
-        Map<String, Object> model = new HashMap<String, Object>();
+    public String viewCourse(PortletRequest request, ModelMap model,
+            @RequestParam(TERMCODE) String termCode, 
+            @RequestParam(COURSECODE) String courseCode) {
         
-        // TODO: write a better implementation for locating an individual course
-        CourseSummary summary = coursesDao.getCourseSummary(request, termCode);
-        model.put("courseSummary", summary);
+        CoursesByTerm summary = coursesDao.getCoursesByTerm(request, termCode);
+        model.put("coursesByTerm", summary);
         
         Course selectedCourse = summary.getCourse(courseCode);
         
@@ -145,35 +159,33 @@ public class CoursesPortletController {
         
         final boolean isMobile = viewSelector.isMobile(request);
         final String viewName = isMobile ? "courseDetail-jQM" : "courseDetail";
-        
-        return new ModelAndView(viewName, model);
+        return viewName;
     }
     
     @ResourceMapping("gradesUpdate")
-    public ModelAndView getCoursesSummary(ResourceRequest resourceRequest, @RequestParam String termCode) {
-        final Map<String, Object> model = new HashMap<String, Object>();
+    public String getGradesFragment(ResourceRequest resourceRequest, ModelMap model,
+            @RequestParam(TERMCODE) String termCode) {
         
-        final TermSummary termSummary = coursesDao.getTermSummary(resourceRequest);
-        model.put("termSummary", termSummary);
+        final TermList termList = coursesDao.getTermList(resourceRequest);
+        model.put("termList", termList);
 
         //Determine the current term code and term
         termCode = this.getSelectedTermCode(resourceRequest, termCode);
-        final Term selectedTerm = this.getSelectedTerm(termCode, termSummary);
+        final Term selectedTerm = this.getSelectedTerm(termCode, termList);
         if (selectedTerm == null) {
             throw new IllegalArgumentException("Could not find term for code: " + termCode); 
         }
         
-        //Grab the courseSummary information if a selectedTerm is set
-        final CourseSummary courseSummary = coursesDao.getCourseSummary(resourceRequest, selectedTerm.getCode());
-        model.put("courseSummary", courseSummary);
+        //Grab the coursesByTerm information if a selectedTerm is set
+        final CoursesByTerm coursesByTerm = coursesDao.getCoursesByTerm(resourceRequest, selectedTerm.getCode());
+        model.put("coursesByTerm", coursesByTerm);
         model.put("selectedTerm", selectedTerm);
         
         //TODO does this need a mobile specific view? If so uncomment these lines and 
 //        final boolean isMobile = viewSelector.isMobile(resourceRequest);
 //        final String viewName = isMobile ? "fragments/gradesUpdate-jQM" : "fragments/gradesUpdate";
         final String viewName = "fragments/gradesUpdate";
-        
-        return new ModelAndView(viewName, model);
+        return viewName;
     }
     
     /**
@@ -200,13 +212,13 @@ public class CoursesPortletController {
     }
 
     /**
-     * If termCode is null {@link TermSummary#getCurrentTerm()} is used, if not {@link TermSummary#getTerm(String)} is used
+     * If termCode is null {@link TermList#getCurrentTerm()} is used, if not {@link TermList#getTerm(String)} is used
      */
-    protected Term getSelectedTerm(String termCode, final TermSummary termSummary) {
+    protected Term getSelectedTerm(String termCode, final TermList termList) {
         if (termCode == null) {
-            return termSummary.getCurrentTerm();
+            return termList.getCurrentTerm();
         }
 
-        return termSummary.getTerm(termCode);
+        return termList.getTerm(termCode);
     }
 }

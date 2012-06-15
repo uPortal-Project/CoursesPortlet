@@ -26,7 +26,7 @@ import java.util.List;
  * 
  * @author Eric Dalquist
  */
-public abstract class CourseSummaryWrapper {
+public abstract class CoursesByTermWrapper {
     
     public int getNewUpdateCount() {
         int newCount = 0;

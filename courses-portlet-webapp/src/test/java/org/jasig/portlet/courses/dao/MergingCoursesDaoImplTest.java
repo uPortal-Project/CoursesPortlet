@@ -31,7 +31,7 @@ import java.util.Map;
 import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CourseSummary;
+import org.jasig.portlet.courses.model.xml.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.junit.Before;
 import org.junit.Test;
@@ -148,23 +148,23 @@ public class MergingCoursesDaoImplTest {
 
     @Test
     public void testMergeSummaryData() {
-        CourseSummary summary1 = new CourseSummary();
+        CoursesByTerm summary1 = new CoursesByTerm();
         summary1.setGpa((double) 3.3);
         summary1.setCredits((double) 40);
         
         ICoursesDao courseDao1 = mock(ICoursesDao.class); 
-        when(courseDao1.getCourseSummary(request, "1234")).thenReturn(summary1);
+        when(courseDao1.getCoursesByTerm(request, "1234")).thenReturn(summary1);
         courseDaos.add(courseDao1);
         
-        CourseSummary summary2 = new CourseSummary();
+        CoursesByTerm summary2 = new CoursesByTerm();
         summary2.setGpa((double) 3.5);
         summary2.setCredits((double) 30);
 
         ICoursesDao courseDao2 = mock(ICoursesDao.class);
-        when(courseDao2.getCourseSummary(request, "1234")).thenReturn(summary2);
+        when(courseDao2.getCoursesByTerm(request, "1234")).thenReturn(summary2);
         courseDaos.add(courseDao2);
 
-        dao.getCourseSummary(request, "1234");
+        dao.getCoursesByTerm(request, "1234");
         assertEquals(3.5, summary1.getGpa(), 0.1);
         assertEquals(30, summary2.getCredits(), 0.1);
     }

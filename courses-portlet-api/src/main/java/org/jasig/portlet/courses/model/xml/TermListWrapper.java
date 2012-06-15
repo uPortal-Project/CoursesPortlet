@@ -29,7 +29,7 @@ import java.util.List;
  * 
  * @author Eric Dalquist
  */
-public abstract class TermSummaryWrapper {
+public abstract class TermListWrapper {
     
     public Term getTerm(String termCode) {
         

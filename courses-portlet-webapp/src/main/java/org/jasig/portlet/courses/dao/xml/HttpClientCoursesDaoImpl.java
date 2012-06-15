@@ -24,8 +24,9 @@ import javax.portlet.PortletRequest;
 
 import org.apache.commons.codec.binary.Base64;
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.xml.CourseSummary;
-import org.jasig.portlet.courses.model.xml.TermSummary;
+import org.jasig.portlet.courses.model.xml.CoursesByTerm;
+import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.TermsAndCourses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -41,17 +42,12 @@ import org.springframework.web.client.RestTemplate;
  */
 public class HttpClientCoursesDaoImpl implements ICoursesDao {
 
-    private String termUrlFormat = "http://localhost:8180/jasig-courses-integration/term-summary";
-    private String courseUrlFormat = "http://localhost:8180/jasig-courses-integration/course-summary/{term-code}";
-    
-    public void setTermUrlFormat(String termUrlFormat) {
-        this.termUrlFormat = termUrlFormat;
+    private String urlFormat = "http://localhost:8180/jasig-courses-integration/course-summary";
+
+    public void setUrlFormat(String urlFormat) {
+        this.urlFormat = urlFormat;
     }
 
-    public void setCourseUrlFormat(String courseUrlFormat) {
-        this.courseUrlFormat = courseUrlFormat;
-    }
-    
     private String usernameKey = "user.login.id";
     
     public void setUsernameKey(String usernameKey) {
@@ -72,34 +68,35 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
     }
 
     @Override
-    public TermSummary getTermSummary(PortletRequest request) {
-        HttpEntity<?> requestEntity = getRequestEntity(request);
-
-        HttpEntity<TermSummary> response = restTemplate.exchange(
-                termUrlFormat, HttpMethod.GET, requestEntity,
-                TermSummary.class);
-        
-        return response.getBody();
+    public TermList getTermList(PortletRequest request) {
+        final TermsAndCourses termsAndCourses = this.getTermsAndCourses(request);
+        return termsAndCourses.getTermList();
     }
 
     @Override
-    public CourseSummary getCourseSummary(PortletRequest request, String termCode) {
+    public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode) {
+        final TermsAndCourses termsAndCourses = this.getTermsAndCourses(request);
+        return termsAndCourses.getCoursesByTerm(termCode);
+    }
+    
+    /**
+     * Get terms and courses for the current user  
+     */
+    protected TermsAndCourses getTermsAndCourses(PortletRequest request) {
         HttpEntity<?> requestEntity = getRequestEntity(request);
 
-        HttpEntity<CourseSummary> response = restTemplate.exchange(
-                courseUrlFormat, HttpMethod.GET, requestEntity,
-                CourseSummary.class, termCode);
+        HttpEntity<TermsAndCourses> response = restTemplate.exchange(
+                urlFormat, HttpMethod.GET, requestEntity,
+                TermsAndCourses.class);
         
         return response.getBody();
     }
     
     /**
      * Get a request entity prepared for basic authentication.
-     * 
-     * @param request
-     * @return
      */
     protected HttpEntity<?> getRequestEntity(PortletRequest request) {
+        @SuppressWarnings("unchecked")
         Map<String,String> userInfo = (Map<String,String>) request.getAttribute(PortletRequest.USER_INFO);
         String username = userInfo.get(this.usernameKey);
         String password = userInfo.get(this.passwordKey);

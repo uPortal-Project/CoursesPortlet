@@ -20,8 +20,15 @@
 --%>
 
 <jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
+<%--
+    Model Attributes:
+        coursesByTerm   - CoursesByTerm
+        instructorUrls  - Map<String, String>
+        locationUrl     - Location
+        course          - Course
+ --%>
 <portlet:renderURL var="courseListUrl">
-    <portlet:param name="termCode" value="${courseSummary.termCode}"/>
+    <portlet:param name="termCode" value="${coursesByTerm.termCode}"/>
 </portlet:renderURL>
 
 <div data-role="header" class="titlebar portlet-titlebar courses-back-div">

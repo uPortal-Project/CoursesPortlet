@@ -22,7 +22,13 @@
 
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
-<div id="${n}" class="CoursesPortlet GradesMobile fg_outer_width">
+<%--
+    Model Attributes:
+        termList        - TermList
+        coursesByTerm   - CoursesByTerm
+        selectedTerm    - Term
+ --%>
+<div id="${n}" class="fl-widget portlet CoursesPortlet" role="section">
     <%-- header --%>
     <div data-role="header" class="titlebar portlet-titlebar">
         <div class="header_height">
@@ -34,7 +40,7 @@
                     <div>
                         <span id="${n}_loading" style="display: none"><img src="${renderRequest.contextPath}/img/ajax-loader.gif" alt="Loading..." /></span>
                         <select id="${n}_termPicker" name="termCode">
-                            <c:forEach var="term" items="${termSummary.terms}">
+                            <c:forEach var="term" items="${termList.terms}">
                                 <c:set var="selected" value="" />
                                 <c:if test="${term.code == selectedTerm.code}">
                                     <c:set var="selected" value="selected=\"selected\"" />
