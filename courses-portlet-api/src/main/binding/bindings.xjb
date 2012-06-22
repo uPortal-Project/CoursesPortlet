@@ -61,4 +61,22 @@
         </jaxb:schemaBindings>
     </jaxb:bindings>
 
+    <jaxb:bindings schemaLocation="../resources/xsd/generic/course-catalog.xsd">
+        <jaxb:bindings node="//xs:element[@name='term']"> 
+            <jaxb:property name="terms"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='school']"> 
+            <jaxb:property name="schools"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='department']"> 
+            <jaxb:property name="departments"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='course-offering']"> 
+            <jaxb:property name="courseOfferings"/>
+        </jaxb:bindings>
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.jasig.portlet.courses.model.catalog.xml" />
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+
 </jaxb:bindings>

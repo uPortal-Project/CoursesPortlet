@@ -43,6 +43,10 @@
             <artifactId>jstl</artifactId>
         </dependency>
         <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
         </dependency>
@@ -180,5 +184,52 @@
           </plugin>
         </plugins>
     </build>
+
+        <profiles>
+        <profile>
+            <id>localdev</id>
+            <build>
+                <finalName>CoursesPortlet</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.portals.pluto</groupId>
+                        <artifactId>maven-pluto-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>assemble</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.1</version>
+                        <configuration>
+                            <classifier>localdev</classifier>
+                            <warName>courses</warName>
+                            <webXml>${project.build.directory}/pluto-resources/web.xml</webXml>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-uportal-plugin</artifactId>
+                        <groupId>org.jasig.portal</groupId>
+                        <version>1.0.0-M4-SNAPSHOT</version>
+                        <configuration>
+                            <contextName>CoursesPortlet</contextName>
+                            <artifactId>${pom.artifactId}</artifactId>
+                            <artifactGroupId>${pom.groupId}</artifactGroupId>
+                            <artifactVersion>${pom.version}</artifactVersion>
+                            <artifactClassifier>localdev</artifactClassifier>
+                            <removeExistingDirectories>true</removeExistingDirectories>
+                            <extractWars>true</extractWars>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>    
 
 </project>

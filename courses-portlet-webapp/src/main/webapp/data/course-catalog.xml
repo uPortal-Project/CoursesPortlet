@@ -1,0 +1,77 @@
+<course-catalog
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd">
+    
+    <term current="true" code="summer2012" name="Summer 2012"/>
+    <term current="false" code="fall2012" name="Fall 2012"/>
+    
+    <school code="artsci" name="College of Arts and Sciences">
+        <department code="bio" name="Biology"/>
+        <department code="math" name="Mathematics"/>
+    </school>
+    
+    <course-offering-list term="summer2012" department="bio" school="artsci">
+        <course-offering code="BIO101" title="Introduction to Biology" credits="4">
+            <description>Foundations in biology</description>
+            <course-section code="13">
+                <location>
+                    <displayName>SSS 114</displayName>
+                    <identifier>SSS</identifier>
+                </location>
+                <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
+                <instructor>
+                    <abbreviation>Faculty</abbreviation>
+                    <fullName>Joe Faculty, Phd</fullName>
+                    <identifier>faculty</identifier>
+                </instructor>
+            </course-section>
+            <course-section code="4">
+                <location>
+                    <displayName>SSS 114</displayName>
+                    <identifier>SSS</identifier>
+                </location>
+                <meetingTimes>M-W-F, 3:30-4:30pm</meetingTimes>
+                <instructor>
+                    <abbreviation>Faculty</abbreviation>
+                    <fullName>Joe Faculty, Phd</fullName>
+                    <identifier>faculty</identifier>
+                </instructor>
+            </course-section>
+        </course-offering>
+        <course-offering code="bio115" title="Cellular Biology" credits="4">
+            <description>Prerequisites: Intro to Biology</description>
+            <course-section code="34">
+                <location>
+                    <displayName>SSS 114</displayName>
+                    <identifier>SSS</identifier>
+                </location>
+                <meetingTimes>M-W-F, 9:30-10:20am</meetingTimes>
+                <instructor>
+                    <abbreviation>Faculty</abbreviation>
+                    <fullName>Joe Faculty, Phd</fullName>
+                    <identifier>faculty</identifier>
+                </instructor>
+            </course-section>
+        </course-offering>
+    </course-offering-list>
+
+    <course-offering-list term="summer2012" department="math" school="artsci">
+        <course-offering code="math115" title="Calculus I" credits="4">
+            <description>First-year calculus</description>
+            <course-section code="12">
+                <location>
+                    <displayName>SSS 114</displayName>
+                    <identifier>SSS</identifier>
+                </location>
+                <meetingTimes>M-W-F, 9:30-10:20am</meetingTimes>
+                <instructor>
+                    <abbreviation>Faculty</abbreviation>
+                    <fullName>Joe Faculty, Phd</fullName>
+                    <identifier>faculty</identifier>
+                </instructor>
+            </course-section>
+        </course-offering>
+    </course-offering-list>
+    
+</course-catalog>
