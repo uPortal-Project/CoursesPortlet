@@ -44,6 +44,27 @@
                 <li><a href="${ courseUrl }">${ course.title }</a></li>
             </c:forEach>
         </ul>
+
+        <div class="utilities" style="margin-top: 20px">
+        
+            <portlet:renderURL var="selectTermUrl"/>
+            <div class="ui-block-c"><form action="${selectTermUrl}" method="post">
+              <input type="hidden" name="action" value="courses"/>
+              <input type="hidden" name="schoolCode" value="${ school.code }"/>
+              <input type="hidden" name="departmentCode" value="${ department.code }"/>
+              <label for="${n}_termPicker"><spring:message code="term"/>:</label>
+              <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
+                <c:forEach var="t" items="${terms}">
+                  <c:set var="selected" value="" />
+                  <c:if test="${t.code == term}">
+                      <c:set var="selected" value="selected=\"selected\"" />
+                  </c:if>
+                  <option value="${t.code}" ${selected}>${t.displayName}</option>
+                </c:forEach>
+              </select>
+            </form></div>
+            
+        </div>
     
     </div>
 </div>

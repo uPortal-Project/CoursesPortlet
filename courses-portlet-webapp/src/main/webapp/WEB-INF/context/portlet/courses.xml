@@ -27,8 +27,9 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-    <context:component-scan base-package="org.jasig.portlet.courses.mvc.portlet"/>
     <context:annotation-config/>
+    
+    <bean class="org.jasig.portlet.courses.mvc.portlet.CoursesPortletController"/>
 
     <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="interceptors"><bean class="org.jasig.portlet.courses.mvc.MinimizedStateHandlerInterceptor"/></property>

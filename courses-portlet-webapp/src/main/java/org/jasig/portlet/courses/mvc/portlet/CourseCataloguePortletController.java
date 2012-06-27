@@ -1,16 +1,23 @@
 package org.jasig.portlet.courses.mvc.portlet;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletSession;
 
 import org.jasig.portlet.courses.dao.ICourseOfferingDao;
 import org.jasig.portlet.courses.model.catalog.xml.CourseOffering;
+import org.jasig.portlet.courses.model.catalog.xml.CourseSection;
 import org.jasig.portlet.courses.model.catalog.xml.Department;
 import org.jasig.portlet.courses.model.catalog.xml.School;
-import org.jasig.portlet.courses.model.catalog.xml.Term;
+import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.xml.CourseMeeting;
+import org.jasig.portlet.courses.model.xml.Instructor;
+import org.jasig.portlet.courses.model.xml.Location;
 import org.jasig.portlet.courses.mvc.IViewSelector;
+import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,6 +35,13 @@ public class CourseCataloguePortletController {
         this.dao = dao;
     }
 
+    private IURLService urlService;
+    
+    @Autowired 
+    public void setUrlService(IURLService urlService) {
+        this.urlService = urlService;
+    }
+    
     private IViewSelector viewSelector;
     
     @Autowired(required = true)
@@ -124,6 +138,42 @@ public class CourseCataloguePortletController {
         model.addAttribute("department", department);
 
         final String view = viewSelector.isMobile(request) ? "course-jQM" : "course";
+        return view;
+    }
+    
+    @RequestMapping(params = "action=section")
+    public String showCourse(final @RequestParam String schoolCode, final @RequestParam String departmentCode, final @RequestParam String courseCode, final @RequestParam String sectionCode, final ModelMap model, final PortletRequest request) {
+
+        final PortletSession session = request.getPortletSession();
+        final String termCode = (String) session.getAttribute("currentTerm");
+        final CourseOffering course = dao.getCourseOffering(courseCode, termCode);
+        model.addAttribute("course", course);
+        
+        final CourseSection section = dao.getCourseSectionOffering(courseCode, sectionCode, termCode);
+        model.addAttribute("section", section);
+
+        final School school = dao.getSchool(schoolCode);
+        model.addAttribute("school", school);
+        
+        final Department department = dao.getDepartment(schoolCode, departmentCode);
+        model.addAttribute("department", department);
+        
+        Map<String, String> instructorUrls = new HashMap<String, String>();
+        for (Instructor instructor : section.getInstructors()) {
+            instructorUrls.put(instructor.getIdentifier(), urlService.getInstructorUrl(instructor, request));
+        }
+        model.put("instructorUrls", instructorUrls);
+        
+        Map<String, String> locationUrls = new HashMap<String, String>();
+        for (final CourseMeeting meeting : section.getCourseMeetings()) {
+            Location location = meeting.getLocation();
+            if (location != null && !locationUrls.containsKey(location.getIdentifier())) {
+                locationUrls.put(location.getIdentifier(), urlService.getLocationUrl(location, request));
+            }
+        }
+        model.put("locationUrls", locationUrls);
+
+        final String view = viewSelector.isMobile(request) ? "section-jQM" : "section";
         return view;
     }
     

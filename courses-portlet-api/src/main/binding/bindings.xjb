@@ -39,32 +39,35 @@
         </jaxb:globalBindings>
     </jaxb:bindings>
       
-    <jaxb:bindings schemaLocation="../resources/xsd/generic/course-summary.xsd">
-        <jaxb:bindings node="//xs:complexType[@name='course']"> 
-            <jaxb:class/>
-            <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseWrapper</inheritance:extends>
-        </jaxb:bindings>
-        <jaxb:bindings node="//xs:complexType[@name='courses-by-term']">
-            <jaxb:class/>
-            <inheritance:extends>org.jasig.portlet.courses.model.xml.CoursesByTermWrapper</inheritance:extends>
-        </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../resources/xsd/generic/common.xsd">
         <jaxb:bindings node="//xs:complexType[@name='term-list']">
             <jaxb:class/>
             <inheritance:extends>org.jasig.portlet.courses.model.xml.TermListWrapper</inheritance:extends>
-        </jaxb:bindings>
-        <jaxb:bindings node="//xs:element[@name='terms-and-courses']">
-            <jaxb:class/>
-            <inheritance:extends>org.jasig.portlet.courses.model.xml.TermsAndCoursesWrapper</inheritance:extends>
         </jaxb:bindings>
         <jaxb:schemaBindings>
             <jaxb:package name="org.jasig.portlet.courses.model.xml" />
         </jaxb:schemaBindings>
     </jaxb:bindings>
 
-    <jaxb:bindings schemaLocation="../resources/xsd/generic/course-catalog.xsd">
-        <jaxb:bindings node="//xs:element[@name='term']"> 
-            <jaxb:property name="terms"/>
+    <jaxb:bindings schemaLocation="../resources/xsd/generic/course-summary.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='course']"> 
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.personal.CourseWrapper</inheritance:extends>
         </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='courses-by-term']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.personal.CoursesByTermWrapper</inheritance:extends>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='terms-and-courses']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.personal.TermsAndCoursesWrapper</inheritance:extends>
+        </jaxb:bindings>
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.jasig.portlet.courses.model.xml.personal" />
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="../resources/xsd/generic/course-catalog.xsd">
         <jaxb:bindings node="//xs:element[@name='school']"> 
             <jaxb:property name="schools"/>
         </jaxb:bindings>

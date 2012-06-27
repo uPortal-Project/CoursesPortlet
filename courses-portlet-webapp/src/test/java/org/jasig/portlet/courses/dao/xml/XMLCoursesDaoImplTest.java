@@ -29,10 +29,10 @@ import java.util.List;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.personal.Course;
+import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

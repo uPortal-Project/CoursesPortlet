@@ -16,25 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.jasig.portlet.courses.model.xml;
+package org.jasig.portlet.courses.model.xml.personal;
 
 import java.util.List;
 
+
 /**
- * Adds base functionality to the {@link Course} object
+ * Adds base functionality to the {@link CourseSummary} object
  * 
  * @author Eric Dalquist
  */
-public abstract class CourseWrapper {
+public abstract class CoursesByTermWrapper {
+    
     public int getNewUpdateCount() {
         int newCount = 0;
-        for (CourseUpdate update : this.getCourseUpdates()) {
-            if (update.isNewUpdate() != null && update.isNewUpdate().booleanValue()) {
-                newCount++;
-            }
+        for (Course course : this.getCourses()) {
+            newCount += course.getNewUpdateCount();
         }
         return newCount;
     }
+
+    public Course getCourse(String courseCode) {
+        for (Course course : this.getCourses()) {
+            if (courseCode.equals(course.getCode())) {
+                return course;
+            }
+        }
+
+        return null;
+    }
     
-    public abstract List<CourseUpdate> getCourseUpdates();
+    public abstract List<Course> getCourses();
 }

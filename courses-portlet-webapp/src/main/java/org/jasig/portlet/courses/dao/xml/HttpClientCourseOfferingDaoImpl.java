@@ -8,7 +8,7 @@ import org.jasig.portlet.courses.model.catalog.xml.CourseCatalog;
 import org.jasig.portlet.courses.model.catalog.xml.CourseOffering;
 import org.jasig.portlet.courses.model.catalog.xml.CourseOfferingList;
 import org.jasig.portlet.courses.model.catalog.xml.School;
-import org.jasig.portlet.courses.model.catalog.xml.Term;
+import org.jasig.portlet.courses.model.xml.TermList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
@@ -30,7 +30,7 @@ public class HttpClientCourseOfferingDaoImpl extends AbstractPrefetchableClientC
         cache.put(new Element(SCHOOL_LIST_KEY, schools));
         
         // cache the term list
-        final List<Term> terms = catalog.getTerms();
+        final TermList terms = catalog.getTermList();
         cache.put(new Element(TERM_LIST_KEY, terms));
         
         // cache each individual school

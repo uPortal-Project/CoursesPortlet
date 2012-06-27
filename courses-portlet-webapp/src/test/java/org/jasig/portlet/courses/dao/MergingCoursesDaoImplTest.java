@@ -30,9 +30,10 @@ import java.util.Map;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CoursesByTerm;
+import org.jasig.portlet.courses.model.xml.CourseMeeting;
 import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.xml.personal.Course;
+import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,7 +70,9 @@ public class MergingCoursesDaoImplTest {
         course1.setCode("course1");
         course1.setCredits((double) 1);
         course1.setGrade("grade1");
-        course1.setMeetingTimes("time1");
+        CourseMeeting meeting1 = new CourseMeeting();
+        meeting1.setTime("time1");
+        course1.getCourseMeetings().add(meeting1);
         course1.setSchool("school1");
         course1.setTitle("Course 1");
         course1.setUrl("url1");
@@ -78,7 +81,10 @@ public class MergingCoursesDaoImplTest {
         course2.setCode("course2");
         course2.setCredits((double) 2);
         course2.setGrade("grade2");
-        course2.setMeetingTimes("time2");
+        
+        CourseMeeting meeting2 = new CourseMeeting();
+        meeting2.setTime("time2");
+        course2.getCourseMeetings().add(meeting2);
         course2.setSchool("school2");
         course2.setTitle("Course 2");
         course2.setUrl("url2");
@@ -111,7 +117,8 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(2, course.getCredits(), 0.1);
         assertEquals("grade2", course.getGrade());
-        assertEquals("time2", course.getMeetingTimes());
+        assertEquals("time1", course.getCourseMeetings().get(0).getTime());
+        assertEquals("time2", course.getCourseMeetings().get(1).getTime());
         assertEquals("school2", course.getSchool());
         assertEquals("Course 2", course.getTitle());
         assertEquals("url2", course.getUrl());
@@ -125,7 +132,7 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(2, course.getCredits(), 0.1);
         assertEquals("grade2", course.getGrade());
-        assertEquals("time2", course.getMeetingTimes());
+        assertEquals("time2", course.getCourseMeetings().get(0).getTime());
         assertEquals("school2", course.getSchool());
         assertEquals("Course 2", course.getTitle());
         assertEquals("url2", course.getUrl());
@@ -139,7 +146,7 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(1, course.getCredits(), 0.1);
         assertEquals("grade1", course.getGrade());
-        assertEquals("time1", course.getMeetingTimes());
+        assertEquals("time1", course.getCourseMeetings().get(0).getTime());
         assertEquals("school1", course.getSchool());
         assertEquals("Course 1", course.getTitle());
         assertEquals("url1", course.getUrl());

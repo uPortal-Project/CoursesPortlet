@@ -21,8 +21,8 @@ package org.jasig.portlet.courses.dao;
 
 import javax.portlet.PortletRequest;
 
-import org.jasig.portlet.courses.model.xml.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 
 /**
  * ICoursesDao represents a data access interface for retrieving course and

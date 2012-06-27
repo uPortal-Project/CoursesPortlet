@@ -30,12 +30,13 @@ import javax.portlet.PortletSession;
 import javax.portlet.ResourceRequest;
 
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CoursesByTerm;
+import org.jasig.portlet.courses.model.xml.CourseMeeting;
 import org.jasig.portlet.courses.model.xml.Instructor;
 import org.jasig.portlet.courses.model.xml.Location;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.personal.Course;
+import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.jasig.portlet.courses.mvc.IViewSelector;
 import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,11 +150,15 @@ public class CoursesPortletController {
             instructorUrls.put(instructor.getIdentifier(), urlService.getInstructorUrl(instructor, request));
         }
         model.put("instructorUrls", instructorUrls);
-        
-        Location location = selectedCourse.getLocation();
-        if (location != null) {
-            model.put("locationUrl", urlService.getLocationUrl(location, request));
+
+        Map<String, String> locationUrls = new HashMap<String, String>();
+        for (final CourseMeeting meeting : selectedCourse.getCourseMeetings()) {
+            Location location = meeting.getLocation();
+            if (location != null && !locationUrls.containsKey(location.getIdentifier())) {
+                locationUrls.put(location.getIdentifier(), urlService.getLocationUrl(location, request));
+            }
         }
+        model.put("locationUrls", locationUrls);
         
         model.put("course", selectedCourse);
         

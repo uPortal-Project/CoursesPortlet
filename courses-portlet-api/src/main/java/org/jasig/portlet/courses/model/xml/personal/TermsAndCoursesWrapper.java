@@ -1,4 +1,4 @@
-package org.jasig.portlet.courses.model.xml;
+package org.jasig.portlet.courses.model.xml.personal;
 
 import java.util.List;
 

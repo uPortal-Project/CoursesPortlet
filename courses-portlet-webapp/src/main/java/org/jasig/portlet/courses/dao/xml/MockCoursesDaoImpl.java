@@ -29,9 +29,9 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.xml.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.TermList;
-import org.jasig.portlet.courses.model.xml.TermsAndCourses;
+import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
+import org.jasig.portlet.courses.model.xml.personal.TermsAndCourses;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 

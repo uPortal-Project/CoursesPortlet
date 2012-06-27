@@ -21,18 +21,19 @@
 <terms-and-courses
     xmlns="https://source.jasig.org/schemas/portlet/courses/courses-by-term"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/courses-by-term ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-summary.xsd">
     
     <term-list>
-        <term>
-            <displayName>Winter 2012</displayName>
-            <code>2012w</code>
-        </term>
+        <courses:term>
+            <courses:displayName>Winter 2012</courses:displayName>
+            <courses:code>2012w</courses:code>
+        </courses:term>
     
-        <term current="true">
-            <displayName>Spring 2012</displayName>
-            <code>2012s</code>
-        </term>    
+        <courses:term current="true">
+            <courses:displayName>Spring 2012</courses:displayName>
+            <courses:code>2012s</courses:code>
+        </courses:term>    
     </term-list>
     
     <courses-by-term>
@@ -44,16 +45,18 @@
             <title>Design Awareness</title>
             <code>DSC 101</code>
             <school>School of Design</school>
-            <location>
-                <displayName>SSS 114</displayName>
-                <identifier>SSS</identifier>
-            </location>
-            <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
+            <course-meeting>
+                <courses:location>
+                    <courses:displayName>SSS 114</courses:displayName>
+                    <courses:identifier>SSS</courses:identifier>
+                </courses:location>
+                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+            </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
-                <abbreviation>Faculty</abbreviation>
-                <fullName>Joe Faculty, Phd</fullName>
-                <identifier>faculty</identifier>
+                <courses:abbreviation>Faculty</courses:abbreviation>
+                <courses:fullName>Joe Faculty, Phd</courses:fullName>
+                <courses:identifier>faculty</courses:identifier>
             </instructor>
             <grade>A</grade>
             <credits>4</credits>
@@ -70,16 +73,18 @@
             <title>Drawing for Industry</title>
             <code>IND 120</code>
             <school>School of Design</school>
-            <location>
-                <displayName>LC 101</displayName>
-                <identifier>LC</identifier>
-            </location>
-            <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
+            <course-meeting>
+                <courses:location>
+                    <courses:displayName>LC 101</courses:displayName>
+                    <courses:identifier>LC</courses:identifier>
+                </courses:location>
+                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+            </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
-                <abbreviation>Staff</abbreviation>
-                <fullName>Sam Staff</fullName>
-                <identifier>staff</identifier>
+                <courses:abbreviation>Staff</courses:abbreviation>
+                <courses:fullName>Sam Staff</courses:fullName>
+                <courses:identifier>staff</courses:identifier>
             </instructor>
             <grade>A</grade>
             <credits>4</credits>
@@ -96,16 +101,18 @@
             <title>First-Year Composition</title>
             <code>ENG 101</code>
             <school>School of Design</school>
-            <location>
-                <displayName>SCL 115</displayName>
-                <identifier>SCL</identifier>
-            </location>
-            <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
+            <course-meeting>
+                <courses:location>
+                    <courses:displayName>SCL 115</courses:displayName>
+                    <courses:identifier>SCL</courses:identifier>
+                </courses:location>
+                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+            </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
-                <abbreviation>Faculty</abbreviation>
-                <fullName>Joe Faculty, Phd</fullName>
-                <identifier>faculty</identifier>
+                <courses:abbreviation>Faculty</courses:abbreviation>
+                <courses:fullName>Joe Faculty, Phd</courses:fullName>
+                <courses:identifier>faculty</courses:identifier>
             </instructor>
             <grade>A</grade>
             <credits>4</credits>
@@ -115,16 +122,18 @@
             <title>Precalculus</title>
             <code>MAT 170</code>
             <school>School of Design</school>
-            <location>
-                <displayName>Becton 101</displayName>
-                <identifier>BCT</identifier>
-            </location>
-            <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
+            <course-meeting>
+                <courses:location>
+                    <courses:displayName>Becton 101</courses:displayName>
+                    <courses:identifier>BCT</courses:identifier>
+                </courses:location>
+                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+            </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
-                <abbreviation>Faculty</abbreviation>
-                <fullName>Joe Faculty, Phd</fullName>
-                <identifier>faculty</identifier>
+                <courses:abbreviation>Faculty</courses:abbreviation>
+                <courses:fullName>Joe Faculty, Phd</courses:fullName>
+                <courses:identifier>faculty</courses:identifier>
             </instructor>
             <grade>C</grade>
             <credits>4</credits>
@@ -134,16 +143,18 @@
             <title>Graphic Design History</title>
             <code>GRA 111</code>
             <school>School of Design</school>
-            <location>
-                <displayName>WLH 205</displayName>
-                <identifier>WLH</identifier>
-            </location>
-            <meetingTimes>M-W-F, 1:30-2:30pm</meetingTimes>
+            <course-meeting>
+                <courses:location>
+                    <courses:displayName>WLH 205</courses:displayName>
+                    <courses:identifier>WLH</courses:identifier>
+                </courses:location>
+                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+            </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
-                <abbreviation>Faculty</abbreviation>
-                <fullName>Joe Faculty, Phd</fullName>
-                <identifier>faculty</identifier>
+                <courses:abbreviation>Faculty</courses:abbreviation>
+                <courses:fullName>Joe Faculty, Phd</courses:fullName>
+                <courses:identifier>faculty</courses:identifier>
             </instructor>
             <grade>A</grade>
             <credits>4</credits>

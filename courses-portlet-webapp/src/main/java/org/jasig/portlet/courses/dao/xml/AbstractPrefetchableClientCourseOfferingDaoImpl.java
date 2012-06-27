@@ -9,10 +9,11 @@ import net.sf.ehcache.Element;
 import org.jasig.portlet.courses.dao.ICourseOfferingDao;
 import org.jasig.portlet.courses.model.catalog.xml.CourseOffering;
 import org.jasig.portlet.courses.model.catalog.xml.CourseOfferingList;
+import org.jasig.portlet.courses.model.catalog.xml.CourseSection;
 import org.jasig.portlet.courses.model.catalog.xml.Department;
 import org.jasig.portlet.courses.model.catalog.xml.School;
-import org.jasig.portlet.courses.model.catalog.xml.Term;
-import org.springframework.beans.factory.InitializingBean;
+import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.xml.TermList;
 
 public abstract class AbstractPrefetchableClientCourseOfferingDaoImpl implements ICourseOfferingDao {
 
@@ -113,8 +114,8 @@ public abstract class AbstractPrefetchableClientCourseOfferingDaoImpl implements
         final Element cached = cache.get(TERM_LIST_KEY);
         if (cached != null) {
             @SuppressWarnings("unchecked")
-            final List<Term> terms = (List<Term>) cached.getValue();
-            return terms;
+            final TermList list = (TermList) cached.getValue();
+            return list.getTerms();
         } else {
             return Collections.emptyList();
         }
@@ -146,6 +147,22 @@ public abstract class AbstractPrefetchableClientCourseOfferingDaoImpl implements
         } else {
             return null;
         }
+    }
+
+    @Override
+    public CourseSection getCourseSectionOffering(String courseCode, String sectionCode, String termCode) {
+        final String courseCacheKey = getCourseCacheKey(courseCode, termCode);
+        final Element cached = cache.get(courseCacheKey);
+        if (cached != null) {
+            final CourseOffering course = (CourseOffering) cached.getValue();
+            for (CourseSection section : course.getCourseSections()) {
+                if (section.getCode().equals(sectionCode)) {
+                    return section;
+                }
+            }
+        }
+        
+        return null;
     }
 
 }

@@ -54,12 +54,20 @@
         p:courseDaos-ref="courseDaos"/>
         
     <util:list id="courseDaos">
-        <!--bean class="org.jasig.portlet.courses.dao.xml.HttpClientCoursesDaoImpl"
-            p:restTemplate-ref="restTemplate"/
-            -->
         <bean class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl"
             p:mockData="classpath:/mock-data/mock-course-summary.xml"/>
+        <bean class="org.jasig.portlet.courses.dao.xml.HttpClientCoursesDaoImpl"
+            p:restTemplate-ref="restTemplate"/>
     </util:list>
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+        p:configLocation="classpath:/ehcache.xml"/>
+
+    <bean id="courseCatalogCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+        p:cacheManager-ref="cacheManager" p:cacheName="courseCatalogCache"/>
+        
+    <bean class="org.jasig.portlet.courses.dao.xml.HttpClientCourseOfferingDaoImpl"
+        p:cache-ref="courseCatalogCache"/>
 
     <bean id="viewSelector" class="org.jasig.portlet.courses.mvc.ThemeNameViewSelectorImpl"/>
 

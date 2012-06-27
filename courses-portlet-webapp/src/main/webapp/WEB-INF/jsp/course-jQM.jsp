@@ -41,12 +41,21 @@
 
         <ul data-role="listview" data-inline="true">
             <c:forEach items="${ course.courseSections }" var="section">
-                <li><p>
-                    ${ section.meetingTimes }<br/>
+                <portlet:renderURL var="sectionUrl">
+                    <portlet:param name="action" value="section"/>
+                    <portlet:param name="sectionCode" value="${ section.code }"/>
+                    <portlet:param name="courseCode" value="${ course.code }"/>
+                    <portlet:param name="schoolCode" value="${ school.code }"/>
+                    <portlet:param name="departmentCode" value="${ department.code }"/>
+                </portlet:renderURL>
+                <li><a href="${ sectionUrl }">
+                    <c:forEach items="${ section.courseMeetings }" var="meeting" varStatus="status">
+                        ${ meeting.time }${ status.last ? '' : ', ' }
+                    </c:forEach><br/>
                     <c:forEach items="${ section.instructors }" var="instructor" varStatus="status">
                         ${ instructor.abbreviation }${ status.last ? '' : ', ' }
-                    </c:forEach>                
-                </p></li>
+                    </c:forEach>        
+                </a></li>
             </c:forEach>
         </ul>        
     

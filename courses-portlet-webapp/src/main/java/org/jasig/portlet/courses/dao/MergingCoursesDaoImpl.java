@@ -26,10 +26,10 @@ import javax.portlet.PortletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jasig.portlet.courses.model.xml.Course;
-import org.jasig.portlet.courses.model.xml.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.personal.Course;
+import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 
 /**
  * MergingCoursesDaoImpl merges together information from multiple data sources.
@@ -175,8 +175,8 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
             original.setGrade(additional.getGrade());
         }
         
-        if (additional.getLocation() != null) {
-            original.setLocation(additional.getLocation());
+        if (additional.getCourseMeetings() != null) {
+            original.getCourseMeetings().addAll(additional.getCourseMeetings());
         }
         
         if (additional.getCourseUpdates() != null) {
@@ -189,10 +189,6 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
         
         if (additional.getSchool() != null) {
             original.setSchool(additional.getSchool());
-        }
-        
-        if (additional.getMeetingTimes() != null) {
-            original.setMeetingTimes(additional.getMeetingTimes());
         }
         
         if (additional.getTitle() != null) {
