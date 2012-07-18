@@ -36,7 +36,10 @@
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">
 
-        <h2>${ course.title }: ${ section.code }</h2>
+        <div class="titlebar">
+            <h2 class="title">${ course.title }</h2>
+            <h3 class="subtitle">Section ${ section.code }</h3>
+        </div>
         
         <div class="class-details">
             <c:forEach items="${ section.instructors }" var="instructor">

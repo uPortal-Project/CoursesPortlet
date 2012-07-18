@@ -24,7 +24,7 @@
     
     <course-offering-list term="2012su" department="bio" school="artsci">
         <course-offering code="BIO101" title="Introduction to Biology" credits="4">
-            <description>Foundations in biology</description>
+            <description>Introduces students to basic accounting concepts and procedures, emphasizing sole proprietors. Topics include analysis of business transactions and completion of the accounting cycle, including preparation of financial statements. Students will be introduced to computers.</description>
             <course-section code="13">
                 <course-meeting>
                     <courses:location>

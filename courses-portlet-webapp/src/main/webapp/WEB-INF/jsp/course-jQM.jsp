@@ -34,10 +34,15 @@
 
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">
-
-        <h2>${ course.title }</h2>
-        <p>${ course.description }</p>
-        <p>${ course.credits } credits</p>
+        
+        <div class="titlebar">
+            <h2 class="title">${ course.title }</h2>
+            <h3 class="subtitle">Credit Hours: ${ course.credits }</h3>
+            <div class="text">
+                <p>Prerequisite: MATH 085 with a minimum grade of C or placement at MATH 090 or higher Recommended: READ 095 and concurrent or prior enrollment in CU 103 or CU 105 (Formerly ACCT 110)</p>
+                <p>${ course.description }</p>
+            </div>
+        </div>
 
         <ul data-role="listview" data-inline="true">
             <c:forEach items="${ course.courseSections }" var="section">
