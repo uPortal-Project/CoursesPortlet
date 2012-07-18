@@ -53,14 +53,20 @@
                     <portlet:param name="schoolCode" value="${ school.code }"/>
                     <portlet:param name="departmentCode" value="${ department.code }"/>
                 </portlet:renderURL>
-                <li><a href="${ sectionUrl }">
-                    <c:forEach items="${ section.courseMeetings }" var="meeting" varStatus="status">
-                        ${ meeting.time }${ status.last ? '' : ', ' }
-                    </c:forEach><br/>
-                    <c:forEach items="${ section.instructors }" var="instructor" varStatus="status">
-                        ${ instructor.abbreviation }${ status.last ? '' : ', ' }
-                    </c:forEach>        
-                </a></li>
+                <li>
+                    <a href="${ sectionUrl }">
+                        <h4>
+                            <c:forEach items="${ section.courseMeetings }" var="meeting" varStatus="status">
+                                ${ meeting.time }${ status.last ? '' : ', ' }
+                            </c:forEach>
+                        </h4>
+                        <p>
+                            <c:forEach items="${ section.instructors }" var="instructor" varStatus="status">
+                                ${ instructor.abbreviation }${ status.last ? '' : ', ' }
+                            </c:forEach>
+                        </p>
+                    </a>
+                </li>
             </c:forEach>
         </ul>        
     
