@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <ul data-role="listview" data-inline="true">
+        <ul data-role="listview" data-inset="true">
             <c:forEach items="${ course.courseSections }" var="section">
                 <portlet:renderURL var="sectionUrl">
                     <portlet:param name="action" value="section"/>
