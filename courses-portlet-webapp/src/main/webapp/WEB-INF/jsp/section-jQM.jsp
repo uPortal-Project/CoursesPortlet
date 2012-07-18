@@ -41,14 +41,17 @@
             <h3 class="subtitle">Section ${ section.code }</h3>
         </div>
         
-        <div class="class-details">
-            <c:forEach items="${ section.instructors }" var="instructor">
-                <a data-role="button" class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }">${ instructor.fullName }</a>
-            </c:forEach>
-            <c:forEach items="${ section.courseMeetings }" var="meeting">
-                <a data-role="button" class="location" title="location" href="${ locationUrls[meeting.location.identifier] }">${ meeting.time }, ${ meeting.location.displayName }</a>
-            </c:forEach>
+        <ul data-role="listview" data-inset="true" class="class-details">
+            <li style="font-weight: normal;">
+                <c:forEach items="${ section.courseMeetings }" var="meeting">
+                    ${ meeting.time }, ${ meeting.location.displayName }
+                </c:forEach>
+            </li>
+            <li style="font-weight: normal; border: none;">
+                <c:forEach items="${ section.instructors }" var="instructor">
+                    <a class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }">${ instructor.fullName }</a>
+                </c:forEach>
+            </li>
         </div>
-        
     </div>
 </div>
