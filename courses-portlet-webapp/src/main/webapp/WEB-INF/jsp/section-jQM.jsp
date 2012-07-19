@@ -36,16 +36,22 @@
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">
 
-        <h2>${ course.title }: ${ section.code }</h2>
-        
-        <div class="class-details">
-            <c:forEach items="${ section.instructors }" var="instructor">
-                <a data-role="button" class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }">${ instructor.fullName }</a>
-            </c:forEach>
-            <c:forEach items="${ section.courseMeetings }" var="meeting">
-                <a data-role="button" class="location" title="location" href="${ locationUrls[meeting.location.identifier] }">${ meeting.time }, ${ meeting.location.displayName }</a>
-            </c:forEach>
+        <div class="titlebar">
+            <h2 class="title">${ course.title }</h2>
+            <h3 class="subtitle">Section ${ section.code }</h3>
         </div>
         
+        <ul data-role="listview" data-inset="true" class="class-details">
+            <li style="font-weight: normal;">
+                <c:forEach items="${ section.courseMeetings }" var="meeting">
+                    ${ meeting.time }, ${ meeting.location.displayName }
+                </c:forEach>
+            </li>
+            <li style="font-weight: normal; border: none;">
+                <c:forEach items="${ section.instructors }" var="instructor">
+                    <a class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }">${ instructor.fullName }</a>
+                </c:forEach>
+            </li>
+        </div>
     </div>
 </div>

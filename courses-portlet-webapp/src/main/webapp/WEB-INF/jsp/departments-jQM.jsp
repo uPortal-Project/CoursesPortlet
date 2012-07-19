@@ -30,7 +30,11 @@
                     <portlet:param name="schoolCode" value="${ school.code }"/>
                     <portlet:param name="departmentCode" value="${ department.code }"/>
                 </portlet:renderURL>
-                <li><a href="${ departmentUrl }">${ department.name }</a></li>
+                <li>
+                    <a href="${ departmentUrl }">
+                        <h4>${ department.name }</h4>
+                    </a>
+                </li>
             </c:forEach>
         </ul>
     

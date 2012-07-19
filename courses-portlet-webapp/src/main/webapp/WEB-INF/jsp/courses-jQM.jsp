@@ -41,7 +41,11 @@
                     <portlet:param name="schoolCode" value="${ school.code }"/>
                     <portlet:param name="departmentCode" value="${ department.code }"/>
                 </portlet:renderURL>
-                <li><a href="${ courseUrl }">${ course.title }</a></li>
+                <li>
+                    <a href="${ courseUrl }">
+                        <h4>${ course.title }</h4>
+                    </a>
+                </li>
             </c:forEach>
         </ul>
 
@@ -52,7 +56,6 @@
               <input type="hidden" name="action" value="courses"/>
               <input type="hidden" name="schoolCode" value="${ school.code }"/>
               <input type="hidden" name="departmentCode" value="${ department.code }"/>
-              <label for="${n}_termPicker"><spring:message code="term"/>:</label>
               <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
                 <c:forEach var="t" items="${terms}">
                   <c:set var="selected" value="" />

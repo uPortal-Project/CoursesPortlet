@@ -34,12 +34,17 @@
 
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">
+        
+        <div class="titlebar">
+            <h2 class="title">${ course.title }</h2>
+            <h3 class="subtitle">Credit Hours: ${ course.credits }</h3>
+            <div class="text">
+                <p>Prerequisite: MATH 085 with a minimum grade of C or placement at MATH 090 or higher Recommended: READ 095 and concurrent or prior enrollment in CU 103 or CU 105 (Formerly ACCT 110)</p>
+                <p>${ course.description }</p>
+            </div>
+        </div>
 
-        <h2>${ course.title }</h2>
-        <p>${ course.description }</p>
-        <p>${ course.credits } credits</p>
-
-        <ul data-role="listview" data-inline="true">
+        <ul data-role="listview" data-inset="true">
             <c:forEach items="${ course.courseSections }" var="section">
                 <portlet:renderURL var="sectionUrl">
                     <portlet:param name="action" value="section"/>
@@ -48,14 +53,20 @@
                     <portlet:param name="schoolCode" value="${ school.code }"/>
                     <portlet:param name="departmentCode" value="${ department.code }"/>
                 </portlet:renderURL>
-                <li><a href="${ sectionUrl }">
-                    <c:forEach items="${ section.courseMeetings }" var="meeting" varStatus="status">
-                        ${ meeting.time }${ status.last ? '' : ', ' }
-                    </c:forEach><br/>
-                    <c:forEach items="${ section.instructors }" var="instructor" varStatus="status">
-                        ${ instructor.abbreviation }${ status.last ? '' : ', ' }
-                    </c:forEach>        
-                </a></li>
+                <li>
+                    <a href="${ sectionUrl }">
+                        <h4>
+                            <c:forEach items="${ section.courseMeetings }" var="meeting" varStatus="status">
+                                ${ meeting.time }${ status.last ? '' : ', ' }
+                            </c:forEach>
+                        </h4>
+                        <p>
+                            <c:forEach items="${ section.instructors }" var="instructor" varStatus="status">
+                                ${ instructor.abbreviation }${ status.last ? '' : ', ' }
+                            </c:forEach>
+                        </p>
+                    </a>
+                </li>
             </c:forEach>
         </ul>        
     

@@ -72,7 +72,6 @@
             
             <portlet:actionURL var="selectTermUrl"/>
             <div class="ui-block-c"><form action="${selectTermUrl}" method="post">
-              <label for="${n}_termPicker"><spring:message code="term"/>:</label>
               <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
                 <c:forEach var="term" items="${termList.terms}">
                   <c:set var="selected" value="" />
