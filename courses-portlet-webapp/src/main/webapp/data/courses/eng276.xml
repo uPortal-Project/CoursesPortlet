@@ -1,0 +1,31 @@
+<full-course-offering
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
+    code="eng276" title="Creative Writing: Fiction" credits="3">
+
+    <description>
+        Writing of fiction (short story, novel), with particular attention to techniques used by contemporary authors. Course is flexible to meet needs of individual students.
+    </description>
+
+    <prerequisites>
+        Prerequisite: ENG 101 with a minimum grade of C
+    </prerequisites>
+
+    <course-section code="3227A">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>MWF 10:30-11:20A</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+</full-course-offering>

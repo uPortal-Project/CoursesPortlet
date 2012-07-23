@@ -67,7 +67,12 @@
         p:cacheManager-ref="cacheManager" p:cacheName="courseCatalogCache"/>
         
     <bean class="org.jasig.portlet.courses.dao.xml.HttpClientCourseOfferingDaoImpl"
-        p:cache-ref="courseCatalogCache"/>
+        p:cache-ref="courseCatalogCache" 
+        p:courseListUrl="http://localhost:8080/CoursesPortlet/data/courses/{department}.xml" 
+        p:departmentListUrl="http://localhost:8080/CoursesPortlet/data/departments/{school}.xml" 
+        p:schoolListUrl="http://localhost:8080/CoursesPortlet/data/schools.xml" 
+        p:termListUrl="http://localhost:8080/CoursesPortlet/data/terms.xml" 
+        p:courseUrl="http://localhost:8080/CoursesPortlet/data/courses/{course}.xml"/>
 
     <bean id="viewSelector" class="org.jasig.portlet.courses.mvc.ThemeNameViewSelectorImpl"/>
 

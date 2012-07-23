@@ -1,0 +1,17 @@
+<term-list
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd">
+    
+    <courses:term current="true">
+        <courses:displayName>Summer 2012</courses:displayName>
+        <courses:code>2012su</courses:code>
+    </courses:term>
+
+    <courses:term>
+        <courses:displayName>Fall 2012</courses:displayName>
+        <courses:code>2012fa</courses:code>
+    </courses:term>
+    
+</term-list>

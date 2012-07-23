@@ -1,0 +1,61 @@
+<full-course-offering
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
+    code="acc210" title="Principles of Accounting I" credits="5">
+
+    <description>
+        (Formerly ACCNT-210) Emphasis is on the development and interpretation of financial statements: the balance sheet, income statement and the statement of owner's equity.    
+    </description>
+
+    <prerequisites>
+        Prerequisite: ACCT 101 with a minimum grade of C- or MATH 095 with a minimum grade of C- or assessment above MATH 095
+    </prerequisites>
+
+    <course-section code="1245A">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>Daily 7:30-8:20A</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+    <course-section code="3638ALA">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>Daily 11:30A-12:20P</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+    <course-section code="1264B">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>MW 5:30-7:40P</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+</full-course-offering>

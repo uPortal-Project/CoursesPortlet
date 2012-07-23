@@ -25,6 +25,7 @@
     <portlet:param name="action" value="courses"/>
     <portlet:param name="schoolCode" value="${ school.code }"/>
     <portlet:param name="departmentCode" value="${ department.code }"/>
+    <portlet:param name="termCode" value="${ term }"/>
 </portlet:renderURL>
 <div data-role="header" class="titlebar portlet-titlebar">
     <a data-role="button"  data-icon="back" data-inline="true" href="${ backUrl }">Back</a>

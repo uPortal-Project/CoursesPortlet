@@ -1,0 +1,46 @@
+<full-course-offering
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
+    code="acc101" title="Practical Accounting I" credits="5">
+
+    <description>
+        (Formerly ACCT 110) Introduces students to basic accounting concepts and procedures, emphasizing sole proprietors. Topics include analysis of business transactions and completion of the accounting cycle, including preparation of financial statements. Students will be introduced to computers.
+    </description>
+
+    <prerequisites>
+        Prerequisite: MATH 085 with a minimum grade of C or placement at MATH 090 or higher Recommended: READ 095 and concurrent or prior enrollment in CU 103 or CU 105
+    </prerequisites>
+
+    <course-section code="1200A">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>Daily 9:30-10:20A</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+    <course-section code="1201B">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>Daily 10:30-11:20A</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+</full-course-offering>

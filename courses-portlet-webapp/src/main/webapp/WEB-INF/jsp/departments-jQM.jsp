@@ -29,6 +29,7 @@
                     <portlet:param name="action" value="courses"/>
                     <portlet:param name="schoolCode" value="${ school.code }"/>
                     <portlet:param name="departmentCode" value="${ department.code }"/>
+                    <portlet:param name="termCode" value="${ term }"/>
                 </portlet:renderURL>
                 <li>
                     <a href="${ departmentUrl }">
@@ -37,6 +38,25 @@
                 </li>
             </c:forEach>
         </ul>
-    
+
+        <div class="utilities" style="margin-top: 20px">
+        
+            <portlet:renderURL var="selectTermUrl"/>
+            <div class="ui-block-c"><form action="${selectTermUrl}" method="post">
+              <input type="hidden" name="action" value="departments"/>
+              <input type="hidden" name="schoolCode" value="${ school.code }"/>
+              <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
+                <c:forEach var="t" items="${terms}">
+                  <c:set var="selected" value="" />
+                  <c:if test="${t.code == term}">
+                      <c:set var="selected" value="selected=\"selected\"" />
+                  </c:if>
+                  <option value="${t.code}" ${selected}>${t.displayName}</option>
+                </c:forEach>
+              </select>
+            </form></div>
+            
+        </div>
+        
     </div>
 </div>

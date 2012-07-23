@@ -1,0 +1,46 @@
+<full-course-offering
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
+    code="bus101" title="Introduction to Business" credits="5">
+
+    <description>
+        (Formerly BUS-101) For both business and non-business majors. Dynamics and competitive business world are explored through the study of topics including economic systems, forms of business ownership, social responsibility and ethics, entrepreneurship, marketing, management, organizational design, finance, banking, and securities markets.
+    </description>
+
+    <prerequisites>
+        Prerequisite: ENGL 095 and READ 095 or ENGL/ 095 or Instructor permission
+    </prerequisites>
+
+    <course-section code="1287OLA">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>TBA</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+    <course-section code="1288OLB">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>TBA</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+</full-course-offering>

@@ -1,0 +1,31 @@
+<full-course-offering
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
+    code="bio170" title="Human Biology" credits="5">
+
+    <description>
+        Prerequisite: Completion of ENGL 095 and READ 095 with a minimum grade of C or ENGL/ 095 with a minimum grade of C and completion of MATH 090 or MATH 093 or BUS 110 with a minimum grade of C- or equivalent assessment in these areas
+    </description>
+
+    <prerequisites>
+        Prerequisite: Completion of ENGL 095 and READ 095 with a minimum grade of C or ENGL/ 095 with a minimum grade of C and completion of MATH 090 or MATH 093 with a minimum grade of C- or equivalent assessment in these areas
+    </prerequisites>
+
+    <course-section code="5080OLA">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>TBA</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+</full-course-offering>

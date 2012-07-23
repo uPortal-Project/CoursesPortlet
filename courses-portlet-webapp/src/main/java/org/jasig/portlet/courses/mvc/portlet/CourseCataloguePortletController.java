@@ -8,14 +8,18 @@ import javax.portlet.PortletRequest;
 import javax.portlet.PortletSession;
 
 import org.jasig.portlet.courses.dao.ICourseOfferingDao;
-import org.jasig.portlet.courses.model.catalog.xml.CourseOffering;
+import org.jasig.portlet.courses.model.catalog.xml.CourseList;
 import org.jasig.portlet.courses.model.catalog.xml.CourseSection;
 import org.jasig.portlet.courses.model.catalog.xml.Department;
+import org.jasig.portlet.courses.model.catalog.xml.DepartmentList;
+import org.jasig.portlet.courses.model.catalog.xml.FullCourseOffering;
 import org.jasig.portlet.courses.model.catalog.xml.School;
-import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.catalog.xml.SchoolList;
 import org.jasig.portlet.courses.model.xml.CourseMeeting;
 import org.jasig.portlet.courses.model.xml.Instructor;
 import org.jasig.portlet.courses.model.xml.Location;
+import org.jasig.portlet.courses.model.xml.Term;
+import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.mvc.IViewSelector;
 import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,12 +55,13 @@ public class CourseCataloguePortletController {
 
     @RequestMapping
     public String showMainView(final ModelMap model, final PortletRequest request) {
-        final List<School> schools = dao.getSchools();
+        final SchoolList schoolList = dao.getSchools();
+        final List<School> schools = schoolList.getSchools();
 
         // if there's only one school configured, we don't need to offer users
         // a choice and should skip directly to displaying departments
         if (schools.size() == 1) {
-            return showDepartments(schools.get(0).getCode(), model, request);
+            return showDepartments(null, schools.get(0).getCode(), model, request);
         } 
         
         else {
@@ -69,31 +74,10 @@ public class CourseCataloguePortletController {
     }
     
     @RequestMapping(params = "action=departments")
-    public String showDepartments(final @RequestParam String schoolCode, final ModelMap model, final PortletRequest request) {
+    public String showDepartments(@RequestParam(required = false) String termCode, final @RequestParam String schoolCode, final ModelMap model, final PortletRequest request) {
         
-        // get a list of departments
-        final List<Department> departments = dao.getDepartments(schoolCode);
-        model.addAttribute("departments", departments);
-        
-        final School school = dao.getSchool(schoolCode);
-        model.addAttribute("school", school);
-        
-        final String view = viewSelector.isMobile(request) ? "departments-jQM" : "departments";
-        return view;
-    }
-
-    @RequestMapping(params = "action=courses")
-    public String showCourses(@RequestParam(required = false) String termCode, final @RequestParam String schoolCode, final @RequestParam String departmentCode, final ModelMap model, final PortletRequest request) {
-
-        // TODO: get the term choice list
-        final List<Term> terms = dao.getTerms();
-        model.addAttribute("terms", terms);
-
-        final School school = dao.getSchool(schoolCode);
-        model.addAttribute("school", school);
-        
-        final Department department = dao.getDepartment(schoolCode, departmentCode);
-        model.addAttribute("department", department);
+        final TermList termList = dao.getTerms(schoolCode);
+        model.addAttribute("terms", termList.getTerms());
 
         // if a term parameter was provided, update the term code in the session
         final PortletSession session = request.getPortletSession();
@@ -108,16 +92,41 @@ public class CourseCataloguePortletController {
             if (currentTerm != null) {
                 termCode = currentTerm;
             } else {
-                final Term term = dao.getCurrentTerm();
+                final Term term = dao.getCurrentTerm(schoolCode);
                 termCode = term.getCode();
                 session.setAttribute("currentTerm", termCode);
             }
         }
         model.addAttribute("term", termCode);
 
+        // get a list of departments
+        final DepartmentList departmentList = dao.getDepartments(schoolCode, termCode);
+        model.addAttribute("departments", departmentList.getDepartments());
+        
+        final School school = dao.getSchool(schoolCode);
+        model.addAttribute("school", school);
+        
+        final String view = viewSelector.isMobile(request) ? "departments-jQM" : "departments";
+        return view;
+    }
+
+    @RequestMapping(params = "action=courses")
+    public String showCourses(final @RequestParam String termCode, final @RequestParam String schoolCode, final @RequestParam String departmentCode, final ModelMap model, final PortletRequest request) {
+
+        final TermList termList = dao.getTerms(schoolCode);
+        model.addAttribute("terms", termList.getTerms());
+
+        final School school = dao.getSchool(schoolCode);
+        model.addAttribute("school", school);
+        
+        final Department department = dao.getDepartment(schoolCode, departmentCode, termCode);
+        model.addAttribute("department", department);
+
+        model.addAttribute("termCode", termCode);
+
         // get a list of course offerings for the selected term and department
-        final List<CourseOffering> courses = dao.getCourseOfferings(schoolCode, departmentCode, termCode);
-        model.addAttribute("courses", courses);
+        final CourseList courseList = dao.getCourseOfferings(schoolCode, departmentCode, termCode);
+        model.addAttribute("courses", courseList.getAbbreviatedCourseOfferings());
 
         final String view = viewSelector.isMobile(request) ? "courses-jQM" : "courses";
         return view;
@@ -128,13 +137,15 @@ public class CourseCataloguePortletController {
 
         final PortletSession session = request.getPortletSession();
         final String termCode = (String) session.getAttribute("currentTerm");
-        final CourseOffering course = dao.getCourseOffering(courseCode, termCode);
+        model.addAttribute("term", termCode);
+        
+        final FullCourseOffering course = dao.getCourseOffering(courseCode, termCode);
         model.addAttribute("course", course);
 
         final School school = dao.getSchool(schoolCode);
         model.addAttribute("school", school);
         
-        final Department department = dao.getDepartment(schoolCode, departmentCode);
+        final Department department = dao.getDepartment(schoolCode, departmentCode, termCode);
         model.addAttribute("department", department);
 
         final String view = viewSelector.isMobile(request) ? "course-jQM" : "course";
@@ -146,7 +157,7 @@ public class CourseCataloguePortletController {
 
         final PortletSession session = request.getPortletSession();
         final String termCode = (String) session.getAttribute("currentTerm");
-        final CourseOffering course = dao.getCourseOffering(courseCode, termCode);
+        final FullCourseOffering course = dao.getCourseOffering(courseCode, termCode);
         model.addAttribute("course", course);
         
         final CourseSection section = dao.getCourseSectionOffering(courseCode, sectionCode, termCode);
@@ -155,7 +166,7 @@ public class CourseCataloguePortletController {
         final School school = dao.getSchool(schoolCode);
         model.addAttribute("school", school);
         
-        final Department department = dao.getDepartment(schoolCode, departmentCode);
+        final Department department = dao.getDepartment(schoolCode, departmentCode, termCode);
         model.addAttribute("department", department);
         
         Map<String, String> instructorUrls = new HashMap<String, String>();

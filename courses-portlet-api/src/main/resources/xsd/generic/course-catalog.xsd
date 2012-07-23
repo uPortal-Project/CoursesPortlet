@@ -16,47 +16,39 @@
 
     <xs:import namespace="https://source.jasig.org/schemas/portlet/courses/common" schemaLocation="common.xsd"/>
 
-    <xs:element name="course-catalog">
+    <xs:element name="school">
         <xs:complexType>
-            <xs:sequence>
-                <xs:element name="term-list" type="courses:term-list"/>
-                <xs:element name="school" type="school" maxOccurs="unbounded" />
-                <xs:element name="course-offering-list" type="course-offering-list" maxOccurs="unbounded"/>
-            </xs:sequence>
+            <xs:attribute name="code" type="xs:string" />
+            <xs:attribute name="name" type="xs:string" />
         </xs:complexType>
     </xs:element>
-
-    <xs:complexType name="school">
-        <xs:sequence>
-            <xs:element name="department" type="department" maxOccurs="unbounded" />
-        </xs:sequence>
-        <xs:attribute name="code" type="xs:string" />
-        <xs:attribute name="name" type="xs:string" />
-    </xs:complexType>
-
-    <xs:complexType name="department">
-        <xs:attribute name="code" type="xs:string" />
-        <xs:attribute name="name" type="xs:string" />
-    </xs:complexType>
-
-    <xs:complexType name="course-offering-list">
-        <xs:sequence>
-            <xs:element name="course-offering" type="course-offering" maxOccurs="unbounded" />
-        </xs:sequence>
-        <xs:attribute name="school" type="xs:string"/>
-        <xs:attribute name="department" type="xs:string"/>
-        <xs:attribute name="term" type="xs:string"/>
-    </xs:complexType>
-
-    <xs:complexType name="course-offering">
-        <xs:sequence>
-            <xs:element name="description" type="xs:string"/>
-            <xs:element name="course-section" type="course-section" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attribute name="code" type="xs:string" />
-        <xs:attribute name="title" type="xs:string" />
-        <xs:attribute name="credits" type="xs:decimal" />
-    </xs:complexType>
+    
+    <xs:element name="department">
+        <xs:complexType>
+            <xs:attribute name="code" type="xs:string" />
+            <xs:attribute name="name" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="abbreviated-course-offering">
+        <xs:complexType>
+            <xs:attribute name="code" type="xs:string" />
+            <xs:attribute name="title" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="full-course-offering">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="description" type="xs:string"/>
+                <xs:element name="prerequisites" type="xs:string" minOccurs="0"/>
+                <xs:element name="course-section" type="course-section" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="code" type="xs:string" />
+            <xs:attribute name="title" type="xs:string" />
+            <xs:attribute name="credits" type="xs:decimal" />
+        </xs:complexType>
+    </xs:element>
     
     <xs:complexType name="course-section">
         <xs:sequence>
@@ -65,5 +57,31 @@
         </xs:sequence>
         <xs:attribute name="code" type="xs:string"/>
     </xs:complexType>
+
+    <xs:element name="school-list">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="school" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+ 
+    <xs:element name="term-list" type="courses:term-list"/>
+
+    <xs:element name="department-list">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="department" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     
+    <xs:element name="course-list">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="abbreviated-course-offering" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
 </xs:schema>

@@ -1,0 +1,11 @@
+<course-list
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd">
+
+    <abbreviated-course-offering code="eng101" title="English Composition I"/>
+    <abbreviated-course-offering code="eng235" title="Technical Writing"/>
+    <abbreviated-course-offering code="eng276" title="Creative Writing: Fiction"/>
+    
+</course-list>

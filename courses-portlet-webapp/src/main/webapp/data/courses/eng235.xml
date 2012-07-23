@@ -1,0 +1,31 @@
+<full-course-offering
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
+    code="eng235" title="Technical Writing" credits="5">
+
+    <description>
+        (Formerly ENGR-231) A practical course in organizing, developing and writing technical information, including reports. Attention given to organizational patterns and report formats common to scientific and technical disciplines and technical writing conventions, including headings, illustrations, style and tone.
+    </description>
+
+    <prerequisites>
+        Prerequisite: ENG 101 with a minimum grade of C
+    </prerequisites>
+
+    <course-section code="5587OL">
+        <course-meeting>
+            <courses:location>
+                <courses:displayName>SSS 114</courses:displayName>
+                <courses:identifier>SSS</courses:identifier>
+            </courses:location>
+            <courses:time>TBA</courses:time>
+        </course-meeting>
+        <instructor>
+            <courses:abbreviation>Faculty</courses:abbreviation>
+            <courses:fullName>Joe Faculty</courses:fullName>
+            <courses:identifier>faculty</courses:identifier>
+        </instructor>
+    </course-section>
+
+</full-course-offering>

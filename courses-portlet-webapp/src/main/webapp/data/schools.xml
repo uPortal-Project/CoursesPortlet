@@ -1,0 +1,10 @@
+<school-list
+    xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd">
+
+    <school code="artsci" name="College of Arts and Sciences"/>
+    <school code="bus" name="College of Business"/>
+    
+</school-list>
