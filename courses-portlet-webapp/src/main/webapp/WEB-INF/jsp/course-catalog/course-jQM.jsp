@@ -40,7 +40,7 @@
             <h2 class="title">${ course.title }</h2>
             <h3 class="subtitle">Credit Hours: ${ course.credits }</h3>
             <div class="text">
-                <p>Prerequisite: MATH 085 with a minimum grade of C or placement at MATH 090 or higher Recommended: READ 095 and concurrent or prior enrollment in CU 103 or CU 105 (Formerly ACCT 110)</p>
+                <p>${ course.prerequisites }</p>
                 <p>${ course.description }</p>
             </div>
         </div>

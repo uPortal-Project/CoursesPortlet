@@ -108,7 +108,7 @@ public class CoursesPortletController {
         }
         
         final boolean isMobile = viewSelector.isMobile(request);
-        final String viewName = isMobile ? "courseList-jQM" : "courseList";
+        final String viewName = isMobile ? "mycourses/courseList-jQM" : "mycourses/courseList";
         return viewName;
     }
 
@@ -131,7 +131,7 @@ public class CoursesPortletController {
         }
         
         final boolean isMobile = viewSelector.isMobile(request);
-        final String viewName = isMobile ? "grades-jQM" : "grades";
+        final String viewName = isMobile ? "mycourses/grades-jQM" : "mycourses/grades";
         return viewName;
     }
 
@@ -163,7 +163,7 @@ public class CoursesPortletController {
         model.put("course", selectedCourse);
         
         final boolean isMobile = viewSelector.isMobile(request);
-        final String viewName = isMobile ? "courseDetail-jQM" : "courseDetail";
+        final String viewName = isMobile ? "mycourses/courseDetail-jQM" : "mycourses/courseDetail";
         return viewName;
     }
     

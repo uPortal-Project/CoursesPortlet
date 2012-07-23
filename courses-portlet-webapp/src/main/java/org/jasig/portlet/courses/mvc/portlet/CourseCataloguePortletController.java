@@ -67,7 +67,7 @@ public class CourseCataloguePortletController {
         else {
             model.addAttribute("schools", schools);
 
-            final String view = viewSelector.isMobile(request) ? "schools-jQM" : "schools";
+            final String view = viewSelector.isMobile(request) ? "course-catalog/schools-jQM" : "course-catalog/schools";
             return view;
         }
         
@@ -106,7 +106,7 @@ public class CourseCataloguePortletController {
         final School school = dao.getSchool(schoolCode);
         model.addAttribute("school", school);
         
-        final String view = viewSelector.isMobile(request) ? "departments-jQM" : "departments";
+        final String view = viewSelector.isMobile(request) ? "course-catalog/departments-jQM" : "course-catalog/departments";
         return view;
     }
 
@@ -128,7 +128,7 @@ public class CourseCataloguePortletController {
         final CourseList courseList = dao.getCourseOfferings(schoolCode, departmentCode, termCode);
         model.addAttribute("courses", courseList.getAbbreviatedCourseOfferings());
 
-        final String view = viewSelector.isMobile(request) ? "courses-jQM" : "courses";
+        final String view = viewSelector.isMobile(request) ? "course-catalog/courses-jQM" : "course-catalog/courses";
         return view;
     }
 
@@ -148,7 +148,7 @@ public class CourseCataloguePortletController {
         final Department department = dao.getDepartment(schoolCode, departmentCode, termCode);
         model.addAttribute("department", department);
 
-        final String view = viewSelector.isMobile(request) ? "course-jQM" : "course";
+        final String view = viewSelector.isMobile(request) ? "course-catalog/course-jQM" : "course-catalog/course";
         return view;
     }
     
@@ -184,7 +184,7 @@ public class CourseCataloguePortletController {
         }
         model.put("locationUrls", locationUrls);
 
-        final String view = viewSelector.isMobile(request) ? "section-jQM" : "section";
+        final String view = viewSelector.isMobile(request) ? "course-catalog/section-jQM" : "course-catalog/section";
         return view;
     }
     
