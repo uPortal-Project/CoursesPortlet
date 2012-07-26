@@ -4,8 +4,8 @@
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd">
 
-    <abbreviated-course-offering code="bus101" title="Introduction to Business"/>
-    <abbreviated-course-offering code="bus110" title="Business Math"/>
-    <abbreviated-course-offering code="bus256" title="Statistical Analysis"/>
+    <abbreviated-course-offering code="BUS101" title="Introduction to Business"/>
+    <abbreviated-course-offering code="BUS110" title="Business Math"/>
+    <abbreviated-course-offering code="BUS256" title="Statistical Analysis"/>
     
 </course-list>

@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="eng101" title="English Composition I" credits="5">
+    code="ENG101" title="English Composition I" credits="5">
 
     <description>
         (Previously ENGL-101) Study and application of the principles of college writing. Students read, analyze, and write expository, descriptive, and argumentative essays, as well as learn to develop ideas fully, organize them effectively, and express them clearly. ENGL 101 readings focus on the essay. This course may not be taken "S/U."

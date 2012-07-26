@@ -4,8 +4,8 @@
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd">
 
-    <abbreviated-course-offering code="bio101" title="Survey of Biology"/>
-    <abbreviated-course-offering code="bio160" title="General Cell Biology"/>
-    <abbreviated-course-offering code="bio170" title="Human Biology"/>
+    <abbreviated-course-offering code="BIO101" title="Survey of Biology"/>
+    <abbreviated-course-offering code="BIO160" title="General Cell Biology"/>
+    <abbreviated-course-offering code="BIO170" title="Human Biology"/>
     
 </course-list>

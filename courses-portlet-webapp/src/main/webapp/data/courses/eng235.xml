@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="eng235" title="Technical Writing" credits="5">
+    code="ENG235" title="Technical Writing" credits="5">
 
     <description>
         (Formerly ENGR-231) A practical course in organizing, developing and writing technical information, including reports. Attention given to organizational patterns and report formats common to scientific and technical disciplines and technical writing conventions, including headings, illustrations, style and tone.

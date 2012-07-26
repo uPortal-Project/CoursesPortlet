@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="bus110" title="Business Math" credits="5">
+    code="BUS110" title="Business Math" credits="5">
 
     <description>
         A review of basic math and its application to business problems. Topics include bank reconciliation, discounts, taxes, installment buying, payroll, insurance, depreciation, and interest.
