@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="acc210" title="Principles of Accounting I" credits="5">
+    code="ACC210" title="Principles of Accounting I" credits="5">
 
     <description>
         (Formerly ACCNT-210) Emphasis is on the development and interpretation of financial statements: the balance sheet, income statement and the statement of owner's equity.    

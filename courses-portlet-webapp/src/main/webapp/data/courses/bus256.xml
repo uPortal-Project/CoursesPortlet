@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="bus256" title="Statistical Analysis" credits="5">
+    code="BUS256" title="Statistical Analysis" credits="5">
 
     <description>
         Statistical techniques to be used in guiding business decisions. Introduction to descriptive techniques, probability, estimation, hypothesis testing, regression, correlation and related concepts.

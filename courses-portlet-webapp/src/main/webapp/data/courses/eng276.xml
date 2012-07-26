@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="eng276" title="Creative Writing: Fiction" credits="3">
+    code="ENG276" title="Creative Writing: Fiction" credits="3">
 
     <description>
         Writing of fiction (short story, novel), with particular attention to techniques used by contemporary authors. Course is flexible to meet needs of individual students.

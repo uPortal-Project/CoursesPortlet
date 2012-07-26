@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="bio160" title="General Cell Biology" credits="5">
+    code="BIO160" title="General Cell Biology" credits="5">
 
     <description>
         (Formerly BIOL-111) An introductory cell biology course for students preparing for health professions. Major concepts of cell biology will be introduced, including the chemistry of life, the structure, reproduction, and metabolism of cells, genetics, and evolutionary biology. Lab included.
