@@ -61,7 +61,8 @@
                 </portlet:renderURL>
                 <li>
                     <a href="${ courseUrl }">
-                        <h3>${ course.code } ${ course.title }</h3>
+                        <h3>${ course.code }</h3>
+                        <p>${ course.title }</p>
                     </a>
                 </li>
             </c:forEach>
