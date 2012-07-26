@@ -45,31 +45,24 @@
             </div>
         </div>
 
-        <ul data-role="listview" data-inset="true">
-            <c:forEach items="${ course.courseSections }" var="section">
-                <portlet:renderURL var="sectionUrl">
-                    <portlet:param name="action" value="section"/>
-                    <portlet:param name="sectionCode" value="${ section.code }"/>
-                    <portlet:param name="courseCode" value="${ course.code }"/>
-                    <portlet:param name="schoolCode" value="${ school.code }"/>
-                    <portlet:param name="departmentCode" value="${ department.code }"/>
-                </portlet:renderURL>
-                <li>
-                    <a href="${ sectionUrl }">
-                        <h4>
-                            <c:forEach items="${ section.courseMeetings }" var="meeting" varStatus="status">
-                                ${ meeting.time }${ status.last ? '' : ', ' }
-                            </c:forEach>
-                        </h4>
-                        <p>
-                            <c:forEach items="${ section.instructors }" var="instructor" varStatus="status">
-                                ${ instructor.abbreviation }${ status.last ? '' : ', ' }
-                            </c:forEach>
-                        </p>
-                    </a>
+        <c:forEach items="${ course.courseSections }" var="section">
+            <ul data-role="listview" data-inset="true">
+                <li data-role="list-divider" role="header">Section ${ section.code }</li>
+                <li data-icon="person">
+                    <c:forEach items="${ section.instructors }" var="instructor" varStatus="status">
+                        <a href="${ instructorUrls[instructor.identifier] }">${ instructor.fullName }</a>
+                    </c:forEach>
                 </li>
-            </c:forEach>
-        </ul>        
+                <c:forEach items="${ section.courseMeetings }" var="meeting" varStatus="status">
+                    <li data-icon="mappin">
+                        <a href="#" style="font-weight: normal;">
+                            ${ meeting.time }<br />
+                            ${ meeting.location.displayName }
+                        </a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </c:forEach>      
     
     </div>
 </div>
