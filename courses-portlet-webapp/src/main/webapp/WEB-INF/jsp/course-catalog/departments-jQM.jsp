@@ -20,6 +20,14 @@
 --%>
 
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
+<portlet:renderURL var="backUrl">
+    <portlet:param name="action" value="schools"/>
+</portlet:renderURL>
+<div data-role="header" class="titlebar portlet-titlebar">
+    <a data-role="button" data-icon="back" data-inline="true" href="${ backUrl }">Back</a>
+    <h2>${ school.name }</h2>
+</div>
+
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">
 
