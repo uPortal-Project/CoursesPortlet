@@ -31,7 +31,24 @@
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">
 
-        <ul data-role="listview">
+        <portlet:renderURL var="selectTermUrl"/>
+        <div class="utilities" style="margin-top: 0;">
+            <form action="${selectTermUrl}" method="post">
+              <input type="hidden" name="action" value="departments"/>
+              <input type="hidden" name="schoolCode" value="${ school.code }"/>
+              <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
+                <c:forEach var="t" items="${terms}">
+                  <c:set var="selected" value="" />
+                  <c:if test="${t.code == term}">
+                      <c:set var="selected" value="selected=\"selected\"" />
+                  </c:if>
+                  <option value="${t.code}" ${selected}>${t.displayName}</option>
+                </c:forEach>
+              </select>
+            </form>
+        </div>
+
+        <ul data-role="listview" style="margin-top: 15px;">
             <c:forEach items="${ departments }" var="department">
                 <portlet:renderURL var="departmentUrl">
                     <portlet:param name="action" value="courses"/>
@@ -46,25 +63,6 @@
                 </li>
             </c:forEach>
         </ul>
-
-        <div class="utilities" style="margin-top: 20px">
-        
-            <portlet:renderURL var="selectTermUrl"/>
-            <div class="ui-block-c"><form action="${selectTermUrl}" method="post">
-              <input type="hidden" name="action" value="departments"/>
-              <input type="hidden" name="schoolCode" value="${ school.code }"/>
-              <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
-                <c:forEach var="t" items="${terms}">
-                  <c:set var="selected" value="" />
-                  <c:if test="${t.code == term}">
-                      <c:set var="selected" value="selected=\"selected\"" />
-                  </c:if>
-                  <option value="${t.code}" ${selected}>${t.displayName}</option>
-                </c:forEach>
-              </select>
-            </form></div>
-            
-        </div>
         
     </div>
 </div>
