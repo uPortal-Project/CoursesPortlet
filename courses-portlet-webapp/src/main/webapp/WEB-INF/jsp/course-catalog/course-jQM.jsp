@@ -37,7 +37,7 @@
     <div class="portlet-content" data-role="content">
         
         <div class="titlebar">
-            <h2 class="title">${ course.title }</h2>
+            <h2 class="title">${ course.code } ${ course.title }</h2>
             <h3 class="subtitle">Credit Hours: ${ course.credits }</h3>
             <div class="text">
                 <p>${ course.prerequisites }</p>
