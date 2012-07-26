@@ -4,7 +4,7 @@
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd">
 
-    <department code="bio" name="Biology"/>
-    <department code="eng" name="English"/>
+    <department code="BIO" name="Biology"/>
+    <department code="ENG" name="English"/>
     
 </department-list>

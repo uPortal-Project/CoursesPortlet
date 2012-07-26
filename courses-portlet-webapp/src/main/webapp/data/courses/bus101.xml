@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="bus101" title="Introduction to Business" credits="5">
+    code="BUS101" title="Introduction to Business" credits="5">
 
     <description>
         (Formerly BUS-101) For both business and non-business majors. Dynamics and competitive business world are explored through the study of topics including economic systems, forms of business ownership, social responsibility and ethics, entrepreneurship, marketing, management, organizational design, finance, banking, and securities markets.

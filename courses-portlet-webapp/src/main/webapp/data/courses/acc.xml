@@ -4,8 +4,8 @@
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd">
 
-    <abbreviated-course-offering code="acc101" title="Practical Accounting I"/>
-    <abbreviated-course-offering code="acc201" title="Principles of Accounting I"/>
-    <abbreviated-course-offering code="acc290" title="Work Study"/>
+    <abbreviated-course-offering code="ACC101" title="Practical Accounting I"/>
+    <abbreviated-course-offering code="ACC201" title="Principles of Accounting I"/>
+    <abbreviated-course-offering code="ACC290" title="Work Study"/>
     
 </course-list>

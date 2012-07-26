@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
     xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/course-catalog ../../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-catalog.xsd"
-    code="bio101" title="Survey of Biology" credits="5">
+    code="BIO101" title="Survey of Biology" credits="5">
 
     <description>
         (Formerly BIOL-100) A one-quarter introduction to biological principles for non-majors or students starting in life sciences. Topics include: diversity of life; basic cellular anatomy and biochemical processes; evolution and genetics; ecology and environmental issues; and an overview of human anatomy/physiology. Laboratory included.

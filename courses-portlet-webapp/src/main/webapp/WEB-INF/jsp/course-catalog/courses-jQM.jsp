@@ -26,33 +26,16 @@
     <portlet:param name="schoolCode" value="${ school.code }"/>
 </portlet:renderURL>
 <div data-role="header" class="titlebar portlet-titlebar">
-    <a data-role="button"  data-icon="back" data-inline="true" href="${ backUrl }">Back</a>
+    <a data-role="button" data-icon="back" data-inline="true" href="${ backUrl }">Back</a>
     <h2>${ department.name }</h2>
 </div>
 
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">
 
-        <ul data-role="listview">
-            <c:forEach items="${ courses }" var="course">
-                <portlet:renderURL var="courseUrl">
-                    <portlet:param name="action" value="course"/>
-                    <portlet:param name="courseCode" value="${ course.code }"/>
-                    <portlet:param name="schoolCode" value="${ school.code }"/>
-                    <portlet:param name="departmentCode" value="${ department.code }"/>
-                </portlet:renderURL>
-                <li>
-                    <a href="${ courseUrl }">
-                        <h4>${ course.title }</h4>
-                    </a>
-                </li>
-            </c:forEach>
-        </ul>
-
-        <div class="utilities" style="margin-top: 20px">
-        
+        <div class="utilities" style="margin-top: 0;">
             <portlet:renderURL var="selectTermUrl"/>
-            <div class="ui-block-c"><form action="${selectTermUrl}" method="post">
+            <form action="${selectTermUrl}" method="post">
               <input type="hidden" name="action" value="courses"/>
               <input type="hidden" name="schoolCode" value="${ school.code }"/>
               <input type="hidden" name="departmentCode" value="${ department.code }"/>
@@ -65,9 +48,25 @@
                   <option value="${t.code}" ${selected}>${t.displayName}</option>
                 </c:forEach>
               </select>
-            </form></div>
-            
+            </form>            
         </div>
-    
+
+        <ul data-role="listview" style="margin-top: 15px;">
+            <c:forEach items="${ courses }" var="course">
+                <portlet:renderURL var="courseUrl">
+                    <portlet:param name="action" value="course"/>
+                    <portlet:param name="courseCode" value="${ course.code }"/>
+                    <portlet:param name="schoolCode" value="${ school.code }"/>
+                    <portlet:param name="departmentCode" value="${ department.code }"/>
+                </portlet:renderURL>
+                <li>
+                    <a href="${ courseUrl }">
+                        <h3>${ course.code }</h3>
+                        <p>${ course.title }</p>
+                    </a>
+                </li>
+            </c:forEach>
+        </ul>
+
     </div>
 </div>
