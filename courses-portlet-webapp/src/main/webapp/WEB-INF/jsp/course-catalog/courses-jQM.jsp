@@ -44,6 +44,7 @@
                 <li>
                     <a href="${ courseUrl }">
                         <h4>${ course.title }</h4>
+                        <p>${ course.code }</p>
                     </a>
                 </li>
             </c:forEach>
