@@ -20,6 +20,7 @@
 --%>
 
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
+
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">
 

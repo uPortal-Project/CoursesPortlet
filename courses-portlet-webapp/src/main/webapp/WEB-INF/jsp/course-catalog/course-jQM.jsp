@@ -28,10 +28,9 @@
     <portlet:param name="termCode" value="${ term }"/>
 </portlet:renderURL>
 <div data-role="header" class="titlebar portlet-titlebar">
-    <a data-role="button"  data-icon="back" data-inline="true" href="${ backUrl }">Back</a>
+    <a data-role="button" data-icon="back" data-inline="true" href="${ backUrl }">Back</a>
     <h2>Course Detail</h2>
 </div>
-
 
 <div class="fl-widget portlet" role="section">
     <div class="portlet-content" data-role="content">

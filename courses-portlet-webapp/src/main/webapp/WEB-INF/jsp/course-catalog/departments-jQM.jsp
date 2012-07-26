@@ -20,6 +20,7 @@
 --%>
 
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
+
 <portlet:renderURL var="backUrl">
     <portlet:param name="action" value="schools"/>
 </portlet:renderURL>
