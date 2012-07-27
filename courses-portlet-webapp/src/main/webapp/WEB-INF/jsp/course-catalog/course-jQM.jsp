@@ -54,7 +54,7 @@
                 </li>
                 <c:forEach items="${ section.courseMeetings }" var="meeting" varStatus="status">
                     <li data-icon="mappin">
-                        <a href="#" style="font-weight: normal;">
+                        <a href="${ locationUrls[meeting.location.identifier] }" style="font-weight: normal;">
                             ${ meeting.time }<br />
                             ${ meeting.location.displayName }
                         </a>

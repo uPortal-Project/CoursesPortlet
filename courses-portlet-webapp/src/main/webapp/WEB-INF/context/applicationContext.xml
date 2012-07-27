@@ -98,7 +98,7 @@
                 <prop key="org.springframework.security.AccessDeniedException">noEmplId</prop>
             </props>
         </property>
-        <property name="defaultErrorView" value="gradesUnavailable"/>
+        <property name="defaultErrorView" value="mycourses/gradesUnavailable"/>
     </bean>
 
     <bean id="httpConnectionManager" class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager" destroy-method="shutdown">

@@ -148,44 +148,27 @@ public class CourseCataloguePortletController {
         final Department department = dao.getDepartment(schoolCode, departmentCode, termCode);
         model.addAttribute("department", department);
 
+        // construct URLs for each unique instructor and location
+        final Map<String, String> instructorUrls = new HashMap<String, String>();
+        final Map<String, String> locationUrls = new HashMap<String, String>();
+        for (CourseSection section : course.getCourseSections()) {
+            for (Instructor instructor : section.getInstructors()) {
+                if (!instructorUrls.containsKey(instructor.getIdentifier())) {
+                    instructorUrls.put(instructor.getIdentifier(), urlService.getInstructorUrl(instructor, request));
+                }
+            }
+            for (final CourseMeeting meeting : section.getCourseMeetings()) {
+                Location location = meeting.getLocation();
+                if (location != null && !locationUrls.containsKey(location.getIdentifier())) {
+                    locationUrls.put(location.getIdentifier(), urlService.getLocationUrl(location, request));
+                }
+            }
+        }
+        model.put("instructorUrls", instructorUrls);        
+        model.put("locationUrls", locationUrls);
+
         final String view = viewSelector.isMobile(request) ? "course-catalog/course-jQM" : "course-catalog/course";
         return view;
     }
-    
-    @RequestMapping(params = "action=section")
-    public String showCourse(final @RequestParam String schoolCode, final @RequestParam String departmentCode, final @RequestParam String courseCode, final @RequestParam String sectionCode, final ModelMap model, final PortletRequest request) {
 
-        final PortletSession session = request.getPortletSession();
-        final String termCode = (String) session.getAttribute("currentTerm");
-        final FullCourseOffering course = dao.getCourseOffering(courseCode, termCode);
-        model.addAttribute("course", course);
-        
-        final CourseSection section = dao.getCourseSectionOffering(courseCode, sectionCode, termCode);
-        model.addAttribute("section", section);
-
-        final School school = dao.getSchool(schoolCode);
-        model.addAttribute("school", school);
-        
-        final Department department = dao.getDepartment(schoolCode, departmentCode, termCode);
-        model.addAttribute("department", department);
-        
-        Map<String, String> instructorUrls = new HashMap<String, String>();
-        for (Instructor instructor : section.getInstructors()) {
-            instructorUrls.put(instructor.getIdentifier(), urlService.getInstructorUrl(instructor, request));
-        }
-        model.put("instructorUrls", instructorUrls);
-        
-        Map<String, String> locationUrls = new HashMap<String, String>();
-        for (final CourseMeeting meeting : section.getCourseMeetings()) {
-            Location location = meeting.getLocation();
-            if (location != null && !locationUrls.containsKey(location.getIdentifier())) {
-                locationUrls.put(location.getIdentifier(), urlService.getLocationUrl(location, request));
-            }
-        }
-        model.put("locationUrls", locationUrls);
-
-        final String view = viewSelector.isMobile(request) ? "course-catalog/section-jQM" : "course-catalog/section";
-        return view;
-    }
-    
 }
