@@ -32,7 +32,7 @@
     <bean class="org.jasig.portlet.courses.mvc.portlet.CoursesPortletController"/>
 
     <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-        <property name="interceptors"><bean class="org.jasig.portlet.courses.mvc.MinimizedStateHandlerInterceptor"/></property>
+        <property name="interceptors"><bean class="org.jasig.portlet.courses.mvc.MyCoursesMinimizedStateHandlerInterceptor"/></property>
     </bean>
 
 </beans>
