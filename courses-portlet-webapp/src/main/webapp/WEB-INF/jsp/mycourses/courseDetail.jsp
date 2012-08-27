@@ -52,12 +52,9 @@
                 <p><c:forEach items="${ course.instructors }" var="instructor">
                     <a data-role="button" class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }">${ instructor.fullName }</a>
                 </c:forEach></p>
-                <p><c:if test="${ not empty course.meetingTimes }">
-                    <a data-role="button" class="schedule" title="schedule" href="javascript:;">${ course.meetingTimes }</a>
-                </c:if></p>
-                <p><c:if test="${ not empty course.location }">
-                    <a data-role="button" class="location" title="location" href="${ locationUrl }">${ course.location.displayName }</a>
-                </c:if></p>
+                <p><c:forEach items="${ course.courseMeetings }" var="meeting">
+                    <a data-role="button" class="location" href="${ locationUrls[meeting.location.identifier] }">${ meeting.time } at ${ meeting.location.displayName }</a>
+                </c:forEach></p>
             </div>
          </div>
 
