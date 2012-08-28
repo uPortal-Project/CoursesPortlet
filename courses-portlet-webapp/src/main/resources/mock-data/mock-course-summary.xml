@@ -67,6 +67,12 @@
             </description>
                 <url>http://courses.university.edu/dsc101/s11/announcements/1.html</url>
             </course-update>
+            <course-textbook isbn="978-0-07-751448-8">
+                <author>LOCHBAUM</author>
+                <title>CONNECT GET ACTIVE eBOOK WITH CONNECTPLUS FIT ACCESS CARD</title>
+                <url>http://textbooks.university.edu/isbn/978-0-07-751448-8</url>
+                <comments>REQUIRED</comments>
+            </course-textbook>
         </course>
 
         <course>
