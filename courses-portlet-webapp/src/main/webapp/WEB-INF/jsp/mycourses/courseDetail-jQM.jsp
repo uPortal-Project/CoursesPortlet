@@ -40,7 +40,11 @@
         
         <div class="course-details">
             <div class="titlebar">
-                <h2 class="title"><a href="${course.url}">${ course.title }</a></h2>
+                <h2 class="title">
+                    <c:if test="${not empty course.url}"><a href="${course.url}"></c:if>
+                    ${ course.title }
+                    <c:if test="${not empty course.url}"></a></c:if>
+                </h2>
                 <h3 class="subtitle">${ course.school }</h3>
                 <c:if test="${ not empty course.grade }">
                     <div class="grade"><span>${ course.grade }</span></div>
@@ -49,10 +53,14 @@
             <div>
                 <div class="class-details">
                     <c:forEach items="${ course.instructors }" var="instructor">
-                        <a data-role="button" class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }">${ instructor.fullName }</a>
+                        <c:if test="${not empty instructorUrls[instructor.identifier]}"><a data-role="button" class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }"></c:if>
+                        ${ instructor.fullName }
+                        <c:if test="${not empty instructorUrls[instructor.identifier]}"></a></c:if>
                     </c:forEach>
                     <c:forEach items="${ course.courseMeetings }" var="meeting">
-                        <a data-role="button" class="location" href="${ locationUrls[meeting.location.identifier] }">${ meeting.time } at ${ meeting.location.displayName }</a>
+                        <c:if test="${not empty locationUrls[meeting.location.identifier]}"><a data-role="button" class="location" href="${ locationUrls[meeting.location.identifier] }"></c:if>
+                        ${ meeting.time } at ${ meeting.location.displayName }
+                        <c:if test="${not empty locationUrls[meeting.location.identifier]}"></a></c:if>
                     </c:forEach>
                 </div>
                 <div class="class-announcements" style="margin-top: 30px;">
@@ -66,10 +74,33 @@
                                     <li data-role="list-divider"><spring:message code="updates"/></li>
                                     <c:forEach items="${ course.courseUpdates }" var="update">
                                         <li>
-                                            <a href="${ update.url }">
+                                            <c:if test="${not empty update.url}"><a href="${ update.url }"></c:if>
                                                 <h4 class="title">${ update.title }</h4>
                                                 <p class="body">${ update.description }</p>
-                                            </a>
+                                            <c:if test="${not empty update.url}"></a></c:if>
+                                        </li>
+                                    </c:forEach>
+                                </ul>   
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+                <div class="class-textbooks" style="margin-top: 30px;">
+                    <div>
+                        <c:choose>
+                            <c:when test="${ fn:length(course.courseTextbooks) == 0 }">
+                                <p class="no-data"><spring:message code="no.textbooks"/></p>
+                            </c:when>
+                            <c:otherwise>
+                                <ul data-role="listview" data-inset="true">
+                                    <li data-role="list-divider"><spring:message code="textbooks"/></li>
+                                    <c:forEach items="${ course.courseTextbooks }" var="textbook">
+                                        <li>
+                                            <c:if test="${not empty textbook.url}"><a href="${ textbook.url }"></c:if>
+                                                <h4 class="title">${ textbook.title }</h4>
+                                                <p class="body">${ textbook.author } - <spring:message code="isbn"/>: ${ textbook.isbn }</p>
+                                                <p class="body">${ textbook.comments }</p>
+                                            <c:if test="${not empty textbook.url}"></a></c:if>
                                         </li>
                                     </c:forEach>
                                 </ul>   
