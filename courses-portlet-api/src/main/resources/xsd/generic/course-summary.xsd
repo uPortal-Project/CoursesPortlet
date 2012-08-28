@@ -76,6 +76,7 @@
             <xs:element name="grade" type="xs:string" minOccurs="0"/>
             <xs:element name="credits" type="xs:double" minOccurs="0"/>
             <xs:element name="course-update" type="course-update" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="course-textbook" type="course-textbook" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -89,4 +90,14 @@
         <xs:attribute name="type" type="xs:string"/>
     </xs:complexType>
     
+    <xs:complexType name="course-textbook">
+        <xs:sequence>
+            <xs:element name="author" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+            <xs:element name="comments" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="isbn" type="xs:string"/>
+    </xs:complexType>
+
 </xs:schema>
