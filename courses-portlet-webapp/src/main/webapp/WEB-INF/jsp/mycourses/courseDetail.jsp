@@ -40,7 +40,11 @@
             <spring:message code="courses"/>
           </a> &gt;
       </div>
-      <h2 class="title" role="heading">${ course.code }: ${ course.title }</h2>
+      <h2 class="title" role="heading">
+          <c:if test="${not empty course.url}"><a href="${ course.url }" target="_new"></c:if>
+          ${ course.code }: ${ course.title }
+          <c:if test="${not empty course.url}"></a></c:if>
+      </h2>
   </div> <!-- end: portlet-titlebar -->
   
   <!-- Portlet Content -->
