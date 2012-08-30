@@ -50,42 +50,74 @@
   <!-- Portlet Content -->
   <div class="fl-widget-content content portlet-content" role="main">
 
-         <div class="portlet-section" role="region">
-            <div class="content">
+     <div class="portlet-section" role="region">
+        <div class="content">
 
-                <p><c:forEach items="${ course.instructors }" var="instructor">
-                    <a data-role="button" class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }">${ instructor.fullName }</a>
-                </c:forEach></p>
-                <p><c:if test="${ not empty course.meetingTimes }">
-                    <a data-role="button" class="schedule" title="schedule" href="javascript:;">${ course.meetingTimes }</a>
-                </c:if></p>
-                <p><c:if test="${ not empty course.location }">
-                    <a data-role="button" class="location" title="location" href="${ locationUrl }">${ course.location.displayName }</a>
-                </c:if></p>
-            </div>
-         </div>
+            <p><c:forEach items="${ course.instructors }" var="instructor">
+                <c:if test="${not empty instructorUrls[instructor.identifier]}"><a data-role="button" class="instructor" title="instructor" href="${ instructorUrls[instructor.identifier] }"></c:if>
+                ${ instructor.fullName }
+                <c:if test="${not empty instructorUrls[instructor.identifier]}"></a></c:if>
+            </c:forEach></p>
+            <p><c:forEach items="${ course.courseMeetings }" var="meeting">
+                <c:if test="${not empty locationUrls[meeting.location.identifier]}"><a data-role="button" class="location" href="${ locationUrls[meeting.location.identifier] }"></c:if>
+                ${ meeting.time } at ${ meeting.location.displayName }
+                <c:if test="${not empty locationUrls[meeting.location.identifier]}"></a></c:if>
+            </c:forEach></p>
+        </div>
+     </div>
 
-         <div class="portlet-section" role="region">
-            <div class="titlebar">
-                <h3 class="title" role="heading"><spring:message code="updates"/></h3>
+     <div class="portlet-section" role="region">
+        <div class="titlebar">
+            <h3 class="title" role="heading"><spring:message code="updates"/></h3>
+        </div>
+        <div class="content">
+     
+            <div>
+                <c:choose>
+                    <c:when test="${ fn:length(course.courseUpdates) == 0 }">
+                        <p class="no-data"><spring:message code="no.updates"/></p>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${ course.courseUpdates }" var="update">
+                            <h4 class="title">
+                                <c:if test="${not empty update.url}"><a href="${ update.url }"></c:if>
+                                ${ update.title }
+                                <c:if test="${not empty update.url}"></a></c:if></h4>
+                            <p class="body">${ update.description }</p>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
-            <div class="content">
-         
-                    <div>
-                        <c:choose>
-                            <c:when test="${ fn:length(course.courseUpdates) == 0 }">
-                                <p class="no-data"><spring:message code="no.updates"/></p>
-                            </c:when>
-                            <c:otherwise>
-                                <c:forEach items="${ course.courseUpdates }" var="update">
-                                    <h4 class="title"><a href="${ update.url }">${ update.title }</a></h4>
-                                    <p class="body">${ update.description }</p>
-                                </c:forEach>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                    
-            </div>
-
+                
+        </div>
     </div>
+
+     <div class="portlet-section" role="region">
+        <div class="titlebar">
+            <h3 class="title" role="heading"><spring:message code="textbooks"/></h3>
+        </div>
+        <div class="content">
+     
+            <div>
+                <c:choose>
+                    <c:when test="${ fn:length(course.courseTextbooks) == 0 }">
+                        <p class="no-data"><spring:message code="no.textbooks"/></p>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${ course.courseTextbooks }" var="textbook">
+                            <h4 class="title">
+                                <c:if test="${not empty textbook.url}"><a href="${ textbook.url }"></c:if>
+                                ${ textbook.title }
+                                <c:if test="${not empty textbook.url}"></a></c:if></h4>
+                            <p class="body">${ textbook.author } - <spring:message code="isbn"/>: ${ textbook.isbn }</p>
+                            <p class="body">${ textbook.comments }</p>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+                
+        </div>
+    </div>
+
+  </div>
 </div>
