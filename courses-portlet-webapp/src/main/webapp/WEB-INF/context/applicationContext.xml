@@ -50,8 +50,20 @@
     
     <bean class="org.jasig.portlet.courses.service.UPortalURLServiceImpl"/>
 
-    <bean class="org.jasig.portlet.courses.dao.MergingCoursesDaoImpl"
-        p:courseDaos-ref="courseDaos"/>
+    <bean class="org.jasig.portlet.courses.dao.CachingCoursesDao">
+        <property name="enclosedCoursesDao">
+            <bean class="org.jasig.portlet.courses.dao.MergingCoursesDaoImpl"
+                p:courseDaos-ref="courseDaos"/>
+        </property>
+        <property name="termListCache">
+            <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+                p:cacheManager-ref="cacheManager" p:cacheName="termListCache"/>        
+        </property>
+        <property name="coursesByTermCache">
+            <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+                p:cacheManager-ref="cacheManager" p:cacheName="coursesByTermCache"/>        
+        </property>
+    </bean>
         
     <util:list id="courseDaos">
         <bean class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl"
