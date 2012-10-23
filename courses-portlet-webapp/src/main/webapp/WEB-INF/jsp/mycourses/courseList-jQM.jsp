@@ -70,7 +70,9 @@
             </portlet:renderURL>
             <div class="ui-block-b"><a data-role="button" class="grades" title="grades" href="${ gradesUrl }"><spring:message code="grades"/></a></div>
             
-            <portlet:actionURL var="selectTermUrl"/>
+            <portlet:actionURL var="selectTermUrl">
+              <portlet:param name="action" value="courseList"/>
+            </portlet:actionURL>
             <div class="ui-block-c"><form action="${selectTermUrl}" method="post">
               <select id="${n}_termPicker" name="termCode" onchange="this.form.submit()">
                 <c:forEach var="term" items="${termList.terms}">
