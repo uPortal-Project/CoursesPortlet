@@ -36,6 +36,8 @@
         <xs:sequence>
             <xs:element name="location" type="location"/>
             <xs:element name="time" type="xs:string" minOccurs="0"/>
+            <xs:element name="start" type="xs:date" minOccurs="0"/>
+            <xs:element name="end" type="xs:date" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 
