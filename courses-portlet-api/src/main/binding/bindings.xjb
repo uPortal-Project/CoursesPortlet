@@ -44,6 +44,10 @@
             <jaxb:class/>
             <inheritance:extends>org.jasig.portlet.courses.model.xml.TermListWrapper</inheritance:extends>
         </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='course-meeting']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.courses.model.xml.CourseMeetingWrapper</inheritance:extends>
+        </jaxb:bindings>
         <jaxb:schemaBindings>
             <jaxb:package name="org.jasig.portlet.courses.model.xml" />
         </jaxb:schemaBindings>

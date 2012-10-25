@@ -50,7 +50,11 @@
                     <courses:displayName>SSS 114</courses:displayName>
                     <courses:identifier>SSS</courses:identifier>
                 </courses:location>
-                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+                <courses:startTime>13:30:00</courses:startTime>
+                <courses:endTime>14:30:00</courses:endTime>
+                <courses:dayId>M</courses:dayId>
+                <courses:dayId>W</courses:dayId>
+                <courses:dayId>F</courses:dayId>
             </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
@@ -84,7 +88,11 @@
                     <courses:displayName>LC 101</courses:displayName>
                     <courses:identifier>LC</courses:identifier>
                 </courses:location>
-                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+                <courses:startTime>09:30:00</courses:startTime>
+                <courses:endTime>10:30:00</courses:endTime>
+                <courses:dayId>M</courses:dayId>
+                <courses:dayId>W</courses:dayId>
+                <courses:dayId>F</courses:dayId>
             </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
@@ -112,9 +120,11 @@
                     <courses:displayName>SCL 115</courses:displayName>
                     <courses:identifier>SCL</courses:identifier>
                 </courses:location>
-                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
-                <courses:start>2012-04-01</courses:start>
-                <courses:end>2012-04-30</courses:end>
+                <courses:startTime>16:00:00</courses:startTime>
+                <courses:endTime>18:30:00</courses:endTime>
+                <courses:dayId>Th</courses:dayId>
+                <courses:startDate>2012-04-01</courses:startDate>
+                <courses:endDate>2012-04-30</courses:endDate>
             </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
@@ -135,7 +145,10 @@
                     <courses:displayName>Becton 101</courses:displayName>
                     <courses:identifier>BCT</courses:identifier>
                 </courses:location>
-                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+                <courses:startTime>11:00:00</courses:startTime>
+                <courses:endTime>12:00:00</courses:endTime>
+                <courses:dayId>T</courses:dayId>
+                <courses:dayId>Th</courses:dayId>
             </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>
@@ -156,7 +169,10 @@
                     <courses:displayName>WLH 205</courses:displayName>
                     <courses:identifier>WLH</courses:identifier>
                 </courses:location>
-                <courses:time>M-W-F, 1:30-2:30pm</courses:time>
+                <courses:startTime>14:00:00</courses:startTime>
+                <courses:endTime>15:30:00</courses:endTime>
+                <courses:dayId>T</courses:dayId>
+                <courses:dayId>Th</courses:dayId>
             </course-meeting>
             <url>http://courses.university.edu/dsc101/s11</url>
             <instructor>

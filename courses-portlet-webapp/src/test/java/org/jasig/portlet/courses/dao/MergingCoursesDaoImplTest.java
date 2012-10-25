@@ -24,11 +24,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.portlet.PortletRequest;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 
 import org.jasig.portlet.courses.model.xml.CourseMeeting;
 import org.jasig.portlet.courses.model.xml.Term;
@@ -45,7 +48,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/testContext.xml")
 public class MergingCoursesDaoImplTest {
-    
+        
     MergingCoursesDaoImpl dao;
 
     @Mock PortletRequest request;
@@ -57,7 +60,7 @@ public class MergingCoursesDaoImplTest {
     List<ICoursesDao> courseDaos;
     
     @Before
-    public void setUp() {
+    public void setUp() throws DatatypeConfigurationException {
         MockitoAnnotations.initMocks(this);
 
         Map<String, String> userInfo = new HashMap<String,String>();
@@ -66,12 +69,16 @@ public class MergingCoursesDaoImplTest {
         when(request.getAttribute(PortletRequest.USER_INFO)).thenReturn(userInfo);
         when(request.getRemoteUser()).thenReturn("student");
         
+        DatatypeFactory fac = DatatypeFactory.newInstance();
+
         course1 = new Course();
         course1.setCode("course1");
         course1.setCredits((double) 1);
         course1.setGrade("grade1");
         CourseMeeting meeting1 = new CourseMeeting();
-        meeting1.setTime("time1");
+        meeting1.setStartTime(fac.newXMLGregorianCalendarTime(9, 30, 0, 0));
+        meeting1.setEndTime(fac.newXMLGregorianCalendarTime(10, 30, 0, 0));
+        meeting1.getDayIds().addAll(Arrays.asList(new String[] { "M", "W", "F" }));
         course1.getCourseMeetings().add(meeting1);
         course1.setSchool("school1");
         course1.setTitle("Course 1");
@@ -83,7 +90,9 @@ public class MergingCoursesDaoImplTest {
         course2.setGrade("grade2");
         
         CourseMeeting meeting2 = new CourseMeeting();
-        meeting2.setTime("time2");
+        meeting2.setStartTime(fac.newXMLGregorianCalendarTime(14, 00, 0, 0));
+        meeting2.setEndTime(fac.newXMLGregorianCalendarTime(15, 00, 0, 0));
+        meeting2.getDayIds().addAll(Arrays.asList(new String[] { "T", "Th" }));
         course2.getCourseMeetings().add(meeting2);
         course2.setSchool("school2");
         course2.setTitle("Course 2");
@@ -117,8 +126,10 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(2, course.getCredits(), 0.1);
         assertEquals("grade2", course.getGrade());
-        assertEquals("time1", course.getCourseMeetings().get(0).getTime());
-        assertEquals("time2", course.getCourseMeetings().get(1).getTime());
+        assertEquals("09:30:00Z", course.getCourseMeetings().get(0).getStartTime().toXMLFormat());
+        assertEquals("10:30:00Z", course.getCourseMeetings().get(0).getEndTime().toXMLFormat());
+        assertEquals("14:00:00Z", course.getCourseMeetings().get(1).getStartTime().toXMLFormat());
+        assertEquals("15:00:00Z", course.getCourseMeetings().get(1).getEndTime().toXMLFormat());
         assertEquals("school2", course.getSchool());
         assertEquals("Course 2", course.getTitle());
         assertEquals("url2", course.getUrl());
@@ -132,7 +143,8 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(2, course.getCredits(), 0.1);
         assertEquals("grade2", course.getGrade());
-        assertEquals("time2", course.getCourseMeetings().get(0).getTime());
+        assertEquals("14:00:00Z", course.getCourseMeetings().get(0).getStartTime().toXMLFormat());
+        assertEquals("15:00:00Z", course.getCourseMeetings().get(0).getEndTime().toXMLFormat());
         assertEquals("school2", course.getSchool());
         assertEquals("Course 2", course.getTitle());
         assertEquals("url2", course.getUrl());
@@ -146,7 +158,8 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(1, course.getCredits(), 0.1);
         assertEquals("grade1", course.getGrade());
-        assertEquals("time1", course.getCourseMeetings().get(0).getTime());
+        assertEquals("09:30:00Z", course.getCourseMeetings().get(0).getStartTime().toXMLFormat());
+        assertEquals("10:30:00Z", course.getCourseMeetings().get(0).getEndTime().toXMLFormat());
         assertEquals("school1", course.getSchool());
         assertEquals("Course 1", course.getTitle());
         assertEquals("url1", course.getUrl());

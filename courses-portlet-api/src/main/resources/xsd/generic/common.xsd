@@ -35,9 +35,23 @@
     <xs:complexType name="course-meeting">
         <xs:sequence>
             <xs:element name="location" type="location"/>
-            <xs:element name="time" type="xs:string" minOccurs="0"/>
-            <xs:element name="start" type="xs:date" minOccurs="0"/>
-            <xs:element name="end" type="xs:date" minOccurs="0"/>
+            <xs:element name="startTime" type="xs:time" minOccurs="0"/>
+            <xs:element name="endTime" type="xs:time" minOccurs="0"/>
+            <xs:element name="dayId" minOccurs="0" maxOccurs="7">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Su"/>
+                        <xs:enumeration value="M"/>
+                        <xs:enumeration value="T"/>
+                        <xs:enumeration value="W"/>
+                        <xs:enumeration value="Th"/>
+                        <xs:enumeration value="F"/>
+                        <xs:enumeration value="Sa"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="startDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="endDate" type="xs:date" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 

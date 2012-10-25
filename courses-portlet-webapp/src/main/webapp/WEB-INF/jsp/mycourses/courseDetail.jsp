@@ -60,9 +60,9 @@
             </c:forEach></p>
             <p><c:forEach items="${ course.courseMeetings }" var="meeting">
                 <c:if test="${not empty locationUrls[meeting.location.identifier]}"><a data-role="button" class="location" href="${ locationUrls[meeting.location.identifier] }"></c:if>
-                ${ meeting.time } at ${ meeting.location.displayName } 
+                ${ meeting.formattedMeetingTime } at ${ meeting.location.displayName } 
                 <c:if test="${not empty locationUrls[meeting.location.identifier]}"></a></c:if>
-                <c:if test="${not empty meeting.start && not empty meeting.end}"><br/><fmt:formatDate value="${meeting.start.time}" type="date" dateStyle="MEDIUM"/> - <fmt:formatDate value="${meeting.end.time}" type="date" dateStyle="MEDIUM"/></c:if>
+                <c:if test="${not empty meeting.startDate && not empty meeting.endDate}"><br/><fmt:formatDate value="${meeting.startDate.time}" type="date" dateStyle="MEDIUM"/> - <fmt:formatDate value="${meeting.endDate.time}" type="date" dateStyle="MEDIUM"/></c:if>
             </c:forEach></p>
         </div>
      </div>
