@@ -43,7 +43,7 @@
           <li><a class="button" href="${ scheduleUrl }">
             <spring:message code="schedule"/>
           </a></li>
-          <li><a class="button" href="#">
+          <li><a class="button selected" href="#">
             <spring:message code="grades"/>
           </a></li>
           <portlet:actionURL var="selectTermUrl"/>
