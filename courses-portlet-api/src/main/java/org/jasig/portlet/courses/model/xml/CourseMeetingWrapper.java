@@ -45,7 +45,6 @@ public abstract class CourseMeetingWrapper {
 
         XMLGregorianCalendar startTime = this.getStartTime();
         XMLGregorianCalendar endTime = this.getEndTime();
-        List<String> days = this.getDayIds();
         
         /*
          * We need to tread carefully -- concrete DAOs are broadly allowed to 
@@ -58,11 +57,23 @@ public abstract class CourseMeetingWrapper {
                 rslt.append(" - ").append(DATE_FORMAT.format(endTime.toGregorianCalendar().getTime()));
             }
         }
+
+        return rslt.toString();
         
+    }
+
+    public String getFormattedMeetingDays() {
+
+        StringBuilder rslt = new StringBuilder();
+
+        List<String> days = this.getDayIds();
+        
+        /*
+         * We need to tread carefully -- concrete DAOs are broadly allowed to 
+         * pick-and-choose which data they provide. 
+         */
+
         if (days != null && days.size() != 0) {
-            if (rslt.length() !=0) {
-                rslt.append(" ");
-            }
             for (String day : days) {
                 rslt.append(day).append(", ");
             }

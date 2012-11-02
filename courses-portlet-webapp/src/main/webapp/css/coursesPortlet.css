@@ -238,9 +238,10 @@
 }
 
 .CoursesPortlet .titlebar .toolbar a.selected {
-	background: color: #666;
+	background-color: #666;
 	background-image: -moz-linear-gradient(0% 50% 90deg, #666666, #999999);
-	color: #fff !important;
+    background-image: -webkit-gradient(linear,0% 0,0% 50%,from(#666666),to(#999999));
+    color: #fff !important;
 	border-color: #000;
 	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
 }

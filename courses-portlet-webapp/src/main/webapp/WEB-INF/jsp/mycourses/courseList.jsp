@@ -92,19 +92,35 @@
                     <tr>
                       <td>
                         <h3>
-                          <a href="${ courseUrl }">
-                              ${ course.code }, ${ course.instructors[0].abbreviation }
-                              
-                              <c:if test="${ course.newUpdateCount > 0 }">(${ course.newUpdateCount })</c:if>
-                          </a>
+                          <a href="${ courseUrl }">${ course.code } <c:if test="${ course.newUpdateCount > 0 }">(${ course.newUpdateCount })</c:if></a>
                         </h3>
                         ${ course.title }
                       </td>
-                      <td><a href="#">Paraiso</a></td>
-                      <td>7pm-9pm</td>
-                      <td>9/12 - 3/14</td>
-                      <td>M, W</td>
-                      <td><a href="#">SFH365</a></td>
+                      <td>
+                        <c:forEach items="${ course.instructors }" var="instructor">
+                          ${ instructor.abbreviation }<br/>
+                        </c:forEach>
+                      </td>
+                      <td>
+                        <c:forEach items="${ course.courseMeetings }" var="meeting">
+                          ${ meeting.formattedMeetingTime }<br/>
+                        </c:forEach>
+                      </td>
+                      <td>
+                        <c:forEach items="${ course.courseMeetings }" var="meeting">
+                          <c:if test="${not empty meeting.startDate && not empty meeting.endDate}"><fmt:formatDate value="${meeting.startDate.time}" type="date" dateStyle="SHORT"/> - <fmt:formatDate value="${meeting.endDate.time}" type="date" dateStyle="SHORT"/><br/></c:if>
+                        </c:forEach>
+                      </td>
+                      <td>
+                        <c:forEach items="${ course.courseMeetings }" var="meeting">
+                          ${ meeting.formattedMeetingDays }<br/>
+                        </c:forEach>
+                      </td>
+                      <td>
+                        <c:forEach items="${ course.courseMeetings }" var="meeting">
+                          ${ meeting.location.displayName }<br/>
+                        </c:forEach>
+                      </td>
                   </tr>
                 </c:forEach>
               </table>
