@@ -236,3 +236,41 @@
 .CoursesPortlet .background_color_cum_gpa {
 	background-color: inherit;
 }
+
+.CoursesPortlet .titlebar .toolbar a.selected {
+	background: color: #666;
+	background-image: -moz-linear-gradient(0% 50% 90deg, #666666, #999999);
+	color: #fff !important;
+	border-color: #000;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.CoursesPortlet .schedule {
+	width: 100%;
+}
+
+.CoursesPortlet .schedule tr {
+	background: #f2f7f6;
+	background: -moz-linear-gradient(top,  #f2f7f6 0%, #e2e8e7 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f7f6), color-stop(100%,#e2e8e7));
+	background: -webkit-linear-gradient(top,  #f2f7f6 0%,#e2e8e7 100%);
+	background: -o-linear-gradient(top,  #f2f7f6 0%,#e2e8e7 100%);
+	background: -ms-linear-gradient(top,  #f2f7f6 0%,#e2e8e7 100%);
+	background: linear-gradient(to bottom,  #f2f7f6 0%,#e2e8e7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f7f6', endColorstr='#e2e8e7',GradientType=0 );
+
+}
+
+.CoursesPortlet .schedule h3 {
+	font-size: inherit;
+	margin-bottom: 0.5em;
+
+}
+
+.CoursesPortlet .schedule h3 a {
+	font-weight: bold;
+}
+
+.CoursesPortlet .portlet-titlebar, .CoursesPortlet .portlet-content {
+	margin: 0;
+}

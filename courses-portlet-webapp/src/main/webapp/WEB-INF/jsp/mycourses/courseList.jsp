@@ -35,7 +35,7 @@
     </h2>
     <div class="toolbar">
         <ul>
-          <li><a class="button" href="#">
+          <li><a class="button selected" href="#">
             <spring:message code="schedule"/>
           </a></li>
           <portlet:renderURL var="gradesUrl">
@@ -74,21 +74,40 @@
                 <p><spring:message code="no.courses.message"/></p>
             </c:when>
             <c:otherwise>
+              <table class="schedule">
+                <tr>
+                  <th>Course</th>
+                  <th>Instructor</th>
+                  <th>Time</th>
+                  <th>Start/End</th>
+                  <th>Days</th>
+                  <th>Room</th>
+                </tr>
                 <c:forEach items="${ coursesByTerm.courses }" var="course">
                     <portlet:renderURL var="courseUrl">
                         <portlet:param name="action" value="showCourse"/>
                         <portlet:param name="termCode" value="${ coursesByTerm.termCode }"/>
                         <portlet:param name="courseCode" value="${ course.code }"/>
                     </portlet:renderURL>
-                    <h3>
-                        <a href="${ courseUrl }">
-                            ${ course.title }
-                            <c:if test="${ course.newUpdateCount > 0 }">(${ course.newUpdateCount })</c:if>
-                        </a>
-                    </h3>
-                    <p>${ course.code }, ${ course.instructors[0].abbreviation }
-                    </p>
+                    <tr>
+                      <td>
+                        <h3>
+                          <a href="${ courseUrl }">
+                              ${ course.code }, ${ course.instructors[0].abbreviation }
+                              
+                              <c:if test="${ course.newUpdateCount > 0 }">(${ course.newUpdateCount })</c:if>
+                          </a>
+                        </h3>
+                        ${ course.title }
+                      </td>
+                      <td><a href="#">Paraiso</a></td>
+                      <td>7pm-9pm</td>
+                      <td>9/12 - 3/14</td>
+                      <td>M, W</td>
+                      <td><a href="#">SFH365</a></td>
+                  </tr>
                 </c:forEach>
+              </table>
             </c:otherwise>
         </c:choose>
     
