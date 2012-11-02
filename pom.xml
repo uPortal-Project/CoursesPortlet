@@ -183,7 +183,7 @@
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <localCheckout>true</localCheckout>
-                        <tagNameFormat>uportal-@{project.version}</tagNameFormat>
+                        <tagNameFormat>CoursesPortlet-@{project.version}</tagNameFormat>
                         <pushChanges>false</pushChanges>
                     </configuration>
                 </plugin>
