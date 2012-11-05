@@ -67,6 +67,7 @@
         </div>
      </div>
 
+     <c:if test="${displayCourseUpdates}">
      <div class="portlet-section" role="region">
         <div class="titlebar">
             <h3 class="title" role="heading"><spring:message code="updates"/></h3>
@@ -92,7 +93,9 @@
                 
         </div>
     </div>
+    </c:if>
 
+     <c:if test="${displayCourseBooks}">
      <div class="portlet-section" role="region">
         <div class="titlebar">
             <h3 class="title" role="heading"><spring:message code="textbooks"/></h3>
@@ -119,6 +122,7 @@
                 
         </div>
     </div>
+    </c:if>
 
   </div>
 </div>

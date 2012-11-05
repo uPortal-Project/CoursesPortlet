@@ -64,6 +64,7 @@
                         <c:if test="${not empty meeting.startDate && not empty meeting.endDate}"><span><fmt:formatDate value="${meeting.startDate.time}" type="date" dateStyle="SHORT"/> - <fmt:formatDate value="${meeting.endDate.time}" type="date" dateStyle="SHORT"/></span></c:if>
                     </c:forEach>
                 </div>
+                <c:if test="${displayCourseUpdates}">
                 <div class="class-announcements" style="margin-top: 30px;">
                     <div>
                         <c:choose>
@@ -86,6 +87,8 @@
                         </c:choose>
                     </div>
                 </div>
+                </c:if>
+                <c:if test="${displayCourseBooks}">
                 <div class="class-textbooks" style="margin-top: 30px;">
                     <div>
                         <c:choose>
@@ -109,6 +112,7 @@
                         </c:choose>
                     </div>
                 </div>
+                </c:if>
             </div>
         </div>
 
