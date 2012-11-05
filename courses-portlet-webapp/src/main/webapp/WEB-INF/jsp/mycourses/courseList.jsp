@@ -76,12 +76,12 @@
             <c:otherwise>
               <table class="schedule">
                 <tr>
-                  <th>Course</th>
-                  <th>Instructor</th>
-                  <th>Time</th>
-                  <th>Start/End</th>
-                  <th>Days</th>
-                  <th>Room</th>
+                  <th><spring:message code="course"/></th>
+                  <th><spring:message code="instructors"/></th>
+                  <th><spring:message code="time"/></th>
+                  <th><spring:message code="start.end"/></th>
+                  <th><spring:message code="days"/></th>
+                  <th><spring:message code="location"/></th>
                 </tr>
                 <c:forEach items="${ coursesByTerm.courses }" var="course">
                     <portlet:renderURL var="courseUrl">

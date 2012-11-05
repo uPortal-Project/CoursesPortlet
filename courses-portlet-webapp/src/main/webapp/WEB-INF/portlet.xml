@@ -40,6 +40,29 @@
         <portlet-info>
             <title>Courses</title>
         </portlet-info>
+
+        <portlet-preferences>
+            
+            <!-- 
+             | This setting controls whether updates or announcements for 
+             | individual courses will be shown on the course detail view.
+             +-->
+            <preference>
+                <name>displayCourseUpdates</name>
+                <value>true</value>
+            </preference>
+
+            <!-- 
+             | This setting controls whether the list of textbooks for 
+             | individual courses will be shown on the course detail view.
+             +-->
+            <preference>
+                <name>displayCourseBooks</name>
+                <value>true</value>
+            </preference>
+
+        </portlet-preferences>
+
     </portlet>
     
     <portlet>

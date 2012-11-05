@@ -42,6 +42,7 @@ import org.jasig.portlet.courses.service.IURLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
@@ -56,6 +57,9 @@ public class CoursesPortletController {
     public static final String TERMCODE = "termCode";
     public static final String COURSECODE = "courseCode";
     
+    private static final String DISPLAY_COURSE_UPDATES_PREFERENCE = "displayCourseUpdates";
+    private static final String DISPLAY_COURSE_BOOKS_PREFERENCE = "displayCourseBooks";
+
     private ICoursesDao coursesDao;
 
     @Autowired
@@ -201,6 +205,20 @@ public class CoursesPortletController {
         actionResponse.setRenderParameters(actionRequest.getParameterMap());
     }
     
+    @ModelAttribute("displayCourseUpdates")
+    public Boolean getDisplayCourseUpdates(PortletRequest req) {
+        String val = req.getPreferences().getValue(DISPLAY_COURSE_UPDATES_PREFERENCE, 
+                Boolean.TRUE.toString());
+        return Boolean.valueOf(val);
+    }
+    
+    @ModelAttribute("displayCourseBooks")
+    public Boolean getDisplayCourseBooks(PortletRequest req) {
+        String val = req.getPreferences().getValue(DISPLAY_COURSE_BOOKS_PREFERENCE, 
+                Boolean.TRUE.toString());
+        return Boolean.valueOf(val);
+    }
+
     /**
      * Determine the term code to use. If a term code is specified on the request it is returned and stored
      * in the portlet session. If no term code is specified on the request the session is checked for a stored
