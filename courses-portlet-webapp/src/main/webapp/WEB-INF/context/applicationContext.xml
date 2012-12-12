@@ -66,10 +66,21 @@
     </bean>
         
     <util:list id="courseDaos">
-        <bean class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl"
-            p:mockData="classpath:/mock-data/mock-course-summary.xml"/>
-        <bean class="org.jasig.portlet.courses.dao.xml.HttpClientCoursesDaoImpl"
-            p:restTemplate-ref="restTemplate"/>
+        <bean class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl" p:mockData="classpath:/mock-data/mock-course-summary.xml"/>
+        <!-- Uncomment this bean to retrieve the terms and course data from an HTTP XML resource
+             The XML is expected to follow the same schema as the mock-course-summary.xml file. -->
+
+        <!-- <bean class="org.jasig.portlet.courses.dao.xml.HttpClientCoursesDaoImpl" p:restTemplate-ref="restTemplate">
+            <property name="termsUrlFormat" value="http://localhost/CoursesPortletTermsFeed.xml"/>
+            <property name="coursesUrlFormat" value="http://localhost/CoursesPortletCoursesFeed_{user.id}_{term.code}.xml"/>
+            <property name="coursesUrlParams">
+                <util:map key-type="java.lang.String" value-type="java.lang.String">
+                    <entry key="user.id" value="user.login.id"/>
+                    <entry key="term.code" value="#TERMCODE#"/>
+                </util:map>
+            </property>
+        </bean> -->
+
     </util:list>
 
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
