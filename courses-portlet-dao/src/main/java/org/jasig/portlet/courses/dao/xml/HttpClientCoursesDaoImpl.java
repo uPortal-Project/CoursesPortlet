@@ -29,11 +29,13 @@ import org.jasig.portlet.courses.dao.ICoursesDao;
 import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.personal.TermsAndCourses;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jasig.portlet.courses.util.IParameterEvaluator;
+import org.jasig.portlet.courses.util.TermCodeParameterEvaluator;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
+
 
 /**
  * HttpClientCoursesDaoImpl retrieves courses from a Basic Authentication
@@ -51,34 +53,28 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
         this.termsUrlFormat = urlFormat;
     }
 
-    private Map<String,String> termsUrlParams = new HashMap<String,String>();
-
-    public void setTermsUrlParams(Map<String,String> params) {
-        this.termsUrlParams = params;
-    }
-
     private String coursesUrlFormat = null;
 
     public void setCoursesUrlFormat(String urlFormat) {
         this.coursesUrlFormat = urlFormat;
     }
 
-    private Map<String,String> coursesUrlParams = new HashMap<String,String>();
+    private Map<String,IParameterEvaluator> urlParams = new HashMap<String,IParameterEvaluator>();
 
-    public void setCoursesUrlParams(Map<String,String> params) {
-        this.coursesUrlParams = params;
+    public void setUrlParams(Map<String,IParameterEvaluator> params) {
+        this.urlParams = params;
     }
 
-    private String usernameKey = "user.login.id";
+    private IParameterEvaluator usernameEvaluator;
     
-    public void setUsernameKey(String usernameKey) {
-        this.usernameKey = usernameKey;
+    public void setUsernameEvaluator(IParameterEvaluator usernameEvaluator) {
+        this.usernameEvaluator = usernameEvaluator;
     }
     
-    private String passwordKey = "password";
+    private IParameterEvaluator passwordEvaluator;
     
-    public void setPasswordKey(String passwordKey) {
-        this.passwordKey = passwordKey;
+    public void setPasswordEvaluator(IParameterEvaluator passwordEvaluator) {
+        this.passwordEvaluator = passwordEvaluator;
     }
     
     private RestTemplate restTemplate;
@@ -89,15 +85,14 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
 
     @Override
     public TermList getTermList(PortletRequest request) {
-        Map<String,String> params = createParameters(request, termsUrlParams, null);
+        Map<String,String> params = createParameters(request, urlParams);
         return getTermsAndCourses(request,termsUrlFormat,params).getTermList();
     }
 
     @Override
     public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode) {
-        Properties props =  new Properties();
-        props.setProperty(PROPERTY_KEY_TERMCODE,termCode);
-        Map<String,String> params = createParameters(request,coursesUrlParams,props);
+        setTermCodeRequestAttribute(request,termCode);
+        Map<String,String> params = createParameters(request,urlParams);
         return getTermsAndCourses(request,coursesUrlFormat,params).getCoursesByTerm(termCode);
     }
     
@@ -117,11 +112,8 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
      * Get a request entity prepared for basic authentication.
      */
     protected HttpEntity<?> getRequestEntity(PortletRequest request) {
-        @SuppressWarnings("unchecked")
-        Map<String,String> userInfo = (Map<String,String>) request.getAttribute(PortletRequest.USER_INFO);
-        String username = userInfo.get(this.usernameKey);
-        String password = userInfo.get(this.passwordKey);
-
+        String username = usernameEvaluator.evaluate(request);
+        String password = passwordEvaluator.evaluate(request);
         HttpHeaders requestHeaders = new HttpHeaders();
         String authString = username.concat(":").concat(password);
         String encodedAuthString = new Base64().encodeToString(authString.getBytes());
@@ -130,17 +122,21 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
         return requestEntity;
     }
 
-    protected Map<String,String> createParameters(PortletRequest request,Map<String,String> params,Properties props) {
+    protected void setTermCodeRequestAttribute(PortletRequest request,String termCode) {
+        for(IParameterEvaluator evaluator : urlParams.values()) {
+            if(evaluator instanceof TermCodeParameterEvaluator) {
+                request.setAttribute(((TermCodeParameterEvaluator)evaluator).getAttributeKey(),termCode);
+                return;
+            }
+        }
+    }
+
+    protected Map<String,String> createParameters(PortletRequest request,Map<String,IParameterEvaluator> params) {
         Map<String,String> userInfo = (Map<String,String>) request.getAttribute(PortletRequest.USER_INFO);
         Map<String,String> result = new HashMap<String,String>();
-        if(props == null) props = new Properties();
 
         for(String key : params.keySet()) {
-            if(PROPERTY_KEY_TERMCODE.equals(params.get(key))) {
-                result.put(key,props.getProperty(PROPERTY_KEY_TERMCODE));
-                continue;
-            }
-            result.put(key,userInfo.get(params.get(key)));
+            result.put(key,params.get(key).evaluate(request));
         }
         return result;
     }
