@@ -20,11 +20,12 @@ package org.jasig.portlet.courses.dao.xml;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.portlet.PortletRequest;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.dao.ICoursesDao;
 import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
@@ -46,6 +47,8 @@ import org.springframework.web.client.RestTemplate;
  */
 public class HttpClientCoursesDaoImpl implements ICoursesDao {
     public static final String PROPERTY_KEY_TERMCODE = "#TERMCODE#";
+
+    private final Log log = LogFactory.getLog(getClass());
 
     private String termsUrlFormat = null;
 
@@ -112,14 +115,23 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
      * Get a request entity prepared for basic authentication.
      */
     protected HttpEntity<?> getRequestEntity(PortletRequest request) {
+
         String username = usernameEvaluator.evaluate(request);
         String password = passwordEvaluator.evaluate(request);
+        
+        if (log.isDebugEnabled()) {
+            boolean hasPassword = password != null;
+            log.debug("Preparing HttpEntity for user '" + username + "' (password provided = " +  hasPassword + ")");
+        }
+        
         HttpHeaders requestHeaders = new HttpHeaders();
         String authString = username.concat(":").concat(password);
         String encodedAuthString = new Base64().encodeToString(authString.getBytes());
         requestHeaders.set("Authorization", "Basic ".concat(encodedAuthString));
-        HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
-        return requestEntity;
+
+        HttpEntity<?> rslt = new HttpEntity<Object>(requestHeaders);
+        return rslt;
+
     }
 
     protected void setTermCodeRequestAttribute(PortletRequest request,String termCode) {
@@ -132,7 +144,6 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
     }
 
     protected Map<String,String> createParameters(PortletRequest request,Map<String,IParameterEvaluator> params) {
-        Map<String,String> userInfo = (Map<String,String>) request.getAttribute(PortletRequest.USER_INFO);
         Map<String,String> result = new HashMap<String,String>();
 
         for(String key : params.keySet()) {
