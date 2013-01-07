@@ -102,13 +102,21 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
     /**
      * Get terms and courses for the current user
      */
-    protected TermsAndCourses getTermsAndCourses(PortletRequest request,String url, Map<String,String> params) {
+    protected TermsAndCourses getTermsAndCourses(PortletRequest request, String uriTemplate, Map<String,String> params) {
+
+        if (log.isDebugEnabled()) {
+            log.debug("Invoking uri '" + uriTemplate 
+                    + "' with the following parameters:  " 
+                    + params.toString());
+        }
+
         HttpEntity<?> requestEntity = getRequestEntity(request);
         HttpEntity<TermsAndCourses> response = restTemplate.exchange(
-                url, HttpMethod.GET, requestEntity,
-                TermsAndCourses.class,params);
+                uriTemplate, HttpMethod.GET, requestEntity,
+                TermsAndCourses.class, params);
 
         return response.getBody();
+
     }
 
     /**
