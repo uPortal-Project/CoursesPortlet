@@ -199,6 +199,7 @@
                         </execution>
                     </executions>
                     <configuration>
+                        <extension>true</extension>
                         <specVersion>2.1</specVersion>
                         <bindingDirectory>src/main/binding</bindingDirectory>
                         <schemaDirectory>src/main/resources/xsd</schemaDirectory>
@@ -214,6 +215,7 @@
                             <arg>-no-header</arg>
                             <arg>-readOnly</arg>
                             <arg>-mark-generated</arg>
+                            <arg>-enableIntrospection</arg>
                         </args>
                         <plugins>
                             <plugin>

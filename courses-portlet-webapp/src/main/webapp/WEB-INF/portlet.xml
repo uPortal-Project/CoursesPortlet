@@ -80,7 +80,33 @@
             <title>Course Catalog</title>
         </portlet-info>
     </portlet>
-    
+
+    <portlet>
+        <portlet-name>degree-progress</portlet-name>
+        <display-name>Degree Progress</display-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>/WEB-INF/context/portlet/degree-progress.xml</value>
+        </init-param>
+
+        <expiration-cache>0</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+
+        <supported-locale>en</supported-locale>
+
+        <portlet-info>
+            <title>Degree Progress</title>
+            <short-title>Degree Progress</short-title>
+            <keywords>course, grades</keywords>
+        </portlet-info>
+    </portlet>
+
     <user-attribute>
         <name>password</name>
     </user-attribute>
