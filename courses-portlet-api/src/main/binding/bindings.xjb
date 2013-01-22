@@ -77,4 +77,21 @@
         </jaxb:schemaBindings>
     </jaxb:bindings>
 
+    <jaxb:bindings schemaLocation="../resources/xsd/generic/degree-progress.xsd">
+        <jaxb:bindings node="//xs:element[@name='degreeRequirementSection']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.degreeprogress.model.xml.DegreeRequirementSectionWrapper</inheritance:extends>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='degreeProgressReport']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.degreeprogress.model.xml.DegreeProgressReportWrapper</inheritance:extends>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='courseRequirement']">
+            <jaxb:class/>
+            <inheritance:extends>org.jasig.portlet.degreeprogress.model.xml.CourseRequirementWrapper</inheritance:extends>
+        </jaxb:bindings>
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.jasig.portlet.degreeprogress.model.xml" />
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
 </jaxb:bindings>

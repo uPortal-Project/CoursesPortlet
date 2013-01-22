@@ -1,0 +1,66 @@
+<degreeProgressReport
+    xmlns="https://source.jasig.org/schemas/portlet/courseschedule/degree-progress"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courseschedule/degree-progress ../xsd/degree-progress.xsd"
+    gpa="3.4" requiredGpa="2.5" credits="92" requiredCredits="128" programGpa="3.12" requiredProgramGpa="0">
+    <degreeRequirementSection key="GENERAL" name="General Requirements"
+        gpa="4" credits="3" completed="true">
+        <courseRequirement name="Math and Science" description="" completed="true">
+            <course abbreviation="MATH 151" title="Calculus II" credits="4.0"
+                source="Transfer">
+                <semester name="Spring 2011" />
+                <grade code="TR" />
+            </course>
+            <course abbreviation="PHY 152" title="Introductory Physics II"
+                credits="4.0" source="EU">
+                <semester name="Fall 2010" />
+                <grade code="4.0" />
+            </course>
+        </courseRequirement>
+    </degreeRequirementSection>
+    <degreeRequirementSection key="CSE Core" name="CSE Core"
+        gpa="3.3" credits="12" completed="false">
+        <gpaRequirement requiredGpa="2.5"/>
+        <courseRequirement name="CS 115" description="" completed="true">
+            <course abbreviation="CS 115" title="Introduction to Computer Science"
+                credits="2.0" source="Transfer">
+                <semester name="Fall 2009" />
+                <grade code="TR" />
+            </course>
+        </courseRequirement>
+        <courseRequirement name="CS 175" description="" completed="true">
+            <course abbreviation="CS 175" title="Programming Languages"
+                credits="4.0" source="EU">
+                <semester name="Spring 2010" />
+                <grade code="I" />
+            </course>
+        </courseRequirement>
+        <courseRequirement name="CS 190" description="" completed="true">
+            <course abbreviation="CS 190" title="Data Structures"
+                credits="4.0" source="EU">
+                <semester name="Spring 2010" />
+                <grade code="3.0" />
+            </course>
+        </courseRequirement>
+        <courseRequirement name="CS 201" description="" completed="false"/>
+        <courseRequirement name="EE 115" description="" completed="true">
+            <course abbreviation="EE 115" title="Intro to Electrical Engineering"
+                credits="4.0" source="EU">
+                <semester name="Fall 2010" />
+                <grade code="4.0" />
+            </course>
+        </courseRequirement>
+        <courseRequirement name="Applications" description="Select 5 approved courses listed under the Computer Science Applications category in the course catalogue" completed="false">
+            <course abbreviation="CS 312" title="Artificial Intelligence"
+                credits="4.0" source="EU">
+                <semester name="Spring 2011" />
+                <grade code="4.0" />
+            </course>
+            <course abbreviation="CS 365" title="Computer Graphics"
+                credits="4.0" source="EU">
+                <semester name="Spring 2011" />
+                <grade code="3.0" />
+            </course>
+        </courseRequirement>
+    </degreeRequirementSection>
+</degreeProgressReport>

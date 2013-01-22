@@ -16,25 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.jasig.portlet.courses.model.xml.personal;
+package org.jasig.portlet.degreeprogress.model.xml;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.jasig.portlet.degreeprogress.model.StudentCourseRegistration;
 
-/**
- * Adds base functionality to the {@link Course} object
- * 
- * @author Eric Dalquist
- */
-public abstract class CourseWrapper {
-    public int getNewUpdateCount() {
-        int newCount = 0;
-        for (CourseUpdate update : this.getCourseUpdates()) {
-            if (update.getNewUpdate() != null && update.getNewUpdate().booleanValue()) {
-                newCount++;
-            }
-        }
-        return newCount;
+abstract public class CourseRequirementWrapper {
+    protected List<StudentCourseRegistration> registrations = new ArrayList<StudentCourseRegistration>();
+
+    public List<StudentCourseRegistration> getRegistrations() {
+        return registrations;
     }
-    
-    public abstract List<CourseUpdate> getCourseUpdates();
+
+    public void setRegistrations(List<StudentCourseRegistration> registrations) {
+        this.registrations = registrations;
+    }
 }

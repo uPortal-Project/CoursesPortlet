@@ -116,7 +116,7 @@ public class HttpClientCourseOfferingDaoImpl implements ICourseOfferingDao {
     public Term getCurrentTerm(String schoolCode) {
         final TermList termList = getTerms(schoolCode);
         for (Term term : termList.getTerms()) {
-            if (term.isCurrent()) {
+            if (term.getCurrent()) {
                 return term;
             }
         }

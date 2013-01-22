@@ -1,0 +1,53 @@
+/* general styling */
+.fl-theme-android {color:#435164;}
+body {color:#435164;}
+/*csplt-toolbar*/
+.csplt-toolbar, .csplt-form {background: #5e6e88 url(../img/mainbar_bg.png) top left repeat-x; padding:3px 5px; border-top:#ddd 1px solid; border-bottom:#1e2639 1px solid;}
+.csplt-toolbar ul,.csplt-toolbar li {text-align:center;}
+.csplt-toolbar ul {display:block; margin:0px; padding:3px 0;}
+.csplt-toolbar li {font-size:13px; margin:0px; font-weight:bold; display:inline-block; padding:8px 5px; text-transform:capitalize;}
+.csplt-toolbar li a {padding:8px 10px; display:inline:block; color:#fff; background: #3e537e url(../img/mainbar_button_bg.png) top left repeat-x; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; box-shadow:inset 0 0 3px #000000; -moz-box-shadow:inset 0 0 3px #000000; -webkit-box-shadow:inset 0 0 3px #000000;}
+.csplt-form {text-align:center; margin:0px; padding:10px 0 10px 0; color:#fff !important; font-size:medium; font-weight:bold;}
+.csplt-form fieldset {margin:0; padding:0;}
+/* Pagination 
+ *   If you only need two navigation buttons, use the ".left" and ".right" classes on the two list items and it will stretch those buttons accordingly for emphasis
+ */
+.csplt-pagination {padding:5px; background: #ceccd1 url(../img/options_bar.png) top left repeat-x; border-top:#fff 1px solid; border-bottom:#999 1px solid;}
+.csplt-pagination ul, .csplt-pagination li {list-style:none; margin:0px;}
+.csplt-pagination ul {display:block; text-align:center; padding:0px; margin:0px;}
+.csplt-pagination li {font-size:12px; font-weight:bold; display:inline-block; padding:10px; text-transform:capitalize;}
+.csplt-pagination a {display:inline; -webkit-box-shadow:inset 0 0 3px #000000; text-decoration:none; color:#435164; padding:8px 15px; background: #3e537e url(../img/options_bar.png) top left repeat-x; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; box-shadow:inset 0 0 3px #000000; -moz-box-shadow:inset 0 0 3px #000000;}
+.csplt-pagination li.left a {display:inline-block; width:80px; }
+.csplt-pagination li.right a {display:inline-block; width:80px; }
+.gridprocess {padding:20px; text-align:center; background-color:#fff;}
+
+
+/* Class Schedule Portlet */
+.csplt-courseinfo{font-size:70%;}
+.csplt-courseinfo span {font-weight:bold;} 
+.meeting{padding:2px;}
+.meeting-location a {color:#000;}
+.csplt-time_block {width:20%;}
+.csplt-time_block span {display:block;}
+
+.up table.csplt-scheduleGrid {display:none; background-color:#ededed;}
+.up table.csplt-scheduleGrid td,.up table.csplt-scheduleGrid2 td {border:1px solid #fff !important; padding:0px; font-size:13px; height:13px;}
+.up table.csplt-scheduleGrid tr,.up table.csplt-scheduleGrid2 tr {height:13px;}
+
+.csplt-time {width:20%;}
+
+.csplt-highlight td {border-color:#9999ff;}
+.csplt-highlight {background-color:#ddddFF;}
+.csplt-highlight2 {background-color:#ccccFF;}
+.csplt-scheduleGrid {background-color:#eee; margin-bottom:0;}
+.csplt-scheduleGrid2 {background-color:#dddddd; margin-bottom:0;}
+
+.csplt-days {list-style:none; margin:0; padding:5px;}
+.csplt-days li {list-style:none; margin:0 0 8px 0; padding:0;}
+.csplt-days li ul {margin:0; padding:0;}
+.csplt-days li ul li {margin:0; padding:3px;}
+
+.csplt-days {margin:0; padding:0; background-color:#f8f8f8;}
+.csplt-days li {margin:0;}
+.csplt-courses li{border-bottom: #444 1px dotted;}
+.csplt-days .csplt-title {padding:3px 5px; text-align:center; display:block; background-color:#ccc; font-size:14px; font-weight:bold; color:#333; border-top:#eee 1px solid; border-bottom:#999 1px solid;}
