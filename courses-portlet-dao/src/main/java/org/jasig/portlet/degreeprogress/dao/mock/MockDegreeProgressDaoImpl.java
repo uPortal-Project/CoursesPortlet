@@ -23,7 +23,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-@Service
 public class MockDegreeProgressDaoImpl implements IDegreeProgressDao, InitializingBean {
 
     protected final Log log = LogFactory.getLog(getClass());

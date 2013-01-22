@@ -37,4 +37,8 @@
         overflowToDisk="false" diskPersistent="false" timeToLiveSeconds="900" 
         memoryStoreEvictionPolicy="LRU" statistics="true" />
 
+    <cache name="progressReportCache" eternal="false" maxElementsInMemory="500"
+           overflowToDisk="false" diskPersistent="false" timeToLiveSeconds="900"
+           memoryStoreEvictionPolicy="LRU" statistics="true" />
+
 </ehcache>

@@ -8,7 +8,6 @@ import org.jasig.portlet.degreeprogress.dao.IDegreeProgramDao;
 import org.jasig.portlet.degreeprogress.dao.ProgramInformation;
 import org.springframework.stereotype.Service;
 
-@Service
 public class MockDegreeProgramDaoImpl implements IDegreeProgramDao {
 
     public DegreeProgramSummary getProgramSummary(PortletRequest request) {

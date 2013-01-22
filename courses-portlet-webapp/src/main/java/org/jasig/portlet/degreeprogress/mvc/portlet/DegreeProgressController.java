@@ -3,6 +3,7 @@ package org.jasig.portlet.degreeprogress.mvc.portlet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.jasig.portlet.courses.dao.ICoursesDao;
@@ -27,7 +28,9 @@ import org.springframework.web.portlet.ModelAndView;
 @Controller
 @RequestMapping("VIEW")
 public class DegreeProgressController {
-    
+    public static final String PREFERENCE_INFORMATION_LINK = "DegreeProgress.INFORMATION_LINK";
+    public static final String PREFERENCE_INFORMATION_LINK_DEFAULT = "#;";
+
     private IDegreeProgressDao degreeProgressDao;
 
     @Autowired(required = true)
@@ -52,7 +55,11 @@ public class DegreeProgressController {
     @RequestMapping
 	public ModelAndView getMainView(PortletRequest request) {
         Map<String, Object> model = new HashMap<String, Object>();
+        PortletPreferences preferences = request.getPreferences();
         model.put("terms", degreeProgramDao.getEntryTerms());
+        model.put("infoLink",preferences.getValue(PREFERENCE_INFORMATION_LINK,PREFERENCE_INFORMATION_LINK_DEFAULT));
+        return new ModelAndView("selectReport",model);
+        /*
         Boolean webEnabled = degreeProgressDao.getWebEnabled(request);
         if (webEnabled == null) {
         	return new ModelAndView("error", model);
@@ -62,7 +69,7 @@ public class DegreeProgressController {
         } else {
                 return new ModelAndView("selectWhatIf", model);
         }
-
+        */
 	}
 
     @RequestMapping(params = "action=getScenario")

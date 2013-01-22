@@ -1,9 +1,7 @@
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
 
-<link rel="stylesheet" type="text/css" href="<c:url value="
-/css/degree-progress.css"/>"></link>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css"
-      type="text/css" media="all"/>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/degree-progress.css'/>"/>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
 
@@ -11,6 +9,7 @@
 <div id="${n}" class="degree-progress">
     <div class="fl-flex-2">
         <div class="fl-col one">
+            <!--
             <div style="page-break-before: always;">
                 <h2 class="title" role="heading">Degree Summary</h2>
                 <dl>
@@ -34,7 +33,8 @@
                     </dd>
                 </dl>
             </div>
-            <div>
+            -->
+            <div style="page-break-before: always;">
                 <h2>Credits and GPA</h2>
                 <dl>
                     <dt>Overall GPA</dt>
@@ -160,4 +160,8 @@
 
     </div>
 </div>
+<a style="text-decoration:none;font-size:0.9em;" href="<portlet:renderURL portletMode='view'/>">
+    <img src="<c:url value='/icons/arrow_left.png'/>" border="0" height="16" width="16" style="vertical-align:middle"/>
+    <spring:message code="back"/>
+</a>
 </div>

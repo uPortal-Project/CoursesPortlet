@@ -25,8 +25,9 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-    <context:component-scan base-package="org.jasig.portlet.degreeprogress"/>
     <context:annotation-config />
+
+    <bean class="org.jasig.portlet.degreeprogress.mvc.portlet.DegreeProgressController"/>
 
     <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="interceptors"><bean class="org.jasig.portlet.courses.mvc.MinimizedStateHandlerInterceptor"/></property>
