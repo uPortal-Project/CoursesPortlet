@@ -91,6 +91,31 @@
         -->
     </util:list>
 
+    <bean class="org.jasig.portlet.degreeprogress.dao.CachingDegreeProgressDao">
+        <property name="enclosedDegreeProgressDao">
+            <bean class="org.jasig.portlet.degreeprogress.dao.mock.MockDegreeProgressDaoImpl"/>
+            <!--
+            <bean class="org.jasig.portlet.degreeprogress.dao.xml.HttpDegreeProgressDaoImpl" p:restTemplate-ref="restTemplate">
+                <property name="degreeProgressUrlFormat" value="http://localhost/degreeprogress/report.xml"/>
+                <property name="urlParams">
+                    <util:map key-type="java.lang.String" value-type="org.jasig.portlet.courses.util.IParameterEvaluator">
+                    </util:map>
+                </property>
+                <property name="usernameEvaluator" ref="userLoginIdParameterEvaluator"/>
+                <property name="passwordEvaluator">
+                    <bean class="org.jasig.portlet.courses.util.StringLiteralParameterEvaluator" p:value="password"/>
+                </property>
+            </bean>
+            -->
+        </property>
+        <property name="progressReportCache">
+            <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+                  p:cacheManager-ref="cacheManager" p:cacheName="progressReportCache"/>
+        </property>
+    </bean>
+
+    <bean class="org.jasig.portlet.degreeprogress.dao.mock.MockDegreeProgramDaoImpl"/>
+
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
         p:configLocation="classpath:/ehcache.xml"/>
 

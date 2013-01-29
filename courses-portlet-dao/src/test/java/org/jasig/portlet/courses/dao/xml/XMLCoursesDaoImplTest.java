@@ -63,7 +63,7 @@ public class XMLCoursesDaoImplTest {
         assertEquals(2, terms.size());
         
         Term term = terms.get(0);
-        assertFalse(term.isCurrent());
+        assertFalse(term.getCurrent());
         assertEquals("2012w", term.getCode());
         assertEquals("Winter 2012", term.getDisplayName());
         assertNull(term.getTermType());
@@ -73,7 +73,7 @@ public class XMLCoursesDaoImplTest {
         assertNull(coursesByTerm);
 
         term = terms.get(1);
-        assertTrue(term.isCurrent());
+        assertTrue(term.getCurrent());
         assertEquals(term, termList.getCurrentTerm());
         assertEquals("2012s", term.getCode());
         assertEquals("Spring 2012", term.getDisplayName());

@@ -1,0 +1,81 @@
+<xs:schema
+    xmlns="https://source.jasig.org/schemas/portlet/courseschedule/degree-progress"
+    targetNamespace="https://source.jasig.org/schemas/portlet/courseschedule/degree-progress"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+    <xs:element name="degreeProgressReport">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="degreeRequirementSection" />
+            </xs:sequence>
+            <xs:attribute name="gpa" type="xs:double"/>
+            <xs:attribute name="requiredGpa" type="xs:double"/>
+            <xs:attribute name="programGpa" type="xs:double"/>
+            <xs:attribute name="requiredProgramGpa" type="xs:double"/>
+            <xs:attribute name="credits" type="xs:double"/>
+            <xs:attribute name="requiredCredits" type="xs:double"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="degreeRequirementSection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0"
+                    ref="generalRequirement" />
+                <xs:element maxOccurs="unbounded" ref="courseRequirement" />
+            </xs:sequence>
+            <xs:attribute name="completed" type="xs:boolean" />
+            <xs:attribute name="credits" use="required" type="xs:double" />
+            <xs:attribute name="gpa" use="required" type="xs:double" />
+            <xs:attribute name="key" use="required" type="xs:string" />
+            <xs:attribute name="name" use="required" type="xs:string" />
+            <xs:attribute name="description" use="optional" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="generalRequirementType" abstract="true" />
+    <xs:element name="generalRequirement" abstract="true"
+        type="generalRequirementType" />
+
+    <xs:element name="gpaRequirement" substitutionGroup="generalRequirement">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="generalRequirementType">
+                    <xs:attribute name="requiredGpa" type="xs:double" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="courseRequirement">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="course" />
+            </xs:sequence>
+            <xs:attribute name="completed" type="xs:boolean" />
+            <xs:attribute name="name" use="required" type="xs:string" />
+            <xs:attribute name="description" use="optional" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="course">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="semester" />
+                <xs:element ref="grade" />
+            </xs:sequence>
+            <xs:attribute name="abbreviation" use="required" type="xs:string" />
+            <xs:attribute name="credits" use="required" type="xs:double" />
+            <xs:attribute name="source" use="required" type="xs:string" />
+            <xs:attribute name="title" use="required" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="semester">
+        <xs:complexType>
+            <xs:attribute name="name" use="required" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="grade">
+        <xs:complexType>
+            <xs:attribute name="value" use="optional" type="xs:double"/>
+            <xs:attribute name="code" use="required" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

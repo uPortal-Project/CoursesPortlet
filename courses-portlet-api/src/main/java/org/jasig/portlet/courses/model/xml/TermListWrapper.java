@@ -48,7 +48,7 @@ public abstract class TermListWrapper {
         final int currentYear = new GregorianCalendar().get(Calendar.YEAR);
         
         for (Term term : getTerms()) {
-            if (term.isCurrent()) {
+            if (term.getCurrent()) {
                 return term;
             }
             
