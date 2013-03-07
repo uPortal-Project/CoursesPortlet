@@ -108,7 +108,7 @@
                       </td>
                       <td>
                         <c:forEach items="${ course.courseMeetings }" var="meeting">
-                          <c:if test="${not empty meeting.startDate && not empty meeting.endDate}"><fmt:formatDate value="${meeting.startDate.time}" type="date" dateStyle="SHORT"/> - <fmt:formatDate value="${meeting.endDate.time}" type="date" dateStyle="SHORT"/><br/></c:if>
+                          <c:if test="${not empty meeting.startDate && not empty meeting.endDate}"><joda:format value="${meeting.startDate}" style="S-"/> - <joda:format value="${meeting.endDate}" style="S-"/><br/></c:if>
                         </c:forEach>
                       </td>
                       <td>

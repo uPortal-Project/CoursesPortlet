@@ -24,9 +24,6 @@ import javax.portlet.RenderResponse;
 import javax.portlet.WindowState;
 
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.courses.model.xml.Term;
-import org.jasig.portlet.courses.model.xml.TermList;
-import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.portlet.handler.HandlerInterceptorAdapter;
 

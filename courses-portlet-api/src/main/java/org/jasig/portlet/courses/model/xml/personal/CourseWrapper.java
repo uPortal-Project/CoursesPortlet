@@ -29,7 +29,7 @@ public abstract class CourseWrapper {
     public int getNewUpdateCount() {
         int newCount = 0;
         for (CourseUpdate update : this.getCourseUpdates()) {
-            if (update.getNewUpdate() != null && update.getNewUpdate().booleanValue()) {
+            if (update.isNewUpdate() != null && update.isNewUpdate().booleanValue()) {
                 newCount++;
             }
         }

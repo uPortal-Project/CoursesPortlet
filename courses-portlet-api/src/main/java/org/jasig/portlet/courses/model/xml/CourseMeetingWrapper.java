@@ -19,10 +19,14 @@
 
 package org.jasig.portlet.courses.model.xml;
 
-import java.text.DateFormat;
+import java.io.IOException;
 import java.util.List;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import org.joda.time.LocalTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Adds base functionality to the {@link CourseMeeting} object
@@ -30,12 +34,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * @author Drew Wills
  */
 public abstract class CourseMeetingWrapper {
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
     
-    private static final DateFormat DATE_FORMAT = DateFormat.getTimeInstance(DateFormat.SHORT);
+    private static final DateTimeFormatter SHORT_TIME_FORMAT = DateTimeFormat.shortTime();
     
-    public abstract XMLGregorianCalendar getStartTime();
+    public abstract LocalTime getStartTime();
     
-    public abstract XMLGregorianCalendar getEndTime();
+    public abstract LocalTime getEndTime();
     
     public abstract List<String> getDayIds();
     
@@ -43,18 +48,23 @@ public abstract class CourseMeetingWrapper {
 
         StringBuilder rslt = new StringBuilder();
 
-        XMLGregorianCalendar startTime = this.getStartTime();
-        XMLGregorianCalendar endTime = this.getEndTime();
+        LocalTime startTime = this.getStartTime();
+        LocalTime endTime = this.getEndTime();
         
         /*
          * We need to tread carefully -- concrete DAOs are broadly allowed to 
          * pick-and-choose which data they provide. 
          */
-        
         if (startTime != null) {
-            rslt.append(DATE_FORMAT.format(startTime.toGregorianCalendar().getTime()));
-            if (endTime != null) {
-                rslt.append(" - ").append(DATE_FORMAT.format(endTime.toGregorianCalendar().getTime()));
+            try {
+                SHORT_TIME_FORMAT.printTo(rslt, startTime);
+                if (endTime != null) {
+                    rslt.append(" - ");
+                    SHORT_TIME_FORMAT.printTo(rslt, endTime);
+                }
+            }
+            catch (IOException e) {
+                logger.info("Failed to generate formatted string for course.startTime=" + startTime + " and course.endTime=" + endTime, e);
             }
         }
 

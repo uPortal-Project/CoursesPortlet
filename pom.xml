@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.jasig.parent</groupId>
         <artifactId>jasig-parent</artifactId>
-        <version>33</version>
+        <version>34</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -12,6 +12,10 @@
     <version>1.0.0-M4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>CoursePortlet</name>
+    
+    <prerequisites>
+        <maven>3.0.0</maven>
+     </prerequisites>
 
     <scm>
         <connection>scm:git:git://github.com/Jasig/CoursesPortlet.git</connection>
@@ -20,12 +24,13 @@
     </scm>
 
     <properties>
-        <ehcache.version>2.4.5</ehcache.version>
-        <mockito.version>1.9.0</mockito.version>
-        <spring.version>3.1.1.RELEASE</spring.version>
-        <jackson.version>1.9.7</jackson.version>
-        <jaxb2basics.version>0.6.3</jaxb2basics.version>
-        <resource-server.version>1.0.26</resource-server.version>
+        <ehcache.version>2.6.5</ehcache.version>
+        <mockito.version>1.9.5</mockito.version>
+        <spring.version>3.1.4.RELEASE</spring.version>
+        <jackson.version>1.9.11</jackson.version>
+        <jaxb2basics.version>0.6.4</jaxb2basics.version>
+        <resource-server.version>1.0.29</resource-server.version>
+        <slf4j.version>1.7.2</slf4j.version>
         
         <project.build.sourceVersion>1.6</project.build.sourceVersion>
         <project.build.targetVersion>1.6</project.build.targetVersion>
@@ -41,9 +46,14 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.0.9</version>
+            </dependency>
+            <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
-                <version>1.6</version>
+                <version>1.7</version>
             </dependency>
             <dependency>
                 <groupId>commons-collections</groupId>
@@ -54,11 +64,12 @@
                 <groupId>commons-httpclient</groupId>
                 <artifactId>commons-httpclient</artifactId>
                 <version>3.1</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.1.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>commons-lang</groupId>
@@ -81,14 +92,19 @@
                 <version>2.5</version>
             </dependency>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.10</version>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.1</version>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.16</version>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time-jsptags</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
             </dependency>
             <dependency>
                 <groupId>net.sf.ehcache</groupId>
@@ -116,6 +132,26 @@
                 <version>${mockito.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>${spring.version}</version>
@@ -129,6 +165,17 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -156,14 +203,15 @@
                 <version>1.1.2</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.jasig.resourceserver</groupId>
                 <artifactId>resource-server-utils</artifactId>
                 <version>${resource-server.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jasig.resourceserver</groupId>
@@ -178,19 +226,13 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>2.2.1</version>
-                    <configuration>
-                        <autoVersionSubmodules>true</autoVersionSubmodules>
-                        <localCheckout>true</localCheckout>
-                        <tagNameFormat>CoursesPortlet-@{project.version}</tagNameFormat>
-                        <pushChanges>false</pushChanges>
-                    </configuration>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.jvnet.jaxb2.maven2</groupId>
                     <artifactId>maven-jaxb2-plugin</artifactId>
-                    <version>0.8.1</version>
+                    <version>0.8.3</version>
                     <executions>
                         <execution>
                             <goals>
@@ -199,7 +241,6 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <extension>true</extension>
                         <specVersion>2.1</specVersion>
                         <bindingDirectory>src/main/binding</bindingDirectory>
                         <schemaDirectory>src/main/resources/xsd</schemaDirectory>
@@ -215,7 +256,6 @@
                             <arg>-no-header</arg>
                             <arg>-readOnly</arg>
                             <arg>-mark-generated</arg>
-                            <arg>-enableIntrospection</arg>
                         </args>
                         <plugins>
                             <plugin>

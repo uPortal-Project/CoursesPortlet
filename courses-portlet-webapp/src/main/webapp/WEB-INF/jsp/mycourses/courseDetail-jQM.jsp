@@ -61,7 +61,7 @@
                         <c:if test="${not empty locationUrls[meeting.location.identifier]}"><a data-role="button" class="location" href="${ locationUrls[meeting.location.identifier] }"></c:if>
                         ${ meeting.formattedMeetingTime } at ${ meeting.location.displayName }
                         <c:if test="${not empty locationUrls[meeting.location.identifier]}"></a></c:if>
-                        <c:if test="${not empty meeting.startDate && not empty meeting.endDate}"><span><fmt:formatDate value="${meeting.startDate.time}" type="date" dateStyle="SHORT"/> - <fmt:formatDate value="${meeting.endDate.time}" type="date" dateStyle="SHORT"/></span></c:if>
+                        <c:if test="${not empty meeting.startDate && not empty meeting.endDate}"><span><joda:format value="${meeting.startDate}" style="S-"/> - <joda:format value="${meeting.endDate}" style="S-"/></span></c:if>
                     </c:forEach>
                 </div>
                 <c:if test="${displayCourseUpdates}">

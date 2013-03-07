@@ -37,6 +37,7 @@ import org.jasig.portlet.courses.model.xml.CourseMeeting;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.jasig.portlet.courses.model.xml.personal.Course;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
+import org.joda.time.LocalTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -76,8 +77,8 @@ public class MergingCoursesDaoImplTest {
         course1.setCredits((double) 1);
         course1.setGrade("grade1");
         CourseMeeting meeting1 = new CourseMeeting();
-        meeting1.setStartTime(fac.newXMLGregorianCalendarTime(9, 30, 0, 0));
-        meeting1.setEndTime(fac.newXMLGregorianCalendarTime(10, 30, 0, 0));
+        meeting1.setStartTime(new LocalTime(9, 30, 0));
+        meeting1.setEndTime(new LocalTime(10, 30, 0));
         meeting1.getDayIds().addAll(Arrays.asList(new String[] { "M", "W", "F" }));
         course1.getCourseMeetings().add(meeting1);
         course1.setSchool("school1");
@@ -90,8 +91,8 @@ public class MergingCoursesDaoImplTest {
         course2.setGrade("grade2");
         
         CourseMeeting meeting2 = new CourseMeeting();
-        meeting2.setStartTime(fac.newXMLGregorianCalendarTime(14, 00, 0, 0));
-        meeting2.setEndTime(fac.newXMLGregorianCalendarTime(15, 00, 0, 0));
+        meeting2.setStartTime(new LocalTime(14, 00, 0));
+        meeting2.setEndTime(new LocalTime(15, 00, 0));
         meeting2.getDayIds().addAll(Arrays.asList(new String[] { "T", "Th" }));
         course2.getCourseMeetings().add(meeting2);
         course2.setSchool("school2");
@@ -126,10 +127,10 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(2, course.getCredits(), 0.1);
         assertEquals("grade2", course.getGrade());
-        assertEquals("09:30:00Z", course.getCourseMeetings().get(0).getStartTime().toXMLFormat());
-        assertEquals("10:30:00Z", course.getCourseMeetings().get(0).getEndTime().toXMLFormat());
-        assertEquals("14:00:00Z", course.getCourseMeetings().get(1).getStartTime().toXMLFormat());
-        assertEquals("15:00:00Z", course.getCourseMeetings().get(1).getEndTime().toXMLFormat());
+        assertEquals(new LocalTime(9, 30, 00), course.getCourseMeetings().get(0).getStartTime());
+        assertEquals(new LocalTime(10, 30, 00), course.getCourseMeetings().get(0).getEndTime());
+        assertEquals(new LocalTime(14, 00, 00), course.getCourseMeetings().get(1).getStartTime());
+        assertEquals(new LocalTime(15, 00, 00), course.getCourseMeetings().get(1).getEndTime());
         assertEquals("school2", course.getSchool());
         assertEquals("Course 2", course.getTitle());
         assertEquals("url2", course.getUrl());
@@ -143,8 +144,8 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(2, course.getCredits(), 0.1);
         assertEquals("grade2", course.getGrade());
-        assertEquals("14:00:00Z", course.getCourseMeetings().get(0).getStartTime().toXMLFormat());
-        assertEquals("15:00:00Z", course.getCourseMeetings().get(0).getEndTime().toXMLFormat());
+        assertEquals(new LocalTime(14, 00, 00), course.getCourseMeetings().get(0).getStartTime());
+        assertEquals(new LocalTime(15, 00, 00), course.getCourseMeetings().get(0).getEndTime());
         assertEquals("school2", course.getSchool());
         assertEquals("Course 2", course.getTitle());
         assertEquals("url2", course.getUrl());
@@ -158,8 +159,8 @@ public class MergingCoursesDaoImplTest {
         
         assertEquals(1, course.getCredits(), 0.1);
         assertEquals("grade1", course.getGrade());
-        assertEquals("09:30:00Z", course.getCourseMeetings().get(0).getStartTime().toXMLFormat());
-        assertEquals("10:30:00Z", course.getCourseMeetings().get(0).getEndTime().toXMLFormat());
+        assertEquals(new LocalTime(9, 30, 00), course.getCourseMeetings().get(0).getStartTime());
+        assertEquals(new LocalTime(10, 30, 00), course.getCourseMeetings().get(0).getEndTime());
         assertEquals("school1", course.getSchool());
         assertEquals("Course 1", course.getTitle());
         assertEquals("url1", course.getUrl());

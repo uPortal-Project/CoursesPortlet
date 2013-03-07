@@ -7,7 +7,6 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.jasig.portlet.courses</groupId>
     <artifactId>courses-portlet-webapp</artifactId>
     <packaging>war</packaging>
     <name>CoursePortlet - Webapp</name>
@@ -31,12 +30,12 @@
             <artifactId>commons-lang</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time-jsptags</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
@@ -92,6 +91,22 @@
             <artifactId>resource-server-content</artifactId>
             <type>war</type>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+        </dependency>
         
         
         <dependency>
@@ -107,8 +122,8 @@
         
         
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
         </dependency>
         
@@ -161,14 +176,6 @@
           <plugin>
             <artifactId>maven-war-plugin</artifactId>
             <configuration>
-              <attachClasses>true</attachClasses>
-              <archive>
-                <index>true</index>
-                <manifest>
-                  <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                </manifest>
-              </archive>
               <overlays>
                   <overlay>
                       <groupId>org.jasig.resourceserver</groupId>
@@ -184,7 +191,7 @@
         </plugins>
     </build>
 
-        <profiles>
+    <profiles>
         <profile>
             <id>localdev</id>
             <build>
@@ -203,9 +210,7 @@
                         </executions>
                     </plugin>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
-                        <version>2.1</version>
                         <configuration>
                             <classifier>localdev</classifier>
                             <warName>courses</warName>
@@ -218,9 +223,9 @@
                         <version>1.0.0-M4-SNAPSHOT</version>
                         <configuration>
                             <contextName>CoursesPortlet</contextName>
-                            <artifactId>${pom.artifactId}</artifactId>
-                            <artifactGroupId>${pom.groupId}</artifactGroupId>
-                            <artifactVersion>${pom.version}</artifactVersion>
+                            <artifactId>${project.artifactId}</artifactId>
+                            <artifactGroupId>${project.groupId}</artifactGroupId>
+                            <artifactVersion>${project.version}</artifactVersion>
                             <artifactClassifier>localdev</artifactClassifier>
                             <removeExistingDirectories>true</removeExistingDirectories>
                             <extractWars>true</extractWars>

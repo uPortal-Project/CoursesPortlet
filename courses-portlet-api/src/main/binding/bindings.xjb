@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     Licensed to Jasig under one or more contributor license
@@ -18,27 +19,33 @@
     under the License.
 
 -->
-
 <jaxb:bindings
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
     xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
     xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
     jaxb:version="2.1"
     jaxb:extensionBindingPrefixes="inheritance"
 >
 
     <jaxb:bindings>
-        <jaxb:globalBindings fixedAttributeAsConstantProperty="true" enableFailFastCheck="true"  >
-            <xjc:simple />
+        <jaxb:globalBindings fixedAttributeAsConstantProperty="true" enableFailFastCheck="true">
+            <jaxb:javaType name="org.joda.time.DateTime" xmlType="xs:dateTime" parseMethod="org.jasig.portlet.jaxb.util.JodaTypeConverter.parseDateTime" printMethod="org.jasig.portlet.jaxb.util.JodaTypeConverter.printDateTime" />
+            <jaxb:javaType name="org.joda.time.DateMidnight" xmlType="xs:date" parseMethod="org.jasig.portlet.jaxb.util.JodaTypeConverter.parseDate" printMethod="org.jasig.portlet.jaxb.util.JodaTypeConverter.printDate" />
+            <jaxb:javaType name="org.joda.time.LocalTime" xmlType="xs:time" parseMethod="org.jasig.portlet.jaxb.util.JodaTypeConverter.parseTime" printMethod="org.jasig.portlet.jaxb.util.JodaTypeConverter.printTime" />
             <jaxb:serializable/>
-            <jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime" parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime" printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />
-            <jaxb:javaType name="java.util.Calendar" xmlType="xs:date" parseMethod="javax.xml.bind.DatatypeConverter.parseDate" printMethod="javax.xml.bind.DatatypeConverter.printDate" />
+            <xjc:simple />
         </jaxb:globalBindings>
     </jaxb:bindings>
       
+    <jaxb:bindings schemaLocation="../resources/xsd/generic/misc.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.jasig.portlet.courses.model" />
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+    
     <jaxb:bindings schemaLocation="../resources/xsd/generic/common.xsd">
         <jaxb:bindings node="//xs:complexType[@name='term-list']">
             <jaxb:class/>

@@ -19,10 +19,10 @@
 package org.jasig.portlet.courses.util;
 
 import java.math.BigInteger;
-import java.util.Calendar;
 import java.util.Comparator;
 
 import org.jasig.portlet.courses.model.xml.Term;
+import org.joda.time.DateTime;
 
 public class TermComparator implements Comparator<Term> {
     public static final TermComparator INSTANCE = new TermComparator();
@@ -40,9 +40,9 @@ public class TermComparator implements Comparator<Term> {
             return 1;
         }
         
-        //Try comparing by start cal first
-        final Calendar s1 = o1.getStart();
-        final Calendar s2 = o2.getStart();
+        //Try comparing by start DateTime first
+        final DateTime s1 = o1.getStart();
+        final DateTime s2 = o2.getStart();
         if (s1 != null && s2 != null) {
             return s1.compareTo(s2);
         }

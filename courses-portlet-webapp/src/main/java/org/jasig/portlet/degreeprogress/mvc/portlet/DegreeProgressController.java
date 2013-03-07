@@ -3,19 +3,18 @@ package org.jasig.portlet.degreeprogress.mvc.portlet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.jasig.portlet.courses.dao.ICoursesDao;
-import org.jasig.portlet.degreeprogress.model.DegreeProgramSummary;
-import org.jasig.portlet.degreeprogress.model.xml.CourseRequirement;
-import org.jasig.portlet.degreeprogress.model.xml.DegreeProgressReport;
-import org.jasig.portlet.degreeprogress.model.ProgramComponent;
 import org.jasig.portlet.degreeprogress.dao.IDegreeProgramDao;
 import org.jasig.portlet.degreeprogress.dao.IDegreeProgressDao;
 import org.jasig.portlet.degreeprogress.dao.WhatIfRequest;
-
-import org.jasig.portlet.degreeprogress.model.xml.DegreeRequirementSection;
+import org.jasig.portlet.degreeprogress.model.DegreeProgramSummary;
+import org.jasig.portlet.degreeprogress.model.ProgramComponent;
+import org.jasig.portlet.degreeprogress.model.xml.DegreeProgressReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.UncategorizedSQLException;
