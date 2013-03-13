@@ -36,7 +36,7 @@
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
         <property name="requestFactory">
-            <bean class="org.springframework.http.client.CommonsClientHttpRequestFactory">
+            <bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
                 <property name="httpClient" ref="httpClient" />
             </bean>
         </property>
@@ -157,16 +157,28 @@
         <property name="defaultErrorView" value="mycourses/gradesUnavailable"/>
     </bean>
 
-    <bean id="httpConnectionManager" class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager" destroy-method="shutdown">
-        <property name="params">
-            <bean class="org.apache.commons.httpclient.params.HttpConnectionManagerParams">
-                <property name="defaultMaxConnectionsPerHost" value="200" />
-                <property name="maxTotalConnections" value="1000"/>
-            </bean>
-        </property>
-    </bean>
 
-    <bean id="httpClient" class="org.apache.commons.httpclient.HttpClient">
+    <bean id="httpClient" class="org.jasig.apache.http.impl.client.ResponseHeaderHandlingHttpClient" depends-on="httpConnectionParamBean, clientParamBean">
         <constructor-arg ref="httpConnectionManager" />
+        <constructor-arg ref="httpParams"/>
+    </bean>
+    <bean id="httpConnectionManager" class="org.jasig.apache.http.impl.conn.CleanShutdownPoolingClientConnectionManager" destroy-method="shutdown">
+        <property name="defaultMaxPerRoute" value="1000" />
+        <property name="maxTotal" value="1000" />
+    </bean>
+    <bean id="httpParams" class="org.apache.http.params.BasicHttpParams"/>
+    <bean id="httpConnectionParamBean" class="org.apache.http.params.HttpConnectionParamBean">
+        <constructor-arg index="0">
+            <ref bean="httpParams"/>
+        </constructor-arg>
+        <property name="connectionTimeout" value="5000"/>
+        <property name="soTimeout" value="30000"/>
+        <property name="staleCheckingEnabled" value="true"/>
+    </bean>
+    <bean id="clientParamBean" class="org.apache.http.client.params.ClientParamBean">
+        <constructor-arg index="0">
+            <ref bean="httpParams"/>
+        </constructor-arg>
+        <property name="cookiePolicy" value="ignoreCookies"/>
     </bean>
 </beans>
