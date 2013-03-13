@@ -40,7 +40,6 @@
     <modules>
         <module>courses-portlet-api</module>
         <module>courses-portlet-dao</module>
-        <module>courses-portlet-ps-impl</module>
         <module>courses-portlet-webapp</module>
     </modules>
 
