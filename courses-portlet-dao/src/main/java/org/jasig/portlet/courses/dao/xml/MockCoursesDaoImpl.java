@@ -20,6 +20,7 @@
 package org.jasig.portlet.courses.dao.xml;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.portlet.PortletRequest;
 import javax.xml.bind.JAXBContext;
@@ -28,19 +29,19 @@ import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jasig.portlet.courses.dao.ICoursesDao;
+import org.jasig.portlet.courses.dao.ICacheableCoursesDao;
 import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.personal.TermsAndCourses;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 
-public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
-
+public class MockCoursesDaoImpl implements ICacheableCoursesDao<Serializable, String>, InitializingBean {
+    private static final Serializable TERM_LIST_KEY = new Serializable() { private static final long serialVersionUID = 1L;};
+    
     protected final Log log = LogFactory.getLog(getClass());
     
     private TermsAndCourses summary;
-    
     private Resource mockData;
     
     public void setMockData(Resource mockData) {
@@ -61,12 +62,22 @@ public class MockCoursesDaoImpl implements ICoursesDao, InitializingBean {
     }
     
     @Override
-    public TermList getTermList(PortletRequest request) {
+    public Serializable getTermListKey(PortletRequest request) {
+        return TERM_LIST_KEY;
+    }
+
+    @Override
+    public String getCoursesByTermKey(PortletRequest request, String termCode) {
+        return termCode;
+    }
+
+    @Override
+    public TermList getTermList(Serializable key) {
         return this.summary.getTermList();
     }
 
     @Override
-    public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode) {
+    public CoursesByTerm getCoursesByTerm(String termCode) {
         return this.summary.getCoursesByTerm(termCode);
     }
 }

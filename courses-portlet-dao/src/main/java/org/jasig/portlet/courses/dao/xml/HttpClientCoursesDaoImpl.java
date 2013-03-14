@@ -18,15 +18,17 @@
  */
 package org.jasig.portlet.courses.dao.xml;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.portlet.PortletRequest;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jasig.portlet.courses.dao.ICoursesDao;
+import org.jasig.portlet.courses.dao.ICacheableCoursesDao;
 import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.personal.TermsAndCourses;
@@ -35,7 +37,7 @@ import org.jasig.portlet.courses.util.TermCodeParameterEvaluator;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 
 /**
@@ -45,7 +47,7 @@ import org.springframework.web.client.RestTemplate;
  * @author Jen Bourey, jennifer.bourey@gmail.com
  * @version $Revision$
  */
-public class HttpClientCoursesDaoImpl implements ICoursesDao {
+public class HttpClientCoursesDaoImpl implements ICacheableCoursesDao<Serializable, Serializable> {
     public static final String PROPERTY_KEY_TERMCODE = "#TERMCODE#";
 
     private final Log log = LogFactory.getLog(getClass());
@@ -80,9 +82,9 @@ public class HttpClientCoursesDaoImpl implements ICoursesDao {
         this.passwordEvaluator = passwordEvaluator;
     }
     
-    private RestTemplate restTemplate;
+    private RestOperations restTemplate;
 
-    public void setRestTemplate(RestTemplate restTemplate) {
+    public void setRestTemplate(RestOperations restTemplate) {
         this.restTemplate = restTemplate;
     }
 
