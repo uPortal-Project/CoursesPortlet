@@ -29,7 +29,7 @@
 
     <context:annotation-config/>
     
-    <bean class="org.jasig.portlet.courses.mvc.portlet.CourseCataloguePortletController"/>
+    <bean class="org.jasig.portlet.grades.mvc.FinalGradesPortletController"/>
 
     <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="interceptors"><bean class="org.jasig.web.portlet.handler.MinimizedStateHandlerInterceptor"/></property>
