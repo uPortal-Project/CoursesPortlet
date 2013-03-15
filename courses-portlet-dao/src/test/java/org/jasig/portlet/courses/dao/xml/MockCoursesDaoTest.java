@@ -19,12 +19,13 @@
 
 package org.jasig.portlet.courses.dao.xml;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
-import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.portlet.PortletRequest;
@@ -43,21 +44,20 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/testContext.xml")
-public class XMLCoursesDaoImplTest {
-
+@ContextConfiguration(locations = "/mockTestContext.xml")
+public class MockCoursesDaoTest {
     @Autowired MockCoursesDaoImpl dao;
-    
     @Mock PortletRequest request;
-    
+
     @Before
-    public void setUp() {
+    public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
     }
     
     @Test
-    public void test() {
-        final TermList termList = dao.getTermList(request);
+    public void testMockDao() {
+        final Serializable termListKey = dao.getTermListKey(request);
+        final TermList termList = dao.getTermList(termListKey);
         
         final List<Term> terms = termList.getTerms();
         assertEquals(2, terms.size());
@@ -69,7 +69,8 @@ public class XMLCoursesDaoImplTest {
         assertNull(term.getTermType());
         assertNull(term.getYear());
         
-        CoursesByTerm coursesByTerm = dao.getCoursesByTerm(request, term.getCode());
+        final String coursesByTermKey = dao.getCoursesByTermKey(request, term.getCode());
+        CoursesByTerm coursesByTerm = dao.getCoursesByTerm(coursesByTermKey);
         assertNull(coursesByTerm);
 
         term = terms.get(1);
@@ -81,7 +82,8 @@ public class XMLCoursesDaoImplTest {
         assertNull(term.getYear());
         
         
-        coursesByTerm = dao.getCoursesByTerm(request, terms.get(1).getCode());
+        final String coursesByTermKey2 = dao.getCoursesByTermKey(request, terms.get(1).getCode());
+        coursesByTerm = dao.getCoursesByTerm(coursesByTermKey2);
         assertNotNull(coursesByTerm);
 
         assertEquals(40, coursesByTerm.getCredits(), 0.01);

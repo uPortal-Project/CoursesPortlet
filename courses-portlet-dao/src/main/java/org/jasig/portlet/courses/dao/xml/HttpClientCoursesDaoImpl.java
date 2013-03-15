@@ -25,10 +25,10 @@ import java.util.Map;
 import javax.portlet.PortletRequest;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.dao.ICacheableCoursesDao;
+import org.jasig.portlet.courses.dao.xml.HttpClientCoursesDaoImpl.CoursesCacheKey;
 import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.jasig.portlet.courses.model.xml.personal.TermsAndCourses;
@@ -47,87 +47,94 @@ import org.springframework.web.client.RestOperations;
  * @author Jen Bourey, jennifer.bourey@gmail.com
  * @version $Revision$
  */
-public class HttpClientCoursesDaoImpl implements ICacheableCoursesDao<Serializable, Serializable> {
+public class HttpClientCoursesDaoImpl implements ICacheableCoursesDao<CoursesCacheKey, CoursesCacheKey> {
     public static final String PROPERTY_KEY_TERMCODE = "#TERMCODE#";
 
     private final Log log = LogFactory.getLog(getClass());
 
     private String termsUrlFormat = null;
+    private String coursesUrlFormat = null;
+    private Map<String,IParameterEvaluator> urlParamEvaluators = new HashMap<String,IParameterEvaluator>();
+    private IParameterEvaluator usernameEvaluator;
+    private IParameterEvaluator passwordEvaluator;
+    private RestOperations restTemplate;
 
     public void setTermsUrlFormat(String urlFormat) {
         this.termsUrlFormat = urlFormat;
     }
 
-    private String coursesUrlFormat = null;
-
     public void setCoursesUrlFormat(String urlFormat) {
         this.coursesUrlFormat = urlFormat;
     }
 
-    private Map<String,IParameterEvaluator> urlParams = new HashMap<String,IParameterEvaluator>();
-
     public void setUrlParams(Map<String,IParameterEvaluator> params) {
-        this.urlParams = params;
+        this.urlParamEvaluators = params;
     }
-
-    private IParameterEvaluator usernameEvaluator;
     
     public void setUsernameEvaluator(IParameterEvaluator usernameEvaluator) {
         this.usernameEvaluator = usernameEvaluator;
     }
     
-    private IParameterEvaluator passwordEvaluator;
-    
     public void setPasswordEvaluator(IParameterEvaluator passwordEvaluator) {
         this.passwordEvaluator = passwordEvaluator;
     }
-    
-    private RestOperations restTemplate;
 
     public void setRestTemplate(RestOperations restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @Override
-    public TermList getTermList(PortletRequest request) {
-        Map<String,String> params = createParameters(request, urlParams);
-        return getTermsAndCourses(request,termsUrlFormat,params).getTermList();
+    public CoursesCacheKey getTermListKey(PortletRequest request) {
+        final String username = usernameEvaluator.evaluate(request);
+        final String password = passwordEvaluator.evaluate(request);
+        final Map<String, String> params = createParameters(request, urlParamEvaluators);
+        return new CoursesCacheKey(username, password.toCharArray(), params);
     }
 
     @Override
-    public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode) {
-        setTermCodeRequestAttribute(request,termCode);
-        Map<String,String> params = createParameters(request,urlParams);
-        return getTermsAndCourses(request,coursesUrlFormat,params).getCoursesByTerm(termCode);
+    public TermList getTermList(CoursesCacheKey key) {
+        final TermsAndCourses termsAndCourses = getTermsAndCourses(key, termsUrlFormat);
+        return termsAndCourses.getTermList();
     }
     
-    /**
-     * Get terms and courses for the current user
-     */
-    protected TermsAndCourses getTermsAndCourses(PortletRequest request, String uriTemplate, Map<String,String> params) {
+    @Override
+    public CoursesCacheKey getCoursesByTermKey(PortletRequest request, String termCode) {
+        final String username = usernameEvaluator.evaluate(request);
+        final String password = passwordEvaluator.evaluate(request);
+        final Map<String, String> params = createParameters(request, urlParamEvaluators);
+        return new CoursesCacheKey(username, password.toCharArray(), params, termCode);
+    }
+
+    @Override
+    public CoursesByTerm getCoursesByTerm(CoursesCacheKey key) {
+        final TermsAndCourses termsAndCourses = getTermsAndCourses(key, coursesUrlFormat);
+        return termsAndCourses.getCoursesByTerm(key.getTermCode());
+    }
+
+    protected TermsAndCourses getTermsAndCourses(CoursesCacheKey key, String url) {
+        Map<String,String> params = key.getParams();
 
         if (log.isDebugEnabled()) {
-            log.debug("Invoking uri '" + uriTemplate 
+            log.debug("Invoking uri '" + url 
                     + "' with the following parameters:  " 
                     + params.toString());
         }
 
-        HttpEntity<?> requestEntity = getRequestEntity(request);
+        HttpEntity<?> requestEntity = getRequestEntity(key);
         HttpEntity<TermsAndCourses> response = restTemplate.exchange(
-                uriTemplate, HttpMethod.GET, requestEntity,
+                url, HttpMethod.GET, requestEntity,
                 TermsAndCourses.class, params);
 
-        return response.getBody();
-
+        final TermsAndCourses termsAndCourses = response.getBody();
+        return termsAndCourses;
     }
 
     /**
      * Get a request entity prepared for basic authentication.
      */
-    protected HttpEntity<?> getRequestEntity(PortletRequest request) {
-
-        String username = usernameEvaluator.evaluate(request);
-        String password = passwordEvaluator.evaluate(request);
+    protected HttpEntity<?> getRequestEntity(CoursesCacheKey credentials) {
+        final String username = credentials.getUsername();
+        final char[] password = credentials.getPassword();
         
         if (log.isDebugEnabled()) {
             boolean hasPassword = password != null;
@@ -135,7 +142,7 @@ public class HttpClientCoursesDaoImpl implements ICacheableCoursesDao<Serializab
         }
         
         HttpHeaders requestHeaders = new HttpHeaders();
-        String authString = username.concat(":").concat(password);
+        String authString = username.concat(":").concat(new String(password));
         String encodedAuthString = new Base64().encodeToString(authString.getBytes());
         requestHeaders.set("Authorization", "Basic ".concat(encodedAuthString));
 
@@ -144,8 +151,8 @@ public class HttpClientCoursesDaoImpl implements ICacheableCoursesDao<Serializab
 
     }
 
-    protected void setTermCodeRequestAttribute(PortletRequest request,String termCode) {
-        for(IParameterEvaluator evaluator : urlParams.values()) {
+    protected void setTermCodeRequestAttribute(PortletRequest request, String termCode) {
+        for(IParameterEvaluator evaluator : urlParamEvaluators.values()) {
             if(evaluator instanceof TermCodeParameterEvaluator) {
                 request.setAttribute(((TermCodeParameterEvaluator)evaluator).getAttributeKey(),termCode);
                 return;
@@ -153,12 +160,85 @@ public class HttpClientCoursesDaoImpl implements ICacheableCoursesDao<Serializab
         }
     }
 
-    protected Map<String,String> createParameters(PortletRequest request,Map<String,IParameterEvaluator> params) {
+    protected Map<String,String> createParameters(PortletRequest request, Map<String,IParameterEvaluator> params) {
         Map<String,String> result = new HashMap<String,String>();
 
         for(String key : params.keySet()) {
             result.put(key,params.get(key).evaluate(request));
         }
         return result;
+    }
+    
+    public static final class CoursesCacheKey implements Serializable {
+        private static final long serialVersionUID = 1L;
+        
+        private final SecureRequestCredentials credentials;
+        private final Map<String, String> params;
+        private final String termCode;
+        
+        private CoursesCacheKey(String username, char[] password, Map<String, String> params) {
+            this(username, password, params, null);
+        }
+        
+        private CoursesCacheKey(String username, char[] password, Map<String, String> params, String termCode) {
+            this.credentials = new SecureRequestCredentials(username, password);
+            this.params = params;
+            this.termCode = termCode;
+        }
+
+        private String getUsername() {
+            return credentials.getUsername();
+        }
+
+        private char[] getPassword() {
+            return credentials.getPassword();
+        }
+
+        private Map<String, String> getParams() {
+            return params;
+        }
+
+        public String getTermCode() {
+            return termCode;
+        }
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + ((credentials == null) ? 0 : credentials.hashCode());
+            result = prime * result + ((params == null) ? 0 : params.hashCode());
+            return result;
+        }
+
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            CoursesCacheKey other = (CoursesCacheKey) obj;
+            if (credentials == null) {
+                if (other.credentials != null)
+                    return false;
+            }
+            else if (!credentials.equals(other.credentials))
+                return false;
+            if (params == null) {
+                if (other.params != null)
+                    return false;
+            }
+            else if (!params.equals(other.params))
+                return false;
+            return true;
+        }
+
+        @Override
+        public String toString() {
+            return "CoursesCacheKey [credentials=" + credentials + ", params=" + params + "]";
+        }
     }
 }

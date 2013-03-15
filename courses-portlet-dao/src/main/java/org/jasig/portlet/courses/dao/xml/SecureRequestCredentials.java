@@ -21,9 +21,10 @@ import javax.crypto.spec.PBEParameterSpec;
 import org.apache.commons.lang.RandomStringUtils;
 
 /**
- * Holds a username and password. The password is stored in a {@link SealedObject} so that serialized versions of this object do
- * not expose the password. This is not meant to protect against in-memory attacks as the password is also stored in memory. Decryption
- * will also only work within the same JVM as the object was created as the password used is random and scoped to the life of this class.
+ * Holds a username and password in a secure manner. The intent is not to protect from in memory attacks as calling {@link #getPassword()}
+ * returns the plain-text password. The intent is to prevent accidental exposure via serialization, toString or other similar approach.
+ * <br/>
+ * Decryption will also only work within the same JVM as the object was created as the password used is random and scoped to the life of this class.
  * 
  * @author Eric Dalquist
  */
@@ -84,6 +85,13 @@ public final class SecureRequestCredentials implements Serializable {
             //Nuke the password array in memory as soon as we're done with it
             Arrays.fill(password, ' ');
         }
+    }
+    
+    /**
+     * @return The username
+     */
+    public String getUsername() {
+        return username;
     }
     
     /**
