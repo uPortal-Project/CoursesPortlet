@@ -37,7 +37,10 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 
 public class MockCoursesDaoImpl implements ICacheableCoursesDao<Serializable, String>, InitializingBean {
-    private static final Serializable TERM_LIST_KEY = new Serializable() { private static final long serialVersionUID = 1L;};
+    private static final Serializable TERM_LIST_KEY = TermListKey.INSTANCE;
+    public enum TermListKey {
+        INSTANCE
+    }
     
     protected final Log log = LogFactory.getLog(getClass());
     

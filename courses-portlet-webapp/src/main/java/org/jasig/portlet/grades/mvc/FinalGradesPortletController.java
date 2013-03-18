@@ -41,7 +41,7 @@ public class FinalGradesPortletController {
         this.coursesDao = coursesDao;
     }
 
-    @RenderMapping//(params = "action=grades") Make grades the default view for UW
+    @RenderMapping
     public ModelAndView getGrades(PortletRequest request, @RequestParam(required=false) String termCode) {
         final Map<String, Object> model = new HashMap<String, Object>();
         
@@ -60,7 +60,7 @@ public class FinalGradesPortletController {
         }
         
         final boolean isMobile = viewSelector.isMobile(request);
-        final String viewName = isMobile ? "grades-jQM" : "grades";
+        final String viewName = isMobile ? "final-grades/grades-jQM" : "final-grades/grades";
         
         return new ModelAndView(viewName, model);
     }
@@ -87,7 +87,7 @@ public class FinalGradesPortletController {
         //TODO does this need a mobile specific view? If so uncomment these lines and 
 //        final boolean isMobile = viewSelector.isMobile(resourceRequest);
 //        final String viewName = isMobile ? "fragments/gradesUpdate-jQM" : "fragments/gradesUpdate";
-        final String viewName = "fragments/gradesUpdate";
+        final String viewName = "final-grades/fragments/gradesUpdate";
         
         return new ModelAndView(viewName, model);
     }
