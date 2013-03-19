@@ -88,7 +88,8 @@ public final class CachingCoursesDao implements ICoursesDao, BeanNameAware {
 
     @Override
     public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode) {
-        final Serializable coursesByTermKey = coursesDao.getCoursesByTermKey(request, termCode);
+        final TermList termList = this.getTermList(request);
+        final Serializable coursesByTermKey = coursesDao.getCoursesByTermKey(request, termCode, termList);
         final CacheKey scopedKey = getScopedKey(coursesByTermKey);
 
         final Element element = this.coursesByTermCache.get(scopedKey);

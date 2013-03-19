@@ -23,7 +23,7 @@ public interface ICacheableCoursesDao<TLK extends Serializable, CK extends Seria
     /**
      * A cache key for the courses that would be retrieved by this request
      */
-    public CK getCoursesByTermKey(PortletRequest request, String termCode);
+    public CK getCoursesByTermKey(PortletRequest request, String termCode, TermList termList);
 
     /**
      * Get a term list for the current user

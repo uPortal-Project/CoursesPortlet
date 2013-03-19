@@ -27,7 +27,8 @@ public final class CoursesDaoCacheableAdapter implements ICoursesDao {
 
     @Override
     public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode) {
-        final Serializable coursesByTermKey = this.cacheableCoursesDao.getCoursesByTermKey(request, termCode);
+        final TermList termList = this.getTermList(request);
+        final Serializable coursesByTermKey = this.cacheableCoursesDao.getCoursesByTermKey(request, termCode, termList);
         return this.cacheableCoursesDao.getCoursesByTerm(coursesByTermKey);
     }
 }

@@ -70,7 +70,7 @@ public class MockCoursesDaoImpl implements ICacheableCoursesDao<Serializable, St
     }
 
     @Override
-    public String getCoursesByTermKey(PortletRequest request, String termCode) {
+    public String getCoursesByTermKey(PortletRequest request, String termCode, TermList termList) {
         return termCode;
     }
 

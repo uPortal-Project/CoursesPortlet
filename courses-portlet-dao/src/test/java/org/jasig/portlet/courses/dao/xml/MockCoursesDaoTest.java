@@ -69,7 +69,7 @@ public class MockCoursesDaoTest {
         assertNull(term.getTermType());
         assertNull(term.getYear());
         
-        final String coursesByTermKey = dao.getCoursesByTermKey(request, term.getCode());
+        final String coursesByTermKey = dao.getCoursesByTermKey(request, term.getCode(), termList);
         CoursesByTerm coursesByTerm = dao.getCoursesByTerm(coursesByTermKey);
         assertNull(coursesByTerm);
 
@@ -82,7 +82,7 @@ public class MockCoursesDaoTest {
         assertNull(term.getYear());
         
         
-        final String coursesByTermKey2 = dao.getCoursesByTermKey(request, terms.get(1).getCode());
+        final String coursesByTermKey2 = dao.getCoursesByTermKey(request, terms.get(1).getCode(), termList);
         coursesByTerm = dao.getCoursesByTerm(coursesByTermKey2);
         assertNotNull(coursesByTerm);
 

@@ -98,7 +98,7 @@ public class HttpClientCoursesDaoImpl implements ICacheableCoursesDao<CoursesCac
     }
     
     @Override
-    public CoursesCacheKey getCoursesByTermKey(PortletRequest request, String termCode) {
+    public CoursesCacheKey getCoursesByTermKey(PortletRequest request, String termCode, TermList termList) {
         final String username = usernameEvaluator.evaluate(request);
         final String password = passwordEvaluator.evaluate(request);
         final Map<String, String> params = createParameters(request, urlParamEvaluators);
