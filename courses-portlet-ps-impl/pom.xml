@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>courses-portlet-ps-impl</artifactId>
     <packaging>jar</packaging>
-    <name>CoursePortlet - Data Access Objects for SIS/LMS integration</name>
+    <name>CoursePortlet - UW PeopleSoft Implementation</name>
 
     <dependencies>
         <dependency>

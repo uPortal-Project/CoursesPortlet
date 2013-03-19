@@ -49,10 +49,13 @@
     </rollingPolicy>
   </appender>
   
-  <root level="DEBUG">
+  <root level="INFO">
     <appender-ref ref="LOG"/>
   </root>
   
+  <logger name="edu.wisc" additivity="false" level="DEBUG">
+    <appender-ref ref="LOG"/>
+  </logger>
   <logger name="org.jasig.portlet.courses" additivity="false" level="DEBUG">
     <appender-ref ref="LOG"/>
   </logger>  

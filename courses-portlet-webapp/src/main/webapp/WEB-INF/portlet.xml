@@ -79,6 +79,12 @@
         <portlet-info>
             <title>Final Grades</title>
         </portlet-info>
+        <portlet-preferences>
+            <preference>
+                <name>emplidAttributes</name>
+                <value>wisceduisisstudentemplid</value>
+            </preference>
+        </portlet-preferences>
     </portlet>
     
     <portlet>
@@ -128,6 +134,9 @@
     </user-attribute>
     <user-attribute>
         <name>user.login.id</name>
+    </user-attribute>
+    <user-attribute>
+        <name>wisceduisisstudentemplid</name>
     </user-attribute>
 
 </portlet-app>

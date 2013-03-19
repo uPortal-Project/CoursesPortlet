@@ -86,7 +86,9 @@ public class DemCoursesDaoTest {
         
         request.setAttribute(PortletRequest.USER_INFO, Collections.singletonMap("studentId", "AB123456"));
         
-        final CoursesByTermKey key = coursesDao.getCoursesByTermKey(request, "1124");
+        final String tlKey = coursesDao.getTermListKey(request);
+        final TermList termList = coursesDao.getTermList(tlKey);
+        final CoursesByTermKey key = coursesDao.getCoursesByTermKey(request, "1124", termList);
         final CoursesByTerm coursesByTerm = coursesDao.getCoursesByTerm(key);
         
         assertNotNull(coursesByTerm);

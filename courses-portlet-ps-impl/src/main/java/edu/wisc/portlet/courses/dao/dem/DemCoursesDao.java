@@ -12,8 +12,6 @@ import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jasig.portlet.courses.dao.ICacheableCoursesDao;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.jasig.portlet.courses.model.xml.TermList;
@@ -21,6 +19,8 @@ import org.jasig.portlet.courses.model.xml.personal.Course;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.jasig.portlet.courses.util.TermComparator;
 import org.joda.time.DateMidnight;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -32,7 +32,7 @@ import edu.wisc.dem.grades.xom.terms.res.USRTERMWSVWComplexTypeShape;
 import edu.wisc.portlet.courses.dao.dem.DemCoursesDao.CoursesByTermKey;
 
 public class DemCoursesDao implements ICacheableCoursesDao<String, CoursesByTermKey> {
-    protected final Log logger = LogFactory.getLog(getClass());
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
     
     private FinalGradesService finalGradesService;
     private String primaryUserAttributesPreference;
@@ -54,6 +54,8 @@ public class DemCoursesDao implements ICacheableCoursesDao<String, CoursesByTerm
 
     @Override
     public TermList getTermList(String emplid) {
+        logger.debug("Getting TermList for: {}", emplid);
+        
         final List<USRTERMWSVWComplexTypeShape> gradedTerms = this.finalGradesService.getGradedTerms(emplid);
         
         final TermList termList = new TermList();
@@ -100,13 +102,10 @@ public class DemCoursesDao implements ICacheableCoursesDao<String, CoursesByTerm
     }
 
     
-    
     @Override
-    public CoursesByTermKey getCoursesByTermKey(PortletRequest request, String termCode) {
+    public CoursesByTermKey getCoursesByTermKey(PortletRequest request, String termCode, TermList termList) {
         final String emplid = this.getPrimaryUserAttribute(request);
 
-        final String termListKey = this.getTermListKey(request);
-        final TermList termList = this.getTermList(termListKey);
         final Term term = termList.getTerm(termCode);
         final String academicCareer;
         if (term == null) {
@@ -122,6 +121,8 @@ public class DemCoursesDao implements ICacheableCoursesDao<String, CoursesByTerm
 
     @Override
     public CoursesByTerm getCoursesByTerm(CoursesByTermKey key) {
+        logger.debug("Getting CoursesByTerm for: {}", key);
+        
         final List<CLASSTBLSEVWComplexTypeShape> finalGrades = this.finalGradesService.getFinalGrades(key.getEmplid(), key.getAcademicCareer(), null, key.getTermCode());
         
         final CoursesByTerm coursesByTerm = new CoursesByTerm();

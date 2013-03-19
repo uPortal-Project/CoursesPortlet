@@ -1,0 +1,130 @@
+<!--
+
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a
+    copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied. See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    
+    <!--
+     | Enable annotation based configuration for this application. All classes with edu.wisc.portlet.isis as the base
+     | part of their package are scanned for annotations.
+     +-->
+    <context:annotation-config/>
+    
+    <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+        <property name="ignoreInvalidKeys" value="true" />
+        <property name="location" value="classpath:/ps-override.properties" />
+    </bean>
+
+    <bean id="finalGradesService" class="edu.wisc.dem.grades.SoapFinalGradesService">
+        <property name="getFinalGradesWebServiceTemplate" ref="finalGradesWebServiceTemplate" />
+        <property name="getFinalGradesSoapAction" value="FINAL_GRADES.V1" />
+
+        <property name="getGradedTermsWebServiceTemplate" ref="gradedTermsWebServiceTemplate" />
+        <property name="getGradedTermSoapAction" value="GET_STU_TERMS.V1" />
+        
+        <property name="faultUnmarshaller" ref="finalGradesMarshaller" />
+    </bean>
+    
+    <bean id="finalGradesDestinationProvider" class="org.jasig.springframework.ws.client.support.destination.FailSafeWsdl11DestinationProvider" />
+    <bean id="finalGradesWebServiceTemplate" parent="baseWebServiceTemplate">
+        <property name="destinationProvider" ref="finalGradesDestinationProvider" />
+    </bean>
+    
+    <bean id="gradedTermsDestinationProvider" class="org.jasig.springframework.ws.client.support.destination.FailSafeWsdl11DestinationProvider" />
+    <bean id="gradedTermsWebServiceTemplate" parent="baseWebServiceTemplate">
+        <property name="destinationProvider" ref="gradedTermsDestinationProvider" />
+    </bean>
+
+    
+    <bean id="baseWebServiceTemplate" class="org.jasig.springframework.ws.client.core.DestinationOverridingWebServiceTemplate" abstract="true">
+        <property name="marshaller" ref="finalGradesMarshaller" />
+        <property name="unmarshaller" ref="finalGradesMarshaller" />
+        <property name="interceptors" ref="finalGradesWss4jSecurityInterceptor" />
+        <property name="messageSender" ref="finalGradesWebServiceMessageSender" />
+        <property name="checkConnectionForFault" value="false" />
+    </bean>
+    <bean id="finalGradesMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <!-- Have to disable validation, PeopleSoft appears to be returning data that does not validate against their own schemas
+        <property name="schemas">
+            <list>
+                <value>classpath:/xsd/FINAL_GRADE_FLT.V1.xsd</value>
+                <value>classpath:/xsd/FINAL_GRADE_REQ.V1.xsd</value>
+                <value>classpath:/xsd/FINAL_GRADE_RES.V1.xsd</value>
+                <value>classpath:/xsd/GET_STU_TERMS_FAULT.V1.xsd</value>
+                <value>classpath:/xsd/GET_STU_TERMS_REQ.V1.xsd</value>
+                <value>classpath:/xsd/GET_STU_TERMS_RES.V1.xsd</value>
+                <value>classpath:/xsd/GRADED_TERMS_FLT.V1.xsd</value>
+                <value>classpath:/xsd/GRADED_TERMS_REQ.V1.xsd</value>
+                <value>classpath:/xsd/GRADED_TERMS_RES.V1.xsd</value>
+            </list>
+        </property>
+         -->
+        <property name="contextPaths">
+            <list>
+                <value>edu.wisc.dem.grades.xom.finalgrades.flt</value>
+                <value>edu.wisc.dem.grades.xom.finalgrades.req</value>
+                <value>edu.wisc.dem.grades.xom.finalgrades.res</value>
+                <value>edu.wisc.dem.grades.xom.terms.flt</value>
+                <value>edu.wisc.dem.grades.xom.terms.req</value>
+                <value>edu.wisc.dem.grades.xom.terms.res</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="finalGradesWss4jSecurityInterceptor" class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+        <property name="secureRequest" value="true" />
+        <property name="secureResponse" value="false" />
+        <property name="validateRequest" value="false" />
+        <property name="validateResponse" value="false" />
+        <property name="securementActions" value="UsernameToken" />
+        <property name="securementPasswordType" value="PasswordText" />
+    </bean>
+    
+    <bean id="finalGradesWebServiceMessageSender" class="org.springframework.ws.transport.http.HttpComponentsMessageSender" >
+        <constructor-arg ref="httpClient" />
+    </bean>
+
+    <bean id="httpClient" class="org.jasig.apache.http.impl.client.ResponseHeaderHandlingHttpClient" depends-on="httpConnectionParamBean, clientParamBean">
+        <constructor-arg ref="httpConnectionManager" />
+        <constructor-arg ref="httpParams"/>
+    </bean>
+    <bean id="httpConnectionManager" class="org.jasig.apache.http.impl.conn.CleanShutdownPoolingClientConnectionManager" destroy-method="shutdown">
+        <property name="defaultMaxPerRoute" value="1000" />
+        <property name="maxTotal" value="1000" />
+    </bean>
+    <bean id="httpParams" class="org.apache.http.params.BasicHttpParams"/>
+    <bean id="httpConnectionParamBean" class="org.apache.http.params.HttpConnectionParamBean">
+        <constructor-arg index="0">
+            <ref bean="httpParams"/>
+        </constructor-arg>
+        <property name="connectionTimeout" value="5000"/>
+        <property name="soTimeout" value="30000"/>
+        <property name="staleCheckingEnabled" value="true"/>
+    </bean>
+    <bean id="clientParamBean" class="org.apache.http.client.params.ClientParamBean">
+        <constructor-arg index="0">
+            <ref bean="httpParams"/>
+        </constructor-arg>
+        <property name="cookiePolicy" value="ignoreCookies"/>
+    </bean>
+</beans>
