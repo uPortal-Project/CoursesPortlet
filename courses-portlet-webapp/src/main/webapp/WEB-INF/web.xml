@@ -32,7 +32,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/context/applicationContext.xml</param-value>
+        <param-value>/WEB-INF/context/*.xml</param-value>
     </context-param>
     
     <context-param>
