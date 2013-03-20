@@ -1,3 +1,5 @@
-CalendarPortlet is a JSR-286 portlet capable of aggregating calendar data from multiple sources.
+UW Madison Configuration
 
-For more information, please visit [the Calendar Portlet home page](https://wiki.jasig.org/display/PLT/Calendar+Portlet).
+Copy "courses-portlet-webapp/src/main/resources/ps-override.properties.SAMPLE"
+To "courses-portlet-webapp/src/main/resources/ps-override.properties"
+Update the web service endpoint URLs and the username and password
