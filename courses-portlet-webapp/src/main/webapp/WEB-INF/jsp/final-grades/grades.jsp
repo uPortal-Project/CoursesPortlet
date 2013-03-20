@@ -22,7 +22,7 @@
 
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 
-<div id="${n}" class="CoursesPortlet GradesDesktop">
+<div id="${n}" class="GradesPortlet GradesDesktop">
 	<%-- header --%>
 	<div data-role="header" class="titlebar portlet-titlebar top_box">
 		<div class="left header_style">
