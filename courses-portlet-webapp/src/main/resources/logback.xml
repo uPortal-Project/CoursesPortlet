@@ -28,7 +28,7 @@
 <!--    http://www.qos.ch/shop/products/professionalSupport         -->
 <!--                                                                -->
 <configuration scan="true" scanPeriod="30 seconds">
-  <contextName>uPortal</contextName>
+  <contextName>CoursesPortlet</contextName>
  
   <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
     <resetJUL>true</resetJUL>
@@ -40,16 +40,16 @@
     <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
     <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
     <!--for further documentation-->
-    <File>${catalina.base}/logs/CoursesPortlet.log</File>
+    <File>${CoursesPortlet.webapp.root}/../../logs/CoursesPortlet.log</File>
     <encoder>
       <pattern>%-5level [%thread] %logger{36} %d{ISO8601} - %msg%n</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>${environment.build.log.logfileDirectory}/portal/portal.log.%d{${environment.build.log.rollingLogFileDatePattern}}</fileNamePattern>
+      <fileNamePattern>${CoursesPortlet.webapp.root}/../../logs/CoursesPortlet.log.%d{yyyy-MM-dd}</fileNamePattern>
     </rollingPolicy>
   </appender>
   
-  <root level="INFO">
+  <root level="DEBUG">
     <appender-ref ref="LOG"/>
   </root>
   

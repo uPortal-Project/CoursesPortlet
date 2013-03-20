@@ -22,28 +22,28 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:p="http://www.springframework.org/schema/p"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
     <context:annotation-config />
 
     <bean class="org.jasig.portlet.degreeprogress.mvc.portlet.DegreeProgressController"/>
 
     <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-        <property name="interceptors"><bean class="org.jasig.portlet.courses.mvc.MinimizedStateHandlerInterceptor"/></property>
+        <property name="interceptors"><bean class="org.jasig.web.portlet.handler.MinimizedStateHandlerInterceptor"/></property>
     </bean>
 
-  <bean id="exceptionResolver" class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">
-    <!--
-     | Always declare an 'exceptionResolver' bean with a 'defaultErrorView' 
-     | because, in addition to other uses, it protects the portlet from 
-     | failing when a bad request (due to a bug or malicious user) doesn't 
-     | match any declared @RequestMapping. When this happens, the portlet 
-     | throws an Exception and takes itself out of service until a portal 
-     | restart. THIS CONDITION AFFECTS ALL USERS! 
-     +-->
-    <property name="defaultErrorView" value="error"/>
-  </bean>
+    <bean id="exceptionResolver" class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">
+        <!--
+         | Always declare an 'exceptionResolver' bean with a 'defaultErrorView' 
+         | because, in addition to other uses, it protects the portlet from 
+         | failing when a bad request (due to a bug or malicious user) doesn't 
+         | match any declared @RequestMapping. When this happens, the portlet 
+         | throws an Exception and takes itself out of service until a portal 
+         | restart. THIS CONDITION AFFECTS ALL USERS! 
+         +-->
+        <property name="defaultErrorView" value="error"/>
+    </bean>
 
     <bean id="jspViewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"

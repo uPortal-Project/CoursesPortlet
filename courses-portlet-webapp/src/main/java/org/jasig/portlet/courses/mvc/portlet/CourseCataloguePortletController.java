@@ -38,8 +38,8 @@ import org.jasig.portlet.courses.model.xml.Instructor;
 import org.jasig.portlet.courses.model.xml.Location;
 import org.jasig.portlet.courses.model.xml.Term;
 import org.jasig.portlet.courses.model.xml.TermList;
-import org.jasig.portlet.courses.mvc.IViewSelector;
 import org.jasig.portlet.courses.service.IURLService;
+import org.jasig.portlet.utils.mvc.IViewSelector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -66,7 +66,7 @@ public class CourseCataloguePortletController {
     
     private IViewSelector viewSelector;
     
-    @Autowired(required = true)
+    @Autowired
     public void setViewSelector(IViewSelector viewSelector) {
         this.viewSelector = viewSelector;
     }

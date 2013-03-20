@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+
+<%--
 
     Licensed to Jasig under one or more contributor license
     agreements. See the NOTICE file distributed with this work
@@ -18,14 +18,18 @@
     specific language governing permissions and limitations
     under the License.
 
--->
+--%>
 
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans" 
-       xsi:schemaLocation="
-           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
-    
-    <bean name="json" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-        <property name="disableCaching" value="true" />
-    </bean>
-</beans>
+<%@ include file="/WEB-INF/jsp/include.jsp"%>
+
+<div>
+	<%-- grades --%>
+	<div id="grades-course-list" data-role="listview" class="course-list">
+		<%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesCourseList.jsp"%>
+	</div>
+
+	<%-- footer --%>
+	<div id="grades-footer">
+		<%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesFooter.jsp"%>
+	</div>
+</div>

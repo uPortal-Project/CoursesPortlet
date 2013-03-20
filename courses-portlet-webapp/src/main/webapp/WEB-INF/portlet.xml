@@ -64,6 +64,22 @@
         </portlet-preferences>
 
     </portlet>
+
+    <portlet>
+        <portlet-name>finalGrades</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>/WEB-INF/context/portlet/finalGrades.xml</value>
+        </init-param>
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        <portlet-info>
+            <title>Final Grades</title>
+        </portlet-info>
+    </portlet>
     
     <portlet>
         <portlet-name>course-catalog</portlet-name>

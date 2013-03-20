@@ -119,7 +119,7 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
             // if this term already exists in the summary, merge 
             // information from this DAO into the existing entry
             final Term originalTerm = original.getTerm(t.getCode());
-            if (original.getTerm(t.getCode()) != null) {
+            if (originalTerm != null) {
                 //TODO nothing to merge as of yet
             }
             
