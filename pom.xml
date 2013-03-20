@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>org.jasig.parent</groupId>
-        <artifactId>jasig-parent</artifactId>
-        <version>34</version>
+        <groupId>edu.wisc.doit.code</groupId>
+        <artifactId>shared-tools-uw-parent</artifactId>
+        <version>4</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -15,12 +15,20 @@
     
     <prerequisites>
         <maven>3.0.0</maven>
-     </prerequisites>
+    </prerequisites>
+     
+
+    <repositories>
+        <repository>
+            <id>code.doit-uw-releases</id>
+            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-releases/</url>
+        </repository>
+    </repositories>
 
     <scm>
-        <connection>scm:git:git://github.com/Jasig/CoursesPortlet.git</connection>
+        <connection>scm:git:git@github.com:UW-Madison-DoIT/CoursesPortlet.git</connection>
         <developerConnection>scm:git:git@github.com:Jasig/CoursesPortlet.git</developerConnection>
-        <url>https://github.com/Jasig/CoursesPortlet</url>
+        <url>https://github.com/UW-Madison-DoIT/CoursesPortlet</url>
     </scm>
 
     <properties>
@@ -245,9 +253,39 @@
     <build>
         <pluginManagement>
             <plugins>
+              <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                  <source>${project.build.sourceVersion}</source>
+                  <target>${project.build.targetVersion}</target>
+                </configuration>
+              </plugin>
                 <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.2</version>
+                  <artifactId>maven-jar-plugin</artifactId>
+                  <version>2.3.2</version>
+                  <configuration>
+                    <archive>
+                      <manifest>
+                        <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      </manifest>
+                    </archive>
+                  </configuration>
+                </plugin>
+                <plugin>
+                  <artifactId>maven-war-plugin</artifactId>
+                  <version>2.1.1</version>
+                  <configuration>
+                    <attachClasses>true</attachClasses>
+                    <archive>
+                      <index>true</index>
+                      <manifest>
+                        <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      </manifest>
+                    </archive>
+                  </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.jvnet.jaxb2.maven2</groupId>
@@ -297,6 +335,7 @@
             <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
+                <version>1.9.0</version>
                 <configuration>
                     <aggregate>true</aggregate>
                     <excludes>
