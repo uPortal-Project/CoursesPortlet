@@ -22,7 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.ehcache.Cache;
+import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
 
 import org.jasig.portlet.courses.dao.ICourseOfferingDao;
@@ -48,10 +48,10 @@ public class HttpClientCourseOfferingDaoImpl implements ICourseOfferingDao {
         this.restTemplate = restTemplate;
     }
 
-    private Cache cache;
+    private Ehcache cache;
     
     @Autowired(required = true)
-    public void setCache(Cache cache) {
+    public void setCache(Ehcache cache) {
         this.cache = cache;
     }
 
@@ -100,7 +100,7 @@ public class HttpClientCourseOfferingDaoImpl implements ICourseOfferingDao {
         final String cacheKey = TERM_LIST_KEY.concat(schoolCode);
         final Element element = cache.get(cacheKey);
         if (element != null) {
-            return (TermList) element.getValue();
+            return (TermList) element.getObjectValue();
         }
         
         else {
@@ -132,7 +132,7 @@ public class HttpClientCourseOfferingDaoImpl implements ICourseOfferingDao {
     public SchoolList getSchools() {
         final Element element = cache.get(SCHOOL_LIST_KEY);
         if (element != null) {
-            return (SchoolList) element.getValue();
+            return (SchoolList) element.getObjectValue();
         }
         
         else {
@@ -159,7 +159,7 @@ public class HttpClientCourseOfferingDaoImpl implements ICourseOfferingDao {
         final String cacheKey = DEPARTMENT_LIST_KEY.concat(schoolCode).concat(termCode);
         final Element element = cache.get(cacheKey);
         if (element != null) {
-            return (DepartmentList) element.getValue();
+            return (DepartmentList) element.getObjectValue();
         }
         
         else {
@@ -190,7 +190,7 @@ public class HttpClientCourseOfferingDaoImpl implements ICourseOfferingDao {
         final String cacheKey = COURSE_LIST_KEY.concat(schoolCode).concat(departmentCode).concat(termCode);
         final Element element = cache.get(cacheKey);
         if (element != null) {
-            return (CourseList) element.getValue();
+            return (CourseList) element.getObjectValue();
         }
         
         else {

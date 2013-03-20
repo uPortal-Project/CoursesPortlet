@@ -19,9 +19,9 @@
 package org.jasig.portlet.courses.model.xml;
 
 import java.math.BigInteger;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
+
+import org.joda.time.DateTime;
 
 
 /**
@@ -45,7 +45,8 @@ public abstract class TermListWrapper {
     public Term getCurrentTerm() {
         Term bestDateMatch = null;
         int bestDist = Integer.MAX_VALUE;
-        final int currentYear = new GregorianCalendar().get(Calendar.YEAR);
+        final int currentYear = DateTime.now().year().get();
+        
         
         for (Term term : getTerms()) {
             if (term.isCurrent()) {

@@ -41,7 +41,9 @@
         
     <util:list id="courseDaos">
         <!--bean class="org.jasig.portlet.courses.dao.sakai.SakaiCoursesDaoImpl"/-->
-        <ref bean="mockDao"/>
+        <bean class="org.jasig.portlet.courses.dao.CoursesDaoCacheableAdapter">
+            <constructor-arg ref="mockDao"/>
+        </bean>
     </util:list>
 
     <bean id="mockDao" class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl"

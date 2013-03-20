@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+
+<%--
 
     Licensed to Jasig under one or more contributor license
     agreements. See the NOTICE file distributed with this work
@@ -18,14 +18,24 @@
     specific language governing permissions and limitations
     under the License.
 
--->
+--%>
 
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans" 
-       xsi:schemaLocation="
-           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
-    
-    <bean name="json" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-        <property name="disableCaching" value="true" />
-    </bean>
-</beans>
+<%@ include file="/WEB-INF/jsp/include.jsp"%>
+<div class="box_credits_gpa">
+	<div class="left box_credits">
+		<div class="left box_credits_text">Term Credits</div>
+		<div class="left box_credits_numbers">${ courseSummary.credits }</div>
+
+		<div class="clear_left left box_credits_text font_weight_bold">Cum. Credits</div>
+		<div class="left box_credits_numbers font_weight_bold">${
+			courseSummary.overallCredits }</div>
+	</div>
+
+	<div class="left box_gpa">
+		<div class="left box_gpa_text ">Term GPA</div>
+		<div class="left box_gpa_numbers">${ courseSummary.gpa }</div>
+
+		<div class="clear_left left box_gpa_text font_weight_bold">Cum. GPA</div>
+		<div class="left box_gpa_numbers font_weight_bold">${ courseSummary.overallGpa }</div>
+	</div>
+</div>

@@ -22,10 +22,6 @@
             <artifactId>commons-collections</artifactId>
         </dependency>
         <dependency>
-          <groupId>commons-httpclient</groupId>
-          <artifactId>commons-httpclient</artifactId>
-        </dependency>
-        <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
         </dependency>
@@ -38,12 +34,24 @@
             <artifactId>joda-time-jsptags</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.portlet.utils</groupId>
+            <artifactId>portlet-mvc-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.portlet.utils</groupId>
+            <artifactId>portlet-ws-util</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -90,6 +98,10 @@
             <groupId>org.jasig.resourceserver</groupId>
             <artifactId>resource-server-content</artifactId>
             <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.springframework</groupId>
+            <artifactId>spring-webmvc-portlet-contrib</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
