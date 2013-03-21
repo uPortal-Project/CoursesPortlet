@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jasig.portlet.degreeprogress.model.StudentCourseRegistration;
 
-abstract public class CourseRequirementWrapper {
+public abstract class CourseRequirementWrapper {
     protected List<StudentCourseRegistration> registrations = new ArrayList<StudentCourseRegistration>();
 
     public List<StudentCourseRegistration> getRegistrations() {
@@ -31,5 +31,16 @@ abstract public class CourseRequirementWrapper {
 
     public void setRegistrations(List<StudentCourseRegistration> registrations) {
         this.registrations = registrations;
+    }
+    
+    public abstract Boolean isCompleted();
+    
+    /**
+     * Needed due to a well-known JAXB blunder:
+     * 
+     *  - http://stackoverflow.com/questions/4586927/using-xjcs-enableintrospection-with-jaxws-maven-plugin
+     */
+    public final boolean getCompleted() {
+        return isCompleted();
     }
 }

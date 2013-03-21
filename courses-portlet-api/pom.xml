@@ -47,6 +47,7 @@
                     <schemaIncludes>
                         <include>**/*.xsd</include>
                     </schemaIncludes>
+                    <!-- TODO:  Figure out how to send '-enableIntrospection' -->
                 </configuration>
             </plugin>
         </plugins>

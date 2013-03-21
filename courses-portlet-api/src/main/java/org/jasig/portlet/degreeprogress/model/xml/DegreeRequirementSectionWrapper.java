@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-abstract public class DegreeRequirementSectionWrapper {
+public abstract class DegreeRequirementSectionWrapper {
     protected Double requiredCredits;
     protected Double requiredGpa;
     protected Map<String, CourseRequirement> courseRequirements = new LinkedHashMap<String, CourseRequirement>();

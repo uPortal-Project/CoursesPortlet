@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-abstract public class DegreeProgressReportWrapper {
+public abstract class DegreeProgressReportWrapper {
     protected String program;
     protected String programText;
     private String catalogTerm;
