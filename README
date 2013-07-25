@@ -1,3 +1,3 @@
-CalendarPortlet is a JSR-286 portlet capable of aggregating calendar data from multiple sources.
+CoursesPortlet is a JSR-286 portlet that displays individual content from an SIS and/or LMS.
 
-For more information, please visit [the Calendar Portlet home page](https://wiki.jasig.org/display/PLT/Calendar+Portlet).
+For more information, please visit [the CoursesPortlet wiki home](https://wiki.jasig.org/display/PLT/Courses+Portlet).
