@@ -18,6 +18,7 @@
     under the License.
 
 --%>
+
 <jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
 
 <portlet:renderURL var="refreshUrl" />

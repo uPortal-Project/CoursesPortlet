@@ -18,6 +18,7 @@
     under the License.
 
 -->
+
 <xs:schema xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
     targetNamespace="https://source.jasig.org/schemas/portlet/courses/course-catalog"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

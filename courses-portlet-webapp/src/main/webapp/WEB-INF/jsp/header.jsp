@@ -19,7 +19,6 @@
 
 --%>
 
-
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
 <rs:aggregatedResources path="/resources.xml"/>

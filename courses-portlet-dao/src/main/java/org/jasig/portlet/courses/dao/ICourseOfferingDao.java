@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 package org.jasig.portlet.courses.dao;
 
 import org.jasig.portlet.courses.model.catalog.xml.CourseList;

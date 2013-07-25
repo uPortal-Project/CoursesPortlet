@@ -294,7 +294,6 @@
                         <exclude>release.properties</exclude>
                         <exclude>LICENSE</exclude>
                         <exclude>NOTICE</exclude>
-                        <exclude>NOTICE.template</exclude>
                         <exclude>**/src/main/webapp/rs/**</exclude>
                         <exclude>bin/**</exclude>
                         <exclude>src/test/resources/sakai-session.json</exclude>
