@@ -1,0 +1,102 @@
+<!--
+
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a
+    copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied. See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+<terms-and-courses
+        xmlns="https://source.jasig.org/schemas/portlet/courses/courses-by-term"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+        xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/courses-by-term ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-summary.xsd">
+
+    <term-list>
+        <courses:term current="true">
+            <courses:displayName>Fall 2013-2014</courses:displayName>
+            <courses:code>1142</courses:code>
+            <courses:start>2013-08-26T00:00:00.000-05:00</courses:start>
+            <courses:end>2013-12-22T00:00:00.000-06:00</courses:end>
+        </courses:term>
+    </term-list>
+    <courses-by-term>
+        <term_code>1142</term_code>
+        <gpa>3.25</gpa>
+        <credits>40</credits>
+
+        <course>
+            <title>Statistical Experimental Design</title>
+            <code>424</code>
+            <school>School of Statistical</school>
+            <id>018463</id>
+            <grade>A</grade>
+            <credits>0.01</credits>
+            <course-department code="612" name="M E" />
+            <course-additional-info key="classNbr" value="34274" />
+        </course>
+
+        <course>
+            <title>Elementary Heat Transfer</title>
+            <code>364</code>
+            <school>School of Heat Transfer</school>
+            <id>011996</id>
+            <grade>AB</grade>
+            <credits>4.01</credits>
+        </course>
+        <course>
+            <title>Design of Machine Elements</title>
+            <code>342</code>
+            <school>School of Machine Elementsr</school>
+            <id>011996</id>
+            <grade>AB</grade>
+            <credits>4.01</credits>
+            <course-department code="612" name="M E" />
+            <course-additional-info key="classNbr" value="36030" />
+        </course>
+        <course>
+            <title>Manufacturing Fundamentals</title>
+            <code>314</code>
+            <school></school>
+            <id>011996</id>
+            <grade>A</grade>
+            <credits>3.01</credits>
+            <grade>A</grade>
+            <course-department code="612" name="M E" />
+            <course-additional-info key="classNbr" value="34259" />
+        </course>
+        <course>
+            <title>Technical Communication</title>
+            <code>397</code>
+            <school></school>
+            <id>006701</id>
+            <grade>A</grade>
+            <credits>4.05</credits>
+            <course-department code="348" name="E P D" />
+            <course-additional-info key="classNbr" value="35059" />
+        </course>
+        <course>
+            <title>Intermediate Technical Japanese I</title>
+            <code>374</code>
+            <school></school>
+            <id>006696</id>
+            <grade>C</grade>
+            <credits>2.01</credits>
+            <course-department code="348" name="E P D" />
+            <course-additional-info key="classNbr" value="35364" />
+        </course>
+    </courses-by-term>
+
+</terms-and-courses>

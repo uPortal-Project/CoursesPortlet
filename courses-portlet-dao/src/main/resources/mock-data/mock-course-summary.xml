@@ -18,171 +18,632 @@
     under the License.
 
 -->
-
 <terms-and-courses
-    xmlns="https://source.jasig.org/schemas/portlet/courses/courses-by-term"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
-    xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/courses-by-term ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-summary.xsd">
-    
+        xmlns="https://source.jasig.org/schemas/portlet/courses/courses-by-term"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:courses="https://source.jasig.org/schemas/portlet/courses/common"
+        xsi:schemaLocation="https://source.jasig.org/schemas/portlet/courses/courses-by-term ../../../../../courses-portlet-api/src/main/resources/xsd/generic/course-summary.xsd">
+
     <term-list>
-        <courses:term>
-            <courses:displayName>Winter 2012</courses:displayName>
-            <courses:code>2012w</courses:code>
-        </courses:term>
-    
         <courses:term current="true">
-            <courses:displayName>Spring 2012</courses:displayName>
-            <courses:code>2012s</courses:code>
-        </courses:term>    
+            <courses:displayName>Fall 2013-2014</courses:displayName>
+            <courses:code>1142</courses:code>
+            <courses:start>2013-08-26T00:00:00.000-05:00</courses:start>
+            <courses:end>2013-12-22T00:00:00.000-06:00</courses:end>
+        </courses:term>
     </term-list>
-    
     <courses-by-term>
-        <term_code>2012s</term_code>
+        <term_code>1142</term_code>
         <gpa>3.25</gpa>
         <credits>40</credits>
-    
+
         <course>
-            <title>Design Awareness</title>
-            <code>DSC 101</code>
-            <school>School of Design</school>
-            <course-meeting>
-                <courses:location>
-                    <courses:displayName>SSS 114</courses:displayName>
-                    <courses:identifier>SSS</courses:identifier>
-                </courses:location>
-                <courses:startTime>13:30:00</courses:startTime>
-                <courses:endTime>14:30:00</courses:endTime>
-                <courses:dayId>M</courses:dayId>
-                <courses:dayId>W</courses:dayId>
-                <courses:dayId>F</courses:dayId>
-            </course-meeting>
-            <url>http://courses.university.edu/dsc101/s11</url>
+            <title>Statistical Experimental Design</title>
+            <code>424</code>
+            <school>School of Statistical</school>
+            <id>018463</id>
+            <grade>A</grade>
+            <credits>0.01</credits>
+            <course-department code="612" name="M E" />
+            <course-additional-info key="classNbr" value="34274" />
             <instructor>
                 <courses:abbreviation>Faculty</courses:abbreviation>
-                <courses:fullName>Joe Faculty, Phd</courses:fullName>
+                <courses:fullName>Mock Faculty, Phd</courses:fullName>
                 <courses:identifier>faculty</courses:identifier>
             </instructor>
-            <grade>A</grade>
-            <credits>4</credits>
-            <course-update newUpdate="true" type="announcement">
-                <title>Guest Lecture Thursday</title>
-                <description>
-                Don't miss Thursday's guest lecture by Alan Cooper
-            </description>
-                <url>http://courses.university.edu/dsc101/s11/announcements/1.html</url>
-            </course-update>
-            <course-textbook isbn="978-0-07-751448-8">
-                <author>LOCHBAUM</author>
-                <title>CONNECT GET ACTIVE eBOOK WITH CONNECTPLUS FIT ACCESS CARD</title>
-                <url>http://textbooks.university.edu/isbn/978-0-07-751448-8</url>
-                <comments>REQUIRED</comments>
-            </course-textbook>
+            <course-resource>
+                <courses:title>Course Resource</courses:title>
+                <courses:description>Dummy Descr</courses:description>
+                <courses:url>https://www.google.com/search?q=course</courses:url>
+                <courses:type>Web</courses:type>
+            </course-resource>
+            <course-section code="001" id="34273">
+                <courses:type>LEC</courses:type>
+                <courses:section-additional-info key="sessionCode" value="AAA" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:resource>
+                    <courses:title>Learn@UW</courses:title>
+                    <courses:description>Learn@UW</courses:description>
+                    <courses:url>https://www.google.com/search?q=desire2learn</courses:url>
+                    <courses:type>D2L</courses:type>
+                </courses:resource>
+                <courses:resource>
+                    <courses:title>TextBooks</courses:title>
+                    <courses:description>TextBooks</courses:description>
+                    <courses:url>https://www.google.com/search?q=textbook</courses:url>
+                    <courses:type>TextBook</courses:type>
+                </courses:resource>
+                <courses:resource>
+                    <courses:title>Library/Reserves</courses:title>
+                    <courses:description>Library/Reserves</courses:description>
+                    <courses:url>https://www.google.com/search?q=library</courses:url>
+                    <courses:type>eReserve</courses:type>
+                </courses:resource>
+                <courses:instructor>
+                    <courses:abbreviation>Lecturer/Faculty Associate</courses:abbreviation>
+                    <courses:fullName>PETER PROFESSOR</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                </courses:instructor>
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Ingraham Hall</courses:displayName>
+                        <courses:identifier>0056</courses:identifier>
+                        <courses:room>114</courses:room>
+                        <courses:streetAddress>1155 Observatory Dr.</courses:streetAddress>
+                        <courses:latitude>43.0755198250606</courses:latitude>
+                        <courses:longitude>-89.4053741695341</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>11:00:00.000Z</courses:startTime>
+                    <courses:endTime>12:15:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>T</courses:dayId>
+                    <courses:dayId>Th</courses:dayId>
+                </courses:course-meeting>
+                <courses:course-meeting>
+                    <courses:type>EXAM</courses:type>
+                    <courses:location>
+                        <courses:displayName>TBD</courses:displayName>
+                        <courses:identifier></courses:identifier>
+                        <courses:room></courses:room>
+                        <courses:streetAddress></courses:streetAddress>
+                        <courses:latitude>0</courses:latitude>
+                        <courses:longitude>0</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>14:45:00.000Z</courses:startTime>
+                    <courses:endTime>16:45:00.000Z</courses:endTime>
+                    <courses:startDate>2013-12-17T00:00:00.000-06:00</courses:startDate>
+                    <courses:endDate>2013-12-17T00:00:00.000-06:00</courses:endDate>
+                </courses:course-meeting>
+            </course-section>
+            <course-section id="34274" code="311">
+                <courses:type>DIS</courses:type>
+                <courses:section-additional-info key="sessionCode" value="BBB" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:resource>
+                    <courses:title>Learn@UW</courses:title>
+                    <courses:description>Learn@UW</courses:description>
+                    <courses:url>https://www.google.com/search?q=desire2learn</courses:url>
+                    <courses:type>D2L</courses:type>
+                </courses:resource>
+                <courses:instructor>
+                    <courses:abbreviation>Graduate Assistant</courses:abbreviation>
+                    <courses:fullName>GARY GRADUATE</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                </courses:instructor>
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Chemistry Building</courses:displayName>
+                        <courses:identifier>0047</courses:identifier>
+                        <courses:room>2307</courses:room>
+                        <courses:streetAddress>1101 University Ave.</courses:streetAddress>
+                        <courses:latitude>43.0726432077511</courses:latitude>
+                        <courses:longitude>-89.4048194094712</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>12:05:00.000Z</courses:startTime>
+                    <courses:endTime>12:55:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>M</courses:dayId>
+                </courses:course-meeting>
+            </course-section>
+
         </course>
 
         <course>
-            <title>Drawing for Industry</title>
-            <code>IND 120</code>
-            <school>School of Design</school>
-            <course-meeting>
-                <courses:location>
-                    <courses:displayName>LC 101</courses:displayName>
-                    <courses:identifier>LC</courses:identifier>
-                </courses:location>
-                <courses:startTime>09:30:00</courses:startTime>
-                <courses:endTime>10:30:00</courses:endTime>
-                <courses:dayId>M</courses:dayId>
-                <courses:dayId>W</courses:dayId>
-                <courses:dayId>F</courses:dayId>
-            </course-meeting>
-            <url>http://courses.university.edu/dsc101/s11</url>
-            <instructor>
-                <courses:abbreviation>Staff</courses:abbreviation>
-                <courses:fullName>Sam Staff</courses:fullName>
-                <courses:identifier>staff</courses:identifier>
-            </instructor>
-            <grade>A</grade>
-            <credits>4</credits>
-            <course-update newUpdate="false" type="announcement">
-                <title>Guest Lecture Thursday</title>
-                <description>
-                Don't miss Thursday's guest lecture by Alan Cooper
-            </description>
-                <url>http://courses.university.edu/dsc101/s11/announcements/1.html</url>
-            </course-update>
-        </course>
+            <title>Elementary Heat Transfer</title>
+            <code>364</code>
+            <school>School of Heat Transfer</school>
+            <id>011996</id>
+            <grade>AB</grade>
+            <credits>0.01</credits>
+            <course-resource>
+                <courses:title>Course Resource</courses:title>
+                <courses:description>Dummy Descr</courses:description>
+                <courses:url>https://www.google.com/search?q=course</courses:url>
+                <courses:type>Web</courses:type>
+            </course-resource>
 
-        <course>
-            <title>First-Year Composition</title>
-            <code>ENG 101</code>
-            <school>School of Design</school>
-            <course-meeting>
-                <courses:location>
-                    <courses:displayName>SCL 115</courses:displayName>
-                    <courses:identifier>SCL</courses:identifier>
-                </courses:location>
-                <courses:startTime>16:00:00</courses:startTime>
-                <courses:endTime>18:30:00</courses:endTime>
-                <courses:dayId>Th</courses:dayId>
-                <courses:startDate>2012-04-01</courses:startDate>
-                <courses:endDate>2012-04-30</courses:endDate>
-            </course-meeting>
-            <url>http://courses.university.edu/dsc101/s11</url>
+            <course-department code="612" name="M E" />
+            <course-additional-info key="classNbr" value="34262" />
             <instructor>
                 <courses:abbreviation>Faculty</courses:abbreviation>
-                <courses:fullName>Joe Faculty, Phd</courses:fullName>
+                <courses:fullName>Mock Faculty, Phd</courses:fullName>
                 <courses:identifier>faculty</courses:identifier>
             </instructor>
-            <grade>A</grade>
-            <credits>4</credits>
-        </course>
+            <course-resource>
+                <courses:title>Dummy</courses:title>
+                <courses:description>Dummy Descr</courses:description>
+                <courses:url>https://www.google.com/search?q=course</courses:url>
+                <courses:type>Web</courses:type>
+            </course-resource>
+            <course-section code="001" id="34262">
+                <courses:type>LEC</courses:type>
+                <courses:section-additional-info key="sessionCode" value="DDD" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:resource>
+                    <courses:title>TextBook</courses:title>
+                    <courses:description>TextBook</courses:description>
+                    <courses:url>https://www.google.com/search?q=textbook</courses:url>
+                    <courses:type>TextBook</courses:type>
+                </courses:resource>
+                <courses:resource>
+                    <courses:title>UW-Moodle</courses:title>
+                    <courses:description>UW-Moodle</courses:description>
+                    <courses:url>https://www.google.com/search?q=moodle</courses:url>
+                    <courses:type>UW-Moodle</courses:type>
+                </courses:resource>
+                <courses:instructor>
+                    <courses:abbreviation>Faculty</courses:abbreviation>
+                    <courses:fullName>PETER PROFESSOR</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                    <courses:instructor-additional-info key="Web Page"  value="https://www.google.com/?q=faculty" />
+                    <courses:instructor-additional-info key="Office Hours"  value="Tuesdays 2pm - 5pm" />
+                </courses:instructor>
+                <courses:instructor>
+                    <courses:abbreviation>Not Selected</courses:abbreviation>
+                    <courses:fullName>SANDY STUDENT</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                </courses:instructor>
 
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Engineering Hall</courses:displayName>
+                        <courses:identifier>0408</courses:identifier>
+                        <courses:room>3345</courses:room>
+                        <courses:streetAddress>1415 Engineering Dr.</courses:streetAddress>
+                        <courses:latitude>43.0717943018554</courses:latitude>
+                        <courses:longitude>-89.410376056561</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>11:00:00.000Z</courses:startTime>
+                    <courses:endTime>11:50:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>M</courses:dayId>
+                    <courses:dayId>W</courses:dayId>
+                    <courses:dayId>F</courses:dayId>
+                </courses:course-meeting>
+                <courses:course-meeting>
+                    <courses:type>EXAM</courses:type>
+                    <courses:location>
+                        <courses:displayName>TBD</courses:displayName>
+                        <courses:identifier></courses:identifier>
+                        <courses:room></courses:room>
+                        <courses:streetAddress></courses:streetAddress>
+                        <courses:latitude>0</courses:latitude>
+                        <courses:longitude>0</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>14:45:00.000Z</courses:startTime>
+                    <courses:endTime>16:45:00.000Z</courses:endTime>
+                    <courses:startDate>2013-12-20T00:00:00.000-06:00</courses:startDate>
+                    <courses:endDate>2013-12-20T00:00:00.000-06:00</courses:endDate>
+                </courses:course-meeting>
+            </course-section>
+        </course>
         <course>
-            <title>Precalculus</title>
-            <code>MAT 170</code>
-            <school>School of Design</school>
-            <course-meeting>
-                <courses:location>
-                    <courses:displayName>Becton 101</courses:displayName>
-                    <courses:identifier>BCT</courses:identifier>
-                </courses:location>
-                <courses:startTime>11:00:00</courses:startTime>
-                <courses:endTime>12:00:00</courses:endTime>
-                <courses:dayId>T</courses:dayId>
-                <courses:dayId>Th</courses:dayId>
-            </course-meeting>
-            <url>http://courses.university.edu/dsc101/s11</url>
+            <title>Design of Machine Elements</title>
+            <code>342</code>
+            <school>School of Machine Elementsr</school>
+            <id>011979</id>
+            <course-resource>
+                <courses:title>Course Resource</courses:title>
+                <courses:description>Dummy Descr</courses:description>
+                <courses:url>https://www.google.com/search?q=course</courses:url>
+                <courses:type>Web</courses:type>
+            </course-resource>
+            <course-department code="612" name="M E" />
+            <course-additional-info key="classNbr" value="36030" />
             <instructor>
                 <courses:abbreviation>Faculty</courses:abbreviation>
-                <courses:fullName>Joe Faculty, Phd</courses:fullName>
+                <courses:fullName>Mock Faculty, Phd</courses:fullName>
                 <courses:identifier>faculty</courses:identifier>
             </instructor>
-            <grade>C</grade>
-            <credits>4</credits>
-        </course>
+            <course-resource>
+                <courses:title>Dummy</courses:title>
+                <courses:description>Dummy Descr</courses:description>
+                <courses:url>https://www.google.com/search?q=course</courses:url>
+                <courses:type>Web</courses:type>
+            </course-resource>
+            <course-section id="35913" code="001">
+                <courses:type>LEC</courses:type>
+                <courses:section-additional-info key="sessionCode" value="DDD" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:resource>
+                    <courses:title>Learn@UW</courses:title>
+                    <courses:description>Learn@UW</courses:description>
+                    <courses:url>https://www.google.com/search?q=desire2learn</courses:url>
+                    <courses:type>D2L</courses:type>
+                </courses:resource>
+                <courses:resource>
+                    <courses:title>TextBook</courses:title>
+                    <courses:description>TextBooks</courses:description>
+                    <courses:url>https://www.google.com/search?q=textbook</courses:url>
+                    <courses:type>TextBook</courses:type>
+                </courses:resource>
+                <courses:instructor>
+                    <courses:abbreviation>Not Selected</courses:abbreviation>
+                    <courses:fullName>SANDY STUDENT</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                </courses:instructor>
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Engineering Hall</courses:displayName>
+                        <courses:identifier>0408</courses:identifier>
+                        <courses:room>1227</courses:room>
+                        <courses:streetAddress>1415 Engineering Dr.</courses:streetAddress>
+                        <courses:latitude>43.0717943018554</courses:latitude>
+                        <courses:longitude>-89.410376056561</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>09:55:00.000Z</courses:startTime>
+                    <courses:endTime>10:45:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>M</courses:dayId>
+                    <courses:dayId>W</courses:dayId>
+                </courses:course-meeting>
+                <courses:course-meeting>
+                    <courses:type>EXAM</courses:type>
+                    <courses:location>
+                        <courses:displayName>TBD</courses:displayName>
+                        <courses:identifier></courses:identifier>
+                        <courses:identifier></courses:identifier>
+                        <courses:room></courses:room>
+                        <courses:streetAddress></courses:streetAddress>
+                        <courses:latitude>0</courses:latitude>
+                        <courses:longitude>0</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>12:25:00.000Z</courses:startTime>
+                    <courses:endTime>14:25:00.000Z</courses:endTime>
+                    <courses:startDate>2013-12-19T00:00:00.000-06:00</courses:startDate>
+                    <courses:endDate>2013-12-19T00:00:00.000-06:00</courses:endDate>
 
+                </courses:course-meeting>
+            </course-section>
+            <course-section code="301" id="36030">
+                <courses:type>DIS</courses:type>
+                <courses:section-additional-info key="sessionCode" value="BBB" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:resource>
+                    <courses:title>Learn@UW</courses:title>
+                    <courses:description>Learn@UW</courses:description>
+                    <courses:url>https://www.google.com/search?q=desire2learn</courses:url>
+                    <courses:type>D2L</courses:type>
+                </courses:resource>
+                <courses:resource>
+                    <courses:title>TextBook</courses:title>
+                    <courses:description>TextBooks</courses:description>
+                    <courses:url>https://www.google.com/search?q=textbook</courses:url>
+                    <courses:type>TextBook</courses:type>
+                </courses:resource>
+                <courses:instructor>
+                    <courses:abbreviation>Not Selected</courses:abbreviation>
+                    <courses:fullName>SANDY STUDENT</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                </courses:instructor>
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Mechanical Engineering Building</courses:displayName>
+                        <courses:identifier>0407</courses:identifier>
+                        <courses:room>1156</courses:room>
+                        <courses:streetAddress>1513 University Ave.</courses:streetAddress>
+                        <courses:latitude>43.0717943018554</courses:latitude>
+                        <courses:longitude>-89.410376056561</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>09:55:00.000Z</courses:startTime>
+                    <courses:endTime>10:45:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>T</courses:dayId>
+                    <courses:dayId>Th</courses:dayId>
+                </courses:course-meeting>
+            </course-section>
+        </course>
         <course>
-            <title>Graphic Design History</title>
-            <code>GRA 111</code>
-            <school>School of Design</school>
-            <course-meeting>
-                <courses:location>
-                    <courses:displayName>WLH 205</courses:displayName>
-                    <courses:identifier>WLH</courses:identifier>
-                </courses:location>
-                <courses:startTime>14:00:00</courses:startTime>
-                <courses:endTime>15:30:00</courses:endTime>
-                <courses:dayId>T</courses:dayId>
-                <courses:dayId>Th</courses:dayId>
-            </course-meeting>
-            <url>http://courses.university.edu/dsc101/s11</url>
-            <instructor>
-                <courses:abbreviation>Faculty</courses:abbreviation>
-                <courses:fullName>Joe Faculty, Phd</courses:fullName>
-                <courses:identifier>faculty</courses:identifier>
-            </instructor>
+            <title>Manufacturing Fundamentals</title>
+            <code>314</code>
+            <school></school>
+            <id>011966</id>
             <grade>A</grade>
-            <credits>4</credits>
+            <course-resource>
+                <courses:title>Course Resource</courses:title>
+                <courses:description>Dummy Descr</courses:description>
+                <courses:url>www.google.com</courses:url>
+                <courses:type>Web</courses:type>
+            </course-resource>
+            <course-department code="612" name="M E" />
+            <course-additional-info key="classNbr" value="34259" />
+            <course-section id="34257" code="001">
+                <courses:section-additional-info key="sessionCode" value="BBB" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:type>LEC</courses:type>
+                <courses:resource>
+                    <courses:title>UW-Moodle</courses:title>
+                    <courses:description>UW-Moodle</courses:description>
+                    <courses:url>https://www.google.com/search?q=moodle</courses:url>
+                    <courses:type>UW-Moodle</courses:type>
+                </courses:resource>
+                <courses:resource>
+                    <courses:title>Library/Reserves</courses:title>
+                    <courses:description>Library/Reserves</courses:description>
+                    <courses:url>https://www.google.com/search?q=library</courses:url>
+                    <courses:type>eReserve</courses:type>
+                </courses:resource>
+                <courses:instructor>
+                    <courses:abbreviation>Not Selected</courses:abbreviation>
+                    <courses:fullName>SANDY STUDENT</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                    <courses:instructor-additional-info key="Web Page"  value="https://www.google.com/?q=faculty" />
+                    <courses:instructor-additional-info key="Office Hours"  value="MW 1:00 - 3:30 pm" />
+                </courses:instructor>
+                <courses:instructor>
+                    <courses:abbreviation>Not Selected</courses:abbreviation>
+                    <courses:fullName>GARY GRADUATE</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                    <courses:instructor-additional-info key="Web Page"  value="https://www.google.com/?q=graduate" />
+                    <courses:instructor-additional-info key="Office Hours"  value="Friday 2pm-3pm" />
+                </courses:instructor>
+
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Mechanical Engineering Building</courses:displayName>
+                        <courses:identifier>0407</courses:identifier>
+                        <courses:room>1163</courses:room>
+                        <courses:streetAddress>1513 University Ave.</courses:streetAddress>
+                        <courses:latitude>43.072806449936</courses:latitude>
+                        <courses:longitude>-89.4124754102609</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>08:50:00.000Z</courses:startTime>
+                    <courses:endTime>09:40:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>M</courses:dayId>
+                    <courses:dayId>W</courses:dayId>
+                </courses:course-meeting>
+                <courses:course-meeting>
+                    <courses:type>EXAM</courses:type>
+                    <courses:location>
+                        <courses:displayName>TBD</courses:displayName>
+                        <courses:identifier></courses:identifier>
+                        <courses:identifier></courses:identifier>
+                        <courses:room></courses:room>
+                        <courses:streetAddress></courses:streetAddress>
+                        <courses:latitude>0</courses:latitude>
+                        <courses:longitude>0</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>10:05:00.000Z</courses:startTime>
+                    <courses:endTime>12:05:00.000Z</courses:endTime>
+                    <courses:startDate>2013-12-18T00:00:00.000-06:00</courses:startDate>
+                    <courses:endDate>2013-12-18T00:00:00.000-06:00</courses:endDate>
+                </courses:course-meeting>
+            </course-section>
+            <course-section code="304" id="34259">
+                <courses:type>LAB</courses:type>
+                <courses:section-additional-info key="sessionCode" value="AAA" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:instructor>
+                    <courses:abbreviation>Not Selected</courses:abbreviation>
+                    <courses:fullName>PETER PROFESSOR</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                    <courses:instructor-additional-info key="Web Page"  value="https://www.google.com/?q=professor" />
+                    <courses:instructor-additional-info key="Office Hours"  value="MW 1:00 - 3:30 pm" />
+                </courses:instructor>
+                <courses:instructor>
+                    <courses:abbreviation>Not Selected</courses:abbreviation>
+                    <courses:fullName>SANDY STUDENT</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                    <courses:instructor-additional-info key="Web Page"  value="https://www.google.com/?q=student" />
+                    <courses:instructor-additional-info key="Office Hours"  value="Friday 2pm-3pm" />
+                </courses:instructor>
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Mechanical Engineering Building</courses:displayName>
+                        <courses:identifier>0407</courses:identifier>
+                        <courses:room>2145</courses:room>
+                        <courses:streetAddress>1513 University Ave.</courses:streetAddress>
+                        <courses:latitude>43.072806449936</courses:latitude>
+                        <courses:longitude>-89.4124754102609</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>18:00:00.000Z</courses:startTime>
+                    <courses:endTime>21:00:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>T</courses:dayId>
+                    <courses:dayId>Th</courses:dayId>
+                </courses:course-meeting>
+            </course-section>
+        </course>
+        <course>
+            <title>Technical Communication</title>
+            <code>397</code>
+            <school></school>
+            <id>006701</id>
+            <grade>AA</grade>
+            <course-resource>
+                <courses:title>Course Resource</courses:title>
+                <courses:description>Dummy Descr</courses:description>
+                <courses:url>https://www.google.com/search?q=course</courses:url>
+                <courses:type>Web</courses:type>
+            </course-resource>
+
+            <course-department code="348" name="E P D" />
+            <course-additional-info key="classNbr" value="35059" />
+            <course-section id="35059" code="009">
+                <courses:type>LEC</courses:type>
+                <courses:section-additional-info key="sessionCode" value="DDD" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:resource>
+                    <courses:title>Learn@UW</courses:title>
+                    <courses:description>Learn@UW</courses:description>
+                    <courses:url>https://www.google.com/search?q=library</courses:url>
+                    <courses:type>D2L</courses:type>
+                </courses:resource>
+                <courses:resource>
+                    <courses:title>UW-Moodle</courses:title>
+                    <courses:description>UW-Moodle</courses:description>
+                    <courses:url>https://www.google.com/search?q=moodle</courses:url>
+                    <courses:type>UW-Moodle</courses:type>
+                </courses:resource>
+                <courses:resource>
+                    <courses:title>Library/Reserves</courses:title>
+                    <courses:description>Library/Reserves</courses:description>
+                    <courses:url>https://www.google.com/search?q=library</courses:url>
+                    <courses:type>eReserve</courses:type>
+                </courses:resource>
+                <courses:instructor>
+                    <courses:abbreviation>Faculty</courses:abbreviation>
+                    <courses:fullName>PETER PROFESSOR</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                    <courses:instructor-additional-info key="Web Page"  value="https://www.google.com/?q=professor" />
+                    <courses:instructor-additional-info key="Office Hours"  value="Tu/Th 10-11:45" />
+                </courses:instructor>
+                <courses:instructor>
+                    <courses:abbreviation>Not Selected</courses:abbreviation>
+                    <courses:fullName>SANDY STUDENT</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                    <courses:instructor-additional-info key="Office Hours"  value="Friday 2pm-3pm" />
+                </courses:instructor>
+
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Engineering Hall</courses:displayName>
+                        <courses:identifier>0408</courses:identifier>
+                        <courses:room>2309</courses:room>
+                        <courses:streetAddress>1415 Engineering Dr..</courses:streetAddress>
+                        <courses:latitude>43.0717943018554</courses:latitude>
+                        <courses:longitude>-89.410376056561</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>16:00:00.000Z</courses:startTime>
+                    <courses:endTime>17:15:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>M</courses:dayId>
+                    <courses:dayId>W</courses:dayId>
+                </courses:course-meeting>
+                <courses:course-meeting>
+                    <courses:type>EXAM</courses:type>
+                    <courses:location>
+                        <courses:displayName>TBD</courses:displayName>
+                        <courses:identifier></courses:identifier>
+                        <courses:identifier></courses:identifier>
+                        <courses:room></courses:room>
+                        <courses:streetAddress></courses:streetAddress>
+                        <courses:latitude>0</courses:latitude>
+                        <courses:longitude>0</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>17:05:00.000Z</courses:startTime>
+                    <courses:endTime>19:05:00.000Z</courses:endTime>
+                    <courses:startDate>2013-12-16T00:00:00.000-06:00</courses:startDate>
+                    <courses:endDate>2013-12-16T00:00:00.000-06:00</courses:endDate>
+                </courses:course-meeting>
+            </course-section>
+        </course>
+        <course>
+            <title>Intermediate Technical Japanese I</title>
+            <code>374</code>
+            <school></school>
+            <id>006696</id>
+            <grade>AB</grade>
+            <course-resource>
+                <courses:title>Course Resource</courses:title>
+                <courses:description>Dummy Descr</courses:description>
+                <courses:url>https://www.google.com/search?q=course</courses:url>
+                <courses:type>Web</courses:type>
+            </course-resource>
+            <course-department code="348" name="E P D" />
+            <course-additional-info key="classNbr" value="35364" />
+            <course-section id="35364" code="001">
+                <courses:section-additional-info key="sessionCode" value="AAA" />
+                <courses:section-additional-info key="sessionStartEndDate" value="Jan 21 - May 09, 2014" />
+                <courses:type>LEC</courses:type>
+                <courses:resource>
+                    <courses:title>TextBook</courses:title>
+                    <courses:description>TextBooks</courses:description>
+                    <courses:url>https://www.google.com/search?q=textbook</courses:url>
+                    <courses:type>TextBook</courses:type>
+                </courses:resource>
+                <courses:instructor>
+                    <courses:abbreviation>Faculty</courses:abbreviation>
+                    <courses:fullName>PETER PROFESSOR</courses:fullName>
+                    <courses:identifier>0123456789</courses:identifier>
+                    <courses:instructor-additional-info key="someOtherId"  value="ABCDEFG" />
+                    <courses:instructor-additional-info key="Office Hours"  value="MF 2:30-3:30 pm" />
+                </courses:instructor>
+
+                <courses:course-meeting>
+                    <courses:type>CLASS</courses:type>
+                    <courses:location>
+                        <courses:displayName>Engineering Hall</courses:displayName>
+                        <courses:identifier>0408</courses:identifier>
+                        <courses:room>1721</courses:room>
+                        <courses:streetAddress>1415 Engineering Dr..</courses:streetAddress>
+                        <courses:latitude>43.0717943018554</courses:latitude>
+                        <courses:longitude>-89.410376056561</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>08:50:00.000Z</courses:startTime>
+                    <courses:endTime>09:40:00.000Z</courses:endTime>
+                    <courses:startDate>2013-09-03T00:00:00.000-05:00</courses:startDate>
+                    <courses:endDate>2013-12-13T00:00:00.000-06:00</courses:endDate>
+                    <courses:dayId>M</courses:dayId>
+                    <courses:dayId>W</courses:dayId>
+                    <courses:dayId>F</courses:dayId>
+                </courses:course-meeting>
+                <courses:course-meeting>
+                    <courses:type>EXAM</courses:type>
+                    <courses:location>
+                        <courses:displayName>TBD</courses:displayName>
+                        <courses:identifier></courses:identifier>
+                        <courses:identifier></courses:identifier>
+                        <courses:room></courses:room>
+                        <courses:streetAddress></courses:streetAddress>
+                        <courses:latitude>0</courses:latitude>
+                        <courses:longitude>0</courses:longitude>
+                    </courses:location>
+                    <courses:startTime>10:05:00.000Z</courses:startTime>
+                    <courses:endTime>12:05:00.000Z</courses:endTime>
+                    <courses:startDate>2013-12-18T00:00:00.000-06:00</courses:startDate>
+                    <courses:endDate>2013-12-18T00:00:00.000-06:00</courses:endDate>
+                </courses:course-meeting>
+            </course-section>
         </course>
 
     </courses-by-term>

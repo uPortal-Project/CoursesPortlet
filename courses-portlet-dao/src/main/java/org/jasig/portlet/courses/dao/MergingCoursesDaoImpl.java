@@ -195,9 +195,6 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
             original.setTitle(additional.getTitle());
         }
         
-        if (additional.getUrl() != null) {
-            original.setUrl(additional.getUrl());
-        }
     }
     
 }

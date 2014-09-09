@@ -17,47 +17,36 @@
  * under the License.
  */
 package org.jasig.portlet.courses.dao;
-
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
 import javax.portlet.PortletRequest;
-
 import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.model.xml.personal.Course;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
-
 /**
- * @author Eric Dalquist
+ * ICoursesDao represents a data access interface for retrieving course and
+ * grade data for a particular user.
+ *
+ * @author Jen Bourey, jennifer.bourey@gmail.com
  * @version $Revision$
- * @param <TLK> Type of cache key for the term list
- * @param <CK> Type of cache key for the courses by term list
  */
-public interface ICacheableCoursesDao<TLK extends Serializable, CK extends Serializable> {
-
-    /**
-     * A cache key for the term list that would be retrieved by this request
-     */
-    public TLK getTermListKey(PortletRequest request);
-
-    /**
-     * A cache key for the courses that would be retrieved by this request
-     */
-    public CK getCoursesByTermKey(PortletRequest request, String termCode, TermList termList);
-
-    
-    
+public interface ICoursesSectionDao {
     /**
      * Get a term list for the current user
+     *
+     * @param request
+     * @return
      */
-    public TermList getTermList(TLK key);
-
+    public TermList getTermList(PortletRequest request);
     /**
      * Get courses for a term for the current user
+     *
+     * @param request
+     * @return
      */
-    public CoursesByTerm getCoursesByTerm(CK key);
-
-
-
+    public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode, TermList termList);
+   public Course  getCoursesBySection(PortletRequest request, String termCode, String catalogNbr, String subjectCode,
+                                                   String courseId,String classNbr, TermList termList);
+    public List<Course>  getFinalExams(PortletRequest request, String termCode, TermList termList);
+    public List<Course>  getClassSchedule(PortletRequest request, String termCode, TermList termList);
 }

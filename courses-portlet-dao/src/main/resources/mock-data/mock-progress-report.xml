@@ -18,7 +18,6 @@
     under the License.
 
 -->
-
 <degreeProgressReport
     xmlns="https://source.jasig.org/schemas/portlet/courseschedule/degree-progress"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

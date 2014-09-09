@@ -83,7 +83,7 @@ public class MergingCoursesDaoImplTest {
         course1.getCourseMeetings().add(meeting1);
         course1.setSchool("school1");
         course1.setTitle("Course 1");
-        course1.setUrl("url1");
+        //course1.setUrl("url1");
 
         course2 = new Course();
         course2.setCode("course2");
@@ -97,7 +97,7 @@ public class MergingCoursesDaoImplTest {
         course2.getCourseMeetings().add(meeting2);
         course2.setSchool("school2");
         course2.setTitle("Course 2");
-        course2.setUrl("url2");
+        //course2.setUrl("url2");
 
         emptyCourse = new Course();
 
@@ -133,7 +133,7 @@ public class MergingCoursesDaoImplTest {
         assertEquals(new LocalTime(15, 00, 00), course.getCourseMeetings().get(1).getEndTime());
         assertEquals("school2", course.getSchool());
         assertEquals("Course 2", course.getTitle());
-        assertEquals("url2", course.getUrl());
+        //assertEquals("url2", course.getUrl());
         
     }
 
@@ -148,7 +148,7 @@ public class MergingCoursesDaoImplTest {
         assertEquals(new LocalTime(15, 00, 00), course.getCourseMeetings().get(0).getEndTime());
         assertEquals("school2", course.getSchool());
         assertEquals("Course 2", course.getTitle());
-        assertEquals("url2", course.getUrl());
+        //assertEquals("url2", course.getUrl());
         
     }
 
@@ -163,7 +163,7 @@ public class MergingCoursesDaoImplTest {
         assertEquals(new LocalTime(10, 30, 00), course.getCourseMeetings().get(0).getEndTime());
         assertEquals("school1", course.getSchool());
         assertEquals("Course 1", course.getTitle());
-        assertEquals("url1", course.getUrl());
+        //assertEquals("url1", course.getUrl());
         
     }
 

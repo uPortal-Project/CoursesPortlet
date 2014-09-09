@@ -16,10 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.jasig.portlet.courses.dao;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.portlet.PortletRequest;
 
@@ -29,6 +30,7 @@ import net.sf.ehcache.constructs.blocking.CacheEntryFactory;
 import net.sf.ehcache.constructs.blocking.SelfPopulatingCache;
 
 import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.personal.Course;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Required;
@@ -118,6 +120,8 @@ public final class CachingCoursesDao implements ICoursesDao, BeanNameAware {
         
         return (CoursesByTerm)element.getObjectValue();
     }
+    
+    
     
     protected CacheKey getScopedKey(Serializable key) {
         if (this.scopeKeysToDao) {
