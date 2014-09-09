@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.jasig.portlet.degreeprogress.model;
 
 import org.apache.commons.lang.builder.ToStringBuilder;

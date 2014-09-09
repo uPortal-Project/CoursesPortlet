@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.jasig.portlet.jaxb.util;
 
 import static org.junit.Assert.assertEquals;

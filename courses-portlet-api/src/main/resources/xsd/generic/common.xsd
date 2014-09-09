@@ -18,7 +18,6 @@
     under the License.
 
 -->
-
 <xs:schema xmlns="https://source.jasig.org/schemas/portlet/courses/common"
     targetNamespace="https://source.jasig.org/schemas/portlet/courses/common"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -63,6 +62,8 @@
             </xs:element>
             <xs:element name="startDate" type="xs:date" minOccurs="0"/>
             <xs:element name="endDate" type="xs:date" minOccurs="0"/>
+            <!-- new for UW-Madison -->
+            <xs:element name="type" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -71,6 +72,7 @@
             <xs:element name="abbreviation" type="xs:string"/>
             <xs:element name="fullName" type="xs:string"/>
             <xs:element name="identifier" type="xs:string"/>
+            <xs:element name="instructor-additional-info" type="additional-info" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -78,7 +80,47 @@
             <xs:sequence>
                 <xs:element name="displayName" type="xs:string"/>
                 <xs:element name="identifier" type="xs:string"/>
+                <xs:element name="streetAddress" type="xs:string"/>
+                <xs:element name="latitude" type="xs:double"/>
+                <xs:element name="longitude" type="xs:double"/>
+                <xs:element name="room" type="xs:string"/>
             </xs:sequence>
+    </xs:complexType>
+
+<!-- new for UW-Madison -->
+    <xs:complexType name="resource">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+            <xs:element name="type" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+<!-- moved for UW-Madison changes -->
+    <xs:element name="department" type="department"/>
+    <xs:complexType name="department">
+        <xs:attribute name="code" type="xs:string" />
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+
+<!-- new for UW-Madison -->
+    <xs:complexType name="additional-info">
+        <xs:attribute name="key" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+    </xs:complexType>
+
+<!-- updated and moved for UW-Madison -->
+    <xs:complexType name="course-section">
+      <xs:sequence>
+        <xs:element name="course-meeting" type="course-meeting" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="instructor" type="instructor" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="resource" type="resource" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="type" type="xs:string" minOccurs="0"/>
+	<xs:element name="section-additional-info" type="additional-info" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+        <xs:attribute name="code" type="xs:string"/>
+	<xs:attribute name="id" type="xs:string"/>
     </xs:complexType>
     
 </xs:schema>

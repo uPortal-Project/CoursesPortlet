@@ -16,14 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.jasig.portlet.degreeprogress.model.xml;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.jasig.portlet.degreeprogress.model.StudentCourseRegistration;
 
-public abstract class CourseRequirementWrapper {
+abstract public class CourseRequirementWrapper {
     protected List<StudentCourseRegistration> registrations = new ArrayList<StudentCourseRegistration>();
 
     public List<StudentCourseRegistration> getRegistrations() {
@@ -32,16 +31,5 @@ public abstract class CourseRequirementWrapper {
 
     public void setRegistrations(List<StudentCourseRegistration> registrations) {
         this.registrations = registrations;
-    }
-    
-    public abstract Boolean isCompleted();
-    
-    /**
-     * Needed due to a well-known JAXB blunder:
-     * 
-     *  - http://stackoverflow.com/questions/4586927/using-xjcs-enableintrospection-with-jaxws-maven-plugin
-     */
-    public final boolean getCompleted() {
-        return isCompleted();
     }
 }

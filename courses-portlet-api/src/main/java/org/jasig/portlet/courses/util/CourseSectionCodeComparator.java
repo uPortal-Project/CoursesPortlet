@@ -16,14 +16,34 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.jasig.portlet.degreeprogress.model;
+package org.jasig.portlet.courses.util;
 
-public interface IDegreeRequirement {
+import java.math.BigInteger;
+import java.util.Comparator;
 
-	public boolean isCompleted();
-	
-	public String getName();
-	
-	public String getDescription();
-	
+import org.jasig.portlet.courses.model.xml.CourseSection;
+import org.joda.time.DateTime;
+
+public class CourseSectionCodeComparator implements Comparator<CourseSection> {
+  public static final CourseSectionCodeComparator INSTANCE = new CourseSectionCodeComparator();
+
+
+  @Override
+  public int compare(CourseSection o1, CourseSection o2) {
+    if (o1 == o2) {
+      return 0;
+    }
+    if (o1 == null) {
+      return -1;
+    }
+    if (o2 == null) {
+      return 1;
+    }
+
+    //Code comparison
+    if(o1.getCode() == o2.getCode()) return 0;
+    if(null == o1.getCode()) return -1;
+    if(null == o2.getCode()) return +1;
+    return o1.getCode().compareTo(o2.getCode());
+  }
 }

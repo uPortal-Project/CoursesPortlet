@@ -55,6 +55,9 @@ public class TermComparator implements Comparator<Term> {
         }
         
         //Fall back on code comparison
+        if(o1.getCode() == o2.getCode()) return 0;
+        if(null == o1.getCode()) return -1;
+        if(null == o2.getCode()) return +1;
         return o1.getCode().compareTo(o2.getCode());
     }
 }

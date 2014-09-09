@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.jasig.portlet.degreeprogress.model.xml;
 
 import java.util.Collection;
@@ -24,7 +23,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class DegreeProgressReportWrapper {
+abstract public class DegreeProgressReportWrapper {
     protected String program;
     protected String programText;
     private String catalogTerm;
