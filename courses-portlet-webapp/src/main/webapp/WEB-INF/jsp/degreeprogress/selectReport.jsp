@@ -18,7 +18,6 @@
     under the License.
 
 --%>
-
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
 <portlet:renderURL var="currentReportUrl">
     <portlet:param name="action" value="showProgress"/>

@@ -25,7 +25,9 @@
         coursesByTerm   - CoursesByTerm
         instructorUrls  - Map<String, String>
         locationUrl     - Location
+        resourceUrls    - Resources
         course          - Course
+
  --%>
 <portlet:renderURL var="courseListUrl">
     <portlet:param name="termCode" value="${coursesByTerm.termCode}"/>
@@ -60,7 +62,7 @@
             </c:forEach></p>
             <p><c:forEach items="${ course.courseMeetings }" var="meeting">
                 <c:if test="${not empty locationUrls[meeting.location.identifier]}"><a data-role="button" class="location" href="${ locationUrls[meeting.location.identifier] }"></c:if>
-                ${ meeting.formattedMeetingTime } ${ meeting.formattedMeetingDays } at ${ meeting.location.displayName } 
+                ${ meeting.formattedMeetingTime } ${ meeting.formattedMeetingDays } at ${ meeting.location.displayName }- ${finalExam.courseMeeting.location.room} 
                 <c:if test="${not empty locationUrls[meeting.location.identifier]}"></a></c:if>
                 <c:if test="${not empty meeting.startDate && not empty meeting.endDate}"><br/><joda:format value="${meeting.startDate}" style="M-"/> - <joda:format value="${meeting.endDate}" style="M-"/></c:if>
             </c:forEach></p>

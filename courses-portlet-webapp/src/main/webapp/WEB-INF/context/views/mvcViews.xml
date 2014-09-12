@@ -21,11 +21,11 @@
 -->
 
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans" 
-       xsi:schemaLocation="
+               xmlns="http://www.springframework.org/schema/beans"
+               xsi:schemaLocation="
            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
-    
-    <bean name="json" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-        <property name="disableCaching" value="true" />
-    </bean>
+
+<bean name="json" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+  <property name="disableCaching" value="true" />
+</bean>
 </beans>

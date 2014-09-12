@@ -20,19 +20,29 @@
 -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:util="http://www.springframework.org/schema/util"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
-
+    <context:property-placeholder order="0" location="classpath:configuration.properties"/>
     <context:annotation-config/>
     
     <bean class="org.jasig.portlet.grades.mvc.FinalGradesPortletController"/>
 
     <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="interceptors"><bean class="org.jasig.web.portlet.handler.MinimizedStateHandlerInterceptor"/></property>
+    </bean>
+    <bean id="defaultPortletExceptionHandlerTemplate" class="org.jasig.portlet.courses.handler.MobileAwareExceptionHandler">
+        <constructor-arg value="${view.prefix}"/>
+        <constructor-arg value="${view.suffix}"/>
+        <constructor-arg value="${view.mobileSuffix}"/>
+        <property name="warnLogCategory" value="org.jasig.portlet.courses.UnhandledException" />
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.security.AccessDeniedException">noEmplId</prop>
+            </props>
+        </property>
+        <property name="defaultErrorView" value="final-grades/gradesUnavailable"/>
     </bean>
 
 </beans>

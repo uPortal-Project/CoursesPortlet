@@ -31,7 +31,7 @@
         
         <c:choose>
             <c:when test="${ fn:length(coursesByTerm.courses) == 0 }">
-                <p><spring:message code="no.courses.message"/></p>
+                <p><spring:message code="no.courses.message"   htmlEscape="false" arguments="${portletSessionScope.helpDeskURL}"/></p>
             </c:when>
             <c:otherwise>
                 <ul data-role="listview" class="course-list">
