@@ -54,7 +54,7 @@ public class FinalGradesPortletController {
 
       final Map<String, Object> model = new HashMap<String, Object>();
         PortletPreferences prefs = request.getPreferences();
-        request.getPortletSession().setAttribute("helpDeskURL",prefs.getValue("helpDeskURL", "https://kb.wisc.edu/helpdesk/page.php?id=24398"));
+        request.getPortletSession().setAttribute("helpDeskURL",prefs.getValue("helpDeskURL", ""));
         final TermList termList = coursesDao.getTermList(request);
         model.put("termList", termList);
         //Determine the current term code and term
