@@ -22,9 +22,11 @@
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
 <portlet:renderURL var="reportUrl"/>
 <c:set var="n"><portlet:namespace/></c:set>
-<script type="text/javascript" src="<rs:resourceURL value="/rs/jquery/1.4.2/jquery-1.4.2.min.js"/>"></script>
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/degree-progress.css"/>"></link>
+<rs:resourceURL var="jQueryPath" value="/rs/jquery/1.9.1/jquery-1.9.1.min.js"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/degree-progress.min.css"/>"></link>
+<script type="text/javascript" src="${jQueryPath}"></script>
+
 <style type="text/css">
 .degree-progress table select { width: 20em; }
 </style>
@@ -177,6 +179,7 @@
 </div>
 
 <script type="text/javascript">
+<rs:compressJs>
 var ${n} = ${n} || {};
 ${n}.jQuery = jQuery.noConflict(true);
 ${n}.jQuery(function(){
@@ -229,4 +232,5 @@ ${n}.jQuery(function(){
     });
 
 });
+</rs:compressJs>
 </script>

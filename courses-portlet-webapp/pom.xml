@@ -193,8 +193,9 @@
                       <groupId>org.jasig.resourceserver</groupId>
                       <artifactId>resource-server-content</artifactId>
                       <includes>
-                          <include>rs/jquery/1.6.1/</include>
-                          <include>rs/jqueryui/1.8.13/</include>
+                          <include>rs/jquery/1.11.0/</include>
+                          <include>rs/jqueryui/1.10.4/</include>
+						  <include>rs/jquery-mobile/1.4.0/</include>
                       </includes>
                   </overlay>
               </overlays>
