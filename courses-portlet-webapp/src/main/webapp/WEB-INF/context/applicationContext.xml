@@ -29,6 +29,8 @@
 
     <context:property-placeholder location="classpath:configuration.properties"/>
     <context:annotation-config/>
+    <import resource="courseSectionDaoContext.xml"/>
+    <import resource="finalGradesDaoContext.xml"/>
 
     <!-- Message source for this context, loaded from localized "messages_xx" files -->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
@@ -153,10 +155,8 @@
         class="org.springframework.web.servlet.view.InternalResourceViewResolver"
         p:order="10" p:cache="true" p:alwaysInclude="true"
         p:viewClass="org.springframework.web.servlet.view.JstlView"
-        p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
-        
-  
-    <!-- 
+        p:prefix="${view.prefix}" p:suffix="${view.suffix}" />
+    <!--
      | XML view resolver for JSON view
      +-->
     <bean id="xmlViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">

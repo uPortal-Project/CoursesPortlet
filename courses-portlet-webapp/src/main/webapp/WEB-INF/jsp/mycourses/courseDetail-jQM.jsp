@@ -41,9 +41,7 @@
         <div class="course-details">
             <div class="titlebar">
                 <h2 class="title">
-                    <c:if test="${not empty course.url}"><a href="${course.url}"></c:if>
                     ${ course.title }
-                    <c:if test="${not empty course.url}"></a></c:if>
                 </h2>
                 <h3 class="subtitle">${ course.school }</h3>
                 <c:if test="${ not empty course.grade }">

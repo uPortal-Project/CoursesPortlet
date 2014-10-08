@@ -22,14 +22,10 @@
 
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 
-<div>
-	<%-- grades --%>
-	<div id="grades-course-list" data-role="listview" class="course-list">
-		<%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesCourseList.jsp"%>
-	</div>
+<ul id="${n}_grades_data" class="list-mimic" data-role="listview">
+  <%-- totals --%>
+  <%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesTotals.jsp"%>
 
-	<%-- footer --%>
-	<div id="grades-footer">
-		<%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesFooter.jsp"%>
-	</div>
-</div>
+  <%-- grades --%>
+  <%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesCourseList.jsp"%>
+</ul>

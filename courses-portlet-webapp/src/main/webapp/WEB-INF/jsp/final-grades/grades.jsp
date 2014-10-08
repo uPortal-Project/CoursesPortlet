@@ -22,74 +22,38 @@
 
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 
-<div id="${n}" class="GradesPortlet GradesDesktop">
-	<%-- header --%>
-	<div data-role="header" class="titlebar portlet-titlebar top_box">
-		<div class="left header_style">
-			<spring:message code="grades" />
-		</div>
+<div id="${n}" class="GradesPortlet noMobile">
+  <%-- header --%>
+  <div data-role="header" class="titlebar portlet-titlebar">
+    <%@ include file="/WEB-INF/jsp/fragments/termList.jsp"%>
+  </div>
 
-		<div class="left term_selection">
-			<form method="post">
-				<div>
-					<span id="${n}_loading" style="display: none"><img
-						src="${renderRequest.contextPath}/img/ajax-loader.gif"
-						alt="Loading..." /></span> <select id="${n}_termPicker" name="termCode">
-						<c:forEach var="term" items="${termSummary.terms}">
-							<c:set var="selected" value="" />
-							<c:if test="${term.code == selectedTerm.code}">
-								<c:set var="selected" value="selected=\"selected\"" />
-							</c:if>
-							<option value="${term.code}" ${selected}>${term.displayName}</option>
-						</c:forEach>
-					</select>
-				</div>
-				<div id="${n}_error" style="display: none">
-					<span><img src="${renderRequest.contextPath}/img/error.png"
-						alt="Error" /></span> <span class="error_message"></span>
-				</div>
-			</form>
-		</div>
-
-		<div class="clear_left box_top_line"></div>
-
-	</div>
-
-	<%-- grades --%>
-	<div class="portlet ptl-courses view-courses">
-		<div class="portlet-content" data-role="content">
-			<div id="${n}_grades-course-list" data-role="listview"
-				class="course-list">
-				<%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesCourseList.jsp"%>
-			</div>
-		</div>
-	</div>
-
-	<%-- footer --%>
-	<div class="clear_left box_bottom_line"></div>
-	<div data-theme="a" data-role="footer" data-position="fixed">
-		<div id="${n}_grades-footer">
-			<%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesFooter.jsp"%>
-		</div>
-	</div>
+  <%-- grades --%>
+  <div class="portlet ptl-courses">
+    <div class="portlet-content" data-role="content">
+      <%@ include file="/WEB-INF/jsp/final-grades/fragments/gradesUpdate.jsp"%>
+    </div>
+  </div>
 </div>
 
 <portlet:resourceURL var="gradesCourseListUrl" id="gradesUpdate" />
-<spring:message var="errorMessage" code="grades.unavailable"
-	htmlEscape="false" javaScriptEscape="false" />
+<spring:message var="errorMessage"
+                code="grades.unavailable"
+                arguments="${portletSessionScope.helpDeskURL}"
+                htmlEscape="false"
+                javaScriptEscape="false" />
 <script type="text/javascript" language="javascript">
-	<rs:compressJs>(function($) {
-		$(function() {
-			coursesPortlet.updateGradesTermHandler({
-				termSelector : '#${n}_termPicker',
-				coursesContentSelector : '#${n}_grades-course-list',
-				footerContentSelector : '#${n}_grades-footer',
-				loadingSelector : '#${n}_loading',
-				errorSelector : '#${n}_error',
-				errorMessage : '${errorMessage}',
-				dataUrl : '${gradesCourseListUrl}'
-			});
-		});
-	})(coursesPortlet.jQuery);
-	</rs:compressJs>
+  <rs:compressJs>(function($) {
+    $(function() {
+      coursesPortlet.updateGradesTermHandler({
+        termEl: $('#${n}_termPicker'),
+        gradesSelector : '#${n}_grades_data',
+        loadingEl: $('#${n}_loading'),
+        errorEl: $('#${n}_error'),
+        errorMessage : '${errorMessage}',
+        dataUrl : '${gradesCourseListUrl}'
+      });
+    });
+  })(coursesPortlet.jQuery);
+  </rs:compressJs>
 </script>

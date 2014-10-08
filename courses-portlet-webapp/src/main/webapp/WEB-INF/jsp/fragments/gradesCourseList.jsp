@@ -38,7 +38,7 @@
 			<div>
 				<div class="school_outer_width">
 					<div class="fg_school">
-						${ course.subject }
+						${ course.courseDepartment.name }
 					</div>
 					<div class="fg_course_code">
 						${ course.code }
@@ -55,7 +55,7 @@
 	</c:when>
 	<c:otherwise>
 		<div>
-			<spring:message code="no.courses.message" />
+            <h3><spring:message code="no.courses.message"  htmlEscape="false" arguments="${portletSessionScope.helpDeskURL}"/></h3>
 		</div>
 	</c:otherwise>
 </c:choose>

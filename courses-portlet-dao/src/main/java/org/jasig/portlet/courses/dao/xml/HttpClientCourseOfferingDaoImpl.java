@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.jasig.portlet.courses.dao.xml;
 
 import java.util.Collections;
@@ -28,8 +27,8 @@ import net.sf.ehcache.Element;
 
 import org.jasig.portlet.courses.dao.ICourseOfferingDao;
 import org.jasig.portlet.courses.model.catalog.xml.CourseList;
-import org.jasig.portlet.courses.model.catalog.xml.CourseSection;
-import org.jasig.portlet.courses.model.catalog.xml.Department;
+import org.jasig.portlet.courses.model.xml.CourseSection;
+import org.jasig.portlet.courses.model.xml.Department;
 import org.jasig.portlet.courses.model.catalog.xml.DepartmentList;
 import org.jasig.portlet.courses.model.catalog.xml.FullCourseOffering;
 import org.jasig.portlet.courses.model.catalog.xml.School;

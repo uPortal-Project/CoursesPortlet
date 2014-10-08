@@ -82,5 +82,6 @@ public class MockCoursesDaoImpl implements ICacheableCoursesDao<Serializable, St
     @Override
     public CoursesByTerm getCoursesByTerm(String termCode) {
         return this.summary.getCoursesByTerm(termCode);
+
     }
 }

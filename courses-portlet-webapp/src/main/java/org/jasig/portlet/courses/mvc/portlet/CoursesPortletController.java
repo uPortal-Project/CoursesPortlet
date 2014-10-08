@@ -40,6 +40,7 @@ import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 import org.jasig.portlet.courses.service.IURLService;
 import org.jasig.portlet.utils.mvc.IViewSelector;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -63,6 +64,7 @@ public class CoursesPortletController {
     private ICoursesDao coursesDao;
 
     @Autowired
+    @Qualifier("finalGradesServiceDao")
     public void setCoursesDao(ICoursesDao coursesDao) {
         this.coursesDao = coursesDao;
     }

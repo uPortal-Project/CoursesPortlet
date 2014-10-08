@@ -18,7 +18,6 @@
     under the License.
 
 -->
-
 <xs:schema xmlns="https://source.jasig.org/schemas/portlet/courses/course-catalog"
     targetNamespace="https://source.jasig.org/schemas/portlet/courses/course-catalog"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -28,13 +27,6 @@
     <xs:import namespace="https://source.jasig.org/schemas/portlet/courses/common" schemaLocation="common.xsd"/>
 
     <xs:element name="school">
-        <xs:complexType>
-            <xs:attribute name="code" type="xs:string" />
-            <xs:attribute name="name" type="xs:string" />
-        </xs:complexType>
-    </xs:element>
-    
-    <xs:element name="department">
         <xs:complexType>
             <xs:attribute name="code" type="xs:string" />
             <xs:attribute name="name" type="xs:string" />
@@ -53,21 +45,14 @@
             <xs:sequence>
                 <xs:element name="description" type="xs:string"/>
                 <xs:element name="prerequisites" type="xs:string" minOccurs="0"/>
-                <xs:element name="course-section" type="course-section" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- pulled from common.xsd -->
+                <xs:element name="course-section" type="courses:course-section" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
             <xs:attribute name="code" type="xs:string" />
             <xs:attribute name="title" type="xs:string" />
             <xs:attribute name="credits" type="xs:decimal" />
         </xs:complexType>
     </xs:element>
-    
-    <xs:complexType name="course-section">
-        <xs:sequence>
-            <xs:element name="course-meeting" type="courses:course-meeting" maxOccurs="unbounded"/>
-            <xs:element name="instructor" type="courses:instructor" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attribute name="code" type="xs:string"/>
-    </xs:complexType>
 
     <xs:element name="school-list">
         <xs:complexType>
@@ -82,7 +67,8 @@
     <xs:element name="department-list">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="department" maxOccurs="unbounded"/>
+                <!-- pulled from common.xsd -->
+                <xs:element ref="courses:department" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

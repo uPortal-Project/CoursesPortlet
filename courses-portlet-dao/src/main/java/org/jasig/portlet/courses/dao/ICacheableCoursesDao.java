@@ -16,14 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.jasig.portlet.courses.dao;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.personal.Course;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 
 /**
@@ -44,6 +46,8 @@ public interface ICacheableCoursesDao<TLK extends Serializable, CK extends Seria
      */
     public CK getCoursesByTermKey(PortletRequest request, String termCode, TermList termList);
 
+    
+    
     /**
      * Get a term list for the current user
      */
@@ -53,5 +57,7 @@ public interface ICacheableCoursesDao<TLK extends Serializable, CK extends Seria
      * Get courses for a term for the current user
      */
     public CoursesByTerm getCoursesByTerm(CK key);
+
+
 
 }

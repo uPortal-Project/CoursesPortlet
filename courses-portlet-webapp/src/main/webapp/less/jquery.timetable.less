@@ -1,0 +1,170 @@
+/**
+ * Licensed to Jasig under one or more contributor license
+ * agreements. See the NOTICE file distributed with this work
+ * for additional information regarding copyright ownership.
+ * Jasig licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a
+ * copy of the License at:
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+@import "variables.less";
+
+@tt-border-color: #d7d7d7;
+@tt-today-bg-color: #f2f2f2;
+
+.@{cp_n} {
+  .tt-container {
+    border: 1px solid @jQM-border-color;
+    //border-right: 1px solid @tt-border-color;
+    //border-bottom: 1px solid @tt-border-color;
+  }
+
+  .tt-day {
+    border-left: 1px solid @tt-border-color;
+    //border-top: 1px solid @tt-border-color;
+  }
+  .tt-day.tt-today {
+    background-color: @tt-today-bg-color;
+    border-bottom: 1px solid @tt-border-color;
+  }
+  .tt-dayTitle {
+    text-transform: uppercase;
+    font-weight: bold;
+
+    text-align: center;
+    padding-top: 1em;
+  }
+  .tt-nowLine {
+    background-color: rgb(181, 0, 0);
+    background-color: rgba(181, 0, 0, .5);
+  }
+
+  .tt-hour {
+    //border-left: 1px solid @tt-border-color;
+    border-top: 1px solid @tt-border-color;
+  }
+
+  .tt-hourTitle {
+    font-weight: bold;
+    padding-left: 1em;
+    position: absolute;
+    top: 50%;
+    margin-top: -.5em;
+  }
+
+  .tt-activity {
+    border: 1px solid #797979;
+    border-radius: 0.5em ;
+    -moz-border-radius: 0.5em ;
+    -webkit-border-radius: 0.5em ;
+
+    font-size: .7em;
+
+    cursor: pointer;
+  }
+
+  &.isStandaloneSchedule {
+    .tt-activity {
+      color: inherit;
+      cursor: inherit;
+    }
+  }
+
+  .tt-activity * {
+    /*margin-left: 5px;
+    margin-right: 5px;*/
+    text-align: center;
+  }
+  .tt-activity *:first-child {
+    margin-top: 5px;
+  }
+
+  .tt-activity *:last-child {
+    margin-bottom: 5px;
+  }
+
+  // Bump down event time
+  .tt-activity > div > :last-child {
+    margin-top: 1em;
+  }
+
+  .tt-activity-expanded {
+    font-size: 1em;
+  }
+
+  .tt-mobile {
+    font-size: xx-large;
+  }
+  .tt-mobile .tt-hour {
+    //border-left: 1px solid gray;
+    border-top: 1px solid gray;
+    min-height: 100px;
+  }
+  .tt-overlay {
+    background-color: black;
+    opacity: 0.5;
+  }
+  .tt-overlay .tt-noContent {
+    width: 250px;
+    padding: 5px;
+    border: 0.1em solid #000;
+    border-radius: 0.5em ;
+    background-color: @uw_tan;
+    color: black;
+    font-weight: bold;
+  }
+
+  .tt-message {
+    background-color: @uw_cream;
+    padding: 10px;
+    border-radius: 10px;
+    width: 70%;
+  }
+}
+
+.@{cp_n}.@{fe_n} {
+  .tt-dayTitle {
+    padding-top: .25em;
+  }
+  .tt-day.tt-today {
+    background-color: inherit;
+    border-bottom: none;
+  }
+}
+
+.@{cp_n}.gridPrint {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+
+  .tt-container {
+    max-height: 900px;
+    max-width: 800px;
+  }
+}
+
+@media print {
+  // CoursesPortlet Print
+  .@{cp_n}.gridPrint {
+    .tt-nowLine {
+      display: none;
+    }
+    .tt-day.tt-today {
+      background-color: inherit;
+      border-bottom: none;
+    }
+  }
+}

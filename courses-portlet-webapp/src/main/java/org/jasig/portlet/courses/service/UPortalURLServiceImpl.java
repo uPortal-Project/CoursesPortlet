@@ -20,7 +20,9 @@ package org.jasig.portlet.courses.service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Map;
 
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 
 import org.apache.commons.logging.Log;
@@ -67,5 +69,15 @@ public class UPortalURLServiceImpl implements IURLService {
             return null;
         }
     }
+
+  @Override
+  public String getOtherPortletURL(PortletPreferences prefs, String fName, String state, String fixedParamString, Map<String, String> params) {
+    return null;
+  }
+
+  @Override
+  public String getNativeMapUrl(PortletPreferences prefs, String baseURLDomain, String room, String displayName, String streetAddress, String longtitude, String latitude, String zoom) {
+    return null;
+  }
 
 }

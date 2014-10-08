@@ -69,14 +69,19 @@
             <xs:element name="title" type="xs:string"/>
             <xs:element name="code" type="xs:string"/>
             <xs:element name="school" type="xs:string" minOccurs="0"/>
-            <xs:element name="subject" type="xs:string" minOccurs="0"/>
+            <!-- replaces subject pulled from common.xsd -->
+            <xs:element name="course-department" type="courses:department" minOccurs="0"/>
             <xs:element name="course-meeting" type="courses:course-meeting" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="url" type="xs:string"/>
             <xs:element name="instructor" type="courses:instructor" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="grade" type="xs:string" minOccurs="0"/>
             <xs:element name="credits" type="xs:double" minOccurs="0"/>
             <xs:element name="course-update" type="course-update" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="course-textbook" type="course-textbook" minOccurs="0" maxOccurs="unbounded"/>
+            <!-- new (4 elements) for My-UW Madison -->
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="course-resource" type="courses:resource" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="course-section" type="courses:course-section" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="course-additional-info" type="courses:additional-info" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -89,7 +94,7 @@
         <xs:attribute name="newUpdate" type="xs:boolean"/>
         <xs:attribute name="type" type="xs:string"/>
     </xs:complexType>
-    
+
     <xs:complexType name="course-textbook">
         <xs:sequence>
             <xs:element name="author" type="xs:string"/>

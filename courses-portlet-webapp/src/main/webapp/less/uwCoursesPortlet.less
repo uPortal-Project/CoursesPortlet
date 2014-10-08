@@ -1,0 +1,426 @@
+/**
+ * Licensed to Jasig under one or more contributor license
+ * agreements. See the NOTICE file distributed with this work
+ * for additional information regarding copyright ownership.
+ * Jasig licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a
+ * copy of the License at:
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+@import "variables.less";
+
+.@{cp_n} {
+  // Content which is readable by screen readers, but not visible
+  .aria-visible {
+    .aria-visible;
+  }
+
+  // Schedule Grid
+  //
+  // myuwcourses/classScheduleGrid.jsp
+  // myuwcourses/classScheduleGrid-jQM.jsp
+  //
+
+  .grid-tabs {
+    margin-bottom: 0;
+    height: 26px;
+
+    a {
+      display: inline-block;
+      background: whitesmoke;
+      .vgradient(whitesmoke, @uw_medium_grey);
+
+      .border-radius(5px 5px 0 0);
+      .jQM-border;
+      line-height: 25px;
+      height: 25px;
+      padding: 0 1em;
+
+      &:first-child {
+        margin-left: 6px;
+      }
+
+      &.toggled {
+        box-shadow: none;
+        background: whitesmoke;
+        .vgradient(white, whitesmoke);
+      }
+    }
+  }
+
+  // print link in the title bar
+  //   overrides the fluid style
+  .grid-print-link {
+    float: right !important;
+  }
+
+  // Spacing for other courses list in desktop schedule grid
+  .tt-container + .course-list.@{noMobile} {
+    margin-top: @line-height;
+  }
+
+  // Course List
+  //
+  // myuwcourses/courseList.jsp
+  // myuwcourses/courseScheduleGrid.jsp
+  //
+  .course-list.@{noMobile} {
+    list-style: none;
+    margin: 0;
+
+    .title {
+      margin: 0;
+    }
+
+    li {
+      .jQM-list-mimic;
+      border-style: solid;
+      border-width: 1px;
+
+      & > .title {
+        margin: 1em;
+      }
+      &:last-child {
+        .border-radius(0 0 5px 5px);
+      }
+      &:first-child {
+        .border-radius(5px 5px 0 0);
+      }
+
+      & > a, & > div {
+        padding: 1em;
+        display: block;
+
+        .title {
+          margin: 0;
+        }
+      }
+
+      & > a {
+        cursor: pointer;
+
+        span.icon-mimic {
+          float: right;
+          margin: .6em 0 0 0;
+
+          .jQM-icon-mimic;
+          // Right arrow icon
+          background-position: -108px 0px;
+        }
+
+        &:hover {
+          box-shadow: inset 0 0 .5em @border-color;
+        }
+      }
+    }
+  }
+
+  .course-resources {
+    margin-bottom: 1em;
+  }
+
+  // Course Detail Sections
+  //  Desktop & Mobile
+  //
+  // myuwcourses/fragments/coursesCourseDetail.jsp
+  //
+  .section-list .section p {
+    margin-bottom: @line-height;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Final Exams Grid
+.@{fe_n} {
+  .monthDescr {
+    font-weight: bold;
+    float: left;
+    position: relative;
+    top: 1em;
+    left: 1em;
+    padding-left: 2px;
+  }
+}
+
+// Final Grades
+.@{fg_n} {
+  .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+  }
+}
+
+// Final Grades Desktop - not mobile
+.@{fg_n}.@{noMobile} {
+  .list-mimic {
+    list-style: none;
+    margin: 0;
+
+    li {
+      .jQM-list-mimic;
+      border-style: solid;
+      border-width: 1px;
+      padding: 1em;
+
+      &:last-child {
+        .border-radius(0 0 5px 5px);
+      }
+      &:first-child {
+        .border-radius(5px 5px 0 0);
+      }
+    }
+
+    .ui-grid-c {
+      max-width: 500px;
+
+      & > div {
+        width: 24%;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.@{cp_n}.@{noMobile} {
+  .cp-breadcrumb {
+    color: #ccc !important;
+    font-size: 80%;
+    margin-bottom: 1em;
+
+    a {
+      color: fade(@up-link, 60%) !important;
+      font-weight: normal;
+      text-decoration: none !important;
+
+      &:hover {
+        color: @up-link_hover !important;
+        text-decoration: underline !important;
+      }
+    }
+
+    .cp-nav-active {
+      color: @up-link !important;
+      text-decoration: underline !important;
+    }
+  }
+
+  .section-list {
+    list-style: none;
+    margin: 0;
+    //display: table;
+
+    .title {
+      margin-top: 0;
+    }
+
+    .grade {
+      height: 70px;
+      width:  120px;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: #c3c3c3;
+      background-color: @uw_olive_grey;
+
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 70px;
+
+      & + * {
+        margin-top: @line-height;
+      }
+    }
+
+    .section {
+      list-style: none;
+      margin: 0 1em 1em 0;
+
+      padding: 1em;
+      vertical-align: top;
+
+      max-width: 18em;
+      min-height: 14em;
+
+      .jQM-border;
+      background-color: @uw_cream;
+
+      display: inline-block;
+    }
+
+    .resources {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+// Mobile Only
+.@{cp_n}.@{isMobile} {
+  .list-sched-toggle, .list-sched-nav {
+    margin: .5em 0;
+
+    // Match the height of the select next to it
+    ul {
+      height: 37px;
+      padding-right: 5px;
+    }
+
+    // Fix jQM styles
+    .ui-btn, .ui-btn:hover {
+      color: inherit;
+      height: 32px;
+    }
+    .toggled {
+      box-shadow:inset 0 3px 6px rgba(0, 0, 0, 0.1);
+      background-image: none;
+
+      &:hover {
+        color: inherit;
+        border-color: rgb(195, 195, 195);
+        background-color: inherit;
+        cursor: default;
+      }
+    }
+  }
+
+  .list-sched-nav > ul {
+    padding-left: 5px;
+  }
+
+  .otherCourses {
+    margin-top: @line-height;
+  }
+
+  // Course Detail Mobile
+
+  .detail-left {
+    display: inline-block;
+    width: 66%;
+  }
+  .detail-right {
+    display: inline-block;
+    width: 33%;
+    text-align: right;
+  }
+
+  .grade {
+    height: 50px;
+
+    & > div {
+      .jQM-border;
+      background-color: whitesmoke;
+
+      height: 50px;
+      min-width:  50px;
+      margin-right: 5px;
+      float: right;
+
+      font-size: 25px;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 50px;
+    }
+  }
+
+  .section-list {
+    .title {
+      margin-bottom: 1em;
+    }
+
+    .section {
+      .border-box;
+
+      width: 100%;
+      padding: 1em;
+      margin-bottom: 1em;
+
+      .jQM-border;
+      background-color: whitesmoke;
+
+      & > :first-child {
+        margin-top: 0;
+      }
+    }
+
+    .resources {
+      margin-bottom: 1em;
+      .ui-btn {
+        display: inline-block;
+      }
+    }
+  }
+
+  .course-resources {
+    .ui-btn {
+      display: inline-block;
+    }
+  }
+
+  .term-header {
+    margin: 1.2em 0 0 1em;
+  }
+}
+
+// Final Grades Mobile
+.@{fg_n}.@{isMobile} {
+  .loading-img {
+    position: absolute;
+    margin: -30px 0  0 1em;
+  }
+
+  .ui-li {
+    padding: .7em 15px .7em 15px;
+  }
+
+  .term-header {
+    margin: .7em 0 0 2.5em;
+  }
+}
+
+// Courses Portlet AND Final Grades Mobile views
+.@{cp_n}.@{isMobile}, .@{fg_n}.@{isMobile} {
+  // Term select header, next to the term picker on every page.
+  //   Text is currently: "Choose term:"
+  //   Effects ALL views
+  .term-header {
+    position:       absolute;
+    z-index:        1001;
+    pointer-events: none;
+  }
+}
+
+// Push over the term-to-select to make room for the term header
+@media (max-width: 620px) {
+  .@{cp_n}.@{isMobile} {
+    .ui-select .ui-btn-text {
+      width: 50%;
+      margin-left: 60px;
+    }
+  }
+}
+
+// Page break in print only
+@media print {
+  .@{cp_n} .page {
+    page-break-before: always;
+    page-break-inside: avoid;
+    -webkit-region-break-inside: avoid;
+  }
+}

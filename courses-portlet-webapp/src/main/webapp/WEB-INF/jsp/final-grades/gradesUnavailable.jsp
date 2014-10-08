@@ -18,12 +18,12 @@
     under the License.
 
 --%>
-
 <jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
 
 <portlet:renderURL var="refreshUrl" />
 <div>
     <div>
-      <spring:message code="grades.unavailable" arguments="${refreshUrl}" htmlEscape="false" javaScriptEscape="false" />
+      <spring:message code="grades.unavailable" arguments="${refreshUrl},${portletSessionScope.helpDeskURL}" htmlEscape="false" javaScriptEscape="false" />
+      <span style="display:none;">${exception.message}<br/></span>
     </div>
 </div>

@@ -18,7 +18,6 @@
     under the License.
 
 --%>
-
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/degree-progress.css"/>"></link>

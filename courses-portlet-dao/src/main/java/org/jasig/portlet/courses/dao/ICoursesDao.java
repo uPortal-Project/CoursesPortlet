@@ -19,9 +19,12 @@
 
 package org.jasig.portlet.courses.dao;
 
+import java.util.List;
+import java.util.Map;
 import javax.portlet.PortletRequest;
 
 import org.jasig.portlet.courses.model.xml.TermList;
+import org.jasig.portlet.courses.model.xml.personal.Course;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
 
 /**
@@ -48,5 +51,6 @@ public interface ICoursesDao {
      * @return
      */
     public CoursesByTerm getCoursesByTerm(PortletRequest request, String termCode);
+    
     
 }

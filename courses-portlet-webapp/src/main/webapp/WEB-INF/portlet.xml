@@ -66,6 +66,98 @@
     </portlet>
 
     <portlet>
+        <portlet-name>MyCourses</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>/WEB-INF/context/portlet/my-courses.xml</value>
+        </init-param>
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        <portlet-info>
+            <title>My Courses</title>
+        </portlet-info>
+
+        <portlet-preferences>
+          <preference>
+            <name>finalGradesFname</name>
+            <value>FinalGrades</value>
+          </preference>
+          <preference>
+            <name>finalGradesWindowState</name>
+            <value>max</value>
+          </preference>
+          <preference>
+            <name>finalGradesWindowFixedParameterString</name>
+            <value>render.uP</value>
+          </preference>
+
+          <preference>
+            <name>enrolledClassesFname</name>
+            <value>enrolled-classes-map</value>
+          </preference>
+          <preference>
+            <name>enrolledClassesWindowState</name>
+            <value>max</value>
+          </preference>
+          <preference>
+            <name>enrolledClassesWindowFixedParameterString</name>
+            <value>render.uP</value>
+          </preference>
+          <preference>
+            <name>enrolledClassesNativeMapBaseURL</name>
+            <value>https://maps.google.com/maps</value>
+          </preference>
+          <preference>
+            <name>enrolledClassesNativeMapZIndex</name>
+            <value>16</value>
+          </preference>
+
+          <preference>
+            <name>helpDeskURL</name>
+            <value>https://kb.wisc.edu/helpdesk/page.php?id=35501</value>
+          </preference>
+
+        </portlet-preferences>
+
+    </portlet>
+
+  <portlet>
+    <portlet-name>ClassSchedule</portlet-name>
+    <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+    <init-param>
+      <name>contextConfigLocation</name>
+      <value>/WEB-INF/context/portlet/class-schedule.xml</value>
+    </init-param>
+    <supports>
+      <mime-type>text/html</mime-type>
+      <portlet-mode>view</portlet-mode>
+    </supports>
+    <portlet-info>
+      <title>Class Schedule</title>
+    </portlet-info>
+
+    <portlet-preferences>
+      <preference>
+        <name>defaultView</name>
+        <value>classSchedule</value>
+      </preference>
+      <preference>
+        <name>standaloneSchedule</name>
+        <value>true</value>
+      </preference>
+      <preference>
+        <name>helpDeskURL</name>
+        <value>https://kb.wisc.edu/helpdesk/page.php?id=35501</value>
+      </preference>
+
+    </portlet-preferences>
+
+  </portlet>
+
+    <portlet>
         <portlet-name>finalGrades</portlet-name>
         <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
         <init-param>
@@ -79,6 +171,14 @@
         <portlet-info>
             <title>Final Grades</title>
         </portlet-info>
+        <portlet-preferences>
+            <preference>
+                <name>helpDeskURL</name>
+                <value>https://kb.wisc.edu/helpdesk/page.php?id=24398</value>
+            </preference>
+
+        </portlet-preferences>
+
     </portlet>
     
     <portlet>
@@ -129,5 +229,16 @@
     <user-attribute>
         <name>user.login.id</name>
     </user-attribute>
-
+    <user-attribute>
+        <name>wisceduisisstudentemplid</name>
+    </user-attribute>
+    <user-attribute>
+     <name>sn</name>
+    </user-attribute>
+    <user-attribute>
+      <name>givenName</name>
+    </user-attribute>
+    <user-attribute>
+      <name>wisceduacadcareer</name>
+    </user-attribute>
 </portlet-app>

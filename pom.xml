@@ -1,3 +1,23 @@
+<!--
+
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a
+    copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied. See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
@@ -26,8 +46,8 @@
     <properties>
         <ehcache.version>2.6.5</ehcache.version>
         <mockito.version>1.9.5</mockito.version>
-        <spring.version>3.1.4.RELEASE</spring.version>
-        <jackson.version>1.9.11</jackson.version>
+        <spring.version>3.2.3.RELEASE</spring.version>
+        <jackson.version>2.2.2</jackson.version>
         <jaxb2basics.version>0.6.4</jaxb2basics.version>
         <resource-server.version>1.0.29</resource-server.version>
         <slf4j.version>1.7.2</slf4j.version>
@@ -106,13 +126,13 @@
                 <version>4.2.3</version>
             </dependency>
             <dependency>
-                <groupId>org.codehaus.jackson</groupId>
-                <artifactId>jackson-core-asl</artifactId>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.codehaus.jackson</groupId>
-                <artifactId>jackson-mapper-asl</artifactId>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-jaxb-annotations</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
@@ -207,6 +227,11 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-security</artifactId>
+                <version>2.1.2.RELEASE</version>
+            </dependency>
+            <dependency>
                 <groupId>taglibs</groupId>
                 <artifactId>standard</artifactId>
                 <version>1.1.2</version>
@@ -234,9 +259,39 @@
     <build>
         <pluginManagement>
             <plugins>
+              <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                  <source>${project.build.sourceVersion}</source>
+                  <target>${project.build.targetVersion}</target>
+                </configuration>
+              </plugin>
                 <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
+                  <artifactId>maven-jar-plugin</artifactId>
+                  <version>2.3.2</version>
+                  <configuration>
+                    <archive>
+                      <manifest>
+                        <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      </manifest>
+                    </archive>
+                  </configuration>
+                </plugin>
+                <plugin>
+                  <artifactId>maven-war-plugin</artifactId>
                     <version>2.2</version>
+                  <configuration>
+                    <attachClasses>true</attachClasses>
+                    <archive>
+                      <index>true</index>
+                      <manifest>
+                        <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      </manifest>
+                    </archive>
+                  </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.jvnet.jaxb2.maven2</groupId>
@@ -280,29 +335,42 @@
                         </plugins>
                     </configuration>
                 </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5</version>
+              </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.3</version>
                 <configuration>
+                    <header>https://source.jasig.org/licenses/short-license-header.txt</header>
                     <aggregate>true</aggregate>
+                    <strictCheck>true</strictCheck>
                     <excludes>
                         <exclude>target/**</exclude>
                         <exclude>pom.xml.*</exclude>
                         <exclude>release.properties</exclude>
                         <exclude>LICENSE</exclude>
                         <exclude>NOTICE</exclude>
+                        <exclude>NOTICE.template</exclude>
                         <exclude>**/src/main/webapp/rs/**</exclude>
                         <exclude>bin/**</exclude>
-                        <exclude>src/test/resources/sakai-session.json</exclude>
+                        <exclude>.idea/**</exclude>
+                        <exclude>**/overlays/**</exclude>
+                        <exclude>**/src/main/webapp/js-lib/**</exclude>
                     </excludes>
                     <mapping>
                         <channel>XML_STYLE</channel>
                         <portlet>XML_STYLE</portlet>
                         <tag>DYNASCRIPT_STYLE</tag>
                         <xjb>XML_STYLE</xjb>
+                        <less>JAVADOC_STYLE</less>
+                        <properties.example>SCRIPT_STYLE</properties.example>
                     </mapping>
                 </configuration>
             </plugin>

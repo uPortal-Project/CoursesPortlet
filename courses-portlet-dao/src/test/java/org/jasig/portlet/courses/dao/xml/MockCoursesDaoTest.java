@@ -58,46 +58,47 @@ public class MockCoursesDaoTest {
     public void testMockDao() {
         final Serializable termListKey = dao.getTermListKey(request);
         final TermList termList = dao.getTermList(termListKey);
-        
+
         final List<Term> terms = termList.getTerms();
-        assertEquals(2, terms.size());
-        
+        assertNotNull(terms);
+        assertEquals(1, terms.size());
+
         Term term = terms.get(0);
-        assertFalse(term.isCurrent());
-        assertEquals("2012w", term.getCode());
-        assertEquals("Winter 2012", term.getDisplayName());
+        assertTrue(term.isCurrent());
+        assertEquals("1142", term.getCode());
+        assertEquals("Fall 2013-2014", term.getDisplayName());
         assertNull(term.getTermType());
         assertNull(term.getYear());
-        
+
         final String coursesByTermKey = dao.getCoursesByTermKey(request, term.getCode(), termList);
         CoursesByTerm coursesByTerm = dao.getCoursesByTerm(coursesByTermKey);
-        assertNull(coursesByTerm);
+        assertNotNull(coursesByTerm);
 
-        term = terms.get(1);
+        term = terms.get(0);
         assertTrue(term.isCurrent());
         assertEquals(term, termList.getCurrentTerm());
-        assertEquals("2012s", term.getCode());
-        assertEquals("Spring 2012", term.getDisplayName());
+        assertEquals("1142", term.getCode());
+        assertEquals("Fall 2013-2014", term.getDisplayName());
         assertNull(term.getTermType());
         assertNull(term.getYear());
-        
-        
-        final String coursesByTermKey2 = dao.getCoursesByTermKey(request, terms.get(1).getCode(), termList);
+
+
+        final String coursesByTermKey2 = dao.getCoursesByTermKey(request, terms.get(0).getCode(), termList);
         coursesByTerm = dao.getCoursesByTerm(coursesByTermKey2);
         assertNotNull(coursesByTerm);
 
         assertEquals(40, coursesByTerm.getCredits(), 0.01);
         assertEquals(3.25, coursesByTerm.getGpa(), 0.01);
-        assertEquals(1, coursesByTerm.getNewUpdateCount());
-        assertEquals("2012s", coursesByTerm.getTermCode());
-        
+        assertEquals(0, coursesByTerm.getNewUpdateCount());
+        assertEquals("1142", coursesByTerm.getTermCode());
+
         final List<Course> courses = coursesByTerm.getCourses();
-        assertEquals(5, courses.size());
-        
-        Course course = courses.get(0); 
-        assertEquals("Design Awareness", course.getTitle());
+        assertEquals(6, courses.size());
+
+        Course course = courses.get(0);
+        assertEquals("Statistical Experimental Design", course.getTitle());
         assertEquals("A", course.getGrade());
-        assertEquals(4, course.getCredits(), 0.01);
+        assertEquals(0.01, course.getCredits(), 0.01);
         assertEquals(course, coursesByTerm.getCourse(course.getCode()));
     }
 

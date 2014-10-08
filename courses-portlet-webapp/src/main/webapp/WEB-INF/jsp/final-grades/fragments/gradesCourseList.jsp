@@ -21,29 +21,26 @@
 --%>
 
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
+
 <c:choose>
-	<c:when
-		test="${(selectedTerm.registered==true) and  (fn:length(courseSummary.courses) > 0)}">
-		<c:forEach items="${ courseSummary.courses }" var="course">
-			<portlet:renderURL var="courseUrl">
-				<portlet:param name="action" value="showCourse" />
-				<portlet:param name="courseCode" value="${ course.code }" />
-			</portlet:renderURL>
-			<div class="clear_both fg_outer_width">
-				<div class="clear_both school_outer_width">
-					<div class="left fg_school">${ course.subject }</div>
-					<div class="left fg_course_code">${ course.code }</div>
-				</div>
-				<div class="left fg_grade">${ course.grade }</div>
-				<div class="left fg_credits">${ course.credits } cr</div>
-				<div class="clear_both fg_course_title">${ course.title }</div>
-			</div>
-			<br />
-		</c:forEach>
-	</c:when>
-	<c:otherwise>
-		<div>
-			<spring:message code="no.courses.message" />
-		</div>
-	</c:otherwise>
+  <c:when
+    test="${(selectedTerm.registered==true) and (fn:length(courseSummary.courses) > 0)}">
+    <c:forEach items="${ courseSummary.courses }" var="course">
+      <li>
+        <div class="ui-grid-c ui-li-heading">
+          <div class="ui-block-a"><strong>${ course.courseDepartment.name }
+            &nbsp;${fn:trim(course.code)}</strong></div>
+          <div class="ui-block-b">&nbsp;</div>
+          <div class="ui-block-c">${ course.credits } cr</div>
+          <div class="ui-block-d">${ not empty course.grade?course.grade:'-' }</div>
+        </div>
+        <p>${ course.title}</p>
+      </li>
+    </c:forEach>
+  </c:when>
+  <c:otherwise>
+    <li>
+      <h3><spring:message code="no.courses.message"  htmlEscape="false" arguments="${portletSessionScope.helpDeskURL}"/></h3>
+    </li>
+  </c:otherwise>
 </c:choose>
