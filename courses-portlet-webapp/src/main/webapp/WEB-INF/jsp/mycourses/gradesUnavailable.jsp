@@ -18,11 +18,12 @@
     under the License.
 
 --%>
-<jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
+    <jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
 
-<portlet:renderURL var="refreshUrl" />
-<div>
-    <div>
-      <spring:message code="grades.unavailable" arguments="${refreshUrl}" htmlEscape="false" javaScriptEscape="false" />
-    </div>
-</div>
+    <portlet:renderURL var="refreshUrl" />
+
+    <div class="container-fluid CoursesPortlet" role="section">
+        <div class="alert alert-danger" role="alert">
+            <p><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;<spring:message code="grades.unavailable" arguments="${refreshUrl}" htmlEscape="false" javaScriptEscape="false" /></p>
+        </div> <!-- end: alert -->
+    </div> <!-- end: CoursesPortlet -->
