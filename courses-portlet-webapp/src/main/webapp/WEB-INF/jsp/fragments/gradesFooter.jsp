@@ -27,21 +27,18 @@
         coursesByTerm   - CoursesByTerm
         selectedTerm    - Term
  --%>
-<div class="box_credits_gpa">
-	<div class="left box_credits">
-		<div class="left box_credits_text">Term Credits</div>
-		<div class="left box_credits_numbers">${ coursesByTerm.credits }</div>
 
-		<div class="clear_left left box_credits_text">Cum. Credits</div>
-		<div class="left box_credits_numbers">${
-			coursesByTerm.overallCredits }</div>
-	</div>
-
-	<div class="left box_gpa">
-		<div class="left box_gpa_text ">Term GPA</div>
-		<div class="left box_gpa_numbers">${ coursesByTerm.gpa }</div>
-
-		<div class="clear_left left box_gpa_text">Cum. GPA</div>
-		<div class="left box_gpa_numbers">${ coursesByTerm.overallGpa }</div>
-	</div>
-</div>
+    <div class="gpa-display">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Term Credits</h3>
+                <p>${ coursesByTerm.credits }</p>
+                <h3>Cum. Credits</h3>
+                <p>${ coursesByTerm.overallCredits }</p>
+                <h3>Term GPA</h3>
+                <p>${ coursesByTerm.gpa }</p>
+                <h3>Cum. GPA</h3>
+                <p>${ coursesByTerm.overallGpa }</p>
+            </div>
+        </div>
+    </div>

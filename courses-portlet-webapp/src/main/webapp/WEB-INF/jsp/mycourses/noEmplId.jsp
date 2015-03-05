@@ -18,12 +18,13 @@
     under the License.
 
 --%>
-<jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
+    <jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
 
-<portlet:renderURL var="refreshUrl" />
-<div>
-    <div>
-      <span><spring:message code="missing.emplid" /> </span>
-      <a href="${refreshUrl}"><spring:message code="refresh" /></a>
-    </div>
-</div>
+    <portlet:renderURL var="refreshUrl" />
+
+    <div class="container-fluid CoursesPortlet" role="section">
+        <div class="alert alert-danger" role="alert">
+            <p><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;<spring:message code="missing.emplid" /></p>
+            <p><a href="${refreshUrl}" class="btn btn-success"><spring:message code="refresh" />&nbsp;&nbsp;&nbsp;<i class="fa fa-repeat"></i></a></p>
+        </div> <!-- end: alert -->
+    </div> <!-- end: CoursesPortlet -->

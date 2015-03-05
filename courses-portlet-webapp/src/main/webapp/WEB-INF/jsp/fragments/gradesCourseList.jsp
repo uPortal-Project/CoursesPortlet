@@ -27,35 +27,36 @@
         coursesByTerm   - CoursesByTerm
         selectedTerm    - Term
  --%>
-<c:choose>
-	<c:when
-		test="${(selectedTerm.registered==true) and  (fn:length(coursesByTerm.courses) > 0)}">
-		<c:forEach items="${ coursesByTerm.courses }" var="course">
-			<portlet:renderURL var="courseUrl">
-				<portlet:param name="action" value="showCourse" />
-				<portlet:param name="courseCode" value="${ course.code }" />
-			</portlet:renderURL>
-			<div>
-				<div class="school_outer_width">
-					<div class="fg_school">
-						${ course.subject }
-					</div>
-					<div class="fg_course_code">
-						${ course.code }
-					</div>
-				</div>
-				<div class="fg_credits">${ course.credits } cr</div>
-				<div class="fg_grade">
-					${ course.grade }
-				</div>
-				<div class="fg_course_title">${ course.title }</div>
-			</div>
-			<br />
-		</c:forEach>
-	</c:when>
-	<c:otherwise>
-		<div>
-			<spring:message code="no.courses.message" />
-		</div>
-	</c:otherwise>
-</c:choose>
+
+    <c:choose>
+        <c:when test="${(selectedTerm.registered==true) and  (fn:length(coursesByTerm.courses) > 0)}">
+            <c:forEach items="${ coursesByTerm.courses }" var="course">
+                <portlet:renderURL var="courseUrl">
+                    <portlet:param name="action" value="showCourse" />
+                    <portlet:param name="courseCode" value="${ course.code }" />
+                </portlet:renderURL>
+                <div class="grades-display">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table>
+                                <tr>
+                                    <td class="grade-title">GRADE</td>
+                                    <td colspan=2 class="grade-sub-code">${ course.subject } ${ course.code }</td>
+                                </tr>
+                                <tr>
+                                    <td class="grade">${ course.grade }</td>
+                                    <td class="grade-course">${ course.title }</td>
+                                    <td class="grade-credits">${ course.credits } cr</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <div class="alert alert-danger" role="alert">
+                <p><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;<spring:message code="no.courses.message" /></p>
+            </div> <!-- end: alert -->
+        </c:otherwise>
+    </c:choose>

@@ -27,59 +27,65 @@
         coursesByTerm   - CoursesByTerm
         selectedTerm    - Term
  --%>
-<div id="${n}" class="fl-widget portlet CoursesPortlet" role="section">
-  <!-- Portlet Titlebar -->
-  <div class="fl-widget-titlebar titlebar portlet-titlebar" role="sectionhead">
-    <h2 class="title" role="heading">
-	    <spring:message code="grades" />
-    </h2>
-    <div class="toolbar">
-        <ul>
-          <portlet:renderURL var="scheduleUrl">
-            <c:if test="${not empty selectedTerm.code}">
-              <portlet:param name="termCode" value="${selectedTerm.code}"/>
-            </c:if>
-          </portlet:renderURL>
-          <li><a class="button" href="${ scheduleUrl }">
-            <spring:message code="schedule"/>
-          </a></li>
-          <li><a class="button selected" href="#">
-            <spring:message code="grades"/>
-          </a></li>
-          <portlet:actionURL var="selectTermUrl"/>
-          <li><form action="${selectTermUrl}" method="post">
-            <label for="${n}_termPicker"><spring:message code="term"/>:</label>
-            <select id="${n}_termPicker" name="termCode">
-              <c:forEach var="term" items="${termList.terms}">
-                <c:set var="selected" value="" />
-                <c:if test="${term.code == selectedTerm.code}">
-                    <c:set var="selected" value="selected=\"selected\"" />
-                </c:if>
-                <option value="${term.code}" ${selected}>${term.displayName}</option>
-              </c:forEach>
-            </select>
-          </form></li>
-        </ul>
-    </div>
-  </div> <!-- end: portlet-titlebar -->
 
-	<%-- grades --%>
-	<div class="portlet ptl-courses view-courses">
-		<div class="portlet-content" data-role="content">
-			<div id="${n}_grades-course-list" data-role="listview"
-				class="course-list">
-				<%@ include file="/WEB-INF/jsp/fragments/gradesCourseList.jsp"%>
-			</div>
-		</div>
-	</div>
+    <div class="courses-portlet container-fluid" role="section">
+        <!-- Portlet Titlebar -->
+        <div class="courses-portlet-titlebar row" role="sectionhead">
+            <div class="col-md-12 no-col-padding">
+                <form action="${selectTermUrl}" class="form-inline pull-right" method="post">
+                    <portlet:renderURL var="scheduleUrl">
+                        <c:if test="${not empty selectedTerm.code}">
+                            <portlet:param name="termCode" value="${selectedTerm.code}"/>
+                        </c:if>
+                    </portlet:renderURL>
+                        <a href="${ scheduleUrl }">
+                            <i class="fa fa-calendar-o"></i>&nbsp;<spring:message code="schedule"/>
+                        </a> |
+                    <portlet:renderURL var="scheduleUrl">
+                        <c:if test="${not empty selectedTerm.code}">
+                            <portlet:param name="termCode" value="${selectedTerm.code}"/>
+                        </c:if>
+                    </portlet:renderURL>
+                    <a href="#">
+                        <i class="fa fa-book"></i>&nbsp;<spring:message code="grades"/>
+                    </a> |
+                    <portlet:actionURL var="selectTermUrl">
+                        <portlet:param name="action" value="courseList"/>
+                    </portlet:actionURL>
+                    <div class="form-group">
+                        <label for="${n}_termPicker"><spring:message code="term"/>:</label>
+                        <select id="${n}_termPicker" name="termCode" class="form-control" onchange="this.form.submit()">
+                        <c:forEach var="term" items="${termList.terms}">
+                        <c:set var="selected" value="" />
+                        <c:if test="${term.code == selectedTerm.code}">
+                        <c:set var="selected" value="selected=\"selected\"" />
+                        </c:if>
+                        <option value="${term.code}" ${selected}>${term.displayName}</option>
+                        </c:forEach>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-	<%-- footer --%>
-	<div data-theme="a" data-role="footer" data-position="fixed">
-		<div id="${n}_grades-footer">
-			<%@ include file="/WEB-INF/jsp/fragments/gradesFooter.jsp"%>
-		</div>
-	</div>
-</div>
+        <div id="${n}" class="portlet-content row" role="section">
+
+            <%-- grades --%>
+            <div class="col-md-6" data-role="content">
+                <div id="${n}_grades-course-list" data-role="listview">
+                    <%@ include file="/WEB-INF/jsp/fragments/gradesCourseList.jsp"%>
+                </div>
+            </div>
+
+            <%-- footer --%>
+            <div class="col-md-6" data-theme="a" data-role="content">
+                <div id="${n}_grades-footer">
+                    <%@ include file="/WEB-INF/jsp/fragments/gradesFooter.jsp"%>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end: CoursesPortlet -->
+
 
 <portlet:resourceURL var="gradesCourseListUrl" id="gradesUpdate" />
 <spring:message var="errorMessage" code="grades.unavailable"

@@ -1,0 +1,46 @@
+/**
+ * Licensed to Jasig under one or more contributor license
+ * agreements. See the NOTICE file distributed with this work
+ * for additional information regarding copyright ownership.
+ * Jasig licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a
+ * copy of the License at:
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/* Color Variables */
+@white: #fff;
+@black: #000;
+@red:   #900;
+
+// 9 Shades of gray
+@gray1: darken(@white, 10%); // #e6e6e6
+@gray2: darken(@white, 20%); // #cccccc
+@gray3: darken(@white, 30%); // #b3b3b3
+@gray4: darken(@white, 40%); // #999999
+@gray5: darken(@white, 50%); // #808080
+@gray6: darken(@white, 60%); // #666666
+@gray7: darken(@white, 70%); // #4d4d4d
+@gray8: darken(@white, 80%); // #333333
+@gray9: darken(@white, 90%); // #1a1a1a
+
+/*
+ * Primary color with 3 lightened shades and 3 darkened shades.
+ */
+@color1:            #4065b0; // medium blue
+@color1-light:      lighten(@color1, 10%);
+@color1-lighter:    lighten(@color1, 25%);
+@color1-lightest:   lighten(@color1, 50%);
+
+@color1-dark:       darken(@color1, 10%);
+@color1-darker:     darken(@color1, 25%);
+@color1-darkest:    darken(@color1, 50%);

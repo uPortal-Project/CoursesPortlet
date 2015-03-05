@@ -28,7 +28,6 @@
  --%>
 <div class="fl-widget portlet CoursesPortlet" role="section">
     <div class="portlet-content" data-role="content">
-        
         <c:choose>
             <c:when test="${ fn:length(coursesByTerm.courses) == 0 }">
                 <p><spring:message code="no.courses.message"/></p>
