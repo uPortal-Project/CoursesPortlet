@@ -254,10 +254,10 @@ public class CoursesPortletController {
       if(termList != null) {
         model.put("termList", termList);
         if(termList.getCurrentTerm() != null) {
-          final CoursesByTerm coursesByTerm = coursesDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode());
-          model.put("coursesByTerm", coursesByTerm);
+          final CoursesByTerm currentTermCourses = coursesDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode());
+          model.put("currentTermCourses", currentTermCourses);
         } else {
-          model.put("coursesByTerm", null);
+          model.put("currentTermCourses", null);
         }
       }
       

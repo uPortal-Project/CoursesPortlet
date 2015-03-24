@@ -349,10 +349,10 @@ public class UWCoursesPortletController{
       if(termList != null) {
         model.put("termList", termList);
         if(termList.getCurrentTerm() != null) {
-          final CoursesByTerm coursesByTerm = coursesSectionDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode(), termList);
-          model.put("coursesByTerm", coursesByTerm);
+          final CoursesByTerm currentTermCourses = coursesSectionDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode(), termList);
+          model.put("currentTermCourses", currentTermCourses);
         } else {
-          model.put("coursesByTerm", null);
+          model.put("currentTermCourses", null);
         }
       }
       
