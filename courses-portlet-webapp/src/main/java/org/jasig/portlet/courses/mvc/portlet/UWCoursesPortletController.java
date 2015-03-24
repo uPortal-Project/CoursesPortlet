@@ -19,6 +19,7 @@
 package org.jasig.portlet.courses.mvc.portlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.jasig.portlet.courses.dao.ICoursesSectionDao;
 import org.jasig.portlet.courses.model.xml.*;
 import org.jasig.portlet.courses.model.xml.personal.Course;
@@ -40,6 +41,7 @@ import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 import javax.portlet.*;
+
 import java.io.IOException;
 import java.util.*;
 @Controller
@@ -337,8 +339,25 @@ public class UWCoursesPortletController{
                                     @RequestParam(TERMCODE) String termCode)
     {
       getClassScheduleList(request, response, model, termCode);
-
       return "json";
+    }
+    
+    @ResourceMapping("jsonCurrentClassSchedule")
+    public String jsonCurrentClassSchedule(PortletRequest request, MimeResponse response, ModelMap model)
+    {
+      final TermList termList = coursesSectionDao.getTermList(request);
+      if(termList != null) {
+        model.put("termList", termList);
+        if(termList.getCurrentTerm() != null) {
+          final CoursesByTerm currentTermCourses = coursesSectionDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode(), termList);
+          model.put("currentTermCourses", currentTermCourses);
+        } else {
+          model.put("currentTermCourses", null);
+        }
+      }
+      
+      return "json";
+      
     }
 
     @RequestMapping(params = "action=showClassSchedule")
