@@ -19,6 +19,7 @@
 package org.jasig.portlet.courses.mvc.portlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.jasig.portlet.courses.dao.ICoursesSectionDao;
 import org.jasig.portlet.courses.model.xml.*;
 import org.jasig.portlet.courses.model.xml.personal.Course;
@@ -40,6 +41,7 @@ import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 import javax.portlet.*;
+
 import java.io.IOException;
 import java.util.*;
 @Controller
@@ -346,8 +348,12 @@ public class UWCoursesPortletController{
       final TermList termList = coursesSectionDao.getTermList(request);
       if(termList != null) {
         model.put("termList", termList);
-        final CoursesByTerm coursesByTerm = coursesSectionDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode(),termList);
-        model.put("coursesByTerm", coursesByTerm);
+        if(termList.getCurrentTerm() != null) {
+          final CoursesByTerm coursesByTerm = coursesSectionDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode(), termList);
+          model.put("coursesByTerm", coursesByTerm);
+        } else {
+          model.put("coursesByTerm", null);
+        }
       }
       
       return "json";

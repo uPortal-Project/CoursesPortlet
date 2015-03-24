@@ -23,6 +23,7 @@ import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.MimeResponse;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletSession;
@@ -244,5 +245,23 @@ public class CoursesPortletController {
         }
 
         return termList.getTerm(termCode);
+    }
+    
+    @ResourceMapping("jsonCurrentClassSchedule")
+    public String jsonCurrentClassSchedule(PortletRequest request, MimeResponse response, ModelMap model)
+    {
+      final TermList termList = coursesDao.getTermList(request);
+      if(termList != null) {
+        model.put("termList", termList);
+        if(termList.getCurrentTerm() != null) {
+          final CoursesByTerm coursesByTerm = coursesDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode());
+          model.put("coursesByTerm", coursesByTerm);
+        } else {
+          model.put("coursesByTerm", null);
+        }
+      }
+      
+      return "json";
+      
     }
 }
