@@ -337,8 +337,21 @@ public class UWCoursesPortletController{
                                     @RequestParam(TERMCODE) String termCode)
     {
       getClassScheduleList(request, response, model, termCode);
-
       return "json";
+    }
+    
+    @ResourceMapping("jsonCurrentClassSchedule")
+    public String jsonCurrentClassSchedule(PortletRequest request, MimeResponse response, ModelMap model)
+    {
+      final TermList termList = coursesSectionDao.getTermList(request);
+      if(termList != null) {
+        model.put("termList", termList);
+        final CoursesByTerm coursesByTerm = coursesSectionDao.getCoursesByTerm(request, termList.getCurrentTerm().getCode(),termList);
+        model.put("coursesByTerm", coursesByTerm);
+      }
+      
+      return "json";
+      
     }
 
     @RequestMapping(params = "action=showClassSchedule")
