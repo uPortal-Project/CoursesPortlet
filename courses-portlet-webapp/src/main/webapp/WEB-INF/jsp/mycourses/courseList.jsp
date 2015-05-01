@@ -27,23 +27,25 @@
         coursesByTerm   - CoursesByTerm
         selectedTerm    - Term
  --%>
+
+<portlet:actionURL var="selectTermUrl">
+    <portlet:param name="action" value="courseList"/>
+</portlet:actionURL>
+<portlet:renderURL var="gradesUrl">
+    <portlet:param name="action" value="grades"/>
+    <c:if test="${not empty selectedTerm.code}">
+        <portlet:param name="termCode" value="${selectedTerm.code}"/>
+    </c:if>
+</portlet:renderURL>
+
 <div class="courses-portlet container-fluid" role="section">
     <!-- Portlet Titlebar -->
     <div class="courses-portlet-titlebar row" role="sectionhead">
         <div class="col-md-12 no-col-padding">
-            <portlet:actionURL var="selectTermUrl">
-                <portlet:param name="action" value="courseList"/>
-            </portlet:actionURL>
             <form action="${selectTermUrl}" class="form-inline pull-right" method="post">
                 <a href="#">
                     <i class="fa fa-calendar-o"></i>&nbsp;<spring:message code="schedule"/>
                 </a> |
-                <portlet:renderURL var="gradesUrl">
-                    <portlet:param name="action" value="grades"/>
-                    <c:if test="${not empty selectedTerm.code}">
-                        <portlet:param name="termCode" value="${selectedTerm.code}"/>
-                    </c:if>
-                </portlet:renderURL>
                 <a href="${ gradesUrl }">
                     <i class="fa fa-book"></i>&nbsp;<spring:message code="grades"/>
                 </a> |

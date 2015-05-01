@@ -28,30 +28,26 @@
         selectedTerm    - Term
  --%>
 
+<portlet:renderURL var="scheduleUrl">
+    <c:if test="${not empty selectedTerm.code}">
+        <portlet:param name="termCode" value="${selectedTerm.code}"/>
+    </c:if>
+</portlet:renderURL>
+<portlet:actionURL var="selectTermUrl">
+    <portlet:param name="action" value="courseList"/>
+</portlet:actionURL>
+
     <div class="courses-portlet container-fluid" role="section">
         <!-- Portlet Titlebar -->
         <div class="courses-portlet-titlebar row" role="sectionhead">
             <div class="col-md-12 no-col-padding">
                 <form action="${selectTermUrl}" class="form-inline pull-right" method="post">
-                    <portlet:renderURL var="scheduleUrl">
-                        <c:if test="${not empty selectedTerm.code}">
-                            <portlet:param name="termCode" value="${selectedTerm.code}"/>
-                        </c:if>
-                    </portlet:renderURL>
-                        <a href="${ scheduleUrl }">
-                            <i class="fa fa-calendar-o"></i>&nbsp;<spring:message code="schedule"/>
-                        </a> |
-                    <portlet:renderURL var="scheduleUrl">
-                        <c:if test="${not empty selectedTerm.code}">
-                            <portlet:param name="termCode" value="${selectedTerm.code}"/>
-                        </c:if>
-                    </portlet:renderURL>
+                    <a href="${ scheduleUrl }">
+                        <i class="fa fa-calendar-o"></i>&nbsp;<spring:message code="schedule"/>
+                    </a> |
                     <a href="#">
                         <i class="fa fa-book"></i>&nbsp;<spring:message code="grades"/>
                     </a> |
-                    <portlet:actionURL var="selectTermUrl">
-                        <portlet:param name="action" value="courseList"/>
-                    </portlet:actionURL>
                     <div class="form-group">
                         <label for="${n}_termPicker"><spring:message code="term"/>:</label>
                         <select id="${n}_termPicker" name="termCode" class="form-control" onchange="this.form.submit()">
@@ -89,20 +85,20 @@
 
 <portlet:resourceURL var="gradesCourseListUrl" id="gradesUpdate" />
 <spring:message var="errorMessage" code="grades.unavailable"
-	htmlEscape="false" javaScriptEscape="false" />
+    htmlEscape="false" javaScriptEscape="false" />
 <script type="text/javascript" language="javascript">
-	<rs:compressJs>(function($) {
-		$(function() {
-			coursesPortlet.updateGradesTermHandler({
-				termSelector : '#${n}_termPicker',
-				coursesContentSelector : '#${n}_grades-course-list',
-				footerContentSelector : '#${n}_grades-footer',
-				loadingSelector : '#${n}_loading',
-				errorSelector : '#${n}_error',
-				errorMessage : '${errorMessage}',
-				dataUrl : '${gradesCourseListUrl}'
-			});
-		});
-	})(coursesPortlet.jQuery);
-	</rs:compressJs>
+    <rs:compressJs>(function($) {
+        $(function() {
+            coursesPortlet.updateGradesTermHandler({
+                termSelector : '#${n}_termPicker',
+                coursesContentSelector : '#${n}_grades-course-list',
+                footerContentSelector : '#${n}_grades-footer',
+                loadingSelector : '#${n}_loading',
+                errorSelector : '#${n}_error',
+                errorMessage : '${errorMessage}',
+                dataUrl : '${gradesCourseListUrl}'
+            });
+        });
+    })(coursesPortlet.jQuery);
+    </rs:compressJs>
 </script>
