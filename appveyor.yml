@@ -5,9 +5,9 @@ install:
   - java -version
   - mvn --version
 build_script:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -Djavax.xml.accessExternalSchema=all
 test_script:
-  - mvn test --batch-mode
+  - mvn test --batch-mode -Djavax.xml.accessExternalSchema=all
   - mvn checkstyle:check --batch-mode --fail-never
 cache:
   - C:\Users\appveyor\.m2\ -> pom.xml
