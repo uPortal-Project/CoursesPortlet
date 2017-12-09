@@ -1,5 +1,6 @@
 # Courses Portlet
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jasig.portlet/courses-portlet-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.jasig.portlet/courses-portlet-parent)
 [![Linux Build Status](https://travis-ci.org/Jasig/CoursesPortlet.svg?branch=master)](https://travis-ci.org/Jasig/CoursesPortlet)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/nqxqteabp0lqhfl6/branch/master?svg=true)](https://ci.appveyor.com/project/ChristianMurphy/coursesportlet/branch/master)
 
