@@ -47,8 +47,8 @@
     <properties>
         <ehcache.version>2.6.5</ehcache.version>
         <mockito.version>1.9.5</mockito.version>
-        <spring.version>3.2.3.RELEASE</spring.version>
-        <jackson.version>2.2.2</jackson.version>
+        <spring.version>4.3.15.RELEASE</spring.version>
+        <jackson.version>2.9.5</jackson.version>
         <jaxb2basics.version>0.6.4</jaxb2basics.version>
         <resource-server.version>1.0.29</resource-server.version>
         <slf4j.version>1.7.2</slf4j.version>
@@ -69,7 +69,7 @@
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.0.9</version>
+                <version>1.2.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-codec</groupId>
@@ -124,7 +124,7 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>4.2.3</version>
+                <version>4.5.2</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -149,7 +149,7 @@
             <dependency>
                 <groupId>org.jasig.springframework</groupId>
                 <artifactId>spring-webmvc-portlet-contrib</artifactId>
-                <version>1.0.0</version>
+                <version>1.2.0</version>
             </dependency>
             <dependency>
                 <groupId>org.jvnet.jaxb2_commons</groupId>
@@ -230,7 +230,7 @@
             <dependency>
                 <groupId>org.springframework.ws</groupId>
                 <artifactId>spring-ws-security</artifactId>
-                <version>2.1.2.RELEASE</version>
+                <version>3.0.1.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>taglibs</groupId>
