@@ -203,6 +203,13 @@
               <version>${resource-server.version}</version>
               <configuration>
               </configuration>
+              <dependencies>
+                  <dependency>
+                      <groupId>com.sun.xml.bind</groupId>
+                      <artifactId>jaxb-impl</artifactId>
+                      <version>2.3.3</version>
+                  </dependency>
+              </dependencies>
               <executions>
                   <execution>
                       <id>aggregate-resources</id>
