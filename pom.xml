@@ -45,7 +45,7 @@
   </scm>
 
     <properties>
-        <ehcache.version>2.6.5</ehcache.version>
+        <ehcache.version>2.6.11</ehcache.version>
         <mockito.version>1.10.19</mockito.version>
         <spring.version>3.2.3.RELEASE</spring.version>
         <jackson.version>2.2.2</jackson.version>
