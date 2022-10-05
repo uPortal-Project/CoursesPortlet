@@ -26,8 +26,8 @@ jobs:
           distribution: adopt-hotspot
           java-version: 8
       - name: Install
-        run: mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -Djavax.xml.accessExternalSchema=all
+        run: mvn clean install -DskipTests=true -D"maven.javadoc.skip=true" -B -V -D"javax.xml.accessExternalSchema=all"
       - name: Test
-        run: mvn test --batch-mode -Djavax.xml.accessExternalSchema=all
+        run: mvn test --batch-mode -D"javax.xml.accessExternalSchema=all"
       - name: Lint
         run: mvn checkstyle:check --batch-mode --fail-never
