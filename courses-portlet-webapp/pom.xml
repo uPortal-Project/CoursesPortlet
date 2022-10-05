@@ -268,7 +268,7 @@
                     <plugin>
                         <artifactId>maven-uportal-plugin</artifactId>
                         <groupId>org.jasig.portal</groupId>
-                        <version>1.0.0-M4-SNAPSHOT</version>
+                        <version>1.0.0-M4</version>
                         <configuration>
                             <contextName>CoursesPortlet</contextName>
                             <artifactId>${project.artifactId}</artifactId>
