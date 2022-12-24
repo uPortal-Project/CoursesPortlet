@@ -48,7 +48,7 @@
         <ehcache.version>2.6.11</ehcache.version>
         <mockito.version>4.8.1</mockito.version>
         <spring.version>3.2.3.RELEASE</spring.version>
-        <jackson.version>2.2.2</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <jaxb2basics.version>0.6.4</jaxb2basics.version>
         <resource-server.version>1.0.29</resource-server.version>
         <slf4j.version>1.7.36</slf4j.version>
