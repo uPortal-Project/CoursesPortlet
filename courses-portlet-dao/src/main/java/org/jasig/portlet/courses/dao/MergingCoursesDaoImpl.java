@@ -20,7 +20,6 @@ package org.jasig.portlet.courses.dao;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.portlet.PortletRequest;
 
 import org.apache.commons.logging.Log;
@@ -29,6 +28,8 @@ import org.jasig.portlet.courses.model.xml.Term;
 import org.jasig.portlet.courses.model.xml.TermList;
 import org.jasig.portlet.courses.model.xml.personal.Course;
 import org.jasig.portlet.courses.model.xml.personal.CoursesByTerm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * MergingCoursesDaoImpl merges together information from multiple data sources.
@@ -54,7 +55,8 @@ public class MergingCoursesDaoImpl implements ICoursesDao {
      * 
      * @param courseDaos
      */
-    @Resource(name="courseDaos")
+    @Autowired
+    @Qualifier("courseDaos")
     public void setCourseDaos(List<ICoursesDao> courseDaos) {
         this.courseDaos = courseDaos;
     }

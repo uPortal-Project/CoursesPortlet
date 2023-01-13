@@ -75,6 +75,10 @@
         </dependency>
 
         <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <scope>provided</scope>
@@ -84,7 +88,6 @@
             <artifactId>portlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        
         
         <dependency>
             <groupId>junit</groupId>

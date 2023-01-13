@@ -46,6 +46,7 @@ public class FinalGradesPortletController {
         this.viewSelector = viewSelector;
     }
     @Autowired
+    @Qualifier("finalGradesServiceDao")
     public void setCoursesDao(ICoursesDao coursesDao) {
         this.coursesDao = coursesDao;
     }

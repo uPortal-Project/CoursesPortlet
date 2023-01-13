@@ -34,6 +34,7 @@ import org.jasig.portlet.degreeprogress.model.DegreeProgramSummary;
 import org.jasig.portlet.degreeprogress.model.ProgramComponent;
 import org.jasig.portlet.degreeprogress.model.xml.DegreeProgressReport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Controller;
@@ -65,6 +66,7 @@ public class DegreeProgressController {
     private ICoursesDao coursesDao;
 
     @Autowired(required = true)
+    @Qualifier("finalGradesServiceDao")
     public void setCoursesDao(ICoursesDao coursesDao) {
         this.coursesDao = coursesDao;
     }
