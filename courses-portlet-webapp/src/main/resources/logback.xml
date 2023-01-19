@@ -28,31 +28,69 @@
 <!--                                                                -->
 <configuration scan="true" scanPeriod="30 seconds">
   <contextName>CoursesPortlet</contextName>
- 
+
+  <!--
+    | Propagate log levels to java.util.logging
+  +-->
   <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
     <resetJUL>true</resetJUL>
   </contextListener>
-  
+
+  <!--
+    | Expose the logback configuration via JMX
+  +-->
   <jmxConfigurator />
-  
+
+  <!--
+    | Specify a local property that sets up the logging directory (to tomcat's logs directory).
+  +-->
+  <property scope="local" name="LOG_DIR" value="${catalina.base}/logs" />
+
+  <!--
+    | Setup a file based logger that rolls
+    |
+    | http://logback.qos.ch/manual/appenders.html#RollingFileAppender
+  +-->
   <appender name="LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
-    <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
-    <!--for further documentation-->
-    <File>${CoursesPortlet.webapp.root}/../../logs/CoursesPortlet.log</File>
+    <!--
+      | Name of the current log file
+    +-->
+    <File>${LOG_DIR}/${CONTEXT_NAME}.log</File>
+
+    <!--
+      | Log message pattern configuration
+      |
+      | http://logback.qos.ch/manual/layouts.html#conversionWord
+    +-->
     <encoder>
       <pattern>%-5level [%thread] %logger{36} %d{ISO8601} - %msg%n</pattern>
     </encoder>
+
+    <!--
+      | Rolls the log file every 24 hours
+      | gzip the archived log file
+      | Delete archived log files older than 28 days
+      |
+      | http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy
+    +-->
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>${CoursesPortlet.webapp.root}/../../logs/CoursesPortlet.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <fileNamePattern>${LOG_DIR}/${CONTEXT_NAME}.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+      <maxHistory>28</maxHistory>
     </rollingPolicy>
   </appender>
-  
-  <root level="DEBUG">
-    <appender-ref ref="LOG"/>
+
+  <!--
+    | Setup default log level to INFO
+  +-->
+  <root level="INFO">
+    <appender-ref ref="LOG" />
   </root>
-  
+
+  <!--
+    | Turn up logging for portlet specific package
+   +-->
   <logger name="org.jasig.portlet.courses" additivity="false" level="DEBUG">
     <appender-ref ref="LOG"/>
-  </logger>  
+  </logger>
+
 </configuration>
