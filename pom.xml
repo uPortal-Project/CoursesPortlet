@@ -51,7 +51,7 @@
     <jackson.version>2.14.1</jackson.version>
     <jaxb-api.version>2.3.1</jaxb-api.version>
     <jaxb-impl.version>2.3.3</jaxb-impl.version>
-    <jaxb2basics.version>0.6.4</jaxb2basics.version>
+    <jaxb2basics.version>0.13.1</jaxb2basics.version>
     <resource-server.version>1.0.29</resource-server.version>
     <slf4j.version>2.0.6</slf4j.version>
 
