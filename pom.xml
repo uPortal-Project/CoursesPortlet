@@ -55,8 +55,8 @@
     <resource-server.version>1.0.29</resource-server.version>
     <slf4j.version>2.0.6</slf4j.version>
 
-    <project.build.sourceVersion>21</project.build.sourceVersion>
-    <project.build.targetVersion>21</project.build.targetVersion>
+    <project.build.sourceVersion>17</project.build.sourceVersion>
+    <project.build.targetVersion>17</project.build.targetVersion>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
