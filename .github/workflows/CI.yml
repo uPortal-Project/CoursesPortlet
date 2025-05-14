@@ -58,5 +58,9 @@ jobs:
         with:
           distribution: ${{ matrix.java-distribution }}
           java-version: ${{ matrix.java-version }}
-      - name: Build and Test
-        run: mvn -B package
+      - name: Install
+        run: mvn clean install -DskipTests=true -D"maven.javadoc.skip=true" -B -V -D"javax.xml.accessExternalSchema=all"
+      - name: Test
+        run: mvn test --batch-mode -D"javax.xml.accessExternalSchema=all"
+      - name: Lint
+        run: mvn checkstyle:check --batch-mode --fail-never
