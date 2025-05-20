@@ -46,7 +46,7 @@
 
   <properties>
     <ehcache.version>2.6.11</ehcache.version>
-    <mockito.version>4.11.0</mockito.version>
+    <mockito.version>5.18.0</mockito.version>
     <spring.version>3.2.3.RELEASE</spring.version>
     <jackson.version>2.14.1</jackson.version>
     <jaxb-api.version>2.3.1</jaxb-api.version>
