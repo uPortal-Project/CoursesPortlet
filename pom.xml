@@ -55,8 +55,8 @@
     <resource-server.version>1.0.29</resource-server.version>
     <slf4j.version>2.0.6</slf4j.version>
 
-    <project.build.sourceVersion>1.6</project.build.sourceVersion>
-    <project.build.targetVersion>1.6</project.build.targetVersion>
+    <project.build.sourceVersion>17</project.build.sourceVersion>
+    <project.build.targetVersion>17</project.build.targetVersion>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -97,6 +97,11 @@
         <groupId>com.sun.xml.bind</groupId>
         <artifactId>jaxb-impl</artifactId>
         <version>${jaxb-impl.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.sun.activation</groupId>
+          <artifactId>javax.activation</artifactId>
+          <version>1.2.0</version>
       </dependency>
       <dependency>
         <groupId>javax.portlet</groupId>
@@ -315,7 +320,7 @@
         <plugin>
           <groupId>org.jvnet.jaxb2.maven2</groupId>
           <artifactId>maven-jaxb2-plugin</artifactId>
-          <version>0.14.0</version>
+          <version>0.15.3</version>
           <executions>
             <execution>
               <goals>

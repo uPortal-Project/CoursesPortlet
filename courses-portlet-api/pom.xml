@@ -75,7 +75,15 @@
                         <include>**/*.xsd</include>
                     </schemaIncludes>
                     <!-- TODO:  Figure out how to send '-enableIntrospection' -->
+                    <extension>true</extension>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
