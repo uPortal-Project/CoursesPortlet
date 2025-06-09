@@ -172,7 +172,7 @@
       <dependency>
         <groupId>org.jasig.springframework</groupId>
         <artifactId>spring-webmvc-portlet-contrib</artifactId>
-        <version>1.0.0</version>
+        <version>1.2.1</version>
       </dependency>
       <dependency>
         <groupId>org.jvnet.jaxb2_commons</groupId>
