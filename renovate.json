@@ -2,5 +2,45 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["javax.portlet:portlet-api"],
+      "allowedVersions": "< 3.0",
+      "description": "uPortal runs JSR-286 (Portlet API 2.0). Portlet API 3.x (JSR-362) is a different container contract and is not supported."
+    },
+    {
+      "matchPackagePrefixes": ["org.springframework:", "org.springframework.data:"],
+      "allowedVersions": "< 4.0",
+      "description": "This portlet is pinned to Spring Framework 3.2.x. Spring 4+ requires a coordinated migration; Spring 5+ needs Java 8+, Spring 6+ needs Jakarta EE + Java 17+."
+    },
+    {
+      "matchPackagePrefixes": ["org.hibernate:", "org.hibernate.orm:"],
+      "allowedVersions": "< 4.0",
+      "description": "This portlet predates the Hibernate 4+ line. Later majors require Spring 4+, Jakarta EE, or Java 17+."
+    },
+    {
+      "matchPackageNames": [
+        "com.sun.xml.bind:jaxb-impl",
+        "jakarta.xml.bind:jakarta.xml.bind-api",
+        "org.glassfish.jaxb:jaxb-runtime"
+      ],
+      "allowedVersions": "< 3.0",
+      "description": "The 2.x releases preserve the javax.xml.bind.* package namespace. 3+ moves to jakarta.xml.bind as part of Jakarta EE 9+."
+    },
+    {
+      "matchPackageNames": ["org.codehaus.plexus:plexus-archiver"],
+      "allowedVersions": "< 4.10.0",
+      "description": "plexus-archiver 4.10+ requires a newer commons-io than the one bundled with maven-war-plugin 3.4.0."
+    },
+    {
+      "matchPackageNames": [
+        "org.mockito:mockito-core",
+        "org.mockito:mockito-inline",
+        "org.mockito:mockito-junit-jupiter"
+      ],
+      "allowedVersions": "< 5.0",
+      "description": "Mockito 5 uses the inline MockMaker by default; its bundled byte-buddy references ClassFileVersion.JAVA_V21, incompatible with the byte-buddy on this portlet's classpath."
+    }
   ]
 }
