@@ -21,9 +21,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
-    <groupId>org.jasig.parent</groupId>
-    <artifactId>jasig-parent</artifactId>
-    <version>34</version>
+    <groupId>org.jasig.portlet</groupId>
+    <artifactId>uportal-portlet-parent</artifactId>
+    <version>48</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -69,25 +69,27 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>1.3.12</version>
-      </dependency>
+      <!--
+        | The following are inherited from uportal-portlet-parent:48 dM and
+        | dropped here: ch.qos.logback:logback-classic (1.5.32),
+        | commons-lang:commons-lang (2.6), javax.portlet:portlet-api (2.0,
+        | scope=provided), javax.servlet:jstl (1.1.2), junit:junit (4.13.2,
+        | scope=test), net.sf.ehcache:ehcache-core (2.6.11),
+        | org.apache.httpcomponents:httpclient (4.5.14, with commons-logging
+        | exclusion), org.mockito:mockito-core (4.9.0, scope=test),
+        | org.slf4j:slf4j-api / jcl-over-slf4j / jul-to-slf4j / log4j-over-slf4j
+        | (2.0.17), taglibs:standard (1.1.2). javax.servlet:javax.servlet-api
+        | replaces servlet-api 2.5 (banned by parent enforcer; the parent
+        | provides 3.1.0 which is what Tomcat 8.5/9 ships).
+        |
+        | jackson-databind / jackson-module-jaxb-annotations are also dropped;
+        | the parent imports the jackson-bom 2.18.6 which version-aligns all
+        | jackson-* artifacts.
+      +-->
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>1.15</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-collections</groupId>
-        <artifactId>commons-collections</artifactId>
-        <version>3.2.2</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-lang</groupId>
-        <artifactId>commons-lang</artifactId>
-        <version>2.6</version>
       </dependency>
       <dependency>
         <groupId>javax.xml.bind</groupId>
@@ -105,21 +107,6 @@
           <version>1.2.0</version>
       </dependency>
       <dependency>
-        <groupId>javax.portlet</groupId>
-        <artifactId>portlet-api</artifactId>
-        <version>2.0</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>jstl</artifactId>
-        <version>1.1.2</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>2.5</version>
-      </dependency>
-      <dependency>
         <groupId>joda-time</groupId>
         <artifactId>joda-time</artifactId>
         <version>2.1</version>
@@ -130,45 +117,30 @@
         <version>1.1.1</version>
       </dependency>
       <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
-      </dependency>
-      <dependency>
-        <groupId>net.sf.ehcache</groupId>
-        <artifactId>ehcache-core</artifactId>
-        <version>${ehcache.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.5.14</version>
-        <exclusions>
-          <exclusion>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>${jackson.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.module</groupId>
-        <artifactId>jackson-module-jaxb-annotations</artifactId>
-        <version>${jackson.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.jasig.portlet.utils</groupId>
         <artifactId>portlet-mvc-util</artifactId>
         <version>1.1.3</version>
+        <exclusions>
+          <!-- Pulls the old javax.servlet:servlet-api:2.5 (banned by parent);
+               container ships javax.servlet:javax.servlet-api 3.1.0 instead. -->
+          <exclusion>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.jasig.portlet.utils</groupId>
         <artifactId>portlet-ws-util</artifactId>
         <version>1.1.3</version>
+        <exclusions>
+          <!-- spring-ws-core pulls commons-logging (banned by parent;
+               jcl-over-slf4j bridges JCL calls to slf4j). -->
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.jasig.springframework</groupId>
@@ -179,31 +151,6 @@
         <groupId>org.jvnet.jaxb2_commons</groupId>
         <artifactId>jaxb2-basics-runtime</artifactId>
         <version>${jaxb2basics.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jul-to-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>log4j-over-slf4j</artifactId>
-        <version>${slf4j.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
@@ -238,6 +185,11 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
         <artifactId>spring-web</artifactId>
         <version>${spring.version}</version>
       </dependency>
@@ -256,9 +208,16 @@
         <artifactId>spring-ws-security</artifactId>
         <version>2.4.7.RELEASE</version>
         <exclusions>
+          <!-- bcprov-jdk15on is the deprecated/EOL jdk15 line; we pin
+               bcprov-jdk18on (modern Java 8+ artifact) below. -->
           <exclusion>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
+          </exclusion>
+          <!-- spring-xml + wss4j pull commons-logging (banned by parent). -->
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
