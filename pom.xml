@@ -54,6 +54,7 @@
     <jaxb2basics.version>0.13.1</jaxb2basics.version>
     <resource-server.version>1.5.3</resource-server.version>
     <slf4j.version>2.0.6</slf4j.version>
+    <bouncycastle.version>1.84</bouncycastle.version>
 
     <project.build.sourceVersion>17</project.build.sourceVersion>
     <project.build.targetVersion>17</project.build.targetVersion>
@@ -254,6 +255,17 @@
         <groupId>org.springframework.ws</groupId>
         <artifactId>spring-ws-security</artifactId>
         <version>2.4.7.RELEASE</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk18on</artifactId>
+        <version>${bouncycastle.version}</version>
       </dependency>
       <dependency>
         <groupId>taglibs</groupId>
