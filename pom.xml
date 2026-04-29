@@ -56,8 +56,8 @@
     <slf4j.version>2.0.17</slf4j.version>
     <bouncycastle.version>1.84</bouncycastle.version>
 
-    <project.build.sourceVersion>17</project.build.sourceVersion>
-    <project.build.targetVersion>17</project.build.targetVersion>
+    <project.build.sourceVersion>11</project.build.sourceVersion>
+    <project.build.targetVersion>11</project.build.targetVersion>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
