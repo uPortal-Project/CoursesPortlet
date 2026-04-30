@@ -18,23 +18,19 @@
  */
 package org.jasig.portlet.courses.model.xml;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Adds base functionality to the {@link CourseMeeting} object
- * 
+ *
  * @author Drew Wills
  */
 public abstract class CourseMeetingWrapper {
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
-    
+
     private static final DateTimeFormatter SHORT_TIME_FORMAT = DateTimeFormat.shortTime();
     
     public abstract LocalTime getStartTime();
@@ -55,15 +51,10 @@ public abstract class CourseMeetingWrapper {
          * pick-and-choose which data they provide. 
          */
         if (startTime != null) {
-            try {
-                SHORT_TIME_FORMAT.printTo(rslt, startTime);
-                if (endTime != null) {
-                    rslt.append(" - ");
-                    SHORT_TIME_FORMAT.printTo(rslt, endTime);
-                }
-            }
-            catch (IOException e) {
-                logger.info("Failed to generate formatted string for course.startTime=" + startTime + " and course.endTime=" + endTime, e);
+            SHORT_TIME_FORMAT.printTo(rslt, startTime);
+            if (endTime != null) {
+                rslt.append(" - ");
+                SHORT_TIME_FORMAT.printTo(rslt, endTime);
             }
         }
 
