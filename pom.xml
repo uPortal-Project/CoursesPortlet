@@ -1,19 +1,19 @@
 <!--
 
-    Licensed to Jasig under one or more contributor license
+    Licensed to Apereo under one or more contributor license
     agreements. See the NOTICE file distributed with this work
     for additional information regarding copyright ownership.
-    Jasig licenses this file to you under the Apache License,
+    Apereo licenses this file to you under the Apache License,
     Version 2.0 (the "License"); you may not use this file
-    except in compliance with the License. You may obtain a
-    copy of the License at:
+    except in compliance with the License.  You may obtain a
+    copy of the License at the following location:
 
-    http://www.apache.org/licenses/LICENSE-2.0
+      http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on
-    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied. See the License for the
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
     specific language governing permissions and limitations
     under the License.
 
@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.jasig.portlet</groupId>
     <artifactId>uportal-portlet-parent</artifactId>
-    <version>48</version>
+    <version>49</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -56,8 +56,6 @@
     <slf4j.version>2.0.17</slf4j.version>
     <bouncycastle.version>1.84</bouncycastle.version>
 
-    <project.build.sourceVersion>11</project.build.sourceVersion>
-    <project.build.targetVersion>11</project.build.targetVersion>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -255,40 +253,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.10.1</version>
-          <configuration>
-            <source>${project.build.sourceVersion}</source>
-            <target>${project.build.targetVersion}</target>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.3.0</version>
-          <configuration>
-            <archive>
-              <manifest>
-                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.3.2</version>
-          <configuration>
-            <attachClasses>true</attachClasses>
-            <archive>
-              <index>true</index>
-              <manifest>
-                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.jvnet.jaxb2.maven2</groupId>
           <artifactId>maven-jaxb2-plugin</artifactId>
           <version>0.15.3</version>
@@ -330,74 +294,28 @@
             </plugins>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
-        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>4.1</version>
         <configuration>
-          <header>https://source.jasig.org/licenses/short-license-header.txt</header>
-          <aggregate>true</aggregate>
-          <strictCheck>true</strictCheck>
+          <!--
+            | Parent v49 provides version (2.11), header URL, aggregate,
+            | strictCheck, and the standard excludes/mappings. Only the
+            | CoursesPortlet-specific additions go here; defaults to merging
+            | with the parent's lists.
+          +-->
           <excludes>
-            <exclude>target/**</exclude>
-            <exclude>pom.xml.*</exclude>
-            <exclude>release.properties</exclude>
-            <exclude>LICENSE</exclude>
-            <exclude>NOTICE</exclude>
-            <exclude>NOTICE.template</exclude>
-            <exclude>**/src/main/webapp/rs/**</exclude>
-            <exclude>bin/**</exclude>
-            <exclude>.idea/**</exclude>
-            <exclude>**/overlays/**</exclude>
             <exclude>**/src/main/webapp/js-lib/**</exclude>
           </excludes>
           <mapping>
-            <channel>XML_STYLE</channel>
             <portlet>XML_STYLE</portlet>
-            <tag>DYNASCRIPT_STYLE</tag>
-            <xjb>XML_STYLE</xjb>
-            <less>JAVADOC_STYLE</less>
             <properties.example>SCRIPT_STYLE</properties.example>
           </mapping>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.4.1</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <doclint>none</doclint>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
-
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.6.0</version>
-        <configuration>
-          <configLocation>google_checks.xml</configLocation>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
 </project>
