@@ -341,7 +341,7 @@
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>4.1</version>
+        <version>5.0.0</version>
         <configuration>
           <header>https://source.jasig.org/licenses/short-license-header.txt</header>
           <aggregate>true</aggregate>
