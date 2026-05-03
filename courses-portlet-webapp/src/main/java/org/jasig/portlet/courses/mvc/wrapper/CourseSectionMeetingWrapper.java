@@ -18,7 +18,7 @@
  */
 package org.jasig.portlet.courses.mvc.wrapper;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jasig.portlet.courses.model.xml.CourseMeeting;
 import org.jasig.portlet.courses.model.xml.CourseSection;
 import org.jasig.portlet.courses.service.IURLService;

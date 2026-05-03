@@ -18,8 +18,8 @@
  */
 package org.jasig.portlet.degreeprogress.model;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jasig.portlet.degreeprogress.model.xml.Course;
 import org.jasig.portlet.degreeprogress.model.xml.Grade;
 import org.jasig.portlet.degreeprogress.model.xml.Semester;
