@@ -42,7 +42,7 @@
                 htmlEscape="false"
                 javaScriptEscape="false" />
 <script type="text/javascript" language="javascript">
-  <rs:compressJs>(function($) {
+  (function($) {
     $(function() {
       coursesPortlet.updateGradesTermHandler({
         termEl: $('#${n}_termPicker'),
@@ -54,5 +54,4 @@
       });
     });
   })(coursesPortlet.jQuery);
-  </rs:compressJs>
 </script>
