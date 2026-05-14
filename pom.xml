@@ -204,7 +204,7 @@
       <dependency>
         <groupId>org.springframework.ws</groupId>
         <artifactId>spring-ws-security</artifactId>
-        <version>2.4.7.RELEASE</version>
+        <version>5.0.1</version>
         <exclusions>
           <!-- bcprov-jdk15on is the deprecated/EOL jdk15 line; we pin
                bcprov-jdk18on (modern Java 8+ artifact) below. -->
