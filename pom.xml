@@ -54,7 +54,7 @@
     <jaxb2basics.version>0.13.1</jaxb2basics.version>
     <resource-server.version>1.5.3</resource-server.version>
     <slf4j.version>2.0.17</slf4j.version>
-    <bouncycastle.version>1.84</bouncycastle.version>
+    <bouncycastle.version>1.85.2</bouncycastle.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
