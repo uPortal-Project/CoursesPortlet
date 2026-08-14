@@ -21,7 +21,6 @@
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
 <portlet:renderURL var="reportUrl"/>
 <c:set var="n"><portlet:namespace/></c:set>
-<script type="text/javascript" src="<rs:resourceURL value="/rs/jquery/1.4.2/jquery-1.4.2.min.js"/>"></script>
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/degree-progress.css"/>"></link>
 <style type="text/css">

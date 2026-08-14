@@ -77,7 +77,6 @@
 <portlet:resourceURL var="gradesCourseListUrl" id="gradesUpdate" />
 <spring:message var="errorMessage" code="grades.unavailable" htmlEscape="false" javaScriptEscape="false" />
 <script type="text/javascript" language="javascript">
-<rs:compressJs>
 (function($) {
     $(function() {
         coursesPortlet.updateGradesTermHandler({
@@ -91,5 +90,4 @@
         });
     });    
 })(coursesPortlet.jQuery);
-</rs:compressJs>
 </script>
