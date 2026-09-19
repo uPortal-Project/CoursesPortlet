@@ -41,6 +41,11 @@
       ],
       "allowedVersions": "< 5.0",
       "description": "Mockito 5 uses the inline MockMaker by default; its bundled byte-buddy references ClassFileVersion.JAVA_V21, incompatible with the byte-buddy on this portlet's classpath."
+    },
+    {
+      "matchPackagePrefixes": ["org.jvnet.jaxb2_commons:"],
+      "enabled": false,
+      "description": "jaxb2-basics 0.13.1 is the last release compatible with maven-jaxb2-plugin 0.15.x and JAXB 2.x (javax.xml.bind). Later versions (1.x/2.x) are from the highsource/jaxb-tools continuation targeting JAXB 3+ (jakarta.xml.bind); the 1.11.1-PUBLISHED-BY-MISTAKE tag confirms the original coordinate is no longer actively maintained. No valid upgrade path exists."
     }
   ]
 }
