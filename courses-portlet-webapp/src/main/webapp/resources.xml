@@ -24,12 +24,11 @@
 
   <css>css/uwCoursesPortlet.css</css>
   <css>css/jquery.timetable.css</css>
-    
-  <js included="plain" resource="true">/rs/jquery/1.9.1/jquery-1.9.1.js</js>
-  <js included="aggregated" resource="true">/rs/jquery/1.9.1/jquery-1.9.1.min.js</js>
-  
-  <js included="plain" resource="true">/rs/jqueryui/1.8.13/jquery-ui-1.8.13.js</js>
-  <js included="aggregated" resource="true">/rs/jqueryui/1.8.13/jquery-ui-1.8.13.min.js</js>
+
+  <!-- jQuery + jQuery UI come from the bedrock skin (jquery 4.x + migrate,
+       jquery-ui 1.14.x). CoursesPortlet's own jquery 1.9.1 / jquery-ui
+       1.8.13 overrides removed 2026-05-06 to close known XSS CVEs in
+       1.x. -->
 
   <!-- Order is important here, the log script needs to be the first thing followed by the debug toggle -->
   <js>js-lib/jquery.log.js</js>
