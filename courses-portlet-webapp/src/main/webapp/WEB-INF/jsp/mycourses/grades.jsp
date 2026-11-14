@@ -84,7 +84,7 @@
 <spring:message var="errorMessage" code="grades.unavailable"
 	htmlEscape="false" javaScriptEscape="false" />
 <script type="text/javascript" language="javascript">
-	<rs:compressJs>(function($) {
+	(function($) {
 		$(function() {
 			coursesPortlet.updateGradesTermHandler({
 				termSelector : '#${n}_termPicker',
@@ -97,5 +97,4 @@
 			});
 		});
 	})(coursesPortlet.jQuery);
-	</rs:compressJs>
 </script>

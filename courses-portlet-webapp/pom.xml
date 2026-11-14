@@ -117,11 +117,6 @@
             <artifactId>resource-server-utils</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jasig.resourceserver</groupId>
-            <artifactId>resource-server-content</artifactId>
-            <type>war</type>
-        </dependency>
-        <dependency>
             <groupId>org.jasig.springframework</groupId>
             <artifactId>spring-webmvc-portlet-contrib</artifactId>
         </dependency>
@@ -227,21 +222,6 @@
                       </configuration>
                   </execution>
               </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <configuration>
-              <overlays>
-                  <overlay>
-                      <groupId>org.jasig.resourceserver</groupId>
-                      <artifactId>resource-server-content</artifactId>
-                      <includes>
-                          <include>rs/jquery/1.6.1/</include>
-                          <include>rs/jqueryui/1.8.13/</include>
-                      </includes>
-                  </overlay>
-              </overlays>
-            </configuration>
           </plugin>
         </plugins>
     </build>
