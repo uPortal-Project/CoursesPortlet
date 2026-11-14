@@ -69,3 +69,9 @@ nb-configuration.xml
 *.ipr
 *.iws
 .idea/
+
+# Maven Wrapper: a global ~/.gitignore may ignore .mvn; the wrapper's
+# pinned-version properties file must be committed for ./mvnw to work.
+!.mvn/
+!.mvn/wrapper/
+!.mvn/wrapper/maven-wrapper.properties
